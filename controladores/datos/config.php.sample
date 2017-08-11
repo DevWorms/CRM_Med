@@ -1,0 +1,29 @@
+<?php
+    /*
+     * Copia este archivo a datos/config.php
+     * Agrega tus datos de configuración
+    */
+   
+    define("NOMBRE_HOST", "www.devworms.com");
+    define("BASE_DE_DATOS", "medilaser_crm_2");
+   	define("USUARIO", "worm_developer");
+   	define("CONTRASENA", "DW_developer_2017");
+    define("APP_URL", "http://localhost/app-medica/");
+
+ 
+
+    function app_url() {
+	    if ((strtolower(substr(APP_URL, 0, 7)) == "http://") || (strtolower(substr(APP_URL, 0, 8)) == "https://")) {
+            if (substr(APP_URL, -1) == "/") {
+                return APP_URL;
+            } else {
+                return APP_URL . "/";
+            }
+        } else {
+            if (substr(APP_URL, -1) == "/") {
+                return "http" . (isset($_SERVER['HTTPS']) ? 's' : '') . "://" . "http://localhost:8080/app-medica/index.php";
+            } else {
+                return "http" . (isset($_SERVER['HTTPS']) ? 's' : '') . "://" . "http://localhost:8080/app-medica/index.php" . "/";
+            }
+        }
+    }
