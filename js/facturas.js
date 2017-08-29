@@ -109,6 +109,8 @@ function addProducto() {
         '<td>' + $('#tipo').val() + '<input id="v_tipo[]" name="v_tipo[]" type="hidden" value="' + $('#tipo').val() + '"></td>' +
         '<td>' + $('#presentacion').val() + '<input id="v_presentacion[]" name="v_presentacion[]" type="hidden" value="' + $('#presentacion').val() + '"></td>' +
         '<td>' + $('#caja').val() + '<input id="v_caja[]" name="v_caja[]" type="hidden" value="' + $('#caja').val() + '"></td>' +
+        '<td>' + $('#fecha2').val() + '<input id="v_caducidad[]" name="v_caducidad[]" type="hidden" value="' + $('#fecha2').val() + '"></td>' +
+        '<td>' + $('#lote').val() + '<input id="v_lote[]" name="v_lote[]" type="hidden" value="' + $('#lote').val() + '"></td>' +
         '<td><a style="color:red" href="#" onclick="event.preventDefault();removeProducto(this)"><i class="glyphicon glyphicon-remove"></i></a></td>' + 
         '</tr>');
 

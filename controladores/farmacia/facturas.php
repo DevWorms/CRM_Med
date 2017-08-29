@@ -121,6 +121,8 @@
                                         <th>Tipo</th>
                                         <th>Presentación</th>
                                         <th>Caja</th>
+                                        <th>Fecha de caducidad</th>
+                                        <th>Lote</th>
                                         <th>
                                             Disponible
                                             <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip"

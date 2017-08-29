@@ -101,6 +101,8 @@ function validar() {
                         '<td>' + p.tipo + '<input id="v_tipo[]" name="v_tipo[]" type="hidden" value="' + p.tipo + '"></td>' +
                         '<td>' + p.presentacion + '<input id="v_presentacion[]" name="v_presentacion[]" type="hidden" value="' + p.presentacion + '"></td>' +
                         '<td>' + p.caja + '<input id="v_caja[]" name="v_caja[]" type="hidden" value="' + p.caja + '"></td>' +
+                        '<td>' + p.caducidad + '<input id="v_caducidad[]" name="v_caducidad[]" type="hidden" value="' + p.caducidad + '"></td>' +
+                        '<td>' + p.lote + '<input id="v_lote[]" name="v_lote[]" type="hidden" value="' + p.lote + '"></td>' +
                         '<td align="center" style="color:red;cursor:pointer"><div id="addObservacion-'+p.id+'" onclick="openModal('+p.id+');">'+observacion+'</td>'+
                         '</tr>');
 

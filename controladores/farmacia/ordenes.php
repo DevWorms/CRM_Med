@@ -98,6 +98,32 @@
                                     </fieldset>
                                 </div>
                             </div>
+                            <br>
+                            <div class="col-md-12">
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="fecha2">Fecha de Caducidad</label>
+                                        <div class="input-group">
+                                            <input type="text" class="search-query form-control" id="fecha2" name="fecha2" placeholder="aaaa / mm / dd" required/>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="lote">Lote&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <input type="text" class="form-control" id="lote" name="lote">
+                                    </fieldset>
+                                </div>
+                                
+                            </div>
+
+
                             <div class="form-group row">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4"></div>
@@ -117,6 +143,8 @@
                                       <th>Tipo</th>
                                       <th>Presentación</th>
                                       <th>Caja</th>
+                                      <th>Fecha de caducidad</th>
+                                      <th>Lote</th>
                                   </tr>
                                 </thead>
                                 <tbody>

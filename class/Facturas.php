@@ -42,7 +42,7 @@ class Facturas {
                 $id = $this->pdo->lastInsertId();
 
                 for ($i = 0; $i < count($data['v_producto']); $i++) {
-                    $query = "INSERT INTO orden_productos (producto, unidades, gramaje, tipo, presentacion, orden_id, caja, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, now())";
+                    $query = "INSERT INTO orden_productos (producto, unidades, gramaje, tipo, presentacion, orden_id, caja, caducidad, lote, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
                     $stm = $this->pdo->prepare($query);
 
                     $stm->bindValue(1, $data['v_producto'][$i], PDO::PARAM_STR);
@@ -52,6 +52,8 @@ class Facturas {
                     $stm->bindValue(5, $data['v_presentacion'][$i], PDO::PARAM_STR);
                     $stm->bindValue(6, $id, PDO::PARAM_INT);
                     $stm->bindValue(7, $data['v_caja'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(8, $data['v_caducidad'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(9, $data['v_lote'][$i], PDO::PARAM_STR);
                     $stm->execute();
                 }
 
