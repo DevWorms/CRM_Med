@@ -60,7 +60,7 @@
 
                                                 <br>
                                                 <label for="fecha">Fecha de Recibo</label>
-                                                <input type="date" id="fecha" name="fecha" class="form-control">
+                                                <input type="text" id="fecha" name="fecha" class="form-control">
 
                                                 <br>
                                                 <div class="form-group" align="right">
