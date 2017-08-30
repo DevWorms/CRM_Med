@@ -99,21 +99,16 @@ function getCatalogo(page) {
             response = JSON.parse(response);
 
             if (response.estado == 1) {
-                response.inventario.forEach(function (producto) {
-                    
 
+                response.inventario.forEach(function (producto) {
                     $('#catalogo tr:last').after('<tr'+getColorAlerta(producto)+'>' +
                         '<td>' + producto.nombre + '</td>' +
                         '<td>' + producto.existencia + '</td>' +
                         '<td>' + producto.tipo + '</td>' +
-                        '<td>' + producto.presentacion + '</td>' +
-                        '<td>' + producto.gramaje + '</td>' +
-                        '<td>' + producto.cant_gramaje + '</td>' +
+                        '<td>' + producto.presentacion  + ' con ' + producto.pzs_presentacion + ' piezas de ' +  producto.cant_gramaje + ' ' + producto.gramaje + '</td>' +
                         '<td>' + producto.lote + '</td>' +
                         '<td>' + producto.caducidad + '</td>' +
-                        '<td>' + producto.pzs_presentacion + '</td>' +
                         '<td>' + producto.minStock + '</td>' +
-                        '<td>' + producto.descripcion + '</td>' +
                         '<td><a href="#" onclick="showEditProducto('+producto.id+')"><i class="glyphicon glyphicon-pencil"></i></a></td>' +
                         '</tr>');
                 });
@@ -144,8 +139,8 @@ function getColorAlerta(producto){
     }else{
         //si la diferencia es negativa aun no caduca pero alertamos cuanto falta
         timeDiff = Math.abs(timeDiff);
-        diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-        
+        diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
         if(diffDays  < 14){
             colorAlerta = " style='background-color: rgba(255,0,0,0.3)'";
         }else if(diffDays >= 14 && diffDays < 21){
@@ -155,7 +150,7 @@ function getColorAlerta(producto){
         }
 
     }
-    
+
     return colorAlerta;
 }
 
@@ -179,18 +174,16 @@ function searchProducto() {
                 $('#pagination').html("");
 
                 response.productos.forEach(function (producto) {
+
                     $('#catalogo tr:last').after('<tr'+getColorAlerta(producto)+'>' +
-                        '<td>' + producto.nombre + '</td>' +
-                        '<td>' + producto.existencia + '</td>' +
-                        '<td>' + producto.tipo + '</td>' +
-                        '<td>' + producto.presentacion + '</td>' +
-                        '<td>' + producto.gramaje + '</td>' +
-                        '<td>' + producto.cant_gramaje + '</td>' +
-                        '<td>' + producto.lote + '</td>' +
-                        '<td>' + producto.caducidad + '</td>' +
-                        '<td>' + producto.pzs_presentacion + '</td>' +
-                        '<td>' + producto.minStock + '</td>' +
-                        '<td>' + producto.descripcion + '</td>' +
+
+                    '<td>' + producto.nombre + '</td>' +
+                    '<td>' + producto.existencia + '</td>' +
+                    '<td>' + producto.tipo + '</td>' +
+                    '<td>' + producto.presentacion  + ' con ' + producto.pzs_presentacion + ' piezas de ' +  producto.cant_gramaje + ' ' + producto.gramaje + '</td>' +
+                    '<td>' + producto.lote + '</td>' +
+                    '<td>' + producto.caducidad + '</td>' +
+                    '<td>' + producto.minStock + '</td>' +
                         '<td><a href="#" onclick="showEditProducto('+producto.id+')"><i class="glyphicon glyphicon-pencil"></i></a></td>' +
                         '</tr>');
                 });
@@ -209,6 +202,7 @@ function searchProducto() {
 
 function createProducto() {
     var data = $("#create-form").serialize();
+
     $.ajax({
         type : 'POST',
         url  : APP_URL + 'class/Inventario.php',
@@ -266,7 +260,7 @@ function showEditProducto(idProducto){
                     $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
                 });
             }
-           
+
         },
         error:function(response){
             console.log(response);
@@ -304,7 +298,7 @@ function modifyProducto(idProducto){
                     $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
                 });
             }
-           
+
         },
         error:function(response){
             console.log(response);
