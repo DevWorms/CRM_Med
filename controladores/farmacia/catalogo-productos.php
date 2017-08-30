@@ -175,13 +175,9 @@
                                 <th>Existencia</th>
                                 <th>Tipo</th>
                                 <th>Presentación</th>
-                                <th>Gramaje</th>
-                                <th>Cant. Gramaje</th>
                                 <th>Lote</th>
                                 <th>Fecha de Caducidad</th>
-                                <th>Pzas. por presen.</th>
                                 <th>Alerta Stock</th>
-                                <th>Descripci&oacute;n</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -327,7 +323,7 @@
             </form>
                 </div>
                 <div class="modal-footer" id="editModifyProd">
-                  
+
                 </div>
             </div>
         </div>

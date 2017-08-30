@@ -92,7 +92,8 @@ class Inventario {
         ];
 
         try {
-            $query = "INSERT INTO productos (nombre, tipo, presentacion, gramaje, caducidad, minStock, lote, pzs_presentacion,descripcion,existencia,cant_gramaje) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
+            $query = "INSERT INTO productos (nombre, tipo, gramaje, presentacion, existencia, caducidad, minStock, lote, pzs_presentacion, descripcion, cant_gramaje)
+            VALUES ('$nombre', '$tipo', '$gramaje', '$presentacion', '$existencia', '$fecha', '$alerta', '$lote', '$piezas', '$descripcion', '$cant_gramaje')";
             $stm = $this->pdo->prepare($query);
 
             $stm->bindValue(1, $nombre, PDO::PARAM_STR);
@@ -252,17 +253,17 @@ class Inventario {
                     }
                     if($errorResta == "" AND $errorDeta == ""){
                         $res['estado'] = 1;
-                        $res['mensaje'] = "Salida generada"; 
+                        $res['mensaje'] = "Salida generada";
                     }else{
                         $res['estado'] = 0;
-                        $res['mensaje'] = "No se pudo genera la salida de algunos productos : " . $errorDeta . " o la resta de existencia : " . $errorResta; 
+                        $res['mensaje'] = "No se pudo genera la salida de algunos productos : " . $errorDeta . " o la resta de existencia : " . $errorResta;
                     }
-                    
+
                 }
             }else{
                  $res['mensaje'] = "No se pudo registrar la salida de ningun producto";
             }
-            
+
         } catch (Exception $e) {
             $res['mensaje'] = $e->getMessage();
         }
@@ -290,7 +291,7 @@ class Inventario {
 
     // BUSQUEDA DE SALDIA DE PRODUCTOS
     public function reporteSalidaProductos($usuario,$medico,$paciente,$fecha){
-        
+
         $res = [
             'estado' => 0,
         ];
@@ -308,7 +309,7 @@ class Inventario {
 
         if($usuario == 0 AND $medico == 0 AND $paciente == 0 AND $fecha == ""){
 
-            $query.= " ORDER BY s.fecha_salida DESC LIMIT 15 "; 
+            $query.= " ORDER BY s.fecha_salida DESC LIMIT 15 ";
 
             }else{
                 if($usuario != 0)
@@ -341,7 +342,7 @@ class Inventario {
             $res["estado"]=0;
             $res["mensaje"]="Generacion de reporte fallido <br> " . $ex->getMessage();
         }
-        
+
         return json_encode($res);
     }
 
@@ -396,9 +397,9 @@ if (isset($_POST['get'])) {
             case 'searchProductoToOut':
                 $i->searchProductoToOut($_POST['busqueda']);
                 break;
-                case 'generarSalida': 
-                    $i->generarSalida($_POST); 
-                break; 
+                case 'generarSalida':
+                    $i->generarSalida($_POST);
+                break;
                 case 'reporteSalidaProductos':
                     echo $i->reporteSalidaProductos($_POST["usuario"], $_POST["medico"], $_POST["paciente"], $_POST["fecha"]);
                 break;
