@@ -72,6 +72,7 @@ $().ready(function() {
         var formData = new FormData($(this)[0]);
         formData.append('get', 'addPago');
         formData.append('user_id', $("#user_id").val());
+        formData.append('fecha', $("#fechaAbierta").val());
 
         $.ajax({
             type: 'POST',
