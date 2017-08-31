@@ -99,21 +99,16 @@ function getCatalogo(page) {
             response = JSON.parse(response);
 
             if (response.estado == 1) {
-                response.inventario.forEach(function (producto) {
-                    
 
+                response.inventario.forEach(function (producto) {
                     $('#catalogo tr:last').after('<tr'+getColorAlerta(producto)+'>' +
                         '<td>' + producto.nombre + '</td>' +
                         '<td>' + producto.existencia + '</td>' +
                         '<td>' + producto.tipo + '</td>' +
-                        '<td>' + producto.presentacion + '</td>' +
-                        '<td>' + producto.gramaje + '</td>' +
-                        '<td>' + producto.cant_gramaje + '</td>' +
+                        '<td>' + producto.presentacion  + ' con ' + producto.pzs_presentacion + ' piezas de ' +  producto.cant_gramaje + ' ' + producto.gramaje + '</td>' +
                         '<td>' + producto.lote + '</td>' +
                         '<td>' + producto.caducidad + '</td>' +
-                        '<td>' + producto.pzs_presentacion + '</td>' +
                         '<td>' + producto.minStock + '</td>' +
-                        '<td>' + producto.descripcion + '</td>' +
                         '<td><a href="#" onclick="showEditProducto('+producto.id+')"><i class="glyphicon glyphicon-pencil"></i></a></td>' +
                         '</tr>');
                 });
@@ -144,8 +139,8 @@ function getColorAlerta(producto){
     }else{
         //si la diferencia es negativa aun no caduca pero alertamos cuanto falta
         timeDiff = Math.abs(timeDiff);
-        diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-        
+        diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
         if(diffDays  < 14){
             colorAlerta = " style='background-color: rgba(255,0,0,0.3)'";
         }else if(diffDays >= 14 && diffDays < 21){
@@ -155,7 +150,7 @@ function getColorAlerta(producto){
         }
 
     }
-    
+
     return colorAlerta;
 }
 
@@ -179,18 +174,16 @@ function searchProducto() {
                 $('#pagination').html("");
 
                 response.productos.forEach(function (producto) {
+
                     $('#catalogo tr:last').after('<tr'+getColorAlerta(producto)+'>' +
-                        '<td>' + producto.nombre + '</td>' +
-                        '<td>' + producto.existencia + '</td>' +
-                        '<td>' + producto.tipo + '</td>' +
-                        '<td>' + producto.presentacion + '</td>' +
-                        '<td>' + producto.gramaje + '</td>' +
-                        '<td>' + producto.cant_gramaje + '</td>' +
-                        '<td>' + producto.lote + '</td>' +
-                        '<td>' + producto.caducidad + '</td>' +
-                        '<td>' + producto.pzs_presentacion + '</td>' +
-                        '<td>' + producto.minStock + '</td>' +
-                        '<td>' + producto.descripcion + '</td>' +
+
+                    '<td>' + producto.nombre + '</td>' +
+                    '<td>' + producto.existencia + '</td>' +
+                    '<td>' + producto.tipo + '</td>' +
+                    '<td>' + producto.presentacion  + ' con ' + producto.pzs_presentacion + ' piezas de ' +  producto.cant_gramaje + ' ' + producto.gramaje + '</td>' +
+                    '<td>' + producto.lote + '</td>' +
+                    '<td>' + producto.caducidad + '</td>' +
+                    '<td>' + producto.minStock + '</td>' +
                         '<td><a href="#" onclick="showEditProducto('+producto.id+')"><i class="glyphicon glyphicon-pencil"></i></a></td>' +
                         '</tr>');
                 });
@@ -208,30 +201,34 @@ function searchProducto() {
 }
 
 function createProducto() {
-    var data = $("#create-form").serialize();
-    $.ajax({
-        type : 'POST',
-        url  : APP_URL + 'class/Inventario.php',
-        data : data,
-        success :  function(response) {
-            response = JSON.parse(response);
+    if ( !camposValidos() ) { // Si no existen campos validos
 
-            if (response.estado == 1) {
-                $('#create-form')[0].reset();
-                init();
-                $.notify("Producto creado exitosamente", "success");
-                $("#error").html("");
+    } else { // Si todos los campos son validos
+        var data = $("#create-form").serialize();
+        $.ajax({
+            type : 'POST',
+            url  : APP_URL + 'class/Inventario.php',
+            data : data,
+            success :  function(response) {
+                response = JSON.parse(response);
+
+                if (response.estado == 1) {
+                    $('#create-form')[0].reset();
+                    init();
+                    $.notify("Producto creado exitosamente", "success");
+                    $("#error").html("");
+                }
+                else {
+                    $("#error").fadeIn(1000, function() {
+                        $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                    });
+                }
+            },
+            error : function (response) {
+                console.log(response);
             }
-            else {
-                $("#error").fadeIn(1000, function() {
-                    $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
-                });
-            }
-        },
-        error : function (response) {
-            console.log(response);
-        }
-    });
+        });
+    }
 }
 
 /* FUNCION PARA ABRIR MODAL PARA LA EDICION DEP RODUCTO INDIVIDUAL */
@@ -266,7 +263,7 @@ function showEditProducto(idProducto){
                     $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
                 });
             }
-           
+
         },
         error:function(response){
             console.log(response);
@@ -304,7 +301,7 @@ function modifyProducto(idProducto){
                     $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
                 });
             }
-           
+
         },
         error:function(response){
             console.log(response);
@@ -313,4 +310,56 @@ function modifyProducto(idProducto){
             $("#wait").hide();
         }
     });
+}
+
+function isC1Valido(cadena){
+   var caract = new RegExp(/^([a-zA-Z0-9\.%(),-_])+$/);
+   if (caract.test(cadena) == false){
+       return false;
+   } else {
+     return true;
+   }
+}
+function isC2Valido(cadena){
+   var caract = new RegExp(/^([0-9])+$/);
+   if (caract.test(cadena) == false){
+       return false;
+   } else {
+     return true;
+   }
+}
+function isC3Valido(cadena){
+   var caract = new RegExp(/^([a-zA-z0-9\.])+$/);
+   if (caract.test(cadena) == false){
+       return false;
+   } else {
+     return true;
+   }
+}
+function notifies(mssg, wichColor) {
+     $.notify(mssg, wichColor);
+}
+
+/* FUNCION PARA VALIDAR LOS CAMPOS DEL MODULO */
+function camposValidos() {
+    // Si existe algun campo vacío
+    if (!$('#nombre').val() || !$('#fecha').val() || !$('#existencia').val() || !$('#cant_gramaje').val() ||
+        !$('#piezas').val() || !$('#alertas').val() || !$('#lote').val() ) {
+            if (!$('#alertas').val()) notifies('El campo "Mostrar alerta con" no debe estar vacio', 'warning');
+            if (!$('#piezas').val()) notifies('El campo "Piezas por presentación" no debe estar vacio', 'warning');
+            if (!$('#cant_gramaje').val()) notifies('El campo "Catidad gramaje" no debe estar vacio', 'warning');
+            if (!$('#lote').val()) notifies('El campo "Lote " no debe estar vacio', 'warning');
+            if (!$('#existencia').val()) notifies('El campo "Existencia" no debe estar vacio', 'warning');
+            if (!$('#fecha').val()) notifies('Falta "fecha de caducidad"', 'warning');
+            if (!$('#nombre').val()) notifies('El campo "Nombre" no debe estar vacio', 'warning');
+        //return false;
+    } else { // Si Todos los campos estan llenos
+        // Si no son validos
+        if ( !isC1Valido( $('#nombre').val()) || !isC2Valido( $('#existencia').val()) || !isC2Valido( $('#piezas').val()) ||
+            !isC2Valido( $('#alertas').val()) || !isC3Valido( $('#lote').val()) || !isC3Valido($('#cant_gramaje').val())) {
+            notifies('El campo "Campos con caracteres invalidos', 'warning');
+        } else { // Si caracteres validos
+            return true;
+        }
+    }
 }
