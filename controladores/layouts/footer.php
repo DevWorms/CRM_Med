@@ -26,6 +26,10 @@
             }
         });
 
+        $('#fechaAbierta').pikaday({
+            format: 'YYYY-MM-DD'
+        });
+
         Date.prototype.fromString = function (str, ddmmyyyy) {
             var m = str.match(/(\d+)(-|\/)(\d+)(?:-|\/)(?:(\d+)\s+(\d+):(\d+)(?::(\d+))?(?:\.(\d+))?)?/);
             if (m[2] == "/") {
