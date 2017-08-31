@@ -24,9 +24,52 @@ $('document').ready(function() {
     });
 
     /*AUTOCOMPLETADO PARA GRAMAJE*/
+    $("#gramaje").on("keydown", function (event) {
+        if (event.keyCode === $.ui.keyCode.TAB &&
+            $(this).autocomplete("instance").menu.active) {
+            event.preventDefault();
+        }
+    }).autocomplete({
+        minLength: 0,
+        source: function (request, response) {
+            $.ajax({
+                type: 'POST',
+                url: APP_URL + 'class/Inventario.php',
+                data: {
+                    search: $("#gramaje").val(),
+                    get: "getGramaje"
+                },
+                dataType: "json",
+                success: function (data) {
+                    response($.map(data.productos, function (el) {
+                        return el.gramaje;
+                    }));
+                }, error: function (data) {
+                    console.log("error" + data);
+                }
+            });
+        },
+        focus: function() {
+            // prevent value inserted on focus
+            return false;
+        },
+        delay: 700,
+        select: function( event, ui ) {
+            //var terms = split(this.value) ;
+            var terms = String(this.value).split(".");
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( "" );
+            return false;
+        }
+    });
+
     /*AUTOCOMPLETADO PARA PRESENTACION*/
     $("#presentacion").on("keydown", function (event) {
-        console.log('ok');
         if (event.keyCode === $.ui.keyCode.TAB &&
             $(this).autocomplete("instance").menu.active) {
             event.preventDefault();

@@ -92,7 +92,30 @@ class Inventario {
         ];
 
         try {
-            $query = "SELECT presentacion FROM productos WHERE presentacion LIKE :search";
+            $query = "SELECT presentacion FROM productos WHERE presentacion LIKE :search group by presentacion;";
+            $stm = $this->pdo->prepare($query);
+
+            $stm->bindValue(":search", "%$string%", PDO::PARAM_STR);
+            $stm->execute();
+            $resultado = $stm->fetchAll();
+
+            $res['productos'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
+
+    public function getGramaje($string){
+        $res = [
+            'estado' => 0,
+        ];
+
+        try {
+            $query = "SELECT gramaje FROM productos WHERE gramaje LIKE :search group by gramaje;";
             $stm = $this->pdo->prepare($query);
 
             $stm->bindValue(":search", "%$string%", PDO::PARAM_STR);
@@ -420,15 +443,21 @@ if (isset($_POST['get'])) {
             case 'searchProductoToOut':
                 $i->searchProductoToOut($_POST['busqueda']);
                 break;
-                case 'generarSalida':
-                    $i->generarSalida($_POST);
-                break;
-                case 'reporteSalidaProductos':
-                    echo $i->reporteSalidaProductos($_POST["usuario"], $_POST["medico"], $_POST["paciente"], $_POST["fecha"]);
-                break;
-                case 'getDetalleSalidas':
-                    echo $i->getDetalleSalidas($_POST["master"]);
-                break;
+            case 'generarSalida':
+                $i->generarSalida($_POST);
+            break;
+            case 'reporteSalidaProductos':
+                echo $i->reporteSalidaProductos($_POST["usuario"], $_POST["medico"], $_POST["paciente"], $_POST["fecha"]);
+            break;
+            case 'getDetalleSalidas':
+                echo $i->getDetalleSalidas($_POST["master"]);
+            break;
+            case 'getPresentacion':
+                echo $i->getPresentacion($_POST["search"]);
+            break;
+            case 'getGramaje':
+                echo $i->getGramaje($_POST["search"]);
+            break;
             default:
                 header("Location: " . app_url() . "404");
         }
