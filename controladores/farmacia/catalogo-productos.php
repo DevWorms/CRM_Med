@@ -65,12 +65,7 @@
                                     <fieldset class="form-inline">
                                         <div>
                                             <label for="">Presentación&nbsp;&nbsp;</label><br>
-                                            <select class="selectpicker" id="presentacion" name="presentacion">
-	                                          <option value="Caja">Caja</option>
-	                                          <option value="Bolsa">Bolsa</option>
-                                              <option value="Solucion">Solucion</option>
-	                                          <option>* Nuevo</option>
-	                                        </select>
+                                            <input type="text" class="form-control ui-autocomplete-input" id="presentacion" name="presentacion" placeholder="" required/>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -79,13 +74,7 @@
                                     <fieldset class="form-inline">
                                         <div>
                                             <label for="">Gramaje&nbsp;&nbsp;</label><br>
-                                            <select class="selectpicker" id="gramaje" name="gramaje">
-	                                          <option value="gr">gr</option>
-	                                          <option value="kg">kg</option>
-	                                          <option value="ml">ml</option>
-	                                          <option value="L">L</option>
-	                                          <option>* Nuevo</option>
-	                                        </select>
+                                            <input type="text" class="form-control ui-autocomplete-input" id="gramaje" name="gramaje" placeholder="" required/>
                                         </div>
                                     </fieldset>
                                 </div>

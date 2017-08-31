@@ -86,6 +86,29 @@ class Inventario {
         echo json_encode($res);
     }
 
+    public function getPresentacion($string){
+        $res = [
+            'estado' => 0,
+        ];
+
+        try {
+            $query = "SELECT presentacion FROM productos WHERE presentacion LIKE :search";
+            $stm = $this->pdo->prepare($query);
+
+            $stm->bindValue(":search", "%$string%", PDO::PARAM_STR);
+            $stm->execute();
+            $resultado = $stm->fetchAll();
+
+            $res['productos'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
+
     public function createProducto($nombre, $fecha, $tipo, $presentacion, $gramaje, $piezas, $alerta, $lote,$descripcion,$existencia,$cant_gramaje) {
         $res = [
             'estado' => 0,

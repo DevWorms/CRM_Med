@@ -22,6 +22,53 @@ $('document').ready(function() {
             },
         submitHandler: searchProducto
     });
+
+    /*AUTOCOMPLETADO PARA GRAMAJE*/
+    /*AUTOCOMPLETADO PARA PRESENTACION*/
+    $("#presentacion").on("keydown", function (event) {
+        console.log('ok');
+        if (event.keyCode === $.ui.keyCode.TAB &&
+            $(this).autocomplete("instance").menu.active) {
+            event.preventDefault();
+        }
+    }).autocomplete({
+        minLength: 0,
+        source: function (request, response) {
+            $.ajax({
+                type: 'POST',
+                url: APP_URL + 'class/Inventario.php',
+                data: {
+                    search: $("#presentacion").val(),
+                    get: "getPresentacion"
+                },
+                dataType: "json",
+                success: function (data) {
+                    response($.map(data.productos, function (el) {
+                        return el.presentacion;
+                    }));
+                }, error: function (data) {
+                    console.log("error" + data);
+                }
+            });
+        },
+        focus: function() {
+            // prevent value inserted on focus
+            return false;
+        },
+        delay: 700,
+        select: function( event, ui ) {
+            //var terms = split(this.value) ;
+            var terms = String(this.value).split(".");
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( "" );
+            return false;
+        }
+    });
 });
 
 function init() {
@@ -357,7 +404,7 @@ function camposValidos() {
         // Si no son validos
         if ( !isC1Valido( $('#nombre').val()) || !isC2Valido( $('#existencia').val()) || !isC2Valido( $('#piezas').val()) ||
             !isC2Valido( $('#alertas').val()) || !isC3Valido( $('#lote').val()) || !isC3Valido($('#cant_gramaje').val())) {
-            notifies('El campo "Campos con caracteres invalidos', 'warning');
+            notifies('Existen Campos con caracteres inválidos', 'warning');
         } else { // Si caracteres validos
             return true;
         }
