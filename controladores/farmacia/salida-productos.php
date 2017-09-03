@@ -20,7 +20,7 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10 col-md-ofset-1">
                             <div class="row">
-                                <button class="col-md-12 btn btn-info" onclick='$("#modal-addOutProduct").modal().show()'> 
+                                <button class="col-md-12 btn btn-info" onclick='$("#modal-addOutProduct").modal().show()'>
                                     <i class="glyphicon glyphicon-plus"></i> Añadir Producto
                                 </button>
                             </div>
@@ -33,7 +33,7 @@
                             <input type="hidden" id="get" name="get" value="generarSalida">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-bordered"> 
+                                    <table class="table table-bordered">
                                         <thead>
                                             <th style="display: none;">id</th>
                                             <th>Producto</th>
@@ -89,7 +89,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <input type="text" class="form-control" id="searchProd" name="searchProd" placeholder="Buscar producto" required>
+                            <input type="text" class="form-control ui-autocomplete-input" id="searchProd" name="searchProd" placeholder="Buscar producto" required>
                         </div>
                     </div>
                     <br>
@@ -110,7 +110,7 @@
                     <div class="row">
                         <div align="center" class="col-md-12">
                             <button class="btn btn-info" onclick="pastProductoSelection()">
-                                Listo <i class="glyphicon glyphicon-ok-circle"></i> 
+                                Listo <i class="glyphicon glyphicon-ok-circle"></i>
                             </button>
                         </div>
                     </div>

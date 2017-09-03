@@ -227,7 +227,8 @@ class Inventario {
 
         try {
 
-            $query = "SELECT * FROM productos WHERE nombre LIKE :search AND existencia > 0;";
+            $query = "SELECT id, nombre, existencia FROM productos WHERE nombre LIKE :search AND existencia > 0 ORDER BY caducidad ASC limit 15;";
+
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":search", "%$string%", PDO::PARAM_STR);
 
