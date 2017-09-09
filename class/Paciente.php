@@ -572,7 +572,7 @@ class Paciente
             $res['estado'] = 0;
             return json_encode($res);
         }
-        $query = "SELECT * FROM pacientes WHERE (id LIKE :search OR apPaterno LIKE :search or apMaterno LIKE :search or nombre LIKE :search) and is_paciente=1 ORDER BY apPaterno;";
+        $query = "SELECT * FROM pacientes WHERE (id LIKE :search OR apPaterno LIKE :search or apMaterno LIKE :search or nombre LIKE :search or telefono LIKE :search) and is_paciente=1 ORDER BY apPaterno;";
         try {
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":search", "%$param%", PDO::PARAM_STR);
@@ -598,7 +598,7 @@ class Paciente
             $res['estado'] = 0;
             return json_encode($res);
         }
-        $query = "SELECT * FROM pacientes WHERE id LIKE :search OR apPaterno LIKE :search or apMaterno LIKE :search or nombre LIKE :search ORDER BY apPaterno;";
+        $query = "SELECT * FROM pacientes WHERE id LIKE :search OR apPaterno LIKE :search or apMaterno LIKE :search or nombre LIKE :search or telefono LIKE :search ORDER BY apPaterno;";
         try {
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":search", "%$param%", PDO::PARAM_STR);
@@ -776,7 +776,7 @@ class Paciente
             $res['estado'] = 0;
             return json_encode($res);
         }
-        $query = "SELECT * FROM pacientes WHERE (id LIKE :search OR apPaterno LIKE :search or apMaterno LIKE :search or nombre LIKE :search) and is_paciente=0 ORDER BY apPaterno;";
+        $query = "SELECT * FROM pacientes WHERE (id LIKE :search OR apPaterno LIKE :search or apMaterno LIKE :search or nombre LIKE :search or telefono LIKE :search) and is_paciente=0 ORDER BY apPaterno;";
         try {
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":search", "%$param%", PDO::PARAM_STR);

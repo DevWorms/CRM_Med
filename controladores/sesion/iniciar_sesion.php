@@ -6,7 +6,7 @@ if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
     $contrasena = hash('sha256', $_POST['contrasena']);
 
         $pdo = ConexionBD::obtenerInstancia()->obtenerBD();
-        $consultaSesion = "SELECT * FROM usuarios WHERE numeroUsuario = ? AND password = ?";
+        $consultaSesion = "SELECT * FROM usuarios INNER JOIN accesos ON usuarios.id = accesos.id_usuario WHERE numeroUsuario = ? AND password = ?";
 
         $sentenciaSesion = $pdo->prepare($consultaSesion);
         $sentenciaSesion->bindParam(1, $id_usuario);
@@ -23,22 +23,13 @@ if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
         if (count($resultado) == 1) {
             $resultado = $resultado[0];
 
-            /*$type = $resultado['puesto'];
-            switch ($type) {
-                case 1:
-                    $res['url'] = "admin";
-                    break;
-
-                case 2:
-                    $res['url'] = "admin";
-                    break;
-
-                case 3:
-                    $res['url'] = "admin";
-                    break;
-            }*/
-
-            $res['url'] = "citas";
+            if ($resultado['citas'] == 1 && $resultado['recepcion'] == 0) {
+                $res['url'] = "citas_programar";
+            } elseif ($resultado['citas'] == 0 && $resultado['recepcion'] == 0 && $resultado['farmacia'] == 1) {
+                $res['url'] = "orden_compra";
+            } else {
+                $res['url'] = "citas";
+            }
 
             session_start();
             $_SESSION["Id"] = $resultado['id'];
