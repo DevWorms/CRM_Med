@@ -82,6 +82,28 @@ $(document).ready(function() {
     });
 });
 
+function loadMedicos() {
+    $.ajax({
+        url: APP_URL + 'class/Medico.php',
+        type: 'POST',
+        data: {
+            get: 'getMedicos'
+        },
+        beforeSend: function () {
+            $("#wait").show();
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (response) {
+            error(response.responseJSON.mensaje);
+        },
+        complete: function () {
+            $("#wait").hide();
+        }
+    });
+}
+
 function printDiv() {
     // Cuenta por día
     if ($(".fc-event-container > a").length > 0) {

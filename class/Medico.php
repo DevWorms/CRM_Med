@@ -875,6 +875,26 @@ class Medico {
         // Devuelve json como respuesta
         echo json_encode($res);
     }
+
+    public function getMedicos() {
+        $res = ['estado' => 0];
+
+        try {
+            $query = "SELECT id, nombre, apPaterno FROM usuarios u INNER JOIN accesos a ON u.id=a.id_usuario WHERE a.medico=1;";
+            $stm = $this->pdo->prepare($query);
+            $stm->execute();
+            $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
+
+
+            $res['medicos'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $ex) {
+            $res['mensaje'] = $ex->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
 }
 
 if (isset($_POST['get'])) {
@@ -930,6 +950,9 @@ if (isset($_POST['get'])) {
                 break;
             case 'deletePresupuesto':
                 $m->deletePresupuesto($_POST['id']);
+                break;
+            case 'getMedicos':
+                $m->getMedicos();
                 break;
             default:
                 header("Location: " . app_url() . "404");
