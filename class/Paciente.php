@@ -479,7 +479,6 @@ class Paciente
                 $tipo = $data['tipo'];
                 $comentario = $data['comentario'];
                 $tratamiento = $data['tratamiento'];
-                $created_by = $data['created_by'];
 
                 $query = "INSERT INTO citas (fecha, hora_ini, tipo_cita, pacientes_id, comentario, presupuesto_id,usuario_id) values (:fecha, :hora_ini, :tipo_cita, :pacientes_id, :comentario, :presupuesto_id,:usuario_id);";
                 $stm = $this->pdo->prepare($query);
@@ -489,7 +488,7 @@ class Paciente
                 $stm->bindValue(":pacientes_id", $paciente, PDO::PARAM_INT);
                 $stm->bindValue(":comentario", $comentario, PDO::PARAM_STR);
                 $stm->bindValue(":presupuesto_id", $tratamiento, PDO::PARAM_INT);
-                $stm->bindValue(":usuario_id", $created_by, PDO::PARAM_INT);
+                $stm->bindValue(":usuario_id", $_SESSION["Id"], PDO::PARAM_INT);
                 $stm->execute();
 
                 $res['estado'] = 1;
@@ -658,14 +657,15 @@ class Paciente
                 $stm3->execute();
 
                 // Agrega la cita
-                $query = "INSERT INTO citas (fecha, hora_ini, tipo_cita, pacientes_id, comentario, presupuesto_id) values (
-                :fecha, :hora_ini, 1, :pacientes_id, :comentario, :presupuesto_id);";
+                $query = "INSERT INTO citas (fecha, hora_ini, tipo_cita, pacientes_id, comentario, presupuesto_id, usuario_id) values (
+                :fecha, :hora_ini, 1, :pacientes_id, :comentario, :presupuesto_id, :usuario_id);";
                 $stm2 = $this->pdo->prepare($query);
                 $stm2->bindValue(":fecha", $fecha, PDO::PARAM_STR);
                 $stm2->bindValue(":hora_ini", $hora, PDO::PARAM_STR);
                 $stm2->bindValue(":comentario", $comentario, PDO::PARAM_STR);
                 $stm2->bindValue(":presupuesto_id", $presupuesto_id, PDO::PARAM_INT);
                 $stm2->bindValue(":pacientes_id", $id, PDO::PARAM_INT);
+                $stm->bindValue(":usuario_id", $_SESSION["Id"], PDO::PARAM_INT);
                 $stm2->execute();
 
                 $res['mensaje'] = "Paciente y cita creados correctamente";
