@@ -76,7 +76,7 @@ $().ready(function() {
             event.preventDefault();
         }
     }).autocomplete({
-        minLength: 0,
+        minLength: 3,
         source: function (request, response) {
             $.ajax({
                 type : 'POST',
@@ -98,7 +98,7 @@ $().ready(function() {
             // prevent value inserted on focus
             return false;
         },
-        delay: 700,
+        delay: 1000,
         select: function( event, ui ) {
             var terms = String(this.value).split(".");
             // remove the current input
@@ -119,7 +119,7 @@ $().ready(function() {
             event.preventDefault();
         }
     }).autocomplete({
-        minLength: 0,
+        minLength: 3,
         source: function (request, response) {
             $.ajax({
                 type : 'POST',
@@ -141,7 +141,7 @@ $().ready(function() {
             // prevent value inserted on focus
             return false;
         },
-        delay: 700,
+        delay: 1000,
         select: function( event, ui ) {
             var terms = String(this.value).split(".");
             // remove the current input

@@ -272,7 +272,9 @@ class Paciente
                             email = :email,
                             fecha_nacimiento = :fecha_nacimiento,
                             edad = :edad,
-                            referencia = :referencia
+                            referencia = :referencia,
+                            updated_at = now(),
+                            user_update_id = :user_update_id
                             WHERE id=:id;";
 
                         $stm = $this->pdo->prepare($query);
@@ -291,6 +293,7 @@ class Paciente
                         $stm->bindValue(":fecha_nacimiento", $data['fecha'], PDO::PARAM_STR);
                         $stm->bindValue(":edad", $data['edad'], PDO::PARAM_INT);
                         $stm->bindValue(":referencia", $data['ref'], PDO::PARAM_STR);
+                        $stm->bindValue(":user_update_id", $_SESSION["Id"], PDO::PARAM_INT);
                         $stm->execute();
 
                         $query = "UPDATE antecedentes SET paciente_id=:new_id WHERE paciente_id=:id;";
@@ -353,7 +356,9 @@ class Paciente
                         email = :email,
                         fecha_nacimiento = :fecha_nacimiento,
                         edad = :edad,
-                        referencia = :referencia
+                        referencia = :referencia,
+                        updated_at = now(),
+                        user_update_id = :user_update_id
                         WHERE id=:id;";
 
                     $stm = $this->pdo->prepare($query);
@@ -371,7 +376,7 @@ class Paciente
                     $stm->bindValue(":fecha_nacimiento", $data['fecha'], PDO::PARAM_STR);
                     $stm->bindValue(":edad", $data['edad'], PDO::PARAM_INT);
                     $stm->bindValue(":referencia", $data['ref'], PDO::PARAM_STR);
-
+                    $stm->bindValue(":user_update_id", $_SESSION["Id"], PDO::PARAM_INT);
                     $stm->execute();
 
                     $res['id'] = $data['id'];

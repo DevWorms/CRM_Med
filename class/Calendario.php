@@ -64,7 +64,7 @@ class Calendario {
     }
 
     /*
-     * Devuelve el reporte de citas para la parte de administración - reporte
+     * Devuelve el reporte de citas para la parte de administraciï¿½n - reporte
      */
     public function reporteEventos() {
         $res = ['estado' => 0];
@@ -115,7 +115,7 @@ class Calendario {
     }
 
     /*
-     * Actualiza si es que un paciente asistió o no a su cita
+     * Actualiza si es que un paciente asistio o no a su cita
      */
     public function asistioEvento($asistencia, $id, $user_id) {
         $res = ['estado' => 0];
@@ -184,17 +184,28 @@ class Calendario {
      * Devuelve el color para un tipo de cita
      */
     private function getColor($id_cita) {
-
-        $color_agenda = "#424242";
-
-        if($id_cita == 1)
-            $color_agenda = "#34e773";
-        else if($id_cita == 2)
-            $color_agenda = "#f4bd42";
-        else if($id_cita == 3)
-            $color_agenda = "#7693ff";
-        else if($id_cita == 4)
-            $color_agenda = "#00bcd4";
+        switch ($id_cita) {
+            case 1:
+                $color_agenda = "#42e7d5";
+                break;
+            case 2:
+                $color_agenda = "#f4bd42";
+                break;
+            case 3:
+                $color_agenda = "#7693ff";
+                break;
+            case 4:
+                $color_agenda = "#00bcd4";
+                break;
+            case 5:
+                $color_agenda = "#bee705";
+                break;
+            case 6:
+                $color_agenda = "#b6c8e7";
+                break;
+            default:
+                $color_agenda = "#424242";
+        }
 
         return $color_agenda;
     }
