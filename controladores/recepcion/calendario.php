@@ -53,6 +53,23 @@
                                     <div class="col-md-12">
                                         <p>Fecha: ${fecha} ${hora_ini}</p>
                                     </div>
+                                    <%
+                                        if (is_paciente == 1) {
+                                            if (!id_relacion_mp) {
+                                    %>
+                                    <div class="col-md-12" id="medico-asignado-${cita_id}">
+                                        <label for="medico-${cita_id}">Asignar médico:</label>
+                                        <select id="medico-${cita_id}"></select>
+                                        <button class="btn btn-success btn-sm" onclick="asignarMedico('${id}', '${cita_id}');">Asignar</button>
+                                    </div>
+                                    <%      } else {
+                                    %>
+                                    <div class="col-md-12">
+                                        <p>Médico asignado: ${medico_nombre} ${medico_apellido}</p>
+                                    </div>
+                                    <%      }
+                                        }
+                                    %>
                                     <div class="col-md-12">
                                         <form id="cerrar-${cita_id}" class="form-group">
                                             <div class="col-md-8" style="vertical-align: middle">

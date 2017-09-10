@@ -69,10 +69,34 @@ class Medico {
     /*
      * Un médico atiende a un paciente
      */
-    public function atender($paciente_id) {
+    public function atender($paciente_id, $medico_id = null) {
         $res = ['estado' => 0];
         try {
-            if ($this->checkPermisos()) {
+            if ($medico_id == null) {
+                if ($this->checkPermisos()) {
+                    $query = "SELECT id FROM pacientes WHERE id=:id;";
+                    $stm = $this->pdo->prepare($query);
+                    $stm->bindValue(":id", $paciente_id, PDO::PARAM_INT);
+                    $stm->execute();
+
+                    if ($stm->rowCount() > 0) {
+                        $query = "INSERT INTO relacion_medico_paciente (id_medico_principal, id_paciente) VALUES (:id_medico, :id_paciente);";
+                        $stm2 = $this->pdo->prepare($query);
+                        $stm2->bindValue(":id_medico", $_SESSION["Id"], PDO::PARAM_INT);
+                        $stm2->bindValue(":id_paciente", $paciente_id, PDO::PARAM_INT);
+                        $stm2->execute();
+
+                        $this->removeFromListaEspera($paciente_id);
+
+                        $res['estado'] = 1;
+                        $res['mensaje'] = "Se agrego el paciente a su lista de pacientes";
+                    } else {
+                        $res['mensaje'] = "No se encontró el paciente: " . $paciente_id;
+                    }
+                } else {
+                    $res['mensaje'] = "No cuentas con los permisos correspondientes";
+                }
+            } else {
                 $query = "SELECT id FROM pacientes WHERE id=:id;";
                 $stm = $this->pdo->prepare($query);
                 $stm->bindValue(":id", $paciente_id, PDO::PARAM_INT);
@@ -81,7 +105,7 @@ class Medico {
                 if ($stm->rowCount() > 0) {
                     $query = "INSERT INTO relacion_medico_paciente (id_medico_principal, id_paciente) VALUES (:id_medico, :id_paciente);";
                     $stm2 = $this->pdo->prepare($query);
-                    $stm2->bindValue(":id_medico", $_SESSION["Id"], PDO::PARAM_INT);
+                    $stm2->bindValue(":id_medico", $medico_id, PDO::PARAM_INT);
                     $stm2->bindValue(":id_paciente", $paciente_id, PDO::PARAM_INT);
                     $stm2->execute();
 
@@ -92,8 +116,6 @@ class Medico {
                 } else {
                     $res['mensaje'] = "No se encontró el paciente: " . $paciente_id;
                 }
-            } else {
-                $res['mensaje'] = "No cuentas con los permisos correspondientes";
             }
         } catch (Exception $ex) {
             $res['mensaje'] = $ex->getMessage();
@@ -907,7 +929,7 @@ if (isset($_POST['get'])) {
                 $m->pacientesEnEspera();
                 break;
             case 'atender':
-                $m->atender($_POST['paciente_id']);
+                $m->atender($_POST['paciente_id'], (isset($_POST['medico_id'])) ? $_POST['medico_id'] : null);
                 break;
             case 'misPacientes':
                 $m->misPacientes();

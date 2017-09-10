@@ -38,6 +38,9 @@ $(document).ready(function() {
                         total = response.eventos.length;
 
                         response.eventos.forEach(function (item) {
+                            if (item.id_relacion_mp) {
+                                console.log(item);
+                            }
                             var title = item.tipo_cita + " - " + item.apPaterno;
                             if (item.apMaterno) {
                                 title = title + " " + item.apMaterno;
@@ -82,24 +85,52 @@ $(document).ready(function() {
     });
 });
 
-function loadMedicos() {
+function loadMedicos(id) {
     $.ajax({
         url: APP_URL + 'class/Medico.php',
         type: 'POST',
         data: {
             get: 'getMedicos'
         },
+        dataType: "JSON",
         beforeSend: function () {
             $("#wait").show();
         },
         success: function (response) {
-            console.log(response);
+            var medicos = response.medicos;
+            medicos.forEach(function (medico) {
+                $("#medico-" + id).append("<option value='" + medico.id + "'>" + medico.nombre + " " + medico.apPaterno +"</option>");
+            });
         },
         error: function (response) {
             error(response.responseJSON.mensaje);
         },
         complete: function () {
             $("#wait").hide();
+        }
+    });
+}
+
+function asignarMedico(id, cita_id) {
+    $.ajax({
+        type: 'POST',
+        url: APP_URL + 'class/Medico.php',
+        data : {
+            get: 'atender',
+            paciente_id: id,
+            medico_id: $("#medico-" + cita_id).val()
+        },
+        success: function (response) {
+            response = JSON.parse(response);
+            if (response.estado == 1) {
+                msg(response.mensaje, "success");
+                $("#medico-asignado-" + cita_id).html("<p>Medico asignado correctamente</p>");
+            } else {
+                msg(response.mensaje, "danger");
+            }
+        },
+        error: function (response) {
+            msg("Ocurrio un error", "danger");
         }
     });
 }
@@ -132,6 +163,7 @@ function printDiv() {
 
 function openModal(id) {
     $("#DetalleEvento-" + id).modal("show");
+    loadMedicos(id);
 }
 
 function setAsistencia(id, user_id) {
@@ -171,5 +203,12 @@ function error(msg) {
     $.notify(msg, "error");
     $("#error").fadeIn(1000, function () {
         $("#error").html('<div class="alert alert-danger"> &nbsp; ' + msg + '</div>');
+    });
+}
+
+function msg(msg, type) {
+    $.notify(msg, type);
+    $("#error").fadeIn(1000, function () {
+        $("#error").html('<div class="alert alert-' + type + '"> &nbsp; ' + msg + '</div>');
     });
 }

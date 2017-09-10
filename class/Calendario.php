@@ -38,10 +38,15 @@ class Calendario {
                             c.tipo_cita as `type`,
                             c.asistencia, 
                             pr.nombre as `procedimiento`,
-                            p.* 
+                            p.* ,
+                            r.id_relacion_mp,
+                            u.nombre as medico_nombre,
+                            u.apMaterno as medico_apellido
                           FROM citas c
                             INNER JOIN pacientes p ON c.pacientes_id=p.id
                             INNER JOIN tipo_citas t ON c.tipo_cita=t.id_cita
+                            LEFT JOIN relacion_medico_paciente r ON c.pacientes_id=r.id_paciente
+                            LEFT JOIN usuarios u ON r.id_medico_principal=u.id 
                             LEFT JOIN presupuestos pr ON c.presupuesto_id=pr.id
                           WHERE c.fecha > :firstDay;";
             $sentencia = $this->pdo->prepare($operacion);
