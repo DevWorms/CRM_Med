@@ -185,7 +185,7 @@ class Usuarios {
     public function getUserSearch($search){
         $search = "%" . $search . "%";
         $res=["estado" => 0];
-        
+
         $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE usr.nombre LIKE ? OR usr.apPaterno LIKE ? OR usr.apMaterno LIKE ? OR usr.numeroUsuario lIKE ? OR tipo.nombre_tipo_usuario LIKE ? ";
 
         $stm= $this->pdo->prepare($query);
@@ -212,7 +212,7 @@ class Usuarios {
         $res["estado"] = 1;
         $res["rows"] = $resultado;
         return json_encode($res);
-    } 
+    }
 
     // OBTIENE EL USUARIO CON MAS CITAS DE PRIMERA VEZ
     public function reporteUsuarioMasCitasPv(){
@@ -282,24 +282,32 @@ class Usuarios {
         return json_encode($res);
     }
 
-    public function getMedicosSearch($search){
-        $search = "%" . $search . "%";
-        $res=["estado" => 0];
-        
-        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE (usr.nombre LIKE ? OR usr.apPaterno LIKE ? OR usr.apMaterno LIKE ? OR usr.numeroUsuario lIKE ? OR tipo.nombre_tipo_usuario LIKE ? ) AND id_tipo = 2 ";
+    public function getMedicosSearch($string){
+        $res = [
+            'estado' => 0,
+        ];
 
-        $stm= $this->pdo->prepare($query);
-        $stm->bindParam(1,$search);
-        $stm->bindParam(2,$search);
-        $stm->bindParam(3,$search);
-        $stm->bindParam(4,$search);
-        $stm->bindParam(5,$search);
-        $stm->execute();
+        try {
+            $query = "SELECT u.id, u.apPaterno, u.nombre
+            from usuarios u inner join accesos a
+            on u.id = a.id_usuario
+            where (u.nombre like :search or u.apPaterno like :search or u.id like :search)
+            and a.medico = true order by u.id asc;";
 
-        $res["estado"] = 1;
-        $res["rows"] = $stm->fetchAll();
+            $stm = $this->pdo->prepare($query);
 
-        return json_encode($res);
+            $stm->bindValue(":search", "%$string%", PDO::PARAM_STR);
+            $stm->execute();
+            $resultado = $stm->fetchAll();
+
+            $res['medicos'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
     }
 }
 
