@@ -20,7 +20,64 @@ $('document').ready(function() {
 
     getListUsuarios();
 
+    $('#type').change(function () {
+        switch ($("#type").val()) {
+            case "1":
+                // Activa los permisos de Administrador
+                $("#perm_farmacia").prop('checked', true);
+                $("#perm_recepcion").prop('checked', true);
+                $("#perm_medico").prop('checked', true);
+                $("#perm_financiero").prop('checked', true);
+                $("#perm_citas").prop('checked', true);
+                medicoCedula(false);
+                break;
+            case "2":
+                // Activa los permisos de Médico
+                $("#perm_farmacia").prop('checked', false);
+                $("#perm_recepcion").prop('checked', false);
+                $("#perm_medico").prop('checked', true);
+                $("#perm_financiero").prop('checked', false);
+                $("#perm_citas").prop('checked', false);
+                medicoCedula(true);
+                break;
+            case "3":
+                // Activa los permisos de Farmacia
+                $("#perm_farmacia").prop('checked', true);
+                $("#perm_recepcion").prop('checked', false);
+                $("#perm_medico").prop('checked', false);
+                $("#perm_financiero").prop('checked', true);
+                $("#perm_citas").prop('checked', false);
+                medicoCedula(false);
+                break;
+            case "4":
+                // Activa los permisos de Recepcionista
+                $("#perm_farmacia").prop('checked', false);
+                $("#perm_recepcion").prop('checked', true);
+                $("#perm_medico").prop('checked', false);
+                $("#perm_financiero").prop('checked', false);
+                $("#perm_citas").prop('checked', false);
+                medicoCedula(false);
+                break;
+            case "5":
+                // Activa los permisos de CallCenter
+                $("#perm_farmacia").prop('checked', false);
+                $("#perm_recepcion").prop('checked', false);
+                $("#perm_medico").prop('checked', false);
+                $("#perm_financiero").prop('checked', false);
+                $("#perm_citas").prop('checked', true);
+                medicoCedula(false);
+                break;
+        }
+    });
 });
+
+function medicoCedula(enable) {
+    if (enable) {
+        $("#div_cedula").show();
+    } else {
+        $("#div_cedula").hide();
+    }
+}
 
 function createUsuario() {
     var data = $("#newUser").serialize();
@@ -30,6 +87,17 @@ function createUsuario() {
             $("#error").html('<div class="alert alert-danger"> &nbsp; Las contraseñas no coinciden</div>');
         });
     } else {
+        // Si es médico, la cédula es obligatoria
+        if ($("#type").val() == "2") {
+            if (!$("#cedula").val()) {
+                $.notify("Ingresa la cédula del médico", "error");
+                $("#error").fadeIn(1000, function() {
+                    $("#error").html('<div class="alert alert-danger"> &nbsp; Ingresa la cédula del médico</div>');
+                });
+
+                return;
+            }
+        }
         $.ajax({
             type: 'POST',
             url: APP_URL + 'class/Usuarios.php',
@@ -61,11 +129,15 @@ function cleanAll() {
     $('#apPat').val("");
     $('#apMat').val("");
     $('#username').val("");
+    $('#cedula').val("");
     $('#perm_farmacia').prop( "checked", false );
     $('#perm_recepcion').prop( "checked", false );
     $('#perm_medico').prop( "checked", false );
     $('#perm_financiero').prop( "checked", false );
+    $('#perm_citas').prop( "checked", false );
+    $('#type').val('Seleccionar tipo').prop('selected', true);
     $("#error").html('');
+    medicoCedula(false);
 }
 
 function getListUsuarios(){

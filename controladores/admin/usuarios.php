@@ -51,10 +51,29 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fill_selects.php';
                             </div>
                         </div>
 
+                        <div class="col-md-12">
+                            <div class="col-md-6 form-group">
+                                <label for="type">Tipo de usuario</label>
+                                <select id="type" class="form-control">
+                                    <option disabled selected>Seleccionar tipo</option>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Médico</option>
+                                    <option value="3">Farmacia</option>
+                                    <option value="4">Recepcionista</option>
+                                    <option value="5">CallCenter</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <div id="div_cedula" style="display: none">
+                                    <label for="cedula">Cedula profesional</label>
+                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula profesional">
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-8">
-                                <div class="col-md-1 form-group"></div>
-                                <div class="col-md-4 form-group">
+                                <div class="col-md-3 form-group">
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="perm_farmacia" name="perm_farmacia">Farmacia</label>
                                     </div>
@@ -62,12 +81,18 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fill_selects.php';
                                         <label><input type="checkbox" id="perm_recepcion" name="perm_recepcion">Recepción</label>
                                     </div>
                                 </div>
-                                <div class="col-md-4 form-group">
+                                <div class="col-md-3 form-group">
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="perm_medico" name="perm_medico">Médico</label>
                                     </div>
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="perm_financiero" name="perm_financiero">Financiero</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 form-group">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="perm_citas" name="perm_citas">Citas</label>
                                     </div>
                                 </div>
                             </div>

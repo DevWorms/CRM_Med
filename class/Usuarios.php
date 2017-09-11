@@ -27,62 +27,76 @@ class Usuarios {
         $numero = $data['username'];
         $password = hash('sha256', $data['password']);
         $password2 = hash('sha256', $data['confirm_password']);
+        $tipo = (isset($data['type'])) ? $data['type'] : 0;
+        $cedula = $data['cedula'];
 
         $perm_farmacia = (isset($data['perm_farmacia']) ? 1 : 0);
         $perm_recepcion = (isset($data['perm_recepcion']) ? 1 : 0);
         $perm_medico = (isset($data['perm_medico']) ? 1 : 0);
         $perm_financiero = (isset($data['perm_financiero']) ? 1 : 0);
+        $perm_citas = (isset($data['perm_citas']) ? 1 : 0);
 
         $res = [
             'estado' => 0,
         ];
 
-        if (($password === $password2) && !empty($password)) {
-            try {
-                $query = "SELECT numeroUsuario FROM usuarios WHERE numeroUsuario=:numeroUsuario;";
-                $stm = $this->pdo->prepare($query);
-                $stm->bindValue(":numeroUsuario", $numero, PDO::PARAM_INT);
-                $stm->execute();
-                $resultado = $stm->fetchAll();
-
-                if (count($resultado) > 0) {
-                    $res['mensaje'] = "El número de usuario ya se encuentra registrado";
-                } else {
-                    $query = "INSERT INTO usuarios (nombre, apMaterno, apPaterno, numeroUsuario, password, incorporacion, tipo) VALUES (
-                  ?, ?, ?, ?, ?, NOW(), 0 );";
-                    $stm = $this->pdo->prepare($query);
-                    $stm->bindValue(1, $nombre, PDO::PARAM_STR);
-                    $stm->bindValue(2, $apMaterno, PDO::PARAM_STR);
-                    $stm->bindValue(3, $apPaterno, PDO::PARAM_STR);
-                    $stm->bindValue(4, $numero, PDO::PARAM_INT);
-                    $stm->bindValue(5, $password, PDO::PARAM_STR);
-                    $stm->execute();
-
-                    $id = $this->pdo->lastInsertId();
-
-                    $query = "INSERT INTO accesos (id_usuario, farmacia, recepcion, medico, financiero) VALUES (
-                  ?, ?, ?, ?, ?);";
-                    $stm = $this->pdo->prepare($query);
-                    $stm->bindValue(1, $id, PDO::PARAM_STR);
-                    $stm->bindValue(2, $perm_farmacia, PDO::PARAM_INT);
-                    $stm->bindValue(3, $perm_recepcion, PDO::PARAM_INT);
-                    $stm->bindValue(4, $perm_medico, PDO::PARAM_INT);
-                    $stm->bindValue(5, $perm_financiero, PDO::PARAM_INT);
-                    $stm->execute();
-
-                    $res['estado'] = 1;
-                    $res['id'] = $id;
-                }
-            } catch (Exception $e) {
-                $res['mensaje'] = $e->getMessage();
-            }
-        } else {
+        if (empty($nombre) || empty($apPaterno) || empty($numero) || empty($password)) {
             if (empty($password)) {
                 $res['mensaje'] = "Ingresa una contraseña";
             } elseif (empty($nombre) || empty($apPaterno)) {
                 $res['mensaje'] = "Ingresa un nombre y apellido";
-            } elseif (empty($username)) {
+            } elseif (empty($numero)) {
                 $res['mensaje'] = "Ingresa un número de usuario";
+            } else {
+                $res['mensaje'] = "Completa los datos requeridos";
+            }
+        } else {
+            if (($password === $password2) && !empty($password)) {
+                // Si es médico
+                if ($tipo == 2 && empty($cedula)) {
+                    $res['mensaje'] = "Ingresa la cédula del médico";
+                } else {
+                    try {
+                        $query = "SELECT numeroUsuario FROM usuarios WHERE numeroUsuario=:numeroUsuario;";
+                        $stm = $this->pdo->prepare($query);
+                        $stm->bindValue(":numeroUsuario", $numero, PDO::PARAM_INT);
+                        $stm->execute();
+                        $resultado = $stm->fetchAll();
+
+                        if (count($resultado) > 0) {
+                            $res['mensaje'] = "El número de usuario ya se encuentra registrado";
+                        } else {
+                            $query = "INSERT INTO usuarios (nombre, apMaterno, apPaterno, numeroUsuario, password, incorporacion, id_tipo) VALUES (
+                  ?, ?, ?, ?, ?, NOW(), ? );";
+                            $stm = $this->pdo->prepare($query);
+                            $stm->bindValue(1, $nombre, PDO::PARAM_STR);
+                            $stm->bindValue(2, $apMaterno, PDO::PARAM_STR);
+                            $stm->bindValue(3, $apPaterno, PDO::PARAM_STR);
+                            $stm->bindValue(4, $numero, PDO::PARAM_INT);
+                            $stm->bindValue(5, $password, PDO::PARAM_STR);
+                            $stm->bindValue(6, $tipo, PDO::PARAM_STR);
+                            $stm->execute();
+
+                            $id = $this->pdo->lastInsertId();
+
+                            $query = "INSERT INTO accesos (id_usuario, farmacia, recepcion, medico, financiero, citas) VALUES (
+                  ?, ?, ?, ?, ?, ?);";
+                            $stm = $this->pdo->prepare($query);
+                            $stm->bindValue(1, $id, PDO::PARAM_STR);
+                            $stm->bindValue(2, $perm_farmacia, PDO::PARAM_INT);
+                            $stm->bindValue(3, $perm_recepcion, PDO::PARAM_INT);
+                            $stm->bindValue(4, $perm_medico, PDO::PARAM_INT);
+                            $stm->bindValue(5, $perm_financiero, PDO::PARAM_INT);
+                            $stm->bindValue(6, $perm_citas, PDO::PARAM_INT);
+                            $stm->execute();
+
+                            $res['estado'] = 1;
+                            $res['id'] = $id;
+                        }
+                    } catch (Exception $e) {
+                        $res['mensaje'] = $e->getMessage() . $e->getLine();
+                    }
+                }
             } else {
                 $res['mensaje'] = "Las contraseñas no coinciden";
             }
