@@ -292,7 +292,7 @@ class Inventario {
 
             if($tempIns < count($ids)){
                 // si podemos insertar al menos 1 comenzamos insertando el master
-                $query = "INSERT INTO salida_productos_master (user_id,medico_id,paciente_id,comentario) VALUES(?,?,?,?)";
+                $query = "INSERT INTO salida_productos_master (id_usrfarmacia,id_medico,id_paciente,comentario) VALUES(?,?,?,?)";
                 $stm = $this->pdo->prepare($query);
                 $stm->bindParam(1,$data["user"]);
                 $stm->bindParam(2,$data["medico"]);
@@ -342,7 +342,7 @@ class Inventario {
 
 
     public function generarDetalleSalida($master,$producto,$cantidad){
-        $query = "INSERT INTO salida_productos_deta (id_master,id_producto,cantidad) VALUES(?,?,?)";
+        $query = "INSERT INTO salida_productos_deta (id_detalleMaster,id_producto,cantidad) VALUES(?,?,?)";
         $stm = $this->pdo->prepare($query);
         $stm->bindParam(1,$master);
         $stm->bindParam(2,$producto);
