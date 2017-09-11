@@ -63,7 +63,7 @@ function atender(paciente_id) {
             response = JSON.parse(response);
             if (response.estado == 1) {
                 msg(response.mensaje, "success");
-                loadPacientesEnespera();
+                window.location.href = APP_URL + "expediente_folio#" + paciente_id;
             } else {
                 msg(response.mensaje, "danger");
             }
