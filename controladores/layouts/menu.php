@@ -25,7 +25,7 @@ $perm_citas = $permisos['perm_citas'];
     <div class="list-group">
         <!--	Permisos de Recepción	-->
         <?php
-        if ($perm_citas == 1)	{
+        if ($perm_citas == 1 && $perm_recepcion == 0)	{
             echo	'<a href="' . app_url() . 'citas_programar" class="list-group-item "><span class="glyphicon glyphicon-edit"></span>&nbsp Recepción - Programar Citas</a>';
         }
         ?>

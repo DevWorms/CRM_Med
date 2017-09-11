@@ -38,9 +38,6 @@ $(document).ready(function() {
                         total = response.eventos.length;
 
                         response.eventos.forEach(function (item) {
-                            if (item.id_relacion_mp) {
-                                console.log(item);
-                            }
                             var title = item.tipo_cita + " - " + item.apPaterno;
                             if (item.apMaterno) {
                                 title = title + " " + item.apMaterno;

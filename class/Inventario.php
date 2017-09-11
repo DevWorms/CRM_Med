@@ -132,6 +132,29 @@ class Inventario {
         echo json_encode($res);
     }
 
+    public function getTipo($string){
+        $res = [
+            'estado' => 0,
+        ];
+
+        try {
+            $query = "SELECT tipo FROM productos WHERE tipo LIKE :search group by tipo;";
+            $stm = $this->pdo->prepare($query);
+
+            $stm->bindValue(":search", "%$string%", PDO::PARAM_STR);
+            $stm->execute();
+            $resultado = $stm->fetchAll();
+
+            $res['tipos'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
+
     public function createProducto($nombre, $fecha, $tipo, $presentacion, $gramaje, $piezas, $alerta, $lote,$descripcion,$existencia,$cant_gramaje) {
         $res = [
             'estado' => 0,
@@ -446,19 +469,22 @@ if (isset($_POST['get'])) {
                 break;
             case 'generarSalida':
                 $i->generarSalida($_POST);
-            break;
+                break;
             case 'reporteSalidaProductos':
                 echo $i->reporteSalidaProductos($_POST["usuario"], $_POST["medico"], $_POST["paciente"], $_POST["fecha"]);
-            break;
+                break;
             case 'getDetalleSalidas':
                 echo $i->getDetalleSalidas($_POST["master"]);
-            break;
+                break;
             case 'getPresentacion':
-                echo $i->getPresentacion($_POST["search"]);
-            break;
+                $i->getPresentacion($_POST["search"]);
+                break;
             case 'getGramaje':
-                echo $i->getGramaje($_POST["search"]);
-            break;
+                $i->getGramaje($_POST["search"]);
+                break;
+            case 'getTipo':
+                $i->getTipo($_POST["search"]);
+                break;
             default:
                 header("Location: " . app_url() . "404");
         }

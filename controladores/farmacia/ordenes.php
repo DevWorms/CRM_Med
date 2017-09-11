@@ -71,23 +71,16 @@
                             <div class="form-group row">
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <label for="">Tipo&nbsp;&nbsp;</label>
-                                        <select class="selectpicker" id="tipo" name="tipo">
-                                          <option value="Consumible">Consumible</option>
-                                          <option value="Medicamento">Medicamento</option>
-                                        </select>
+                                        <label for="tipo">Tipo&nbsp;&nbsp;</label>
+                                        <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Consumible, Medicamento">
                                     </fieldset>
                                 </div>
 
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <div>
-                                            <label for="">Presentación&nbsp;&nbsp;</label>
-                                            <select class="selectpicker" id="presentacion" name="presentacion">
-                                                <option value="Spray">Spray</option>
-                                                <option value="Tabletas">Tabletas</option>
-                                                <option value="Soluciones">Soluciones</option>
-                                            </select>
+                                            <label for="presentacion">Presentación&nbsp;&nbsp;</label>
+                                            <input type="text" class="form-control" id="presentacion" name="presentacion" placeholder="Spray, Tabletas, Soluciones">
                                         </div>
                                     </fieldset>
                                 </div>
