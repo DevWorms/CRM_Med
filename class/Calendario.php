@@ -23,10 +23,12 @@ class Calendario {
 
     /*
      * Devuelve las citas para el calendario
+     * @param $start_date
+     * @param $end_date
      */
-    public function events() {
+    public function events($start_date = null, $end_date = null) {
         $res = ['estado' => 0];
-        $firstDay = date("Y-n-j", strtotime("first day of previous month"));
+
         try {
 
             $operacion = "SELECT 
@@ -48,9 +50,10 @@ class Calendario {
                             LEFT JOIN relacion_medico_paciente r ON c.pacientes_id=r.id_paciente
                             LEFT JOIN usuarios u ON r.id_medico_principal=u.id 
                             LEFT JOIN presupuestos pr ON c.presupuesto_id=pr.id
-                          WHERE c.fecha > :firstDay;";
+                          WHERE c.fecha >= :fechaInicio AND c.fecha < :fechaFin;";
             $sentencia = $this->pdo->prepare($operacion);
-            $sentencia->bindParam(":firstDay", $firstDay, PDO::PARAM_STR);
+            $sentencia->bindParam(":fechaInicio", $start_date, PDO::PARAM_STR);
+            $sentencia->bindParam(":fechaFin", $end_date, PDO::PARAM_STR);
             $sentencia->execute();
             $resultado = $sentencia->fetchAll();
 
@@ -60,7 +63,8 @@ class Calendario {
             }
 
             $res["eventos"] = $resultado;
-            $res['fecha'] = $firstDay;
+            $res['fecha_inicio'] = $start_date;
+            $res['fecha_fin'] = $end_date;
         } catch (Exception $e) {
             $res["mensaje"] = $e->getMessage();
             $res['fecha'] = $firstDay;
@@ -262,7 +266,7 @@ if (isset($_POST['get'])) {
 
         switch ($get) {
             case 'events':
-                $f->events();
+                $f->events($_POST['fecha_inicio'], $_POST['fecha_fin']);
                 break;
             case 'reporteEventos':
                 $f->reporteEventos();

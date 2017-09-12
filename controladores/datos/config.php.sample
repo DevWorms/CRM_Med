@@ -4,10 +4,10 @@
      * Agrega tus datos de configuración
     */
    
-    define("NOMBRE_HOST", "www.devworms.com");
-    define("BASE_DE_DATOS", "medilaser_crm_2");
-   	define("USUARIO", "worm_developer");
-   	define("CONTRASENA", "DW_developer_2017");
+    define("NOMBRE_HOST", "");
+    define("BASE_DE_DATOS", "");
+   	define("USUARIO", "");
+   	define("CONTRASENA", "");
     define("APP_URL", "http://localhost/app-medica/");
 
  

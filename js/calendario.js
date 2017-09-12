@@ -4,6 +4,8 @@ $(document).ready(function() {
         printDiv();
     });
 
+    loadMedicos();
+
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -16,17 +18,23 @@ $(document).ready(function() {
             listWeek: { buttonText: 'Semana' }
         },
 
+        timezone: 'America/Mexico_City',
         defaultView: 'agendaDay',
-        navLinks: true, // can click day/week names to navigate views
+        navLinks: true,
         editable: false,
-        eventLimit: true, // allow "more" link when too many events
+        eventLimit: true,
 
         events: function(start, end, timezone, callback) {
+            end = moment(end).format("YYYY-MM-DD HH.mm:ssZZ");
+            start = moment(start).format("YYYY-MM-DD HH:mm:ssZZ");
+
             $.ajax({
                 url: APP_URL + 'class/Calendario.php',
                 type: 'POST',
                 data: {
-                    get: 'events'
+                    get: 'events',
+                    fecha_inicio: start,
+                    fecha_fin: end
                 },
                 beforeSend: function () {
                     $("#wait").show();
@@ -77,12 +85,12 @@ $(document).ready(function() {
             });
         },
         eventClick: function(calEvent, jsEvent, view) {
-            openModal(calEvent.payload.cita_id);
+            openModal(calEvent.payload);
         }
     });
 });
 
-function loadMedicos(id) {
+function loadMedicos() {
     $.ajax({
         url: APP_URL + 'class/Medico.php',
         type: 'POST',
@@ -96,7 +104,7 @@ function loadMedicos(id) {
         success: function (response) {
             var medicos = response.medicos;
             medicos.forEach(function (medico) {
-                $("#medico-" + id).append("<option value='" + medico.id + "'>" + medico.nombre + " " + medico.apPaterno +"</option>");
+                $("#medico-").append("<option value='" + medico.id + "'>" + medico.nombre + " " + medico.apPaterno +"</option>");
             });
         },
         error: function (response) {
@@ -108,20 +116,20 @@ function loadMedicos(id) {
     });
 }
 
-function asignarMedico(id, cita_id) {
+function asignarMedico(id) {
     $.ajax({
         type: 'POST',
         url: APP_URL + 'class/Medico.php',
         data : {
             get: 'atender',
             paciente_id: id,
-            medico_id: $("#medico-" + cita_id).val()
+            medico_id: $("#medico-").val()
         },
         success: function (response) {
             response = JSON.parse(response);
             if (response.estado == 1) {
                 msg(response.mensaje, "success");
-                $("#medico-asignado-" + cita_id).html("<p>Medico asignado correctamente</p>");
+                $("#medico-detalleEvento").html("<p>Medico asignado correctamente</p>");
             } else {
                 msg(response.mensaje, "danger");
             }
@@ -158,9 +166,45 @@ function printDiv() {
     });
 }
 
-function openModal(id) {
-    $("#DetalleEvento-" + id).modal("show");
-    loadMedicos(id);
+function openModal(cita) {
+    $("#DetalleEvento").modal("show");
+    $("#header-detalleEvento").html('<h4 class="modal-title" style="text-align:center;">' + cita.tipo_cita + ' - ' + cita.apPaterno + ' ' + cita.apMaterno + ' ' + cita.nombre + '</h4>');
+    $("#paciente-detalleEvento").html('<p>Paciente: ' + cita.apPaterno + ' ' + cita.apMaterno + ' ' + cita.nombre + '</p>');
+    $("#folio-detalleEvento").html('<p>Folio: <strong>' + cita.id + '</strong></p>');
+    $("#procedimiento-detalleEvento").html('<p>Procedimiento: ' + cita.procedimiento + '</p>');
+    $("#telefono-detalleEvento").html('<p>Teléfono: ' + cita.telefono + '</p>');
+    $("#tipoCita-detalleEvento").html('<p>Tipo de cita: ' + cita.tipo_cita + '</p>');
+    $("#fecha-detalleEvento").html('<p>Fecha: ' + cita.fecha + ' ' + cita.hora_ini + '</p>');
+
+    if (cita.is_paciente == 1) {
+        if (!cita.id_relacion_mp) {
+            $("#medico-detalleEvento").html('<label for="medico-">Asignar médico:</label>\n' +
+                '   <select id="medico-"></select>\n' +
+                '   <button class="btn btn-success btn-sm" onclick="asignarMedico(\'' + cita.id + '\');">Asignar</button>');
+        } else {
+            $("#medico-detalleEvento").html('<p>Médico asignado: ' + cita.medico_nombre + ' ' + cita.medico_apellido + '</p>');
+        }
+    }
+
+    if (cita.asistencia == 0) {
+        $("#asistencia-detalleEvento").html('<select id="asistioSelect-detalleEvento" class="form-control">\n' +
+            '                                                <option disabled selected></option>\n' +
+            '                                                <option value="1">Si</option>\n' +
+            '                                                <option value="2">No</option>\n' +
+            '                                            </select>');
+    } else {
+        if ((cita.asistencia == 1) || (cita.asistencia == 2)) {
+            if (cita.asistencia == 1) {
+                $("#asistencia-detalleEvento").html('<a href="control#user=' + cita.id + '">Si</a>');
+            } else {
+                $("#asistencia-detalleEvento").html('<a href="control#user=' + cita.id + '">No</a>');
+            }
+        } else {
+            $("#asistencia-detalleEvento").html('<a href="control#user=' + cita.id + '">En espera</a>');
+        }
+    }
+
+    $("#button-detalleEvento").html('<button class="btn btn-primary btn-block" type="submit" name="up_button" onclick="event.preventDefault(); setAsistencia(\'' + cita.cita_id + '\', \'' + cita.id + '\');" id="up_button">Guardar</button>');
 }
 
 function setAsistencia(id, user_id) {
@@ -169,7 +213,7 @@ function setAsistencia(id, user_id) {
         type: 'POST',
         data: {
             get: 'asistencia',
-            asistencia: $('#asistio-' + id).val(),
+            asistencia: $('#asistioSelect-detalleEvento').val(),
             id: id,
             user_id: user_id
         },
@@ -183,7 +227,7 @@ function setAsistencia(id, user_id) {
                     window.location.href = APP_URL + 'control#user=' + user_id;
                 }
                 $.notify("Se guardaron los cambios correctamente", "success");
-                $("#DetalleEvento-" + id).modal("hide");
+                $("#DetalleEvento").modal("hide");
             } else {
                 error(response.mensaje);
             }

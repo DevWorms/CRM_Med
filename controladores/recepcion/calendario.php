@@ -114,6 +114,74 @@
                     </div>
                 </div>
             </script>
+
+            <div id="DetalleEvento" class="modal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <div id="header-detalleEvento">
+                                <h4 class="modal-title" style="text-align:center;"></h4>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="col-md-12">
+                                    <div id="paciente-detalleEvento">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="folio-detalleEvento">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="procedimiento-detalleEvento">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="telefono-detalleEvento">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="tipoCita-detalleEvento">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="fecha-detalleEvento">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="medico-detalleEvento">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <form id="cerrar-detalleEvento" class="form-group">
+                                        <div class="col-md-8" style="vertical-align: middle">
+                                            <label for="asistio-detalleEvento">¿Se llevo acabo la cita?</label>
+                                        </div>
+                                        <div id="asistencia-detalleEvento" class="col-md-4">
+                                        </div>
+                                    </form>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="form-group" align="right">
+                                <div class="col-md-12">
+                                    <div class="col-md-8"></div>
+                                    <div class="col-md-4" id="button-detalleEvento">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     <script src="<?php echo app_url(); ?>js/printThis.js"></script>
     <script src="<?php echo app_url(); ?>js/calendario.js"></script>
     <?php include dirname(__FILE__) . '/../layouts/footer.php'; ?>
