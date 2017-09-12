@@ -15,6 +15,7 @@
     <link href="<?php echo app_url(); ?>css/administrador-style.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo app_url(); ?>css/directorio-style.css">
     <link rel="stylesheet" href="<?php echo app_url(); ?>css/hr-styles.css">
+    <link rel="stylesheet" href="<?php echo app_url(); ?>css/custom-style.css">
     <link rel="stylesheet" href="<?php echo app_url(); ?>js/Pikaday/css/pikaday.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
