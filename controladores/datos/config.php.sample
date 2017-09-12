@@ -21,9 +21,9 @@
             }
         } else {
             if (substr(APP_URL, -1) == "/") {
-                return "http" . (isset($_SERVER['HTTPS']) ? 's' : '') . "://" . "http://localhost:8080/app-medica/index.php";
+                return "http" . (isset($_SERVER['HTTPS']) ? 's' : '') . "://" . APP_URL;
             } else {
-                return "http" . (isset($_SERVER['HTTPS']) ? 's' : '') . "://" . "http://localhost:8080/app-medica/index.php" . "/";
+                return "http" . (isset($_SERVER['HTTPS']) ? 's' : '') . "://" . APP_URL . "/";
             }
         }
     }
