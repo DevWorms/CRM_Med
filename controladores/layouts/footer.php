@@ -68,6 +68,10 @@
     
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
+
+        $('.selectpicker').selectpicker({
+          size: 4
+        });
     });
 
     $('#hora, #hora2, #new_hora').timepicker(
