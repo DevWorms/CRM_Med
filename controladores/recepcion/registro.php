@@ -93,24 +93,23 @@
                                     <span class="btn btn-primary" id="registrar">Crear nuevo registro</span>
                                 </div>
                             </div>
-
                             <hr>
                             <H3 id="actualizar" style="cursor:pointer"><span class="glyphicon glyphicon-refresh"></span> Modificar Registro</H3>
                             <div id="segmentoActualizar">
-                                <form action="" method="POST" id="search-form">
-                                    <div class="col-md-12">
-                                        <div class="col-md-11">
-                                            <input type="text" class="form-control" id="param" name="param"  placeholder="Buscar ..." required>
-                                        </div>
-
-                                        <div class="col-md-1">
-                                            <button  onclick="event.preventDefault(); showPaciente();">
-                                                <span class="glyphicon glyphicon-search"></span>
-                                            </button>
-                                        </div>
-
+                                <div class="form-group row">
+                                    <div class="col-md-12" align="center">
+                                        <form action="" method="POST" id="search-form">
+                                            <div class="input-group col-md-9">
+                                                <input type="text" class="form-control" id="param" name="param"  placeholder="Buscar ..." required>
+                                                <span class="input-group-btn">
+                                                    <button  class="btn btn-primary" type="button" onclick="onclick="event.preventDefault(); showPaciente();"">
+                                                        <span class="glyphicon glyphicon-search"></span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+                                </div>
                                 <table class="table table-striped" id="pacientes">
                                     <thead>
                                       <tr>
