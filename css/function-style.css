@@ -16,23 +16,22 @@
 }
 
 ul.tabs{
-	width: 146%;
+	width: 100%;
 	background: #fff;
 	list-style: none;
 	display: flex; 
 }
 
 ul.tabs li{
-	width: 18%;
+	width: 165px;
 }
 
 ul.tabs li a{
 	color: #fff;
 	text-indent: none;
-	font-size: 16px;
 	text-align: center; 
 	display: block;
-	padding: 20px 0px; 
+	padding: 10px 0px; 
 }
 
 .active{
@@ -41,24 +40,11 @@ ul.tabs li a{
 }
 
 ul.tabs li a .tab-text{
-	margin-left: 8px;
 	color: #737373;
 	text-decoration:none;
 }
 
 ul.tabs li a .tab-textselec{
-	margin-left: 8px;
 	color: #fff;
 	text-decoration:none;
 }
-
-.secciones{
-	width: 100%;
-	background: #fff; 
-
-}
-
-.secciones article{
-	padding: 30px;
-}
-
