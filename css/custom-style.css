@@ -3,3 +3,12 @@
 .red {
 	color: red;
 }
+
+.fs-sp {
+	padding-top: 30px;
+	padding-right: 30px;
+}
+
+.form-inline .input-width {
+	width: 100%;
+}

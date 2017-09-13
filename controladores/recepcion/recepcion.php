@@ -43,7 +43,7 @@
 
                         <div id="error"></div>
 
-                        <div class="form-group row space">
+                        <div class="form-group row">
 
                             <div class="col-md-4 col-md-offset-1">
                                 <fieldset class="form-inline">
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="form-group row space" align="center">
+                        <div class="form-group row" align="center">
                             <div class="col-md-4">
                                 <fieldset class="form-inline">
                                     <label for="">Fechas Disponibles</label>

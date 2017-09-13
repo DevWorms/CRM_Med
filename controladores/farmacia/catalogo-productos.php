@@ -22,136 +22,132 @@
                         <form action="" method="POST" id="create-form">
                         	<br>
                             <input type="hidden" name="get" id="get" value="create">
+                            <!-- PRIMERA FILA -->
                             <div class="form-group row">
                                 <div class="col-md-4">
 	                                <fieldset class="form-inline">
 	                                    <label for="">Producto&nbsp;&nbsp;</label><br>
-	                                    <input type="text" class="search-query form-control" id="nombre" name="nombre" placeholder="" required/>
+	                                    <input type="text" class="search-query form-control input-width" id="nombre" name="nombre" placeholder="" required/>
 	                                </fieldset>
                                 </div>
 
-                                <div class="col-md-6">
-                                <fieldset class="form-inline">
-                                    <label for="">Fecha de Caducidad&nbsp;&nbsp;</label><br>
-                                    <div class="input-group">
-                                    <input type="text" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary" type="button">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </fieldset>
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="">Tipo&nbsp;&nbsp;</label><br>
+                                        <select class="selectpicker" id="tipo" name="tipo">
+                                          <option value="Consumible">Consumible</option>
+                                          <option value="Medicamento">Medicamento</option>
+                                          <option value="Insumos">Insumos</option>
+                                          <option value="Otros">Otros</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="">Fecha de Caducidad&nbsp;&nbsp;</label><br>
+                                        <div class="input-group">
+                                        <input type="text" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </fieldset>
                                 </div>
                             </div>
+                            <!-- FIN PRIMERA FILA -->
 
 							<!-- SEGUNDA FILA -->
                             <div class="form-group row space">
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <div>
-                                            <label for="">Tipo&nbsp;&nbsp;</label>
-                                            <select class="selectpicker" id="tipo" name="tipo">
-	                                          <option value="Consumible">Consumible</option>
-	                                          <option value="Medicamento">Medicamento</option>
-	                                          <option value="Insumos">Insumos</option>
-                                              <option value="Otros">Otros</option>
-	                                        </select>
-                                        </div>
+                                        <label for="">Presentación&nbsp;&nbsp;</label><br>
+                                        <input type="text" class="form-control ui-autocomplete-input input-width" id="presentacion" name="presentacion" placeholder="" required/>
                                     </fieldset>
                                 </div>
 
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <div>
-                                            <label for="">Presentación&nbsp;&nbsp;</label><br>
-                                            <input type="text" class="form-control ui-autocomplete-input" id="presentacion" name="presentacion" placeholder="" required/>
-                                        </div>
+                                        <label for="">Gramaje&nbsp;&nbsp;</label><br>
+                                        <input type="text" class="form-control ui-autocomplete-input input-width" id="gramaje" name="gramaje" placeholder="" required/>
                                     </fieldset>
                                 </div>
 
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <div>
-                                            <label for="">Gramaje&nbsp;&nbsp;</label><br>
-                                            <input type="text" class="form-control ui-autocomplete-input" id="gramaje" name="gramaje" placeholder="" required/>
-                                        </div>
+                                        <label for="existencia">Cantidad gramaje&nbsp;&nbsp;</label><br>
+                                        <input type="text" id="cant_gramaje" name="cant_gramaje" class="form-control input-width" required>
                                     </fieldset>
                                 </div>
                             </div>
 							<!-- FIN SEGUNDA FILA -->
 
+                            <!-- TERCERA FILA -->
                             <div class="form-group row space">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <div class="col-md-4 col-md-offset-4">
-                                            <label for="existencia">Existencia&nbsp;&nbsp;</label><br>
-                                            <input type="text" id="existencia" name="existencia" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label for="existencia">Cantidad gramaje&nbsp;&nbsp;</label><br>
-                                            <input type="text" id="cant_gramaje" name="cant_gramaje" class="form-control" required>
-                                        </div>
+                                        <label for="piezas">Piezas por presentación&nbsp;&nbsp;</label><br>
+                                        <input type="text" id="piezas" name="piezas" class="form-control input-width" required>
                                     </fieldset>
                                 </div>
-                            </div>
 
-							<!-- TERCERA FILA -->
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="existencia">Existencia&nbsp;&nbsp;</label><br>
+                                        <input type="text" id="existencia" name="existencia" class="form-control input-width" required>
+                                    </fieldset> 
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="alertas">Mostrar alerta con: &nbsp;&nbsp;</label><br>
+                                        <input type="text" class="form-control input-width" id="alertas" name="alertas" placeholder="Piezas restantes" required>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- FIN TERCERA FILA -->
+
+                            <!-- CUARTA FILA -->
                             <div class="form-group row space">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <div class="col-md-4">
-                                            <label for="piezas">Piezas por presentación&nbsp;&nbsp;</label><br>
-                                           	<input type="text" id="piezas" name="piezas" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="alertas">Mostrar alerta con: &nbsp;&nbsp;</label><br>
-                                            <input type="text" class="form-control" id="alertas" name="alertas" placeholder="Piezas restantes" required>
-                                        </div>
-                                    </fieldset>
-									<br>
-                                </div>
-                            </div>
-							                                <!-- FIN TERCERA FILA -->
-							<!-- BOTON -->
-							<div class="form-group row space">
-                                <div class="col-md-12">
-                                    <fieldset class="form-inline">
-                                        <div class="col-md-4">
-                                            <label for="lote">Lote&nbsp;&nbsp;</label><br>
-                                            <input type="text" id="lote" name="lote" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <label for="descripcion">Descripci&oacute;n &nbsp;&nbsp;</label><br>
-                                            <textarea id="descripcion" name="descripcion" class="form-control"></textarea>
-                                        </div>
-                                        <div class="col-md-3" align="right">
-                                            <button class="btn btn-primary" onclick="event.preventDefault(); createProducto();" name=""><b>Añadir</b></button>
-                                        </div>
+                                        <label for="lote">Lote&nbsp;&nbsp;</label><br>
+                                        <input type="text" id="lote" name="lote" class="form-control input-width" required>
                                     </fieldset>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="descripcion">Descripci&oacute;n &nbsp;&nbsp;</label><br>
+                                        <textarea id="descripcion" name="descripcion" class="form-control input-width"></textarea>
+                                    </fieldset>
+                                </div>         
+
+                                <div class="col-md-4" align="right">
+                                    <fieldset class="form-inline fs-sp">
+                                        <button class="btn btn-primary btn-form" onclick="event.preventDefault(); createProducto();" name=""><b>Añadir</b></button>
+                                    </fieldset>
+                                </div>                      
                             </div>
-                            <!-- FIN BOTON -->
+                            <!-- FIN CUARTA FILA -->
                         </form>
 
                         <hr>
 
                         <div class="form-group row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <form action="" method="POST" id="search-form">
-                                        <div class="col-md-12">
-                                            <div class="col-md-11">
-                                                <input type="text" class="form-control" id="search" name="search"  placeholder="Buscar ..." required>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <button  onclick="event.preventDefault(); searchProducto();">
-                                                    <span class="glyphicon glyphicon-search"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                            <div class="col-md-12" align="center">
+                                <form action="" method="POST" id="search-form">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" class="search-query form-control" id="search" name="search"  placeholder="Buscar ..." required>
+                                        <span class="input-group-btn">
+                                            <button  class="btn btn-primary" type="button" onclick="event.preventDefault(); searchProducto();">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
@@ -167,6 +163,7 @@
                                 <th>Lote</th>
                                 <th>Fecha de Caducidad</th>
                                 <th>Alerta Stock</th>
+                                <th>Editar</th>
                             </tr>
                             </thead>
                             <tbody>
