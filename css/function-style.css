@@ -43,13 +43,13 @@ ul.tabs li a{
 ul.tabs li a .tab-text{
 	margin-left: 8px;
 	color: #737373;
-	text-decoration:none
+	text-decoration:none;
 }
 
 ul.tabs li a .tab-textselec{
 	margin-left: 8px;
 	color: #fff;
-	text-decoration:none
+	text-decoration:none;
 }
 
 .secciones{

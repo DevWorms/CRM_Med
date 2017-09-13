@@ -65,8 +65,8 @@
 
                         <div class="wrap">
         <ul class="tabs">
-            <li><a href="#tab1"><span class="tab-text" id="tab1n">Nuevo Pago</span></a></li>
-            <li><a href="#tab2"><span class="tab-text" id="tab2n">Nuevo Presupuesto</span></a></li>
+            <li><a href="#tab1" style="text-decoration:none;"><span class="tab-text" id="tab1n">Nuevo Pago</span></a></li>
+            <li><a href="#tab2" style="text-decoration:none;"><span class="tab-text" id="tab2n">Nuevo Presupuesto</span></a></li>
         </ul>
 
         <div class="secciones">
