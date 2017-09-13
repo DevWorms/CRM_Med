@@ -23,11 +23,17 @@ if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
         if (count($resultado) == 1) {
             $resultado = $resultado[0];
 
-            if ($resultado['citas'] == 1 && $resultado['recepcion'] == 0) {
+            if ($resultado['citas'] == 1 && $resultado['recepcion'] == 0) { //citas
                 $res['url'] = "citas_programar";
-            } elseif ($resultado['citas'] == 0 && $resultado['recepcion'] == 0 && $resultado['farmacia'] == 1) {
-                $res['url'] = "orden_compra";
-            } else {
+            } elseif ($resultado['citas'] == 0 && $resultado['recepcion'] == 0 && $resultado['farmacia'] == 1) { // Si es farmacia
+                $res['url'] = "catalogo";
+            } elseif ( $resultado['citas'] == 0 && $resultado['recepcion'] == 0 && $resultado['farmacia'] == 0 
+                && $resultado['medico'] == 1 ) { // Si es medico
+                $res['url'] = "mis_pacientes";
+            } elseif ($resultado['citas'] == 1 && $resultado['recepcion'] == 1 && $resultado['farmacia'] == 1 
+            && $resultado['medico'] == 1 ) { // Admin
+                $res['url'] = "1";
+            } else { // Si es medico
                 $res['url'] = "citas";
             }
 
