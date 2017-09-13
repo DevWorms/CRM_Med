@@ -1,3 +1,4 @@
+/* Estilo del scroll de las citas y tipo de citas */
 #scrollCitas{
 	width: 247px; 
 	height: 255px; 
@@ -5,3 +6,59 @@
 	overflow-x:hidden;
 	overflow-y:auto;
 }
+
+/* Estilo de los tab de los pagos */
+
+.wrap{
+	width: 800px;
+	max-width: 90%;
+	margin: 30px auto;
+}
+
+ul.tabs{
+	width: 146%;
+	background: #fff;
+	list-style: none;
+	display: flex; 
+}
+
+ul.tabs li{
+	width: 18%;
+}
+
+ul.tabs li a{
+	color: #fff;
+	text-indent: none;
+	font-size: 16px;
+	text-align: center; 
+	display: block;
+	padding: 20px 0px; 
+}
+
+.active{
+	background: #0984CC;
+	border-radius: 7px;
+}
+
+ul.tabs li a .tab-text{
+	margin-left: 8px;
+	color: #737373;
+	text-decoration:none
+}
+
+ul.tabs li a .tab-textselec{
+	margin-left: 8px;
+	color: #fff;
+	text-decoration:none
+}
+
+.secciones{
+	width: 100%;
+	background: #fff; 
+
+}
+
+.secciones article{
+	padding: 30px;
+}
+

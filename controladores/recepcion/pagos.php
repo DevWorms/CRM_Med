@@ -2,6 +2,37 @@
         include dirname(__FILE__) . '/../layouts/header.php';
     ?>
     <!-- Page Content -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //La que inicia
+            $('ul.tabs li a:first').addClass('active');
+            $('ul.tabs li a span:first').addClass('tab-textselec');
+            //Oculta los tabs
+            $('.secciones article').hide();
+            //Muestra el primer tab
+            $('.secciones article:first').show();
+
+            $('ul.tabs li a').click(function(){
+                //Remueve todas las clases 'active'
+                $('ul.tabs li a').removeClass('active');
+                //Remueve todos los estilos color blanco (letra)
+                $('ul.tabs li a span').removeClass('tab-textselec');
+                //Agrega color gris a todos (letra)
+                $('ul.tabs li a span').addClass('tab-text');
+                //Al tab seleccionado le agrega la clase 'active'
+                $(this).addClass('active');
+                //Oculta las demas secciones
+                $('.secciones article').hide();
+                //almacena en una varaible el valor del href '#tab()'
+                var activeTab = $(this).attr('href'); 
+                //Muestra la etiqueta con ese tab
+                $(activeTab).show();
+                $(activeTab+'n').removeClass('tab-text');
+                $(activeTab+'n').addClass('tab-textselec');
+                return false;
+            });
+        });
+    </script>
     <div class="container">
         <div class="row">
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
@@ -32,9 +63,16 @@
                         <hr>
                         <div id="error"></div>
 
-                        <div class="form-group row space">
-                            <form id="nuevoPago" name="nuevoPago" method="POST">
-                                <div class="col-md-6">
+                        <div class="wrap">
+        <ul class="tabs">
+            <li><a href="#tab1"><span class="tab-text" id="tab1n">Nuevo Pago</span></a></li>
+            <li><a href="#tab2"><span class="tab-text" id="tab2n">Nuevo Presupuesto</span></a></li>
+        </ul>
+
+        <div class="secciones">
+            <article id="tab1">
+                <form id="nuevoPago" name="nuevoPago" method="POST">
+                                <div class="col-md-12">
                                     <h2>Nuevo Pago</h2>
                                     <div class="jumbotron">
                                         <div class="row">
@@ -72,8 +110,9 @@
                                     </div>
                                 </div>
                             </form>
-
-                            <div class="col-md-6">
+            </article>
+            <article id="tab2">
+                <div class="col-md-12">
                                 <form id="nuevoPresupuesto" name="nuevoPresupuesto" method="POST">
                                     <h2>Nuevo Presupuesto</h2>
                                     <div class="jumbotron">
@@ -106,6 +145,13 @@
                                     </div>
                                 </div>
                             </div>
+            </article>
+        </div>
+    </div>
+
+                        <div class="form-group row space">
+
+
                     </div>		
                 </div>	        
 			</div>
