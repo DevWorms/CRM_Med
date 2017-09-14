@@ -5,7 +5,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //La que inicia
-            $('ul.tabs li a:first').addClass('active');
+            $('ul.tabs li a:first').addClass('activee');
             $('ul.tabs li a span:first').addClass('tab-textselec');
             //Oculta los tabs
             $('.secciones article').hide();
@@ -14,13 +14,13 @@
 
             $('ul.tabs li a').click(function(){
                 //Remueve todas las clases 'active'
-                $('ul.tabs li a').removeClass('active');
+                $('ul.tabs li a').removeClass('activee');
                 //Remueve todos los estilos color blanco (letra)
                 $('ul.tabs li a span').removeClass('tab-textselec');
                 //Agrega color gris a todos (letra)
                 $('ul.tabs li a span').addClass('tab-text');
                 //Al tab seleccionado le agrega la clase 'active'
-                $(this).addClass('active');
+                $(this).addClass('activee');
                 //Oculta las demas secciones
                 $('.secciones article').hide();
                 //almacena en una varaible el valor del href '#tab()'
@@ -64,91 +64,95 @@
                         <div id="error"></div>
 
                         <div class="wrap">
-                            <ul class="tabs">
-                                <li><a href="#tab1" style="text-decoration:none;"><span class="tab-text" id="tab1n">Nuevo Pago</span></a></li>
-                                <li><a href="#tab2" style="text-decoration:none;"><span class="tab-text" id="tab2n">Nuevo Presupuesto</span></a></li>
-                            </ul>
+        <ul class="tabs">
+            <li><a href="#tab1" style="text-decoration:none;"><span class="tab-text" id="tab1n">Nuevo Pago</span></a></li>
+            <li><a href="#tab2" style="text-decoration:none;"><span class="tab-text" id="tab2n">Nuevo Presupuesto</span></a></li>
+        </ul>
 
-                            <div class="secciones">
-                                <article id="tab1">
-                                    <form id="nuevoPago" name="nuevoPago" method="POST">
-                                        <div class="col-md-12">
-                                            <h2>Nuevo Pago</h2>
-                                            <div class="jumbotron">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label for="selec_presup">Selecciona Presupuesto</label>
-                                                        <select id="selec_presup" class="form-control" name="selec_presup">
-                                                            <option value="0">Otros</option>
-                                                        </select>
+        <div class="secciones">
+            <article id="tab1">
+                <form id="nuevoPago" name="nuevoPago" method="POST">
+                                <div class="col-md-12">
+                                    <h2>Nuevo Pago</h2>
+                                    <div class="jumbotron">
+                                        <div class="row">
 
-                                                        <br>
-                                                        <label for="monto">Monto</label>
-                                                        <input type="number" id="monto" name="monto" class="form-control" required>
+                                            <div class="col-md-12">
 
-                                                        <br>
-                                                        <label for="concepto">Concepto</label>
-                                                        <input type="text" id="concepto" name="concepto" class="form-control" required>
+                                                <label for="selec_presup">Selecciona Presupuesto</label>
+                                                <select id="selec_presup" class="form-control" name="selec_presup">
+                                                    <option value="0">Otros</option>
+                                                </select>
 
-                                                        <br>
-                                                        <label for="recibo">Número de Recibo</label>
-                                                        <input type="number" id="recibo" name="recibo" class="form-control" required>
+                                                <br>
+                                                <label for="monto">Monto</label>
+                                                <input type="number" id="monto" name="monto" class="form-control" required>
 
-                                                        <br>
-                                                        <label for="fecha">Fecha de Recibo</label>
-                                                        <input type="text" id="fechaAbierta" name="fecha" class="form-control" readonly>
+                                                <br>
+                                                <label for="concepto">Concepto</label>
+                                                <input type="text" id="concepto" name="concepto" class="form-control" required>
 
-                                                        <br>
-                                                        <div class="form-group" align="right">
-                                                            <button type="submit" class="btn btn-primary" id="registrar">Registrar Pago</button>
-                                                        </div>
-                                                    </div>
+                                                <br>
+                                                <label for="recibo">Número de Recibo</label>
+                                                <input type="number" id="recibo" name="recibo" class="form-control" required>
+
+                                                <br>
+                                                <label for="fecha">Fecha de Recibo</label>
+                                                <input type="text" id="fechaAbierta" name="fecha" class="form-control" readonly>
+
+                                                <br>
+                                                <div class="form-group" align="right">
+                                                    <button type="submit" class="btn btn-primary" id="registrar">Registrar Pago</button>
                                                 </div>
                                             </div>
+
                                         </div>
-                                    </form>
-                                </article>
-                                <article id="tab2">
-                                    <div class="col-md-12">
-                                        <form id="nuevoPresupuesto" name="nuevoPresupuesto" method="POST">
-                                            <h2>Nuevo Presupuesto</h2>
-                                            <div class="jumbotron">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <label for="nom_presup">Nombre Presupuesto</label>
-                                                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                                    </div>
+                                </div>
+                            </form>
+            </article>
+            <article id="tab2">
+                <div class="col-md-12">
+                                <form id="nuevoPresupuesto" name="nuevoPresupuesto" method="POST">
+                                    <h2>Nuevo Presupuesto</h2>
+                                    <div class="jumbotron">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="nom_presup">Nombre Presupuesto</label>
+                                                <input type="text" id="nombre" name="nombre" class="form-control" required>
 
-                                                        <br>
-                                                        <label for="costo_pres">Costo Presupuesto</label>
-                                                        <input type="number" id="precio" name="precio" class="form-control" required>
+                                                <br>
+                                                <label for="costo_pres">Costo Presupuesto</label>
+                                                <input type="number" id="precio" name="precio" class="form-control" required>
 
-                                                        <br>
-                                                        <div class="form-group" align="right">
-                                                            <button type="submit" class="btn btn-primary" id="registrar">Crear nuevo presupuesto</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-
-                                        <h2>Presupuestos del Paciente</h2>
-                                        <div class="jumbotron">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <select id="mostrar_presup" class="form-control" name="mostrar_presup">
-                                                        <option value="0">Otros</option>
-                                                    </select>
+                                                <br>
+                                                <div class="form-group" align="right">
+                                                    <button type="submit" class="btn btn-primary" id="registrar">Crear nuevo presupuesto</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </article>
+                                </form>
+
+                                <h2>Presupuestos del Paciente</h2>
+                                <div class="jumbotron">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <select id="mostrar_presup" class="form-control" name="mostrar_presup">
+                                                <option value="0">Otros</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+            </article>
+        </div>
+    </div>
 
                         <div class="form-group row space">
-                        </div>		
-                    </div>
+
+
+                    </div>		
                 </div>	        
 			</div>
         <script type="text/javascript" src="<?php echo app_url(); ?>js/pagos.js"></script>

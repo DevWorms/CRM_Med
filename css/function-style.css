@@ -29,12 +29,13 @@ ul.tabs li{
 ul.tabs li a{
 	color: #fff;
 	text-indent: none;
+	font-size: 16px;
 	text-align: center; 
 	display: block;
 	padding: 10px 0px; 
 }
 
-.active{
+.activee{
 	background: #0984CC;
 	border-radius: 7px;
 }
@@ -48,3 +49,4 @@ ul.tabs li a .tab-textselec{
 	color: #fff;
 	text-decoration:none;
 }
+

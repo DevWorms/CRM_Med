@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?php echo app_url(); ?>css/style.css">
     <link rel="stylesheet" href="<?php echo app_url(); ?>css/custom-style.css">
     <link rel="stylesheet" href="<?php echo app_url(); ?>css/function-style.css">
+    <link rel="stylesheet" href="<?php echo app_url(); ?>css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo app_url(); ?>js/Pikaday/css/pikaday.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
