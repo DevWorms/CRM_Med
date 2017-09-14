@@ -55,6 +55,7 @@ $perm_citas = $permisos['perm_citas'];
             echo    '<a href="'. app_url() .'usuarios" class="list-group-item"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp Administrador - Nuevos Usuarios</a>';
             echo    '<a href="'. app_url() .'reporte_citas" class="list-group-item"><i class="fa fa-server"></i>&nbsp Administrador - Reporte Citas</a>';
             echo    '<a href="'. app_url() .'reporte_citas_usuarios" class="list-group-item"><i class="fa fa-th-list"></i>&nbsp Administrador - Reporte Citas Usuarios</a>';
+            echo    '<a href="'. app_url() .'caja" class="list-group-item"><i class="fa fa-line-chart"></i>&nbsp Administrador - Corte de Caja</a>';
         }
         ?>
 <hr>
