@@ -15,12 +15,6 @@ $perm_citas = $permisos['perm_citas'];
 
 <div class="col-md-3">
 
-    <!-- MOSTRAR NOMBRE DE USUARIO EN APP -->
-    <p>
-    <h4><?php echo $_SESSION['Nombre']; ?></h4>
-    <h6><?php echo ObtenerFechaHoy(); ?></h6>
-    </p>
-
     <!-- MOSTRAR ACCESOS LATERALES POR PERMISOS DE USUARIO	-->
     <div class="list-group">
         <!--	Permisos de Recepción	-->
