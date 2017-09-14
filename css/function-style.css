@@ -15,18 +15,20 @@
 	margin: 30px auto;
 }
 
-ul.tabs{
-	width: 100%;
+ul.tabs_pagos{
+	width: 60%;
 	background: #fff;
 	list-style: none;
 	display: flex; 
+	margin-left:20%;
+	margin-right:20%;
 }
 
-ul.tabs li{
+ul.tabs_pagos li{
 	width: 165px;
 }
 
-ul.tabs li a{
+ul.tabs_pagos li a{
 	color: #fff;
 	text-indent: none;
 	font-size: 16px;
@@ -40,12 +42,12 @@ ul.tabs li a{
 	border-radius: 7px;
 }
 
-ul.tabs li a .tab-text{
+ul.tabs_pagos li a .tab-text{
 	color: #737373;
 	text-decoration:none;
 }
 
-ul.tabs li a .tab-textselec{
+ul.tabs_pagos li a .tab-textselec{
 	color: #fff;
 	text-decoration:none;
 }

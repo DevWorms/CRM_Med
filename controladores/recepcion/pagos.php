@@ -5,20 +5,20 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //La que inicia
-            $('ul.tabs li a:first').addClass('activee');
-            $('ul.tabs li a span:first').addClass('tab-textselec');
+            $('ul.tabs_pagos li a:first').addClass('activee');
+            $('ul.tabs_pagos li a span:first').addClass('tab-textselec');
             //Oculta los tabs
             $('.secciones article').hide();
             //Muestra el primer tab
             $('.secciones article:first').show();
 
-            $('ul.tabs li a').click(function(){
+            $('ul.tabs_pagos li a').click(function(){
                 //Remueve todas las clases 'active'
-                $('ul.tabs li a').removeClass('activee');
+                $('ul.tabs_pagos li a').removeClass('activee');
                 //Remueve todos los estilos color blanco (letra)
-                $('ul.tabs li a span').removeClass('tab-textselec');
+                $('ul.tabs_pagos li a span').removeClass('tab-textselec');
                 //Agrega color gris a todos (letra)
-                $('ul.tabs li a span').addClass('tab-text');
+                $('ul.tabs_pagos li a span').addClass('tab-text');
                 //Al tab seleccionado le agrega la clase 'active'
                 $(this).addClass('activee');
                 //Oculta las demas secciones
@@ -64,15 +64,15 @@
                         <div id="error"></div>
 
                         <div class="wrap">
-        <ul class="tabs">
-            <li><a href="#tab1" style="text-decoration:none;"><span class="tab-text" id="tab1n">Nuevo Pago</span></a></li>
-            <li><a href="#tab2" style="text-decoration:none;"><span class="tab-text" id="tab2n">Nuevo Presupuesto</span></a></li>
+        <ul class="tabs_pagos">
+            <li><a href="#tab1" style="text-decoration:none;"><span class="tab-text" id="tab1n">Pagos Versión 1</span></a></li>
+            <li><a href="#tab2" style="text-decoration:none;"><span class="tab-text" id="tab2n">Nuevo módulo</span></a></li>
         </ul>
 
         <div class="secciones">
             <article id="tab1">
                 <form id="nuevoPago" name="nuevoPago" method="POST">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <h2>Nuevo Pago</h2>
                                     <div class="jumbotron">
                                         <div class="row">
@@ -110,9 +110,7 @@
                                     </div>
                                 </div>
                             </form>
-            </article>
-            <article id="tab2">
-                <div class="col-md-12">
+                            <div class="col-md-6">
                                 <form id="nuevoPresupuesto" name="nuevoPresupuesto" method="POST">
                                     <h2>Nuevo Presupuesto</h2>
                                     <div class="jumbotron">
@@ -145,6 +143,102 @@
                                     </div>
                                 </div>
                             </div>
+            </article>
+            <article id="tab2">
+                <!-- PRIMERA FILA -->
+               <div class="form-group row">
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="">Fecha&nbsp;&nbsp;</label><br>
+                                        <div class="input-group">
+                                        <input type="date" class="search-query form-control" id="fecha_Pagos" name="fecha_Pagos" placeholder="aaaa / mm / dd" required/>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="">Folio&nbsp;&nbsp;</label><br>
+                                        <input type="text" class="search-query form-control input-width" id="folio_Pagos" name="folio_Pagos" placeholder="" required/>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="">Paciente&nbsp;&nbsp;</label><br>
+                                        <input type="text" class="search-query form-control input-width" id="paciente_Pagos" name="paciente_Pagos" placeholder="" required/>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- FIN PRIMERA FILA -->
+
+                            <!-- SEGUNDA FILA -->
+                            <div class="form-group row space">
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="">Procedimiento / Producto&nbsp;&nbsp;</label><br>
+                                        <select class="selectpicker" id="Proce_Produ" name="Proce_Produ">
+                                          <option value="Consumible">Procedimiento</option>
+                                          <option value="Consumible">Producto</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="">Forma de pago&nbsp;&nbsp;</label><br>
+                                        <select class="selectpicker" id="forma_pago" name="forma_pago">
+                                          <option value="Consumible">Efectivo</option>
+                                          <option value="Consumible">VISA</option>
+                                          <option value="Consumible">AMEX</option>
+                                          <option value="Consumible">Financiamiento</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="">Planes de Financiamiento&nbsp;&nbsp;</label><br>
+                                        <select class="selectpicker" id="planes_pago" name="planes_pago">
+                                          <option value="Consumible">3 Meses</option>
+                                          <option value="Consumible">6 Meses</option>
+                                          <option value="Consumible">12 Meses</option>
+                                          <option value="Consumible">18 Meses</option>
+                                          <option value="Consumible">24 Meses</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- FIN SEGUNDA FILA -->
+                             <!-- TERCERA FILA -->
+                            <div class="form-group row space">
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="piezas">Importe&nbsp;&nbsp;</label><br>
+                                        <input type="text" id="piezas" name="piezas" class="form-control input-width" required>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="existencia">Observaciones&nbsp;&nbsp;</label><br>
+                                        <input type="text" id="existencia" name="existencia" class="form-control input-width" required>
+                                    </fieldset> 
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-inline">
+                                        <label for="alertas">Médico que autoriza&nbsp;&nbsp;</label><br>
+                                        <input type="text" class="form-control input-width" id="alertas" name="alertas" required>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <!-- FIN TERCERA FILA -->
             </article>
         </div>
     </div>
