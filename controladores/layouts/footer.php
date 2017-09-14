@@ -14,7 +14,7 @@
         var nowDate = new Date();
         var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 
-        $('#fecha, #fecha2, #new_fecha,#e-fecha').pikaday({
+        $('#fecha, #fecha2, #new_fecha,#e-fecha, #reagendarCita-fecha').pikaday({
             format: 'YYYY-MM-DD',
             disableDayFn: function (date) {
                 var today = moment().add(1, 'd').format('YYYY-MM-DD');
@@ -63,9 +63,7 @@
         }
     });
 
-
     //  SE LLAMA LA REFERENCIA AL TOOLTIP, QUE SERVIRÁ DE APOYO PARA QUE EL USUARIO TENGA UNA DESCRIPCIÓN DEL SISTEMA
-    
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
 
@@ -74,7 +72,7 @@
         });
     });
 
-    $('#hora, #hora2, #new_hora').timepicker(
+    $('#hora, #hora2, #new_hora, #reagendarCita-hora').timepicker(
         $.timepicker.regional['es']
     );
 </script>

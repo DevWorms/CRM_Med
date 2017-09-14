@@ -49,7 +49,7 @@ class Calendario {
                             LEFT JOIN relacion_medico_paciente r ON c.pacientes_id=r.id_paciente
                             LEFT JOIN usuarios u ON r.id_medico_principal=u.id 
                             LEFT JOIN presupuestos pr ON c.presupuesto_id=pr.id
-                          WHERE c.fecha >= :fechaInicio AND c.fecha < :fechaFin;";
+                          WHERE c.fecha >= :fechaInicio AND c.fecha < :fechaFin AND c.asistencia != 2;";
             $sentencia = $this->pdo->prepare($operacion);
             $sentencia->bindParam(":fechaInicio", $start_date, PDO::PARAM_STR);
             $sentencia->bindParam(":fechaFin", $end_date, PDO::PARAM_STR);
@@ -122,7 +122,7 @@ class Calendario {
     /*
      * Actualiza si es que un paciente asistio o no a su cita
      */
-    public function asistioEvento($asistencia, $id, $user_id) {
+    public function asistioEvento($asistencia, $id, $user_id, $reagendar = null, $nueva_fecha = null, $nueva_hora = null) {
         $res = ['estado' => 0];
         try {
             /*
@@ -140,29 +140,44 @@ class Calendario {
                 }
             }
 
-            $operacion = "UPDATE citas SET asistencia=:asistio WHERE id=:id;";
-            $sentencia = $this->pdo->prepare($operacion);
-            $sentencia->bindValue(":asistio", $asistencia, PDO::PARAM_INT);
-            $sentencia->bindValue(":id", $id, PDO::PARAM_INT);
-            $sentencia->execute();
-
-            $res['estado'] = 1;
-            $res['mensaje'] = $asistencia . " " . $id;
-
-            // Si es primera vez
-            if ($this->isPaciente($user_id)) {
-                $res['redirect'] = 0;
-            } else {
-                if ($asistencia_bak == 1) {
-                    $operacion = "UPDATE pacientes SET is_paciente=1 WHERE id=:user_id;";
-                    $sentencia = $this->pdo->prepare($operacion);
-                    $sentencia->bindValue(":user_id", $user_id, PDO::PARAM_INT);
-                    $sentencia->execute();
-
-
-                    $res['redirect'] = 1;
+            if ($reagendar == 1) {
+                if ($nueva_fecha == null || $nueva_hora == null) {
+                    $res['estado'] = 0;
+                    $res['mensaje'] = "Ingresa una fecha y hora validas";
                 } else {
+                    // Se reagenda la cita y asistencia queda en 0 (En espera)
+                    $operacion = "UPDATE citas SET fecha=:fecha, hora_ini=:hora WHERE id=:id;";
+                    $sentencia = $this->pdo->prepare($operacion);
+                    $sentencia->bindValue(":fecha", $nueva_fecha, PDO::PARAM_STR);
+                    $sentencia->bindValue(":hora", $nueva_hora, PDO::PARAM_STR);
+                    $sentencia->bindValue(":id", $id, PDO::PARAM_INT);
+                    $sentencia->execute();
+                    $res['estado'] = 1;
+                }
+            } else {
+                // Sólo actualiza si asistio o no
+                $operacion = "UPDATE citas SET asistencia=:asistio WHERE id=:id;";
+                $sentencia = $this->pdo->prepare($operacion);
+                $sentencia->bindValue(":asistio", $asistencia, PDO::PARAM_INT);
+                $sentencia->bindValue(":id", $id, PDO::PARAM_INT);
+                $sentencia->execute();
+                $res['estado'] = 1;
+
+                // Si es primera vez
+                if ($this->isPaciente($user_id)) {
                     $res['redirect'] = 0;
+                } else {
+                    if ($asistencia_bak == 1) {
+                        $operacion = "UPDATE pacientes SET is_paciente=1 WHERE id=:user_id;";
+                        $sentencia = $this->pdo->prepare($operacion);
+                        $sentencia->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+                        $sentencia->execute();
+
+
+                        $res['redirect'] = 1;
+                    } else {
+                        $res['redirect'] = 0;
+                    }
                 }
             }
         } catch (Exception $e) {
@@ -268,7 +283,7 @@ if (isset($_POST['get'])) {
                 $f->reporteEventos();
                 break;
             case 'asistencia':
-                $f->asistioEvento($_POST['asistencia'], $_POST['id'], $_POST['user_id']);
+                $f->asistioEvento($_POST['asistencia'], $_POST['id'], $_POST['user_id'], $_POST['reagendar'], $_POST['nueva_fecha'], $_POST['nueva_hora']);
                 break;
             case 'reporteEventosDetalle':
                 $f->reporteEventosDetalle($_POST['fecha'],$_POST['asistencia']);

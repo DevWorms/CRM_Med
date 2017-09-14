@@ -170,19 +170,27 @@
                                     <h3>Reagendar</h3>
                                     <form id="reagendarCita-form" class="form-group">
                                         <div class="col-md-12">
-                                            <div class="col-md-8" style="vertical-align: middle">
+                                            <div class="col-md-4" style="vertical-align: middle">
                                                 <label for="reagendarCita-fecha">Fecha</label>
                                             </div>
-                                            <div class="col-md-4">
-                                                <input type="text" id="reagendarCita-fecha" name="reagendarCita-fecha">
+                                            <div class="col-md-8">
+                                                <input type="text" id="reagendarCita-fecha" name="reagendarCita-fecha" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="col-md-8" style="vertical-align: middle">
+                                            <div class="col-md-4" style="vertical-align: middle">
                                                 <label for="reagendarCita-hora">Hora</label>
                                             </div>
-                                            <div class="col-md-4">
-                                                <input type="text" id="reagendarCita-hora" name="reagendarCita-hora">
+                                            <div class="col-md-8">
+                                                <input type="text" id="reagendarCita-hora" name="reagendarCita-hora" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
+                                                <label for="no-reagendar">No reagendar </label>
+                                            </div>
+                                            <div class="col-md-6" style="vertical-align: middle">
+                                                <input type="checkbox" name="no-reagendar" id="no-reagendar">
                                             </div>
                                         </div>
                                     </form>
@@ -195,7 +203,6 @@
                                 <div class="col-md-12">
                                     <div class="col-md-8"></div>
                                     <div class="col-md-4" id="button-detalleEvento">
-
                                     </div>
                                 </div>
                             </div>

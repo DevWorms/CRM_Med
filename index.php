@@ -4,7 +4,6 @@ include 'App/route.php';
 
 $route = new Route();
 
-
 	//	RUTAS DE RECEPCIÓN
     $route->add('/citas_programar', 'controladores/recepcion/callcenter.php');
 	$route->add('/citas', 'controladores/recepcion/recepcion.php');
@@ -41,6 +40,5 @@ $route = new Route();
 	//	+++++++++++++++++	AÚN EN ESPERA...	++++++++++++++++++++++++
 	$route->add('/pedidos', 'controladores/admin/pedidos-farmacia.php');
 	$route->add('/directorio', 'controladores/farmacia/dir-telefonico.php');
-
 
 $route->submit();
