@@ -1,16 +1,14 @@
 <?php
 include dirname(__FILE__) . '/../sesion/sesion.php';
-include dirname(__FILE__) . '/../utilidades/funciones/func_accesos.php';
 include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
 
-
 //	OBTENER PERMISOS POR MEDIO DEL ID DE SESIÓN
-$permisos = Mostrar_Permisos($_SESSION['Id']);
-$perm_farmacia = $permisos['perm_farmacia'];
-$perm_recepcion = $permisos['perm_recepcion'];
-$perm_medico = $permisos['perm_medico'];
-$perm_administrador = $permisos['perm_financiero'];
-$perm_citas = $permisos['perm_citas'];
+$perm_farmacia = $_SESSION['accesos_farmacia'];
+$perm_recepcion = $_SESSION['accesos_recepcion'];
+$perm_medico = $_SESSION['accesos_medico'];
+$perm_administrador = $_SESSION['perm_financiero'];
+$perm_financiero = $_SESSION['accesos_financiero'];
+$perm_citas = $_SESSION['accesos_citas'];
 ?>
 
 <div class="col-md-3">
