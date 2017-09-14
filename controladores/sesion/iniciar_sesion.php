@@ -36,6 +36,11 @@ if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
             $_SESSION["Nombre"] = $resultado['nombre'] . ' ' . $resultado['apPaterno'] . ' ' . $resultado['apMaterno'];
             $_SESSION["token"] = hash('sha256', $resultado['id']);
             $_SESSION["url"] = $res['url'];
+            $_SESSION["accesos_citas"] = $resultado["citas"];
+            $_SESSION["accesos_farmacia"] = $resultado["farmacia"];
+            $_SESSION["accesos_financiero"] = $resultado["financiero"];
+            $_SESSION["accesos_medico"] = $resultado["medico"];
+            $_SESSION["accesos_recepcion"] = $resultado["recepcion"];
             session_write_close();
             
             $res['estado'] = 1;

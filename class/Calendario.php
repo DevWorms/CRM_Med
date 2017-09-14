@@ -2,7 +2,7 @@
 include dirname(__FILE__) . '/../controladores/datos/ConexionBD.php';
 include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
 /**
@@ -30,7 +30,6 @@ class Calendario {
         $res = ['estado' => 0];
 
         try {
-
             $operacion = "SELECT 
                             c.id as `cita_id`, 
                             c.fecha, 
@@ -63,11 +62,8 @@ class Calendario {
             }
 
             $res["eventos"] = $resultado;
-            $res['fecha_inicio'] = $start_date;
-            $res['fecha_fin'] = $end_date;
         } catch (Exception $e) {
             $res["mensaje"] = $e->getMessage();
-            $res['fecha'] = $firstDay;
         }
         echo json_encode($res);
     }

@@ -192,6 +192,14 @@ function openModal(cita) {
             '                                                <option value="1">Si</option>\n' +
             '                                                <option value="2">No</option>\n' +
             '                                            </select>');
+
+        $("#asistioSelect-detalleEvento").change(function () {
+            if ($("#asistioSelect-detalleEvento").val() == 2) {
+                displayReagendar(true, cita.fecha, cita.hora_ini);
+            } else {
+                displayReagendar(false, null, null);
+            }
+        });
     } else {
         if ((cita.asistencia == 1) || (cita.asistencia == 2)) {
             if (cita.asistencia == 1) {
@@ -205,6 +213,17 @@ function openModal(cita) {
     }
 
     $("#button-detalleEvento").html('<button class="btn btn-primary btn-block" type="submit" name="up_button" onclick="event.preventDefault(); setAsistencia(\'' + cita.cita_id + '\', \'' + cita.id + '\');" id="up_button">Guardar</button>');
+}
+
+function displayReagendar(display, fecha, hora) {
+    if (display) {
+        $("#reagendarCita").show();
+    } else {
+        $("#reagendarCita").hide();
+    }
+
+    $("#reagendarCita-fecha").val(fecha);
+    $("#reagendarCita-hora").val(hora);
 }
 
 function setAsistencia(id, user_id) {

@@ -166,6 +166,27 @@
                                     </form>
                                     <hr>
                                 </div>
+                                <div class="col-md-12" id="reagendarCita" style="display: none;">
+                                    <h3>Reagendar</h3>
+                                    <form id="reagendarCita-form" class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="col-md-8" style="vertical-align: middle">
+                                                <label for="reagendarCita-fecha">Fecha</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" id="reagendarCita-fecha" name="reagendarCita-fecha">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-md-8" style="vertical-align: middle">
+                                                <label for="reagendarCita-hora">Hora</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" id="reagendarCita-hora" name="reagendarCita-hora">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <div class="col-md-2"></div>
                         </div>
