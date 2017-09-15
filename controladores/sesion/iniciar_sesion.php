@@ -41,6 +41,7 @@ if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
             $_SESSION["accesos_financiero"] = $resultado["financiero"];
             $_SESSION["accesos_medico"] = $resultado["medico"];
             $_SESSION["accesos_recepcion"] = $resultado["recepcion"];
+            $_SESSION["accesos_admin"] = $resultado["admin"];
             session_write_close();
             
             $res['estado'] = 1;

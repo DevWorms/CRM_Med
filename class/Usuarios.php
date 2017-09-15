@@ -2,25 +2,33 @@
 include dirname(__FILE__) . '/../controladores/datos/ConexionBD.php';
 include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
+
 /**
  * Created by PhpStorm.
  * User: rk521
  * Date: 14.02.17
  * Time: 11:26
  */
-class Usuarios {
+class Usuarios
+{
     private $pdo;
+
     /**
      * Usuarios constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->pdo = ConexionBD::obtenerInstancia()->obtenerBD();
     }
 
-    public function createUser($data) {
+    /*
+     * Crea un nuevo usuario
+     */
+    public function createUser($data)
+    {
         $nombre = $data['nombre'];
         $apMaterno = $data['apMat'];
         $apPaterno = $data['apPat'];
@@ -35,6 +43,7 @@ class Usuarios {
         $perm_medico = (isset($data['perm_medico']) ? 1 : 0);
         $perm_financiero = (isset($data['perm_financiero']) ? 1 : 0);
         $perm_citas = (isset($data['perm_citas']) ? 1 : 0);
+        $perm_admin = (isset($data['perm_admin']) ? 1 : 0);
 
         $res = [
             'estado' => 0,
@@ -79,8 +88,8 @@ class Usuarios {
 
                             $id = $this->pdo->lastInsertId();
 
-                            $query = "INSERT INTO accesos (id_usuario, farmacia, recepcion, medico, financiero, citas) VALUES (
-                  ?, ?, ?, ?, ?, ?);";
+                            $query = "INSERT INTO accesos (id_usuario, farmacia, recepcion, medico, financiero, citas, admin) VALUES (
+                  ?, ?, ?, ?, ?, ?, ?);";
                             $stm = $this->pdo->prepare($query);
                             $stm->bindValue(1, $id, PDO::PARAM_STR);
                             $stm->bindValue(2, $perm_farmacia, PDO::PARAM_INT);
@@ -88,6 +97,7 @@ class Usuarios {
                             $stm->bindValue(4, $perm_medico, PDO::PARAM_INT);
                             $stm->bindValue(5, $perm_financiero, PDO::PARAM_INT);
                             $stm->bindValue(6, $perm_citas, PDO::PARAM_INT);
+                            $stm->bindValue(7, $perm_admin, PDO::PARAM_INT);
                             $stm->execute();
 
                             $res['estado'] = 1;
@@ -106,6 +116,9 @@ class Usuarios {
         echo json_encode($res);
     }
 
+    /*
+     * Actualiza un usuario
+     */
     public function modifyUser($data) {
         $id_usuario = $data["id_usuario"];
         $tipo_usuario = $data["e-tipousuario"];
@@ -120,7 +133,8 @@ class Usuarios {
         $perm_recepcion = (isset($data['e-perm_recepcion']) ? 1 : 0);
         $perm_medico = (isset($data['e-perm_medico']) ? 1 : 0);
         $perm_financiero = (isset($data['e-perm_financiero']) ? 1 : 0);
-        $perm_citas= (isset($data['e-perm_citas']) ? 1 : 0);
+        $perm_citas = (isset($data['e-perm_citas']) ? 1 : 0);
+        $perm_admin = (isset($data['e-perm_admin']) ? 1 : 0);
 
         $res = [
             'estado' => 0,
@@ -150,14 +164,15 @@ class Usuarios {
                     $stm->execute();
 
 
-                    $query = "UPDATE accesos SET farmacia= ?, recepcion= ?, medico= ?, financiero= ?,citas= ? WHERE id_usuario = ?";
+                    $query = "UPDATE accesos SET farmacia= ?, recepcion= ?, medico= ?, financiero= ?, citas= ?, admin= ? WHERE id_usuario = ?";
                     $stm = $this->pdo->prepare($query);
                     $stm->bindValue(1, $perm_farmacia, PDO::PARAM_INT);
                     $stm->bindValue(2, $perm_recepcion, PDO::PARAM_INT);
                     $stm->bindValue(3, $perm_medico, PDO::PARAM_INT);
                     $stm->bindValue(4, $perm_financiero, PDO::PARAM_INT);
                     $stm->bindValue(5, $perm_citas, PDO::PARAM_INT);
-                    $stm->bindValue(6, $id_usuario, PDO::PARAM_STR);
+                    $stm->bindValue(6, $perm_admin, PDO::PARAM_INT);
+                    $stm->bindValue(7, $id_usuario, PDO::PARAM_STR);
                     $stm->execute();
 
                     $res['estado'] = 1;
@@ -181,12 +196,13 @@ class Usuarios {
         echo json_encode($res);
     }
 
-    public function getListUsuarios(){
-        $res=["estado" => 0];
+    public function getListUsuarios()
+    {
+        $res = ["estado" => 0];
 
         $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos as ac ON ac.id_usuario = usr.id";
 
-        $stm= $this->pdo->prepare($query);
+        $stm = $this->pdo->prepare($query);
 
         $stm->execute();
 
@@ -196,18 +212,22 @@ class Usuarios {
         return json_encode($res);
     }
 
-    public function getUserSearch($search){
+    /*
+     * Busca un usuario por nombre de usuario
+     */
+    public function getUserSearch($search)
+    {
         $search = "%" . $search . "%";
-        $res=["estado" => 0];
+        $res = ["estado" => 0];
 
         $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE usr.nombre LIKE ? OR usr.apPaterno LIKE ? OR usr.apMaterno LIKE ? OR usr.numeroUsuario lIKE ? OR tipo.nombre_tipo_usuario LIKE ? ";
 
-        $stm= $this->pdo->prepare($query);
-        $stm->bindParam(1,$search);
-        $stm->bindParam(2,$search);
-        $stm->bindParam(3,$search);
-        $stm->bindParam(4,$search);
-        $stm->bindParam(5,$search);
+        $stm = $this->pdo->prepare($query);
+        $stm->bindParam(1, $search);
+        $stm->bindParam(2, $search);
+        $stm->bindParam(3, $search);
+        $stm->bindParam(4, $search);
+        $stm->bindParam(5, $search);
         $stm->execute();
 
         $res["estado"] = 1;
@@ -216,11 +236,15 @@ class Usuarios {
         return json_encode($res);
     }
 
-    public function getUsuario($id){
-        $res=["estado" => 0];
-        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE usr.id = :usuario_id";
-        $stm= $this->pdo->prepare($query);
-        $stm->bindParam(":usuario_id",$id);
+    /*
+     * Devuelve un usuario
+     */
+    public function getUsuario($id)
+    {
+        $res = ["estado" => 0];
+        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas, ac.admin FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE usr.id = :usuario_id";
+        $stm = $this->pdo->prepare($query);
+        $stm->bindParam(":usuario_id", $id);
         $stm->execute();
         $resultado = $stm->fetchAll();
         $res["estado"] = 1;
@@ -229,50 +253,11 @@ class Usuarios {
     }
 
     // OBTIENE EL USUARIO CON MAS CITAS DE PRIMERA VEZ
-    public function reporteUsuarioMasCitasPv(){
-        $res=["estado" => 0];
+    public function reporteUsuarioMasCitasPv()
+    {
+        $res = ["estado" => 0];
         $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario, SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) as citasPrimevez FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY citasPrimevez DESC LIMIT 1 ";
-        $stm= $this->pdo->prepare($query);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $res["estado"] = 1;
-        $res["rows"] = $resultado;
-        return json_encode($res);
-    }
-    public function reporteUsuarioMenosCitasPv(){
-        $res=["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario, SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) as citasPrimevez FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY citasPrimevez ASC LIMIT 1 ";
-        $stm= $this->pdo->prepare($query);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $res["estado"] = 1;
-        $res["rows"] = $resultado;
-        return json_encode($res);
-    }
-    public function reporteUsuarioMasCitasTotal(){
-        $res=["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY COUNT(usuarios.id) DESC LIMIT 1 ";
-        $stm= $this->pdo->prepare($query);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $res["estado"] = 1;
-        $res["rows"] = $resultado;
-        return json_encode($res);
-    }
-    public function reporteUsuarioMenosCitasTotal(){
-        $res=["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY COUNT(usuarios.id) ASC LIMIT 1 ";
-        $stm= $this->pdo->prepare($query);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $res["estado"] = 1;
-        $res["rows"] = $resultado;
-        return json_encode($res);
-    }
-    public function reporteCitasUsuarios(){
-        $res=["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario,SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) AS primeravez,SUM(CASE WHEN citas.tipo_cita = 2 THEN 1 ELSE 0 END) AS preoperatorios,SUM(CASE WHEN citas.tipo_cita = 3 THEN 1 ELSE 0 END) AS cirugia, SUM(CASE WHEN citas.tipo_cita = 4 THEN 1 ELSE 0 END) AS postoperatorio,SUM(CASE WHEN citas.tipo_cita = 5 THEN 1 ELSE 0 END) AS valoracion,SUM(CASE WHEN citas.tipo_cita = 6 THEN 1 ELSE 0 END) AS revision, SUM(CASE WHEN citas.tipo_cita = 7 THEN 1 ELSE 0 END) as tratamiento FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id";
-        $stm= $this->pdo->prepare($query);
+        $stm = $this->pdo->prepare($query);
         $stm->execute();
         $resultado = $stm->fetchAll();
         $res["estado"] = 1;
@@ -280,15 +265,64 @@ class Usuarios {
         return json_encode($res);
     }
 
-    public function reporteCitasUsuariosBySearch($search){
-        $res=["estado" => 0];
+    public function reporteUsuarioMenosCitasPv()
+    {
+        $res = ["estado" => 0];
+        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario, SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) as citasPrimevez FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY citasPrimevez ASC LIMIT 1 ";
+        $stm = $this->pdo->prepare($query);
+        $stm->execute();
+        $resultado = $stm->fetchAll();
+        $res["estado"] = 1;
+        $res["rows"] = $resultado;
+        return json_encode($res);
+    }
+
+    public function reporteUsuarioMasCitasTotal()
+    {
+        $res = ["estado" => 0];
+        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY COUNT(usuarios.id) DESC LIMIT 1 ";
+        $stm = $this->pdo->prepare($query);
+        $stm->execute();
+        $resultado = $stm->fetchAll();
+        $res["estado"] = 1;
+        $res["rows"] = $resultado;
+        return json_encode($res);
+    }
+
+    public function reporteUsuarioMenosCitasTotal()
+    {
+        $res = ["estado" => 0];
+        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY COUNT(usuarios.id) ASC LIMIT 1 ";
+        $stm = $this->pdo->prepare($query);
+        $stm->execute();
+        $resultado = $stm->fetchAll();
+        $res["estado"] = 1;
+        $res["rows"] = $resultado;
+        return json_encode($res);
+    }
+
+    public function reporteCitasUsuarios()
+    {
+        $res = ["estado" => 0];
+        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario,SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) AS primeravez,SUM(CASE WHEN citas.tipo_cita = 2 THEN 1 ELSE 0 END) AS preoperatorios,SUM(CASE WHEN citas.tipo_cita = 3 THEN 1 ELSE 0 END) AS cirugia, SUM(CASE WHEN citas.tipo_cita = 4 THEN 1 ELSE 0 END) AS postoperatorio,SUM(CASE WHEN citas.tipo_cita = 5 THEN 1 ELSE 0 END) AS valoracion,SUM(CASE WHEN citas.tipo_cita = 6 THEN 1 ELSE 0 END) AS revision, SUM(CASE WHEN citas.tipo_cita = 7 THEN 1 ELSE 0 END) as tratamiento FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id";
+        $stm = $this->pdo->prepare($query);
+        $stm->execute();
+        $resultado = $stm->fetchAll();
+        $res["estado"] = 1;
+        $res["rows"] = $resultado;
+        return json_encode($res);
+    }
+
+    public function reporteCitasUsuariosBySearch($search)
+    {
+        $res = ["estado" => 0];
         $search = "%" . $search . "%";
         $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario,SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) AS primeravez,SUM(CASE WHEN citas.tipo_cita = 2 THEN 1 ELSE 0 END) AS preoperatorios,SUM(CASE WHEN citas.tipo_cita = 3 THEN 1 ELSE 0 END) AS cirugia, SUM(CASE WHEN citas.tipo_cita = 4 THEN 1 ELSE 0 END) AS postoperatorio,SUM(CASE WHEN citas.tipo_cita = 5 THEN 1 ELSE 0 END) AS valoracion,SUM(CASE WHEN citas.tipo_cita = 6 THEN 1 ELSE 0 END) AS revision, SUM(CASE WHEN citas.tipo_cita = 7 THEN 1 ELSE 0 END) as tratamiento FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 AND (usuarios.nombre LIKE ? OR usuarios.apPaterno LIKE ? OR usuarios.apMaterno LIKE ? OR usuarios.numeroUsuario lIKE ? ) GROUP BY citas.usuario_id";
-        $stm= $this->pdo->prepare($query);
-        $stm->bindParam(1,$search);
-        $stm->bindParam(2,$search);
-        $stm->bindParam(3,$search);
-        $stm->bindParam(4,$search);
+        $stm = $this->pdo->prepare($query);
+        $stm->bindParam(1, $search);
+        $stm->bindParam(2, $search);
+        $stm->bindParam(3, $search);
+        $stm->bindParam(4, $search);
         $stm->execute();
         $resultado = $stm->fetchAll();
         $res["estado"] = 1;
@@ -296,7 +330,8 @@ class Usuarios {
         return json_encode($res);
     }
 
-    public function getMedicosSearch($string){
+    public function getMedicosSearch($string)
+    {
         $res = [
             'estado' => 0,
         ];
@@ -339,31 +374,31 @@ if (isset($_POST['get'])) {
                 break;
             case 'getUserSearch':
                 echo $f->getUserSearch($_POST['search']);
-            break;
+                break;
             case 'getMedicosSearch':
                 echo $f->getMedicosSearch($_POST['param']);
-            break;
+                break;
             case 'getUser';
                 echo $f->getUsuario($_POST["id"]);
-            break;
+                break;
             case "modifyUser":
                 echo $f->modifyUser($_POST);
-            break;
+                break;
             case 'reporteUsuarioMasCitasPv':
                 echo $f->reporteUsuarioMasCitasPv();
-            break;
+                break;
             case 'reporteUsuarioMenosCitasPv':
                 echo $f->reporteUsuarioMenosCitasPv();
-            break;
+                break;
             case 'reporteUsuarioMasCitasTotal':
                 echo $f->reporteUsuarioMasCitasTotal();
-            break;
+                break;
             case 'reporteUsuarioMenosCitasTotal':
                 echo $f->reporteUsuarioMenosCitasTotal();
-            break;
+                break;
             case 'reporteCitasUsuarios':
                 echo $f->reporteCitasUsuarios();
-            break;
+                break;
             case "reporteCitasUsuariosBySearch";
                 echo $f->reporteCitasUsuariosBySearch($_POST["search"]);
                 break;

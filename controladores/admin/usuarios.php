@@ -1,6 +1,5 @@
 <?php
 include dirname(__FILE__) . '/../layouts/header.php';
-include dirname(__FILE__) . '/../utilidades/funciones/func_fill_selects.php';
 ?>
 
 <!-- Page Content -->
@@ -93,6 +92,9 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fill_selects.php';
                                 <div class="col-md-2 form-group">
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="perm_citas" name="perm_citas">Citas</label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="perm_admin" name="perm_admin">Administrador</label>
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +204,11 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fill_selects.php';
                             <label>
                                 Tipo de usuario
                                 <select class="form-control" name="e-tipousuario" id="e-tipousuario">
-                                    <?php fillSelect("tipo_usuarios","id_tipo_usuario","nombre_tipo_usuario"); ?>
+                                    <option value="1">Administrador</option>
+                                    <option value="2">Médico</option>
+                                    <option value="3">Farmacia</option>
+                                    <option value="4">Recepcionista</option>
+                                    <option value="5">CallCenter</option>
                                 </select>
                             </label>
                           </div>
@@ -235,6 +241,10 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fill_selects.php';
                                     <label>
                                         <input type="checkbox" id="e-perm_citas" name="e-perm_citas">
                                         &nbsp;Citas
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" id="e-perm_admin" name="e-perm_admin">
+                                        &nbsp;Administrador
                                     </label>
                                 </div>
                             </div>

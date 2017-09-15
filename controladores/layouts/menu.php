@@ -6,7 +6,7 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
 $perm_farmacia = $_SESSION['accesos_farmacia'];
 $perm_recepcion = $_SESSION['accesos_recepcion'];
 $perm_medico = $_SESSION['accesos_medico'];
-$perm_administrador = $_SESSION['perm_financiero'];
+$perm_administrador = $_SESSION['accesos_admin'];
 $perm_financiero = $_SESSION['accesos_financiero'];
 $perm_citas = $_SESSION['accesos_citas'];
 ?>
@@ -17,7 +17,7 @@ $perm_citas = $_SESSION['accesos_citas'];
     <div class="list-group">
         <!--	Permisos de Recepción	-->
         <?php
-        if ($perm_citas == 1 && $perm_recepcion == 0)	{
+        if ($perm_citas == 1)	{
             echo	'<a href="' . app_url() . 'citas_programar" class="list-group-item "><i class="fa fa-pencil-square-o"></i>&nbsp Recepción - Programar Citas</a>';
         }
         ?>
