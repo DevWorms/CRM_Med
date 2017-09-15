@@ -1,18 +1,8 @@
 <?php
-
-//	OBTENER PERMISOS POR MEDIO DEL ID DE SESIÓN
-$perm_farmacia = $_SESSION['accesos_farmacia'];
-$perm_recepcion = $_SESSION['accesos_recepcion'];
-$perm_medico = $_SESSION['accesos_medico'];
-$perm_administrador = $_SESSION['perm_financiero'];
-$perm_financiero = $_SESSION['accesos_financiero'];
-$perm_citas = $_SESSION['accesos_citas'];
+include dirname(__FILE__) . '/../sesion/sesion.php';
+include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
 ?>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-      integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand col-md-8" href="#"><h1>MediLaser CRM</h1></a>
@@ -61,41 +51,6 @@ $perm_citas = $_SESSION['accesos_citas'];
                         </ul>
                     </div>
                 </li>
-
-                <!-- Estilos para el navbar -->
-                <style>
-                    /* nombre/logo */
-                    .navbar-brand {
-                        top: 10px;
-                        left: 30px;
-                    }
-
-                    /* botón menú */
-                    .dropdown {
-                        top: 20px;
-                        left: 50px;
-                    }
-
-                    .dropdown button {
-                        width: 70px;
-                    }
-
-                    .dropdown-submenu {
-                        position: relative;
-                    }
-
-                    }
-                </style>
-                <!-- Script para controlar el botón menú -->
-                <script>
-                    $(document).ready(function () {
-                        $('.dropdown-submenu a.test').on("click", function (e) {
-                            $(this).next('ul').toggle();
-                            e.stopPropagation();
-                            e.preventDefault();
-                        });
-                    });
-                </script>
             </ul>
         </div>
     </div>

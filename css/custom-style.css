@@ -1,9 +1,5 @@
 /* Estilo Global para CRM_Med */
 
-.red {
-	color: red;
-}
-
 .fs-sp {
 	padding-top: 30px;
 	padding-right: 30px;
@@ -15,4 +11,24 @@
 
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
     width: 100% !important;
+}
+
+/* Estilos NAVBAR */
+.navbar-brand {
+    top: 10px;
+    left: 30px;
+}
+
+/* botón menú */
+.dropdown {
+    top: 20px;
+    left: 50px;
+}
+
+.dropdown button {
+    width: 70px;
+}
+
+.dropdown-submenu {
+    position: relative;
 }
