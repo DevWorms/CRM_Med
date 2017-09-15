@@ -1,11 +1,37 @@
 var total = 0;
 $(document).ready(function() {
+    // Listener - imprimir calendario
     $("#print").click(function () {
         printDiv();
     });
 
+    // Carga los médicos
     loadMedicos();
 
+    // Listener - Al dar click en NO reagendar
+    $("#no-reagendar").change(function () {
+        if ($('#no-reagendar').prop("checked")) {
+            $("#reagendarCita-fecha").prop("disabled", true);
+            $("#reagendarCita-hora").prop("disabled", true);
+        } else {
+            $("#reagendarCita-fecha").prop("disabled", false);
+            $("#reagendarCita-hora").prop("disabled", false);
+        }
+    });
+
+    // Listener - cerrar modal detalle de evento
+    $('#DetalleEvento').on('hidden.bs.modal', function () {
+        // Resetea el modal detalle de evento al cerrarlo
+        resetModal();
+    });
+
+    loadEvents();
+});
+
+/*
+ * Carga los eventos en el calendario
+ */
+function loadEvents() {
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -88,8 +114,11 @@ $(document).ready(function() {
             openModal(calEvent.payload);
         }
     });
-});
+}
 
+/*
+ * Asynctask, obtiene una lista de médicos
+ */
 function loadMedicos() {
     $.ajax({
         url: APP_URL + 'class/Medico.php',
@@ -116,6 +145,9 @@ function loadMedicos() {
     });
 }
 
+/*
+ * Asynckask, asigna un médico a un paciente
+ */
 function asignarMedico(id) {
     $.ajax({
         type: 'POST',
@@ -140,6 +172,9 @@ function asignarMedico(id) {
     });
 }
 
+/*
+ * Imprime el reporte de citas del calendario
+ */
 function printDiv() {
     // Cuenta por día
     if ($(".fc-event-container > a").length > 0) {
@@ -166,8 +201,10 @@ function printDiv() {
     });
 }
 
+/*
+ * Abre el modal detalle de evento, y carga la información de la cita
+ */
 function openModal(cita) {
-    $("#DetalleEvento").modal("show");
     $("#header-detalleEvento").html('<h4 class="modal-title" style="text-align:center;">' + cita.tipo_cita + ' - ' + cita.apPaterno + ' ' + cita.apMaterno + ' ' + cita.nombre + '</h4>');
     $("#paciente-detalleEvento").html('<p>Paciente: ' + cita.apPaterno + ' ' + cita.apMaterno + ' ' + cita.nombre + '</p>');
     $("#folio-detalleEvento").html('<p>Folio: <strong>' + cita.id + '</strong></p>');
@@ -213,8 +250,12 @@ function openModal(cita) {
     }
 
     $("#button-detalleEvento").html('<button class="btn btn-primary btn-block" type="submit" name="up_button" onclick="event.preventDefault(); setAsistencia(\'' + cita.cita_id + '\', \'' + cita.id + '\');" id="up_button">Guardar</button>');
+    $("#DetalleEvento").modal("show");
 }
 
+/*
+ * Muestra el formulario para reagendar la cita
+ */
 function displayReagendar(display, fecha, hora) {
     if (display) {
         $("#reagendarCita").show();
@@ -226,16 +267,37 @@ function displayReagendar(display, fecha, hora) {
     $("#reagendarCita-hora").val(hora);
 }
 
+/*
+ * Asiste o no a la cita
+ */
 function setAsistencia(id, user_id) {
-    $.ajax({
-        url: APP_URL + 'class/Calendario.php',
-        type: 'POST',
-        data: {
+    var data = null;
+    if ($('#no-reagendar').prop("checked")) {
+        data = {
             get: 'asistencia',
             asistencia: $('#asistioSelect-detalleEvento').val(),
             id: id,
-            user_id: user_id
-        },
+            user_id: user_id,
+            reagendar: null,
+            nueva_fecha: null,
+            nueva_hora: null
+        };
+    } else {
+        data = {
+            get: 'asistencia',
+            asistencia: $('#asistioSelect-detalleEvento').val(),
+            id: id,
+            user_id: user_id,
+            reagendar: 1,
+            nueva_fecha: $("#reagendarCita-fecha").val(),
+            nueva_hora: $("#reagendarCita-hora").val()
+        };
+    }
+
+    $.ajax({
+        url: APP_URL + 'class/Calendario.php',
+        type: 'POST',
+        data: data,
         beforeSend: function () {
             $("#wait").show();
         },
@@ -255,10 +317,34 @@ function setAsistencia(id, user_id) {
         },
         complete: function () {
             $("#wait").hide();
+            $('#calendar').fullCalendar( 'refetchEvents' );
         }
     });
 }
 
+/*
+ * Resetea los datos en el modal de detalle de evento
+ */
+function resetModal() {
+    $("#header-detalleEvento").html('');
+    $("#paciente-detalleEvento").html('');
+    $("#folio-detalleEvento").html('');
+    $("#procedimiento-detalleEvento").html('');
+    $("#telefono-detalleEvento").html('');
+    $("#tipoCita-detalleEvento").html('');
+    $("#fecha-detalleEvento").html('');
+    $("#medico-detalleEvento").html('');
+    $("#asistencia-detalleEvento").html('');
+    $("#button-detalleEvento").html('');
+    $("#reagendarCita").hide();
+    $('#no-reagendar').prop("checked", false);
+    $("#reagendarCita-fecha").prop("disabled", false);
+    $("#reagendarCita-hora").prop("disabled", false);
+}
+
+/*
+ * Muestra un mensaje de error
+ */
 function error(msg) {
     $.notify(msg, "error");
     $("#error").fadeIn(1000, function () {
@@ -266,6 +352,9 @@ function error(msg) {
     });
 }
 
+/*
+ * Muestra un mensaje de diferente tipo
+ */
 function msg(msg, type) {
     $.notify(msg, type);
     $("#error").fadeIn(1000, function () {
