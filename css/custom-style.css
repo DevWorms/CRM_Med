@@ -12,23 +12,3 @@
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
     width: 100% !important;
 }
-
-/* Estilos NAVBAR */
-.navbar-brand {
-    top: 10px;
-    left: 30px;
-}
-
-/* botón menú */
-.dropdown {
-    top: 20px;
-    left: 50px;
-}
-
-.dropdown button {
-    width: 70px;
-}
-
-.dropdown-submenu {
-    position: relative;
-}
