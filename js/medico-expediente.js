@@ -466,51 +466,63 @@ function nuevoPresupuesto() {
         var hash_num = parseInt(window.location.hash.substring(1));
         if (hash_num > 0) {
             if (hash_num) {
-                $.ajax({
-                    type: 'POST',
-                    url: APP_URL + 'class/Medico.php',
-                    data: {
-                        get: 'addPresupuesto',
-                        user_id: hash_num,
-                        nombre: $("#nombre_presupuesto").val(),
-                        tipo: $("#tipo_presupuesto").val(),
-                        descripcion: $("#descripcion_presupuesto").val(),
-                        numero_sesiones: $("#numero_citas").val(),
-                        precio: $("#precio_normal").val(),
-                        promocion: $("#precio_promocion").val(),
-                        contado: $("#precio_contado").val(),
-                        vigencia: $("#fecha").val()
-                    },
-                    beforeSend: function () {
-                        $("#wait").show();
-                    },
-                    success: function (response) {
-                        response = JSON.parse(response);
-                        if (response.estado == 1) {
-                            $("#error").fadeIn(1000, function () {
-                                $("#error").html('<div class="alert alert-success"> &nbsp; ' + response.mensaje + '</div>');
-                            });
+                if (!validaNuevoPresupuesto()) {
+                    $("#error").fadeIn(1000, function () {
+                        $("#error").html('<div class="alert alert-danger"> &nbsp; Todos los campos son obligatorios</div>');
+                    });
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        url: APP_URL + 'class/Medico.php',
+                        data: {
+                            get: 'addPresupuesto',
+                            user_id: hash_num,
+                            nombre: $("#nombre_presupuesto").val(),
+                            tipo: $("#tipo_presupuesto").val(),
+                            descripcion: $("#descripcion_presupuesto").val(),
+                            numero_sesiones: $("#numero_citas").val(),
+                            precio: $("#precio_normal").val(),
+                            promocion: $("#precio_promocion").val(),
+                            contado: $("#precio_contado").val(),
+                            vigencia: $("#fecha").val()
+                        },
+                        beforeSend: function () {
+                            $("#wait").show();
+                        },
+                        success: function (response) {
+                            response = JSON.parse(response);
+                            if (response.estado == 1) {
+                                $("#error").fadeIn(1000, function () {
+                                    $("#error").html('<div class="alert alert-success"> &nbsp; ' + response.mensaje + '</div>');
+                                });
 
-                            cleanFormPresupuesto();
-                        } else {
+                                cleanFormPresupuesto();
+                            } else {
+                                $("#error").fadeIn(1000, function () {
+                                    $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                                });
+                            }
+                        },
+                        error: function (response) {
+                            response = JSON.parse(response);
                             $("#error").fadeIn(1000, function () {
                                 $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
                             });
+                        },
+                        complete: function () {
+                            $("#wait").hide();
                         }
-                    },
-                    error: function (response) {
-                        response = JSON.parse(response);
-                        $("#error").fadeIn(1000, function () {
-                            $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
-                        });
-                    },
-                    complete: function () {
-                        $("#wait").hide();
-                    }
-                });
+                    });
+                }
             }
         }
     }
+}
+
+function validaNuevoPresupuesto() {
+    return !(!$("#nombre_presupuesto").val() || !$("#tipo_presupuesto").val() || !$("#descripcion_presupuesto").val()
+        || !$("#numero_citas").val() || !$("#precio_normal").val() || !$("#precio_promocion").val()
+        || !$("#precio_contado").val() || !$("#fecha").val());
 }
 
 function cleanFormPresupuesto() {
@@ -568,6 +580,8 @@ function addObservacion() {
                             $("#error").fadeIn(1000, function () {
                                 $("#error").html('<div class="alert alert-success"> &nbsp; ' + response.mensaje + '</div>');
                             });
+
+                            $("#nueva_observacion").val("");
                         } else {
                             $("#error").fadeIn(1000, function () {
                                 $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
@@ -581,6 +595,7 @@ function addObservacion() {
                     },
                     complete: function () {
                         $("#wait").hide();
+                        loadObservaciones();
                     }
                 });
             }

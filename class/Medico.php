@@ -332,7 +332,7 @@ class Medico {
                 $resultado = $stm->fetchAll();
 
                 if (count($resultado)===1) {
-                    $query = "SELECT observaciones.*, usuarios.nombre, usuarios.apPaterno, usuarios.apMaterno FROM observaciones INNER JOIN usuarios ON observaciones.medico_id=usuarios.id WHERE observaciones.paciente_id = :id;";
+                    $query = "SELECT observaciones.*, usuarios.nombre, usuarios.apPaterno, usuarios.apMaterno FROM observaciones INNER JOIN usuarios ON observaciones.medico_id=usuarios.id WHERE observaciones.paciente_id = :id ORDER BY observaciones.created_at DESC;";
                     $stm6 = $this->pdo->prepare($query);
                     $stm6->bindValue(":id", $paciente_id, PDO::PARAM_INT );
                     $stm6->execute();
@@ -741,45 +741,51 @@ class Medico {
         $contado = $data['contado'];
         $vigencia = $data['vigencia'];
 
-        try {
-            if ($this->checkPermisos()) {
-                $query = "SELECT * FROM pacientes WHERE id=:user_id;";
-                $stm = $this->pdo->prepare($query);
-                $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
-                $stm->execute();
-                $resultado = $stm->fetchAll();
+        if ($user_id == null || $nombre == null || $tipo == null || $descripcion == null || $numero_sesiones == null
+            || $precio == null || $promocion == null || $contado == null || $vigencia == null) {
 
-                if (count($resultado) == 0) {
-                    $res['mensaje'] = "No se encontro el folio: " . $user_id;
-                } else {
-                    $id = $this->getPresupuestoID();
-                    $query = "INSERT INTO presupuestos (id, nombre, tipo, descripcion, numero_sesiones, precio, promocion,
+            $res['mensaje'] = "Completa todos los campos";
+        } else {
+            try {
+                if ($this->checkPermisos()) {
+                    $query = "SELECT * FROM pacientes WHERE id=:user_id;";
+                    $stm = $this->pdo->prepare($query);
+                    $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+                    $stm->execute();
+                    $resultado = $stm->fetchAll();
+
+                    if (count($resultado) == 0) {
+                        $res['mensaje'] = "No se encontro el folio: " . $user_id;
+                    } else {
+                        $id = $this->getPresupuestoID();
+                        $query = "INSERT INTO presupuestos (id, nombre, tipo, descripcion, numero_sesiones, precio, promocion,
                               contado, vigencia, pacientes_id) VALUES (:id, :nombre, :tipo, :descripcion, :numero_sesiones,
                               :precio, :promocion, :contado, :vigencia, :user_id);";
 
-                    $stm = $this->pdo->prepare($query);
-                    $stm->bindValue(":id", $id, PDO::PARAM_INT);
-                    $stm->bindValue(":nombre", $nombre, PDO::PARAM_STR);
-                    $stm->bindValue(":tipo", $tipo, PDO::PARAM_INT);
-                    $stm->bindValue(":descripcion", $descripcion, PDO::PARAM_STR);
-                    $stm->bindValue(":numero_sesiones", $numero_sesiones, PDO::PARAM_INT);
-                    $stm->bindValue(":precio", $precio, PDO::PARAM_STR);
-                    $stm->bindValue(":promocion", $promocion, PDO::PARAM_STR);
-                    $stm->bindValue(":contado", $contado, PDO::PARAM_STR);
-                    $stm->bindValue(":vigencia", $vigencia, PDO::PARAM_STR);
-                    $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
-                    $stm->execute();
-                    $id = $this->pdo->lastInsertId();
+                        $stm = $this->pdo->prepare($query);
+                        $stm->bindValue(":id", $id, PDO::PARAM_INT);
+                        $stm->bindValue(":nombre", $nombre, PDO::PARAM_STR);
+                        $stm->bindValue(":tipo", $tipo, PDO::PARAM_INT);
+                        $stm->bindValue(":descripcion", $descripcion, PDO::PARAM_STR);
+                        $stm->bindValue(":numero_sesiones", $numero_sesiones, PDO::PARAM_INT);
+                        $stm->bindValue(":precio", $precio, PDO::PARAM_STR);
+                        $stm->bindValue(":promocion", $promocion, PDO::PARAM_STR);
+                        $stm->bindValue(":contado", $contado, PDO::PARAM_STR);
+                        $stm->bindValue(":vigencia", $vigencia, PDO::PARAM_STR);
+                        $stm->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+                        $stm->execute();
+                        $id = $this->pdo->lastInsertId();
 
-                    $res['estado'] = 1;
-                    $res['mensaje'] = "Presupuesto creado correctamente.";
-                    $res['id'] = $id;
+                        $res['estado'] = 1;
+                        $res['mensaje'] = "Presupuesto creado correctamente.";
+                        $res['id'] = $id;
+                    }
+                } else {
+                    $res['mensaje'] = "No cuentas con los permisos correspondientes";
                 }
-            } else {
-                $res['mensaje'] = "No cuentas con los permisos correspondientes";
+            } catch (Exception $e) {
+                $res['mensaje'] = $e->getMessage();
             }
-        } catch (Exception $e) {
-            $res['mensaje'] = $e->getMessage();
         }
 
         // Devuelve json como respuesta
