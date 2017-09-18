@@ -1,6 +1,4 @@
 <?php
-include dirname(__FILE__) . '/../sesion/sesion.php';
-include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
 
 //	OBTENER PERMISOS POR MEDIO DEL ID DE SESIÓN
 $perm_farmacia = $_SESSION['accesos_farmacia'];
@@ -56,7 +54,5 @@ $perm_citas = $_SESSION['accesos_citas'];
             echo    '<a href="'. app_url() .'caja" class="list-group-item"><i class="fa fa-line-chart"></i>&nbsp Administrador - Corte de Caja</a>';
         }
         ?>
-<hr>
-        <a href="<?php echo app_url(); ?>cerrar" class="list-group-item"><i class="fa fa-sign-out"></i>&nbsp Cerrar Sesión</a>
     </div>
 </div>

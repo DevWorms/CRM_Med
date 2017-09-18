@@ -70,6 +70,12 @@
         $('.selectpicker').selectpicker({
           size: 4
         });
+
+        $('.dropdown-submenu a.test').on("click", function (e) {
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
     });
 
     $('#hora, #hora2, #new_hora, #reagendarCita-hora').timepicker(
