@@ -256,48 +256,118 @@ class Usuarios
     public function reporteUsuarioMasCitasPv()
     {
         $res = ["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario, SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) as citasPrimevez FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY citasPrimevez DESC LIMIT 1 ";
-        $stm = $this->pdo->prepare($query);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $res["estado"] = 1;
-        $res["rows"] = $resultado;
-        return json_encode($res);
-    }
 
-    public function reporteUsuarioMenosCitasPv()
-    {
-        $res = ["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario, SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) as citasPrimevez FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY citasPrimevez ASC LIMIT 1 ";
-        $stm = $this->pdo->prepare($query);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $res["estado"] = 1;
-        $res["rows"] = $resultado;
-        return json_encode($res);
-    }
+        try {
+            /*
+             * 0 = Mas citas de primera vez
+             * 1 = Menos citas de primera vez
+             * 2 = Mas citas totales
+             * 3 = Menos citas totales
+             */
+            $query = "
+                  (SELECT 
+                    usuarios.nombre,
+                    usuarios.id,
+                    usuarios.apPaterno,
+                    usuarios.apMaterno,
+                    usuarios.numeroUsuario, 
+                    SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) as citas, 
+                    SUM(
+                        CASE citas.asistencia 
+                            WHEN 1 THEN 1 
+                            WHEN 3 THEN 1 
+                            ELSE 0 
+                        END
+                    ) as checkins
+                  FROM usuarios 
+                  LEFT JOIN citas ON usuarios.id = citas.usuario_id 
+                  WHERE citas.usuario_id != 0 
+                  GROUP BY citas.usuario_id 
+                  HAVING COUNT(usuarios.id) 
+                  ORDER BY citas 
+                  DESC LIMIT 1)
+                  
+                  UNION ALL 
+                  
+                  (SELECT 
+                    usuarios.nombre,
+                    usuarios.id,
+                    usuarios.apPaterno,
+                    usuarios.apMaterno,
+                    usuarios.numeroUsuario, 
+                    SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) as citas, 
+                    SUM(
+                        CASE citas.asistencia 
+                            WHEN 1 THEN 1 
+                            WHEN 3 THEN 1 
+                            ELSE 0 
+                        END
+                    ) as checkins
+                  FROM usuarios 
+                  LEFT JOIN citas ON usuarios.id = citas.usuario_id 
+                  WHERE citas.usuario_id != 0 
+                  GROUP BY citas.usuario_id 
+                  HAVING COUNT(usuarios.id) 
+                  ORDER BY citas 
+                  ASC LIMIT 1)
+                  
+                  UNION ALL
+                  
+                  (SELECT
+                        usuarios.nombre,
+                        usuarios.id,
+                        usuarios.apPaterno,
+                        usuarios.apMaterno,
+                        usuarios.numeroUsuario,
+                        COUNT(usuarios.id) AS citas, 
+                        SUM(
+                            CASE citas.asistencia 
+                                WHEN 1 THEN 1 
+                                WHEN 3 THEN 1 
+                                ELSE 0 
+                            END
+                        ) as checkins
+                  FROM usuarios 
+                  LEFT JOIN citas ON usuarios.id = citas.usuario_id 
+                  WHERE citas.usuario_id != 0 
+                  GROUP BY citas.usuario_id 
+                  HAVING COUNT(usuarios.id) 
+                  ORDER BY COUNT(usuarios.id) 
+                  DESC LIMIT 1)
+                    
+                  UNION ALL
+                  
+                  (SELECT 
+                        usuarios.nombre,
+                        usuarios.id,
+                        usuarios.apPaterno,
+                        usuarios.apMaterno,
+                        usuarios.numeroUsuario,
+                        COUNT(usuarios.id) AS citas, 
+                        SUM(
+                            CASE citas.asistencia 
+                                WHEN 1 THEN 1 
+                                WHEN 3 THEN 1 
+                                ELSE 0 
+                            END
+                        ) as checkins
+                  FROM usuarios 
+                  LEFT JOIN citas ON usuarios.id = citas.usuario_id 
+                  WHERE citas.usuario_id != 0 
+                  GROUP BY citas.usuario_id 
+                  HAVING COUNT(usuarios.id) 
+                  ORDER BY COUNT(usuarios.id) 
+                  ASC LIMIT 1)
+                  ";
+            $stm = $this->pdo->prepare($query);
+            $stm->execute();
+            $resultado = $stm->fetchAll();
 
-    public function reporteUsuarioMasCitasTotal()
-    {
-        $res = ["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY COUNT(usuarios.id) DESC LIMIT 1 ";
-        $stm = $this->pdo->prepare($query);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $res["estado"] = 1;
-        $res["rows"] = $resultado;
-        return json_encode($res);
-    }
-
-    public function reporteUsuarioMenosCitasTotal()
-    {
-        $res = ["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id HAVING COUNT(usuarios.id) ORDER BY COUNT(usuarios.id) ASC LIMIT 1 ";
-        $stm = $this->pdo->prepare($query);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $res["estado"] = 1;
-        $res["rows"] = $resultado;
+            $res["estado"] = 1;
+            $res["rows"] = $resultado;
+        } catch (Exception $ex) {
+            $res["mensaje"] = $ex->getMessage();
+        }
         return json_encode($res);
     }
 
@@ -386,15 +456,6 @@ if (isset($_POST['get'])) {
                 break;
             case 'reporteUsuarioMasCitasPv':
                 echo $f->reporteUsuarioMasCitasPv();
-                break;
-            case 'reporteUsuarioMenosCitasPv':
-                echo $f->reporteUsuarioMenosCitasPv();
-                break;
-            case 'reporteUsuarioMasCitasTotal':
-                echo $f->reporteUsuarioMasCitasTotal();
-                break;
-            case 'reporteUsuarioMenosCitasTotal':
-                echo $f->reporteUsuarioMenosCitasTotal();
                 break;
             case 'reporteCitasUsuarios':
                 echo $f->reporteCitasUsuarios();
