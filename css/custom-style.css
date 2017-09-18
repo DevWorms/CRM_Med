@@ -1,14 +1,37 @@
 /* Estilo Global para CRM_Med */
 
-.fs-sp {
-	padding-top: 30px;
-	padding-right: 30px;
+.fs-sp
+{
+    padding-top: 30px;
+    padding-right: 30px;
 }
 
-.form-inline .input-width {
-	width: 100%;
+.form-inline .input-width
+{
+    width: 100%;
 }
 
-.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn)
+{
     width: 100% !important;
+}
+
+
+/* Estilos barra de navegacion */
+
+.navbar-logo
+{
+    width: 145px;
+    height: auto;
+}
+
+.navbar-brand-custom
+{
+    padding: 0;
+}
+
+.navbar-fecha
+{
+    padding-top: 15px;
+    padding-right: 35px;
 }

@@ -1,7 +1,11 @@
     <?php
         include dirname(__FILE__) . '/../layouts/header.php';
     ?>
-    <!-- Page Content -->
+    
+    <div class="container">
+        <?php include dirname(__FILE__) . "/../layouts/navbar.php"; ?>
+    </div>
+    
     <!-- Page Content -->
     <div class="container">
         <div class="row">

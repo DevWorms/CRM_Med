@@ -3,6 +3,10 @@ include dirname(__FILE__) . '/../layouts/header.php';
 include dirname(__FILE__) . '/../utilidades/funciones/func_option_select.php';
 ?>
 
+<div class="container">
+    <?php include dirname(__FILE__) . "/../layouts/navbar.php"; ?>
+</div>  
+
 <!-- Page Content -->
 <div class="container">
     <div class="row">

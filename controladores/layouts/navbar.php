@@ -12,28 +12,21 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">MediLaser CRM</a>
+      <a class="navbar-brand navbar-brand-custom" href="#"><img class="navbar-logo" src="img/logo1.jpg" alt=""></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li class="active">
-            <a class="nav-link" href="#">
-                        <!-- MOSTRAR NOMBRE DE USUARIO EN APP -->
-                        <p style="texl-align:center">
-                        <p><?php echo $_SESSION['Nombre']; ?></p>
-                        <p><?php ObtenerFechaHoy(); ?></p>
-                        </p>
-                        <span class="sr-only">(current)</span>
-            </a>
+        <li>
+            <p class="navbar-fecha"> <?php ObtenerFechaHoy(); ?> </p>
         </li>
         <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Configuración</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Cerrar Sesión</a></li>
-                </ul>
-              </li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $_SESSION['Nombre']; ?> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;Configuración</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="<?php echo app_url(); ?>cerrar"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Cerrar Sesión</a></li>
+            </ul>
+        </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
