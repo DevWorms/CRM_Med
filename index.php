@@ -25,6 +25,8 @@ $route = new Route();
 	$route->add('/usuarios', 'controladores/admin/usuarios.php');
 	$route->add('/reporte_citas', 'controladores/admin/reportes.php');
 	$route->add('/reporte_citas_usuarios', 'controladores/admin/reporte_cita_usuarios.php');
+	$route->add('/caja', 'controladores/admin/caja.php');
+
 
 	//	RUTAS DE MÉDICO
 	$route->add('/recibir_paciente', 'controladores/medico/recibir_paciente.php');
