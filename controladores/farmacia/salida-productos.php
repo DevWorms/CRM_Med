@@ -106,6 +106,7 @@
                                     <th>Producto</th>
                                     <th>Existencia</th>
                                     <th>Cantidad</th>
+                                    <th>&nbsp;</th>
                                 </thead>
                                 <tbody id="preOutPoducts">
                                 </tbody>

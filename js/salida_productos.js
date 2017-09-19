@@ -148,8 +148,9 @@ function addToPre(id, nombre, existencia) {
     var contenido = "";
 
     contenido += "<tr><td style='display:none'>" + id + "</td><td>" + nombre + "</td><td>" + existencia + "</td>";
-
-    contenido += "<td><input class='form-control' type='number' min='1' max='" + existencia + "' name='cantidad'/></td></tr>";
+    contenido += "<td><input class='form-control' type='number' min='1' max='" + existencia + "' name='cantidad'/></td>";
+    contenido += "<td><a href='#' style='color:red' onclick='removeRow(this)'><i class='glyphicon glyphicon-remove'></i></a></td>"
+    contenido += "</tr>";
 
     if ($("#preOutPoducts tr:last").length > 0) {
 
@@ -212,13 +213,7 @@ function removeRow(elemento) {
 
 
 function generarSalida() {
-    if ($("#productosToOut tr").length <= 0) {
-        $.notify("Para generar la salida de productos debe agregar al menos 1", "warning");
-    } else if (!$("#medico").val()) {
-        $.notify("Debe elegir un medico", "warning");
-    } else if (!$("#paciente").val()) {
-        $.notify("Debe elegir un paciente", "warning");
-    } else {
+    if (salidaValida()) {
         var formData = $("#form-genSalidas").serialize();
         $.ajax({
             url: APP_URL + 'class/Inventario.php',
@@ -250,7 +245,6 @@ function generarSalida() {
             }
         });
     }
-
 }
 
 function isDuplicatedProduct(id) {
@@ -275,4 +269,22 @@ function isDuplicatedProduct(id) {
     }
 
     return toReturn;
+}
+
+function salidaValida() {
+    if ($("#productosToOut tr").length <= 0) { // Si no existen productos para la salida
+        $.notify("Para generar la salida de productos debe agregar al menos 1", "warning");
+        return false;
+    } else if (!$("#medico").val() && !$("#paciente").val()) { // Si uno de los dos campos está vacío
+        $.notify("Debe elegir un medico o un paciente", "warning");
+        return false;
+    } else {
+        if (!$("#medico").val()) { // Si medico está vacío se manda 0 como id a la BD
+            $("#medico").val(0);
+        }
+        if (!$("#paciente").val()) { // Si paciente está vacío se manda 0 como id a la BD
+            $("#paciente").val(0);
+        }
+        return true;
+    }
 }
