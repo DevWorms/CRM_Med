@@ -682,7 +682,7 @@ class Medico {
      */
     private function getHistorial($paciente_id) {
         try {
-            $query = "SELECT id, nombre, numero_sesiones, precio FROM presupuestos WHERE pacientes_id=:id;";
+            $query = "SELECT id, nombre, numero_sesiones, precio, porcentaje_operacion FROM presupuestos WHERE pacientes_id=:id;";
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":id", $paciente_id, PDO::PARAM_INT);
             $stm->execute();
@@ -866,16 +866,7 @@ class Medico {
      * Valida los accesos correctos para el usuario y el tipo de usuario
      */
     private function checkPermisos() {
-        $id = $_SESSION['Id'];
-        $query = "SELECT accesos.medico, usuarios.id_tipo FROM usuarios INNER JOIN accesos ON accesos.id_usuario=usuarios.id WHERE usuarios.id=:id;";
-        $stm = $this->pdo->prepare($query);
-        $stm->bindValue(":id", $id, PDO::PARAM_STR);
-        $stm->execute();
-        $resultado = $stm->fetchAll();
-        $accesoMedico = $resultado[0][0];
-        //$isMedico = $resultado[0][1];
-
-        return ($accesoMedico == 1) ? true : false;
+        return ($_SESSION["accesos_medico"] == 1) ? true : false;
     }
 
     /*
@@ -904,17 +895,116 @@ class Medico {
         echo json_encode($res);
     }
 
+    /*
+     * Devuelve la lista de todos los médicos
+     */
     public function getMedicos() {
         $res = ['estado' => 0];
 
         try {
-            $query = "SELECT id, nombre, apPaterno FROM usuarios u INNER JOIN accesos a ON u.id=a.id_usuario WHERE a.medico=1;";
+            $query = "SELECT id, nombre, apPaterno FROM usuarios u INNER JOIN accesos a ON u.id=a.id_usuario WHERE a.medico=1 OR u.id_tipo=2;";
             $stm = $this->pdo->prepare($query);
             $stm->execute();
             $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
 
 
             $res['medicos'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $ex) {
+            $res['mensaje'] = $ex->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
+
+    /*
+     * Actualiza el porcentaje de operación de un procedimiento
+     */
+    function updatePorcentajeOperacion($presupuesto_id, $porcentaje) {
+        $res = ['estado' => 0];
+
+        try {
+            if ($this->checkPermisos()) {
+                if ($porcentaje < 1 || $porcentaje > 100 || !is_numeric($porcentaje)) {
+                    $res['mensaje'] = "El porcentaje es invalido";
+                } else {
+                    $query = "UPDATE presupuestos SET presupuestos.porcentaje_operacion=:porcentaje WHERE id=:presupuesto_id;";
+                    $stm = $this->pdo->prepare($query);
+                    $stm->bindValue(":porcentaje", $porcentaje, PDO::PARAM_INT);
+                    $stm->bindValue(":presupuesto_id", $presupuesto_id, PDO::PARAM_INT);
+                    $stm->execute();
+
+                    $res['mensaje'] = "El porcentaje se actualizó correctamente";
+                    $res['estado'] = 1;
+                }
+            } else {
+                $res['mensaje'] = "No cuentas con los permisos correspondientes";
+            }
+        } catch (Exception $ex) {
+            $res['mensaje'] = $ex->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
+
+    /*
+     * Busca un médico por nombre, apellidos o id
+     */
+    function searchMedicos($search) {
+        $res = ['estado' => 0];
+
+        try {
+            $query = "SELECT id, nombre, apPaterno, apMaterno FROM usuarios u INNER JOIN accesos a ON u.id=a.id_usuario WHERE (a.medico=1 OR u.id_tipo=2) AND (id LIKE :search OR nombre LIKE :search OR apPaterno LIKE :search OR apMaterno LIKE :search);";
+            $stm = $this->pdo->prepare($query);
+            $stm->bindValue(":search", "%$search%", PDO::PARAM_STR);
+            $stm->execute();
+            $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
+
+
+            $res['medicos'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $ex) {
+            $res['mensaje'] = $ex->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
+
+    /*
+     * Transfiere un paciente a otro médico
+     */
+    function transferirPaciente($paciente_id, $medico_id) {
+        $res = ['estado' => 0];
+
+        try {
+            $query = "SELECT id_relacion_mp FROM relacion_medico_paciente WHERE id_paciente=:id_paciente AND id_medico_principal=:id_medico;";
+            $stm = $this->pdo->prepare($query);
+            $stm->bindValue(":id_paciente", $paciente_id, PDO::PARAM_INT);
+            $stm->bindValue(":id_medico", $_SESSION['Id'], PDO::PARAM_INT);
+            $stm->execute();
+            $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+            if (count($resultado) > 0) {
+                // La relación médico-paciente es principal
+                $query = "UPDATE relacion_medico_paciente SET id_medico_principal=:id_medico WHERE id_relacion_mp=:id;";
+                $stm2 = $this->pdo->prepare($query);
+                $stm2->bindValue(":id_medico", $medico_id, PDO::PARAM_INT);
+                $stm2->bindValue(":id", $resultado[0]["id_relacion_mp"], PDO::PARAM_INT);
+                $stm2->execute();
+            } else {
+                // La relación médico-paciente es secundaria
+                $query = "UPDATE relacion_medico_paciente SET id_medico_secundario=:id_medico WHERE id_paciente=:id_paciente AND id_medico_secundario=:medico_actual;";
+                $stm2 = $this->pdo->prepare($query);
+                $stm2->bindValue(":id_paciente", $paciente_id, PDO::PARAM_INT);
+                $stm2->bindValue(":id_medico", $medico_id, PDO::PARAM_INT);
+                $stm2->bindValue(":medico_actual", $_SESSION['Id'], PDO::PARAM_INT);
+                $stm2->execute();
+            }
+
+            $res['mensaje'] = "El paciente se traslado correctamente";
             $res['estado'] = 1;
         } catch (Exception $ex) {
             $res['mensaje'] = $ex->getMessage();
@@ -981,6 +1071,15 @@ if (isset($_POST['get'])) {
                 break;
             case 'getMedicos':
                 $m->getMedicos();
+                break;
+            case 'updatePorcentajeOperacion':
+                $m->updatePorcentajeOperacion($_POST['presupuesto_id'], $_POST['porcentaje']);
+                break;
+            case 'searchMedicos':
+                $m->searchMedicos($_POST['search']);
+                break;
+            case 'transferirPaciente':
+                $m->transferirPaciente($_POST['paciente_id'], $_POST['medico_id']);
                 break;
             default:
                 header("Location: " . app_url() . "404");
