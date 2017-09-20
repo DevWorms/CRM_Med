@@ -1,12 +1,16 @@
 <?php
     //$link = mysqli_connect("www.devworms.com", "worm_developer", "DW_developer_2017", "medilaser_crm_2");
-    $link = mysqli_connect("localhost", "root", "toor", "Medilaser");
+    $link = mysqli_connect("www.devworms.com", "worm_developer", "DW_developer_2017", "medilaser_master_crm");
 
     // Ids de los usuarios de callcenter
     $users = [
-        0 => 21,
-        1 => 22,
-        2 => 23
+        0 => 15,
+        1 => 16,
+        2 => 17,
+        3 => 18,
+        4 => 21,
+        5 => 22,
+        6 => 23,
     ];
 
     // Selecciona las citas que cumplen los requerimientos para actualizar

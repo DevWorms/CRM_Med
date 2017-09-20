@@ -3,6 +3,10 @@
         include dirname(__FILE__) . '/../utilidades/funciones/func_option_select.php'; 
     ?>
 
+    <style>
+        .ui-autocomplete { z-index:2147483647; }
+    </style>
+
     <div class="container">
         <?php include dirname(__FILE__) . "/../layouts/navbar.php"; ?>
     </div>
@@ -359,37 +363,7 @@
                                         </thead>
 
                                         <tbody>
-                                            <tr>
-                                                <td>@NOMBRE_PRESUPUESTO</td>
-                                                <td>
-                                                    @SESIONES_PAGADAS
-                                                    <br>
-                                                    @PORCENTAJE_PAGADO
-                                                </td>
-                                                <td>
-                                                    @SESIONES_RESTANTES
-                                                    <br>
-                                                    @PORCENTAJE_RESTANTE
-                                                </td>
-                                                <td>@PORCENTAJE_OPERACION</td>
-                                                <td>
-                                                    <!-- Split button -->
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-default">Opciones</button>
-                                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="caret"></span>
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#">Modificar Porcentajes</a></li>
-                                                            <li><a href="#">Transferir</a></li>
-                                                            <li><a href="#">Generar Cita</a></li>
-                                                            <li role="separator" class="divider"></li>
-                                                            <li><a href="#">Eliminar Presupuesto</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -448,6 +422,72 @@
 
         </div>
     </div>
+
+            <!-- Modal actualizar porcentaje de operación -->
+            <div class="modal fade" id="modalPorcentajes" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Actualizar porcentajes de operación</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="col-md-6">
+                                <label for="porcentajes_txt">Porcentaje</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="hidden" id="pocentajes_id_txt" name="pocentajes_id_txt">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" id="porcentajes_txt" name="porcentajes_txt" class="form-control">
+                                        <div class="input-group-addon">%</div>
+                                    </div>
+                                </div><br>
+                            </div>
+                            <div  align="center">
+                                <button class="btn btn-info" id="actualizar_porcentajes_btn" >Actualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal transferir paciente -->
+            <div class="modal fade" id="modalTransferirPaciente" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Transferir paciente</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="col-md-6">
+                                <label for="transferir_medico">Asignar a:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="hidden" id="transferir_paciente_id" name="transferir_paciente_id">
+                                <input type="hidden" id="transferir_medico_id" name="transferir_medico_id">
+                                <input type="text" id="transferir_medico_nombre" name="transferir_medico_nombre" class="form-control ui-autocomplete"><br>
+                            </div>
+                            <br>
+                            <br>
+                            <div  align="center">
+                                <button class="btn btn-info" id="transferir_paciente_btn" >Transferir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal generar nueva cita -->
             <div class="modal fade" id="generarCita" role="dialog">
                 <div class="modal-dialog">
 

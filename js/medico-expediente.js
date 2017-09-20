@@ -36,6 +36,10 @@ $().ready(function () {
         uploadOtherDocument();
     });
 
+    $("#actualizar_porcentajes_btn").click(function () {
+        updatePorcentaje();
+    });
+
     $("#tipo_documento").on('change', function () {
         switch (this.value) {
             case 1:
@@ -58,8 +62,99 @@ $().ready(function () {
                 break;
         }
     });
+
     $('#progressbox').hide();
+
+    $("#transferir_medico_nombre").on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+        }
+    }).autocomplete({
+        minLength: 3,
+        source: function (request, response) {
+            $.ajax({
+                url: APP_URL + 'class/Medico.php',
+                type: 'POST',
+                data: {
+                    get: 'searchMedicos',
+                    search: $("#transferir_medico_nombre").val()
+                },
+                dataType: "JSON",
+                success: function (data) {
+                    response($.map(data.medicos, function (el) {
+                        //return el.id + " - " + el.apPaterno + " " + el.nombre;
+                        return {
+                            label: el.nombre + " " + el.apPaterno,
+                            value: el.nombre + " " + el.apPaterno,
+                            id: el.id,
+                            nombre: el.nombre,
+                            apellido: el.apellido
+                        };
+                    }));
+                }
+            });
+        },
+        focus: function() {
+            // prevent value inserted on focus
+            return false;
+        },
+        delay: 1000,
+        select: function( event, ui ) {
+            var terms = String(this.value).split(".");
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( "" );
+            $("#transferir_medico_id").val(ui.item.id);
+            return false;
+        }
+    });
+    
+    $("#transferir_paciente_btn").click(function () {
+        transferirParciente();
+    });
 });
+
+function transferirParciente() {
+    $.ajax({
+        url: APP_URL + 'class/Medico.php',
+        type: 'POST',
+        data: {
+            get: 'transferirPaciente',
+            paciente_id: $("#transferir_paciente_id").val(),
+            medico_id: $("#transferir_medico_id").val()
+        },
+        dataType: "JSON",
+        beforeSend: function () {
+            $("#wait").show();
+        },
+        success: function (response) {
+            if (response.estado == 1) {
+                $("#error").fadeIn(1000, function () {
+                    $("#error").html('<div class="alert alert-success"> &nbsp; ' + response.mensaje + '</div>');
+                });
+
+                window.location.href = APP_URL + "mis_pacientes";
+            } else {
+                $("#error").fadeIn(1000, function () {
+                    $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                });
+            }
+        },
+        error: function (response) {
+            $("#error").fadeIn(1000, function () {
+                $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+            });
+        },
+        complete: function () {
+            $("#wait").hide();
+        }
+    });
+}
 
 function openDocs() {
     if (!$("#docs1").is(":visible")) {
@@ -165,12 +260,17 @@ function loadPaciente(id) {
                     table.deleteRow(i);
                 }
                 response.historial.forEach(function (presupuesto) {
-                    var sesiones = "", last_date = "";
+                    var sesiones = "", last_date = "", porcentaje_operacion = "";
                     if (presupuesto.numero_sesiones) {
                         sesiones = presupuesto.numero_sesiones;
                     }
+
                     if (presupuesto.last_date) {
                         last_date = presupuesto.last_date;
+                    }
+
+                    if (presupuesto.porcentaje_operacion) {
+                        porcentaje_operacion = presupuesto.porcentaje_operacion;
                     }
 
                     $('#historial tr:last').after('<tr>' +
@@ -185,7 +285,7 @@ function loadPaciente(id) {
                         '<td>' + presupuesto.nombre + '</td>' +
                         '<td>' + presupuesto.porcentajePagado + '%</td>' +
                         '<td>' + presupuesto.porcentajeRestante + '%</td>' +
-                        '<td>@PORCENTAJE_OPERACION</td>' +
+                        '<td id="porcentaje_tbl_' + presupuesto.id + '">' + porcentaje_operacion + '</td>' +
                         '<td><div class="btn-group form-group">' +
                         '<button type="button" class="btn btn-default">Opciones</button>' +
                         '<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
@@ -193,8 +293,8 @@ function loadPaciente(id) {
                         '<span class="sr-only">Toggle Dropdown</span>' +
                         '</button>' +
                         '<ul class="dropdown-menu">' +
-                        '<li><a href="#">Modificar Porcentajes</a></li>' +
-                        '<li><a href="#">Transferir</a></li>' +
+                        '<li><a href="#' + id + '" onclick="modificarPorcentaje(' + presupuesto.id + ', ' + porcentaje_operacion + ');">Modificar Porcentajes</a></li>' +
+                        '<li><a href="#' + id + '" onclick="openTransferirParciente(' + id + ', ' + porcentaje_operacion + ');">Transferir</a></li>' +
                         '<li><a href="#" onclick="event.preventDefault(); openGenerarCita(' + presupuesto.id + ')">Generar Cita</a></li>' +
                         '<li role="separator" class="divider"></li>' +
                         '<li><a href="#" onclick="event.preventDefault(); deletePresupuesto('+ presupuesto.id +', '+ id + ')">Eliminar Presupuesto</a></li>' +
@@ -237,6 +337,61 @@ function loadPaciente(id) {
             $("#wait").hide();
         }
     });
+}
+
+function openTransferirParciente(paciente_id) {
+    $("#modalTransferirPaciente").modal().toggle();
+    $("#transferir_paciente_id").val(paciente_id);
+}
+
+function modificarPorcentaje(presupuesto_id, porcentaje) {
+    $("#modalPorcentajes").modal().toggle();
+    $("#pocentajes_id_txt").val(presupuesto_id);
+    $("#porcentajes_txt").val(porcentaje);
+}
+
+function updatePorcentaje() {
+    var presupuesto_id = $("#pocentajes_id_txt").val();
+    var porcentaje = $("#porcentajes_txt").val();
+
+    if (porcentaje && presupuesto_id) {
+        $.ajax({
+            type: 'POST',
+            url: APP_URL + 'class/Medico.php',
+            data: {
+                get: 'updatePorcentajeOperacion',
+                presupuesto_id: presupuesto_id,
+                porcentaje: porcentaje
+            },
+            beforeSend: function () {
+                $("#wait").show();
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+
+                if (response.estado == 1) {
+                    $("#error").fadeIn(1000, function () {
+                        $("#error").html('<div class="alert alert-success"> &nbsp; ' + response.mensaje + '</div>');
+                    });
+
+                    $('#porcentaje_tbl_' + presupuesto_id).html(porcentaje);
+                    $('#modalPorcentajes').modal('toggle');
+                } else {
+                    $("#error").fadeIn(1000, function () {
+                        $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                    });
+                }
+            },
+            error: function (response) {
+                $("#error").fadeIn(1000, function () {
+                    $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                });
+            },
+            complete: function () {
+                $("#wait").hide();
+            }
+        });
+    }
 }
 
 function deletePresupuesto(id, user_id) {
