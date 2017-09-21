@@ -665,7 +665,7 @@ class Paciente
                 $stm2->bindValue(":comentario", $comentario, PDO::PARAM_STR);
                 $stm2->bindValue(":presupuesto_id", $presupuesto_id, PDO::PARAM_INT);
                 $stm2->bindValue(":pacientes_id", $id, PDO::PARAM_INT);
-                $stm->bindValue(":usuario_id", $_SESSION["Id"], PDO::PARAM_INT);
+                $stm2->bindValue(":usuario_id", $_SESSION["Id"], PDO::PARAM_INT);
                 $stm2->execute();
 
                 $res['mensaje'] = "Paciente y cita creados correctamente";
