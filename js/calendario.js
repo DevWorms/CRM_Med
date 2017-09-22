@@ -1,7 +1,7 @@
 var total = 0;
 $(document).ready(function() {
     // Listener - imprimir calendario
-    $("#print").click(function () {
+    $("#print").click(function() {
         printDiv();
     });
 
@@ -9,7 +9,7 @@ $(document).ready(function() {
     loadMedicos();
 
     // Listener - Al dar click en NO reagendar
-    $("#no-reagendar").change(function () {
+    $("#no-reagendar").change(function() {
         if ($('#no-reagendar').prop("checked")) {
             $("#reagendarCita-fecha").prop("disabled", true);
             $("#reagendarCita-hora").prop("disabled", true);
@@ -20,7 +20,7 @@ $(document).ready(function() {
     });
 
     // Listener - cerrar modal detalle de evento
-    $('#DetalleEvento').on('hidden.bs.modal', function () {
+    $('#DetalleEvento').on('hidden.bs.modal', function() {
         // Resetea el modal detalle de evento al cerrarlo
         resetModal();
     });
@@ -62,16 +62,16 @@ function loadEvents() {
                     fecha_inicio: start,
                     fecha_fin: end
                 },
-                beforeSend: function () {
+                beforeSend: function() {
                     $("#wait").show();
                 },
-                success: function (response) {
+                success: function(response) {
                     response = JSON.parse(response);
                     if (response.estado == 1) {
                         var events = [];
                         total = response.eventos.length;
 
-                        response.eventos.forEach(function (item) {
+                        response.eventos.forEach(function(item) {
                             var title = item.tipo_cita + " - " + item.apPaterno;
                             if (item.apMaterno) {
                                 title = title + " " + item.apMaterno;
@@ -89,8 +89,12 @@ function loadEvents() {
                                 };
                             } else {
                                 var event = {
-                                    url: "#" + item.id, payload: item, title: title,
-                                    start: item.fecha + "T" + item.hora_ini, id: item.id, color: item.color
+                                    url: "#" + item.id,
+                                    payload: item,
+                                    title: title,
+                                    start: item.fecha + "T" + item.hora_ini,
+                                    id: item.id,
+                                    color: item.color
                                 };
                             }
                             var actionsTemplate = _.template($('#modal_detalle_evento').text());
@@ -102,10 +106,11 @@ function loadEvents() {
                     } else {
                         error(response.mensaje);
                     }
-                }, error: function (response) {
+                },
+                error: function(response) {
                     error(response.responseJSON.mensaje);
                 },
-                complete: function () {
+                complete: function() {
                     $("#wait").hide();
                 }
             });
@@ -127,19 +132,19 @@ function loadMedicos() {
             get: 'getMedicos'
         },
         dataType: "JSON",
-        beforeSend: function () {
+        beforeSend: function() {
             $("#wait").show();
         },
-        success: function (response) {
+        success: function(response) {
             var medicos = response.medicos;
-            medicos.forEach(function (medico) {
-                $("#medico-").append("<option value='" + medico.id + "'>" + medico.nombre + " " + medico.apPaterno +"</option>");
+            medicos.forEach(function(medico) {
+                $("#medico-").append("<option value='" + medico.id + "'>" + medico.nombre + " " + medico.apPaterno + "</option>");
             });
         },
-        error: function (response) {
+        error: function(response) {
             error(response.responseJSON.mensaje);
         },
-        complete: function () {
+        complete: function() {
             $("#wait").hide();
         }
     });
@@ -152,12 +157,12 @@ function asignarMedico(id) {
     $.ajax({
         type: 'POST',
         url: APP_URL + 'class/Medico.php',
-        data : {
+        data: {
             get: 'atender',
             paciente_id: id,
             medico_id: $("#medico-").val()
         },
-        success: function (response) {
+        success: function(response) {
             response = JSON.parse(response);
             if (response.estado == 1) {
                 msg(response.mensaje, "success");
@@ -166,7 +171,7 @@ function asignarMedico(id) {
                 msg(response.mensaje, "danger");
             }
         },
-        error: function (response) {
+        error: function(response) {
             msg("Ocurrio un error", "danger");
         }
     });
@@ -195,9 +200,9 @@ function printDiv() {
         importCSS: true,
         loadCSS: APP_URL + "plugins/FullCalendar/fullcalendar.min.css",
         header: '<div>' +
-        '<h2>Calendario de citas</h2>' +
-        '<h4>(' + total + ' citas en total)</h4>' +
-        '</div>'
+            '<h2>Calendario de citas</h2>' +
+            '<h4>(' + total + ' citas en total)</h4>' +
+            '</div>'
     });
 }
 
@@ -225,12 +230,12 @@ function openModal(cita) {
 
     if (cita.asistencia == 0) {
         $("#asistencia-detalleEvento").html('<select id="asistioSelect-detalleEvento" class="form-control">\n' +
-            '                                                <option disabled selected></option>\n' +
+            //'                                                <option disabled selected></option>\n' +
             '                                                <option value="1">Si</option>\n' +
             '                                                <option value="2">No</option>\n' +
             '                                            </select>');
 
-        $("#asistioSelect-detalleEvento").change(function () {
+        $("#asistioSelect-detalleEvento").change(function() {
             if ($("#asistioSelect-detalleEvento").val() == 2) {
                 displayReagendar(true, cita.fecha, cita.hora_ini);
             } else {
@@ -272,7 +277,7 @@ function displayReagendar(display, fecha, hora) {
  */
 function setAsistencia(id, user_id) {
     var data = null;
-    if ($('#no-reagendar').prop("checked")) {
+    if ($('#no-reagendar').prop("checked") || $('#asistioSelect-detalleEvento').val() == 1) {
         data = {
             get: 'asistencia',
             asistencia: $('#asistioSelect-detalleEvento').val(),
@@ -298,10 +303,10 @@ function setAsistencia(id, user_id) {
         url: APP_URL + 'class/Calendario.php',
         type: 'POST',
         data: data,
-        beforeSend: function () {
+        beforeSend: function() {
             $("#wait").show();
         },
-        success: function (response) {
+        success: function(response) {
             response = JSON.parse(response);
             if (response.estado == 1) {
                 if (response.redirect == 1) {
@@ -312,12 +317,13 @@ function setAsistencia(id, user_id) {
             } else {
                 error(response.mensaje);
             }
-        }, error: function (response) {
+        },
+        error: function(response) {
             error(response.responseJSON.mensaje);
         },
-        complete: function () {
+        complete: function() {
             $("#wait").hide();
-            $('#calendar').fullCalendar( 'refetchEvents' );
+            $('#calendar').fullCalendar('refetchEvents');
         }
     });
 }
@@ -347,7 +353,7 @@ function resetModal() {
  */
 function error(msg) {
     $.notify(msg, "error");
-    $("#error").fadeIn(1000, function () {
+    $("#error").fadeIn(1000, function() {
         $("#error").html('<div class="alert alert-danger"> &nbsp; ' + msg + '</div>');
     });
 }
@@ -357,7 +363,7 @@ function error(msg) {
  */
 function msg(msg, type) {
     $.notify(msg, type);
-    $("#error").fadeIn(1000, function () {
+    $("#error").fadeIn(1000, function() {
         $("#error").html('<div class="alert alert-' + type + '"> &nbsp; ' + msg + '</div>');
     });
 }
