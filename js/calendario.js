@@ -219,7 +219,7 @@ function openModal(cita) {
     $("#fecha-detalleEvento").html('<p>Fecha: ' + cita.fecha + ' ' + cita.hora_ini + '</p>');
 
     if (cita.is_paciente == 1) {
-        if (!cita.id_relacion_mp) {
+        if (!cita.id_relacion_mp && cita.tipo_cita != 'Primera Vez') {
             $("#medico-detalleEvento").html('<label for="medico-">Asignar médico:</label>\n' +
                 '   <select id="medico-"></select>\n' +
                 '   <button class="btn btn-success btn-sm" onclick="asignarMedico(\'' + cita.id + '\');">Asignar</button>');
