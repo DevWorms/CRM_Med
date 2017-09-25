@@ -235,7 +235,6 @@ function generarSalida() {
             },
             complete: function() {
                 $("#productosToOut").html("");
-                $("#user").val("");
                 $("#medico").val("");
                 $("#paciente").val("");
                 $("#searchPac").val("");
