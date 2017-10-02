@@ -1,3 +1,14 @@
+<!-- [!] Estos div's cierran  <div class="container"> y <div class="row"> de todas las pantallas  -->
+</div>
+</div>
+<!-- Impostantes para footer -->
+
+<div class="container custom-footer">
+    <div class="col-xs-offset-3 col-xs-6" align="center">
+        <p>2017</p>
+    </div>
+</div>
+
 <!-- Bootstrap Core JavaScript -->
 <script type="text/javascript" src="<?php echo app_url(); ?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo app_url(); ?>js/moment-with-locales.js"></script>

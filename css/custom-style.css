@@ -33,5 +33,68 @@
 .navbar-fecha
 {
     padding-top: 15px;
-    padding-right: 35px;
+    padding-right: 20px;
+
+    color: #777;
+}
+
+i.dropdown-icon
+{
+    padding-right: 10px;
+
+    color: #777;
+}
+
+ul li.dropdown a i.icono-notificaciones
+{
+    font-size: 17px;
+
+    padding: 0 5px 0 0;
+}
+
+.dropdown .dropdown-menu-sp
+{
+    min-width: 250px;
+    padding: 10px;
+}
+
+.dropdown .dropdown-menu
+{
+    display: block;
+    overflow: hidden;
+
+    -webkit-transition: all .3s;
+       -moz-transition: all .3s;
+        -ms-transition: all .3s;
+         -o-transition: all .3s;
+            transition: all .3s;
+
+    opacity: 0;
+}
+
+.dropdown:hover .dropdown-menu
+{
+    max-height: 200px;
+
+    opacity: 1;
+}
+
+.custom-footer
+{
+    margin-bottom: 30px;
+    padding: 10px 15px;
+
+    border: 1px solid #e7e7e7;
+    background-color: #f8f8f8;
+
+    border-radius: 4px;
+}
+
+.custom-footer p
+{
+    font-weight: bold;
+
+    margin: 0;
+
+    color: #777;
 }
