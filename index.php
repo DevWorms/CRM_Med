@@ -37,6 +37,7 @@ $route = new Route();
 	$route->add('/', 'controladores/index.php');
 	$route->add('/404', 'controladores/layouts/404.php');
 	$route->add('/cerrar', 'controladores/sesion/cerrar_sesion.php');
+	$route->add('/configuracion', 'controladores/layouts/configuracion.php');
 
 
 	//	+++++++++++++++++	AÚN EN ESPERA...	++++++++++++++++++++++++

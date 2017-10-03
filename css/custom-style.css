@@ -85,9 +85,8 @@ ul li.dropdown a i.icono-notificaciones
     padding: 10px 15px;
 
     border: 1px solid #e7e7e7;
-    background-color: #f8f8f8;
-
     border-radius: 4px;
+    background-color: #f8f8f8;
 }
 
 .custom-footer p
@@ -97,4 +96,55 @@ ul li.dropdown a i.icono-notificaciones
     margin: 0;
 
     color: #777;
+}
+
+p.form-title
+{
+    font-size: 16px;
+    font-weight: bold;
+
+    margin-top: 10px;
+
+    color: #545454;
+}
+
+.config-info
+{
+    font-size: 14px;
+}
+
+.form-highlight
+{
+    font-weight: bold;
+}
+
+.boton-cambiar
+{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.modal-title
+{
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    color: #545454;
+}
+
+.modal-subtitle
+{
+    font-size: 14px;
+    font-weight: bold;
+
+    text-align: left;
+
+    color: #a7a7a7;
+}
+
+.space25px {
+	margin-top: 25px;
 }

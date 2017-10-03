@@ -30,7 +30,11 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $_SESSION['Nombre']; ?> <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#"><i class="fa fa-cog dropdown-icon" aria-hidden="true"></i>Configuración</a></li>
+              <li>
+                <?php  echo '<a href="' . app_url() . 'configuracion">'; ?>
+                  <i class="fa fa-cog dropdown-icon" aria-hidden="true"></i>Configuración
+                </a>
+              </li>
               <li role="separator" class="divider"></li>
               <li><a href="<?php echo app_url(); ?>cerrar"><i class="fa fa-sign-out dropdown-icon"></i>Cerrar Sesión</a></li>
             </ul>

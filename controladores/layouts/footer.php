@@ -1,7 +1,7 @@
 <!-- [!] Estos div's cierran  <div class="container"> y <div class="row"> de todas las pantallas  -->
 </div>
 </div>
-<!-- Impostantes para footer -->
+<!-- Importantes para footer -->
 
 <div class="container custom-footer">
     <div class="col-xs-offset-3 col-xs-6" align="center">
