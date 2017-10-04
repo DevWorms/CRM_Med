@@ -5,9 +5,6 @@ $(document).ready(function() {
         printDiv();
     });
 
-    // Carga los médicos
-    loadMedicos();
-
     // Listener - Al dar click en NO reagendar
     $("#no-reagendar").change(function() {
         if ($('#no-reagendar').prop("checked")) {
@@ -221,8 +218,9 @@ function openModal(cita) {
     if (cita.is_paciente == 1) {
         if (!cita.id_relacion_mp && cita.tipo_cita != 'Primera Vez') {
             $("#medico-detalleEvento").html('<label for="medico-">Asignar médico:</label>\n' +
-                '   <select id="medico-"></select>\n' +
-                '   <button class="btn btn-success btn-sm" onclick="asignarMedico(\'' + cita.id + '\');">Asignar</button>');
+            '   <select id="medico-"></select>\n' +
+            '   <button class="btn btn-success btn-sm" onclick="asignarMedico(\'' + cita.id + '\');">Asignar</button>');
+            loadMedicos();
         } else {
             $("#medico-detalleEvento").html('<p>Médico asignado: ' + cita.medico_nombre + ' ' + cita.medico_apellido + '</p>');
         }
