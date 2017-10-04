@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 19-09-2017 a las 11:05:28
+-- Tiempo de generación: 04-10-2017 a las 12:57:40
 -- Versión del servidor: 5.6.36-cll-lve
 -- Versión de PHP: 5.6.30
 
@@ -17,13 +17,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `medilaser_crm_2`
---
+-- Base de datos: `medilaser_master_crm`
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `accesos`
+--
+-- Creación: 15-09-2017 a las 02:29:36
 --
 
 CREATE TABLE IF NOT EXISTS `accesos` (
@@ -66,6 +67,9 @@ INSERT INTO `accesos` (`id_acceso`, `id_usuario`, `farmacia`, `recepcion`, `medi
 --
 -- Estructura de tabla para la tabla `antecedentes`
 --
+-- Creación: 30-08-2017 a las 16:56:23
+-- Última actualización: 30-08-2017 a las 16:56:23
+--
 
 CREATE TABLE IF NOT EXISTS `antecedentes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -94,6 +98,9 @@ INSERT INTO `antecedentes` (`id`, `paciente_id`, `medico_id`, `quirurgicos`, `al
 
 --
 -- Estructura de tabla para la tabla `catalogo_procedimientos`
+--
+-- Creación: 30-08-2017 a las 16:56:23
+-- Última actualización: 30-08-2017 a las 16:56:23
 --
 
 CREATE TABLE IF NOT EXISTS `catalogo_procedimientos` (
@@ -142,6 +149,8 @@ INSERT INTO `catalogo_procedimientos` (`id_procedimiento`, `nombre_procedimiento
 --
 -- Estructura de tabla para la tabla `citas`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `citas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -158,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   KEY `fk_citas_pacientes1_idx` (`pacientes_id`),
   KEY `tipo_cita` (`tipo_cita`),
   KEY `tipo_cita_2` (`tipo_cita`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2873 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3091 ;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -2816,7 +2825,7 @@ INSERT INTO `citas` (`id`, `fecha`, `hora_ini`, `hora_fin`, `tipo_cita`, `asiste
 (2663, '2017-09-10', '10:00:00', NULL, 1, 0, 227015, '', 2217, 22),
 (2664, '2017-09-24', '00:00:00', NULL, 1, 0, 227016, '', 2218, 21),
 (2665, '2017-09-03', '00:00:00', NULL, 1, 0, 227017, '', 2219, 21),
-(2666, '2017-09-26', '15:30:00', NULL, 1, 0, 227018, 'CIRUJIA RODILLA', 2220, 16),
+(2666, '2017-09-26', '15:30:00', NULL, 1, 0, 22854, 'CIRUJIA RODILLA', 2220, 16),
 (2668, '2017-09-15', '12:00:00', NULL, 1, 0, 227020, '', 2222, 16),
 (2669, '2017-09-16', '00:00:00', NULL, 1, 0, 227021, '', 2223, 16),
 (2670, '2017-09-27', '12:30:00', NULL, 1, 0, 227022, '', 2224, 21),
@@ -2826,7 +2835,7 @@ INSERT INTO `citas` (`id`, `fecha`, `hora_ini`, `hora_fin`, `tipo_cita`, `asiste
 (2674, '2017-09-20', '15:30:00', NULL, 1, 0, 227026, '', 2228, 23),
 (2675, '2017-09-18', '15:00:00', NULL, 1, 0, 227027, '', 2229, 15),
 (2676, '2017-09-06', '09:00:00', NULL, 1, 0, 227028, 'AUMENTO DE SENOS ', 2230, 21),
-(2677, '2017-09-29', '13:00:00', NULL, 1, 0, 227029, '', 2231, 18),
+(2677, '2017-09-29', '13:00:00', NULL, 1, 3, 22841, '', 2231, 18),
 (2678, '2017-09-04', '12:00:00', NULL, 1, 0, 22823, '', 2232, 15),
 (2679, '2017-09-04', '11:00:00', NULL, 1, 0, 227031, 'AUMENTO DE SENOS ', 2233, 17),
 (2680, '2017-09-01', '09:30:00', NULL, 1, 0, 227032, 'BOTOX ', 2234, 22),
@@ -2937,10 +2946,10 @@ INSERT INTO `citas` (`id`, `fecha`, `hora_ini`, `hora_fin`, `tipo_cita`, `asiste
 (2792, '2017-09-20', '13:00:00', NULL, 1, 0, 227063, '', 2324, 16),
 (2793, '2017-09-19', '15:00:00', NULL, 1, 0, 227064, '', 2325, 22),
 (2794, '2017-09-13', '10:00:00', NULL, 1, 3, 22813, '', 2326, 23),
-(2795, '2017-10-29', '16:00:00', NULL, 1, 0, 227066, '', 2327, 23),
+(2795, '2017-10-29', '16:00:00', NULL, 1, 0, 22845, '', 2327, 23),
 (2796, '2017-09-18', '14:00:00', NULL, 1, 0, 227067, '', 2328, 16),
 (2797, '2017-09-18', '11:00:00', NULL, 1, 0, 227068, '', 2329, 15),
-(2798, '2017-09-22', '17:00:00', NULL, 1, 0, 227069, '', 2330, 23),
+(2798, '2017-09-22', '17:00:00', NULL, 1, 0, 22844, '', 2330, 23),
 (2799, '2017-09-18', '11:00:00', NULL, 5, 1, 22825, '', 2331, 0),
 (2800, '2017-09-14', '13:30:00', NULL, 1, 3, 22820, '', 2332, 18),
 (2801, '2017-09-13', '15:00:00', NULL, 1, 3, 22816, '', 2333, 18),
@@ -3014,12 +3023,234 @@ INSERT INTO `citas` (`id`, `fecha`, `hora_ini`, `hora_fin`, `tipo_cita`, `asiste
 (2869, '2017-09-25', '17:00:00', NULL, 7, 0, 22694, '', 2351, 14),
 (2870, '2017-09-30', '11:00:00', NULL, 5, 0, 21582, '', 0, 14),
 (2871, '2017-09-20', '15:30:00', NULL, 5, 0, 22799, '', 0, 14),
-(2872, '2017-09-20', '15:30:00', NULL, 7, 0, 22799, '', 0, 12);
+(2872, '2017-09-20', '15:30:00', NULL, 7, 0, 22799, '', 0, 12),
+(2873, '2017-09-25', '10:30:00', NULL, 5, 0, 227084, '', 2345, 14),
+(2874, '2017-09-29', '15:30:00', NULL, 5, 0, 22217, '', 2276, 12),
+(2875, '2017-09-27', '10:00:00', NULL, 1, 0, 227110, '', 2409, 12),
+(2876, '2017-09-22', '10:00:00', NULL, 1, 0, 227111, '', 2410, 12),
+(2877, '2017-09-21', '18:00:00', NULL, 1, 0, 227112, '', 2411, 12),
+(2878, '2017-09-26', '16:00:00', NULL, 6, 0, 226944, '', 2143, 14),
+(2879, '2017-10-16', '12:00:00', NULL, 5, 0, 226982, '', 2184, 12),
+(2880, '2017-09-23', '12:00:00', NULL, 5, 0, 22784, '', 2111, 12),
+(2881, '2017-09-25', '15:00:00', NULL, 1, 0, 227113, '', 2412, 25),
+(2882, '2017-10-06', '11:00:00', NULL, 5, 0, 22624, '', 1641, 14),
+(2883, '2017-10-14', '10:00:00', NULL, 6, 0, 227082, '', 2343, 14),
+(2884, '2017-09-30', '10:00:00', NULL, 6, 0, 21641, '', 0, 14),
+(2885, '2017-09-28', '14:00:00', NULL, 1, 0, 227114, '', 2413, 12),
+(2886, '2017-09-25', '14:00:00', NULL, 5, 0, 227114, '', 2413, 12),
+(2887, '2017-09-29', '17:00:00', NULL, 5, 1, 22844, '', 2330, 12),
+(2888, '2017-09-25', '16:00:00', NULL, 5, 0, 22442, '', 2314, 12),
+(2889, '2017-09-25', '11:00:00', NULL, 1, 0, 227115, '', 2414, 14),
+(2890, '2017-09-30', '11:00:00', NULL, 5, 0, 227073, '', 2334, 12),
+(2891, '2017-09-30', '11:00:00', NULL, 5, 0, 22784, '', 2111, 14),
+(2892, '2017-09-25', '11:00:00', NULL, 5, 0, 19624, '', 0, 14),
+(2893, '2017-09-25', '11:30:00', NULL, 5, 0, 22729, '', 2360, 14),
+(2894, '2017-09-25', '11:30:00', NULL, 6, 0, 22630, '', 1794, 14),
+(2895, '2017-09-27', '16:30:00', NULL, 1, 3, 22836, '', 2415, 14),
+(2896, '2017-09-25', '12:00:00', NULL, 5, 0, 15026, '', 0, 14),
+(2897, '2017-09-25', '17:00:00', NULL, 5, 0, 22694, '', 2351, 14),
+(2898, '2017-09-25', '14:00:00', NULL, 5, 0, 21835, '', 0, 14),
+(2899, '2017-09-25', '14:00:00', NULL, 5, 0, 18398, '', 0, 14),
+(2900, '2017-09-26', '10:30:00', NULL, 7, 0, 21795, '', 0, 14),
+(2901, '2017-10-07', '11:00:00', NULL, 1, 0, 227117, '', 2416, 25),
+(2902, '2017-09-28', '14:30:00', NULL, 1, 0, 227118, '', 2417, 14),
+(2903, '2017-10-03', '15:30:00', NULL, 5, 1, 22854, '', 2220, 14),
+(2904, '2017-10-03', '10:00:00', NULL, 5, 0, 226992, '', 2194, 14),
+(2905, '2017-09-29', '10:00:00', NULL, 5, 0, 22729, '', 2360, 14),
+(2906, '2017-10-09', '11:00:00', NULL, 5, 0, 226985, '', 2187, 14),
+(2907, '2017-09-26', '18:00:00', NULL, 1, 0, 227119, '', 2420, 14),
+(2908, '2017-09-27', '11:00:00', NULL, 1, 0, 227120, '', 2421, 14),
+(2909, '2017-09-26', '14:30:00', NULL, 5, 0, 227102, '', 2393, 14),
+(2910, '2017-09-27', '09:00:00', NULL, 6, 0, 11077, '', 0, 14),
+(2911, '2017-09-27', '09:30:00', NULL, 5, 0, 22578, '', 1617, 14),
+(2912, '2017-09-27', '09:30:00', NULL, 6, 0, 22226, '', 812, 14),
+(2913, '2017-09-27', '10:00:00', NULL, 6, 0, 22356, '', 2286, 14),
+(2914, '2017-09-27', '10:30:00', NULL, 6, 0, 22551, '', 1545, 14),
+(2915, '2017-09-27', '11:00:00', NULL, 6, 0, 21464, '', 64, 14),
+(2916, '2017-09-27', '11:00:00', NULL, 1, 0, 227121, '', 2422, 14),
+(2917, '2017-09-27', '11:30:00', NULL, 5, 0, 22586, '', 1591, 14),
+(2918, '2017-09-27', '15:00:00', NULL, 5, 0, 22539, '', 1532, 14),
+(2919, '2017-09-27', '14:00:00', NULL, 5, 0, 18398, '', 0, 14),
+(2920, '2017-09-28', '12:30:00', NULL, 1, 3, 22839, '', 2423, 25),
+(2921, '2017-09-28', '11:30:00', NULL, 6, 0, 22586, '', 1591, 14),
+(2922, '2017-09-27', '18:00:00', NULL, 6, 0, 227119, '', 2420, 14),
+(2923, '2017-10-03', '16:00:00', NULL, 1, 3, 227123, '', 2424, 25),
+(2924, '2017-10-04', '14:00:00', NULL, 1, 0, 227124, '', 2425, 25),
+(2925, '2017-09-29', '10:00:00', NULL, 1, 0, 227125, '', 2426, 21),
+(2926, '2017-09-29', '03:30:00', NULL, 1, 0, 227126, '', 2427, 21),
+(2927, '2017-10-02', '13:30:00', NULL, 1, 0, 227127, '', 2428, 21),
+(2928, '2017-09-26', '04:00:00', NULL, 1, 0, 22846, '', 2429, 22),
+(2929, '2017-09-30', '11:30:00', NULL, 1, 0, 227129, '', 2430, 14),
+(2930, '2017-10-04', '17:00:00', NULL, 1, 0, 227130, '', 2431, 25),
+(2931, '2017-09-28', '17:30:00', NULL, 1, 0, 22842, '', 2432, 23),
+(2932, '2017-09-29', '04:00:00', NULL, 1, 0, 227132, '', 2433, 22),
+(2933, '2017-10-02', '11:00:00', NULL, 1, 0, 227133, 'SALTILLO ', 2434, 21),
+(2934, '2017-09-28', '03:30:00', NULL, 1, 0, 227134, '', 2435, 21),
+(2935, '2007-10-02', '10:00:00', NULL, 1, 0, 227135, '', 2436, 21),
+(2936, '2017-10-02', '10:30:00', NULL, 1, 0, 227136, '', 2437, 21),
+(2937, '2017-10-02', '10:30:00', NULL, 1, 0, 227137, '', 2438, 21),
+(2938, '2017-09-28', '15:00:00', NULL, 1, 0, 22843, '', 2439, 21),
+(2939, '2017-10-06', '11:00:00', NULL, 1, 0, 227139, '', 2440, 21),
+(2940, '2017-09-29', '17:00:00', NULL, 1, 0, 227140, '', 2441, 22),
+(2941, '2017-09-29', '04:30:00', NULL, 1, 0, 227141, '', 2442, 21),
+(2942, '2017-10-09', '11:30:00', NULL, 1, 0, 227142, '', 2443, 21),
+(2943, '2017-10-04', '10:00:00', NULL, 1, 0, 227143, '', 2444, 21),
+(2944, '2017-09-28', '12:00:00', NULL, 1, 0, 227144, '', 2445, 22),
+(2945, '2017-09-30', '00:30:00', NULL, 1, 0, 227145, 'SE COMUNICA DE NUEVO LAREDO TAMAULIPAS', 2446, 21),
+(2946, '2017-10-14', '12:00:00', NULL, 1, 0, 227146, '', 2447, 25),
+(2947, '2017-10-03', '11:00:00', NULL, 1, 0, 227147, 'se comnicacion de puebla plaza balsequillo ', 2448, 21),
+(2948, '2017-10-12', '09:30:00', NULL, 1, 0, 227148, '', 2449, 21),
+(2949, '2017-10-02', '16:00:00', NULL, 1, 0, 227149, '', 2450, 25),
+(2950, '2017-10-03', '12:00:00', NULL, 1, 3, 22852, '', 2451, 14),
+(2951, '2017-10-03', '10:00:00', NULL, 1, 0, 227151, '', 2452, 25),
+(2952, '2017-09-27', '16:00:00', NULL, 6, 0, 22694, '', 2351, 14),
+(2953, '2017-09-28', '10:00:00', NULL, 5, 1, 22543, '', 1283, 14),
+(2954, '2017-09-28', '11:00:00', NULL, 6, 0, 22586, '', 1591, 14),
+(2955, '2017-09-28', '14:00:00', NULL, 1, 0, 227152, '', 2453, 14),
+(2956, '2017-09-28', '14:00:00', NULL, 1, 0, 227153, '', 2454, 14),
+(2957, '2017-10-04', '13:00:00', NULL, 5, 0, 227094, '', 2368, 14),
+(2958, '2017-10-11', '10:30:00', NULL, 5, 0, 100360, 'CITA PRIMERA VEZ. ', 535, 25),
+(2959, '2017-10-03', '11:00:00', NULL, 1, 0, 227154, '', 2455, 25),
+(2960, '2017-09-29', '17:00:00', NULL, 6, 1, 22846, '', 2429, 14),
+(2961, '2017-10-11', '11:00:00', NULL, 6, 0, 20691, '', 0, 14),
+(2962, '2017-09-28', '13:00:00', NULL, 1, 0, 227155, '', 2456, 25),
+(2963, '2017-10-17', '15:30:00', NULL, 5, 0, 21398, '', 52, 14),
+(2964, '2017-10-03', '16:00:00', NULL, 6, 0, 22694, '', 2351, 14),
+(2965, '2017-11-04', '18:00:00', NULL, 1, 0, 227156, '', 2457, 14),
+(2966, '2017-10-04', '11:00:00', NULL, 5, 0, 100340, 'PRIMERA VEZ \nRINOPLASTIA', 515, 25),
+(2967, '2017-09-28', '10:30:00', NULL, 1, 0, 227157, '', 2458, 25),
+(2968, '2017-09-29', '15:00:00', NULL, 5, 1, 22843, '', 2439, 14),
+(2969, '2017-09-29', '18:00:00', NULL, 5, 0, 100384, '', 559, 14),
+(2970, '2017-10-03', '13:30:00', NULL, 1, 0, 227158, 'DR. RAYMUNDO', 2459, 14),
+(2971, '2017-10-02', '15:00:00', NULL, 1, 0, 227159, '', 2460, 14),
+(2972, '2017-09-30', '12:00:00', NULL, 1, 3, 22849, 'DR. MOLINA', 2461, 14),
+(2973, '2017-09-29', '16:00:00', NULL, 1, 0, 227161, '', 2462, 14),
+(2974, '2017-10-03', '11:00:00', NULL, 5, 0, 22307, '', 2282, 14),
+(2975, '2017-10-05', '13:00:00', NULL, 1, 0, 227162, '', 2463, 14),
+(2976, '2017-09-29', '16:00:00', NULL, 5, 1, 22845, '', 2327, 14),
+(2977, '2017-09-29', '12:00:00', NULL, 5, 1, 22842, '', 2432, 14),
+(2978, '2017-10-02', '12:30:00', NULL, 1, 0, 227163, '', 2464, 14),
+(2979, '2017-09-30', '11:00:00', NULL, 5, 0, 22734, '', 2249, 14),
+(2980, '2017-09-30', '11:00:00', NULL, 6, 0, 21582, '', 0, 14),
+(2981, '2017-10-02', '11:30:00', NULL, 1, 0, 227164, '', 2465, 21),
+(2982, '2017-09-30', '12:30:00', NULL, 5, 0, 22798, '', 2263, 14),
+(2983, '2017-09-30', '12:00:00', NULL, 5, 0, 18903, '', 0, 14),
+(2984, '2017-10-04', '17:30:00', NULL, 1, 0, 227165, '', 2466, 21),
+(2985, '2017-10-05', '14:00:00', NULL, 5, 0, 227144, 'PRIMERA VEZ', 0, 25),
+(2986, '2017-10-05', '15:00:00', NULL, 1, 0, 227166, '', 2467, 25),
+(2987, '2017-10-02', '16:00:00', NULL, 5, 0, 10108, '', 0, 14),
+(2988, '2017-10-14', '10:00:00', NULL, 5, 0, 22784, '', 2111, 14),
+(2989, '2017-10-04', '11:00:00', NULL, 6, 0, 22356, '', 2286, 14),
+(2990, '2017-10-02', '14:00:00', NULL, 1, 0, 227167, '', 2468, 14),
+(2991, '2017-10-03', '16:00:00', NULL, 7, 0, 22694, '', 2351, 14),
+(2992, '2017-10-30', '11:00:00', NULL, 1, 0, 227168, '', 2469, 21),
+(2993, '2017-10-03', '09:30:00', NULL, 6, 0, 22543, '', 1283, 14),
+(2994, '2017-10-03', '10:00:00', NULL, 6, 0, 22110, '', 0, 14),
+(2995, '2017-10-03', '10:00:00', NULL, 6, 0, 22586, '', 1591, 14),
+(2996, '2017-10-05', '12:00:00', NULL, 1, 0, 227169, '', 2470, 21),
+(2997, '2017-10-05', '14:30:00', NULL, 5, 0, 100975, 'PRIMERA VEZ \n', 1150, 25),
+(2998, '2017-10-05', '11:30:00', NULL, 1, 0, 227170, '', 2471, 14),
+(2999, '2017-10-04', '13:00:00', NULL, 1, 0, 227171, '', 2472, 14),
+(3000, '2017-10-10', '12:00:00', NULL, 1, 0, 227172, '', 2473, 25),
+(3001, '2017-10-14', '11:00:00', NULL, 1, 0, 227173, '', 2474, 14),
+(3002, '2017-10-03', '10:00:00', NULL, 1, 0, 227174, '', 2475, 14),
+(3003, '2017-10-03', '16:00:00', NULL, 6, 0, 22578, '', 1617, 14),
+(3004, '2017-10-11', '12:00:00', NULL, 1, 0, 227175, '', 2476, 14),
+(3005, '2017-10-05', '16:00:00', NULL, 5, 0, 221990, 'PRIMERA VEZ ', 1576, 25),
+(3006, '2017-10-06', '11:30:00', NULL, 1, 0, 227176, '', 2477, 14),
+(3007, '2017-10-27', '17:00:00', NULL, 5, 0, 100367, 'PRIMERA VEZ', 542, 14),
+(3008, '2017-10-04', '11:00:00', NULL, 6, 0, 11077, '', 0, 14),
+(3009, '2017-10-03', '12:30:00', NULL, 6, 0, 22745, '', 0, 14),
+(3010, '2017-10-10', '11:00:00', NULL, 5, 0, 226807, 'PRIMERA VEZ', 2000, 14),
+(3011, '2017-10-05', '09:00:00', NULL, 1, 0, 227177, '', 2478, 12),
+(3012, '2017-10-07', '09:00:00', NULL, 1, 0, 227178, '', 2479, 14),
+(3013, '2017-10-06', '16:00:00', NULL, 1, 0, 227179, '', 2480, 25),
+(3014, '2017-10-04', '00:00:10', NULL, 6, 0, 22729, '', 2360, 14),
+(3015, '2017-10-04', '09:00:00', NULL, 6, 0, 19624, '', 0, 14),
+(3016, '2017-10-10', '17:00:00', NULL, 1, 0, 227180, '', 2481, 25),
+(3017, '2017-10-11', '16:00:00', NULL, 1, 0, 227181, '', 2482, 25),
+(3018, '2017-10-10', '11:00:00', NULL, 1, 0, 227182, '', 2483, 12),
+(3019, '2017-10-06', '15:00:00', NULL, 1, 0, 227183, '', 2484, 25),
+(3020, '2017-10-03', '14:00:00', NULL, 1, 3, 22853, '', 2485, 12),
+(3021, '2017-10-06', '10:00:00', NULL, 5, 0, 101178, 'PRIMERA VEZ', 1353, 12),
+(3022, '2017-10-10', '12:00:00', NULL, 5, 0, 227081, '', 2342, 12),
+(3023, '2017-10-09', '16:00:00', NULL, 1, 0, 227185, '', 2486, 25),
+(3024, '2017-10-04', '09:00:00', NULL, 1, 0, 227186, '', 2487, 14),
+(3025, '2017-10-17', '16:00:00', NULL, 5, 0, 22694, '', 2351, 12),
+(3026, '2017-10-03', '15:00:00', NULL, 1, 3, 22855, '', 2488, 12),
+(3027, '2017-11-07', '11:00:00', NULL, 5, 0, 226929, '', 2122, 12),
+(3028, '2017-10-10', '10:00:00', NULL, 1, 0, 227188, '', 2489, 25),
+(3029, '2017-10-14', '09:00:00', NULL, 1, 0, 227189, '', 2490, 14),
+(3030, '2017-10-10', '16:00:00', NULL, 5, 0, 227061, 'PRIMERA VEZ', 2294, 12),
+(3031, '2017-10-20', '14:00:00', NULL, 1, 0, 227190, '', 2491, 25),
+(3032, '2017-10-04', '16:00:00', NULL, 6, 0, 5428, '', 0, 12),
+(3033, '2017-10-07', '12:00:00', NULL, 1, 0, 227191, '', 2492, 12),
+(3034, '2017-10-05', '17:00:00', NULL, 1, 0, 227192, '', 2493, 14),
+(3035, '2017-10-06', '13:30:00', NULL, 1, 0, 227193, '', 2494, 14),
+(3036, '2017-10-14', '09:00:00', NULL, 1, 0, 227194, '', 2495, 14),
+(3037, '2017-10-07', '10:00:00', NULL, 1, 0, 227195, '', 2496, 14),
+(3038, '2017-10-04', '13:00:00', NULL, 1, 0, 227196, '', 2497, 14),
+(3039, '2017-10-07', '12:00:00', NULL, 1, 0, 227197, '', 2498, 14),
+(3040, '2017-10-06', '16:00:00', NULL, 1, 0, 227198, '', 2499, 14),
+(3041, '2017-10-12', '13:00:00', NULL, 1, 0, 227199, '', 2500, 14),
+(3042, '2017-10-12', '13:00:00', NULL, 1, 0, 227200, '', 2501, 14),
+(3043, '2017-10-04', '17:30:00', NULL, 1, 0, 227201, '', 2502, 14),
+(3044, '2017-10-06', '17:00:00', NULL, 1, 0, 227202, '', 2503, 14),
+(3045, '2017-10-06', '17:00:00', NULL, 1, 0, 227203, '', 2504, 14),
+(3046, '2017-10-09', '12:00:00', NULL, 1, 0, 227204, '', 2505, 12),
+(3047, '2017-10-06', '09:00:00', NULL, 5, 0, 222315, 'PRIMERA VEZ', 1901, 12),
+(3048, '2017-10-09', '12:00:00', NULL, 5, 0, 227074, '', 2335, 12),
+(3049, '2017-10-07', '10:00:00', NULL, 5, 0, 227075, 'PRIMERA VEZ', 2336, 12);
+INSERT INTO `citas` (`id`, `fecha`, `hora_ini`, `hora_fin`, `tipo_cita`, `asistencia`, `pacientes_id`, `comentario`, `presupuesto_id`, `usuario_id`) VALUES
+(3050, '2017-10-06', '10:00:00', NULL, 1, 0, 227205, '', 2506, 12),
+(3051, '2017-10-05', '16:30:00', NULL, 1, 0, 227206, '', 2507, 14),
+(3052, '2017-10-11', '16:00:00', NULL, 6, 0, 22855, '', 2488, 14),
+(3053, '2017-10-05', '11:30:00', NULL, 6, 0, 22586, '', 1591, 14),
+(3054, '2017-10-10', '06:00:00', NULL, 6, 0, 22400, '', 2301, 12),
+(3055, '2017-10-10', '13:00:00', NULL, 1, 0, 227207, '', 2508, 14),
+(3056, '2017-10-07', '11:00:00', NULL, 1, 0, 227208, '', 2509, 14),
+(3057, '2017-10-14', '11:00:00', NULL, 1, 0, 227209, '', 2510, 14),
+(3058, '2017-10-12', '14:00:00', NULL, 1, 0, 227210, '', 2511, 14),
+(3059, '2017-10-12', '13:00:00', NULL, 1, 0, 227211, '', 2512, 14),
+(3060, '2017-10-12', '14:00:00', NULL, 1, 0, 227212, '', 2513, 14),
+(3061, '2017-10-05', '11:00:00', NULL, 5, 0, 22587, '', 0, 14),
+(3062, '2017-10-05', '11:00:00', NULL, 6, 0, 22551, '', 1545, 14),
+(3063, '2017-10-05', '11:30:00', NULL, 6, 0, 21204, '', 0, 14),
+(3064, '2017-10-05', '11:30:00', NULL, 6, 0, 22473, '', 1380, 14),
+(3065, '2017-10-05', '12:30:00', NULL, 6, 0, 22745, '', 0, 14),
+(3066, '2017-10-11', '12:00:00', NULL, 5, 0, 100138, '', 313, 14),
+(3067, '2017-10-09', '09:30:00', NULL, 6, 0, 22729, '', 2360, 14),
+(3068, '2017-10-07', '10:00:00', NULL, 1, 0, 227213, '', 2514, 14),
+(3069, '2017-10-12', '10:00:00', NULL, 1, 0, 227214, '', 2515, 14),
+(3070, '2017-10-13', '18:00:00', NULL, 1, 0, 227215, '', 2516, 14),
+(3071, '2017-10-07', '10:00:00', NULL, 1, 0, 227216, '', 2517, 14),
+(3072, '2017-10-12', '00:00:17', NULL, 1, 0, 227217, '', 2518, 14),
+(3073, '2017-10-09', '09:30:00', NULL, 1, 0, 227218, '', 2519, 14),
+(3074, '2017-10-20', '15:00:00', NULL, 1, 0, 227219, '', 2520, 14),
+(3075, '2017-10-07', '09:00:00', NULL, 6, 0, 21204, '', 0, 14),
+(3076, '2018-01-04', '10:00:00', NULL, 6, 0, 22356, '', 2286, 14),
+(3077, '2017-10-07', '10:00:00', NULL, 5, 0, 101011, '', 1186, 14),
+(3078, '2017-10-11', '13:00:00', NULL, 1, 0, 227220, '', 2521, 14),
+(3079, '2017-10-05', '07:30:00', NULL, 5, 0, 22110, '', 0, 14),
+(3080, '2017-10-05', '11:00:00', NULL, 5, 0, 22784, '', 2111, 14),
+(3081, '2017-10-07', '11:30:00', NULL, 1, 0, 227221, '', 2522, 14),
+(3082, '2017-10-21', '10:00:00', NULL, 1, 0, 227222, '', 2523, 14),
+(3083, '2017-10-05', '11:30:00', NULL, 5, 0, 22473, '', 1380, 14),
+(3084, '2017-10-06', '11:00:00', NULL, 5, 0, 227216, '', 2517, 14),
+(3085, '2017-10-09', '10:00:00', NULL, 1, 0, 227223, '', 2524, 14),
+(3086, '2017-10-09', '10:00:00', NULL, 1, 0, 227224, '', 2525, 14),
+(3087, '2017-10-09', '15:00:00', NULL, 1, 0, 227225, '', 2526, 14),
+(3088, '2017-10-10', '16:00:00', NULL, 1, 0, 227226, '', 2527, 14),
+(3089, '2017-10-10', '12:00:00', NULL, 1, 0, 227227, '', 2528, 14),
+(3090, '2017-10-14', '11:00:00', NULL, 1, 0, 227228, '', 2529, 14);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `documentos`
+--
+-- Creación: 30-08-2017 a las 16:56:23
+-- Última actualización: 30-08-2017 a las 16:56:23
 --
 
 CREATE TABLE IF NOT EXISTS `documentos` (
@@ -3039,6 +3270,9 @@ CREATE TABLE IF NOT EXISTS `documentos` (
 
 --
 -- Estructura de tabla para la tabla `expedientes_catalogo`
+--
+-- Creación: 30-08-2017 a las 16:56:23
+-- Última actualización: 30-08-2017 a las 16:56:23
 --
 
 CREATE TABLE IF NOT EXISTS `expedientes_catalogo` (
@@ -3090,6 +3324,8 @@ INSERT INTO `expedientes_catalogo` (`id_expediente`, `tipo_expediente`, `nombre_
 --
 -- Estructura de tabla para la tabla `facturas`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `facturas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3122,6 +3358,8 @@ INSERT INTO `facturas` (`id`, `numeroFactura`, `importe`, `iva`, `total`, `fecha
 --
 -- Estructura de tabla para la tabla `facturas_has_productos`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `facturas_has_productos` (
   `facturas_id` int(11) NOT NULL,
@@ -3136,6 +3374,9 @@ CREATE TABLE IF NOT EXISTS `facturas_has_productos` (
 
 --
 -- Estructura de tabla para la tabla `observaciones`
+--
+-- Creación: 30-08-2017 a las 16:56:23
+-- Última actualización: 30-08-2017 a las 16:56:23
 --
 
 CREATE TABLE IF NOT EXISTS `observaciones` (
@@ -3158,6 +3399,8 @@ INSERT INTO `observaciones` (`id`, `medico_id`, `paciente_id`, `observacion`, `c
 
 --
 -- Estructura de tabla para la tabla `ordenes_compra`
+--
+-- Creación: 30-08-2017 a las 16:56:23
 --
 
 CREATE TABLE IF NOT EXISTS `ordenes_compra` (
@@ -3189,6 +3432,8 @@ INSERT INTO `ordenes_compra` (`id`, `fecha_requerimiento`, `dias_credito`, `crea
 --
 -- Estructura de tabla para la tabla `orden_productos`
 --
+-- Creación: 24-09-2017 a las 02:49:24
+--
 
 CREATE TABLE IF NOT EXISTS `orden_productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3200,6 +3445,8 @@ CREATE TABLE IF NOT EXISTS `orden_productos` (
   `orden_id` int(11) NOT NULL,
   `observacion` text,
   `caja` varchar(45) DEFAULT NULL,
+  `caducidad` date DEFAULT NULL,
+  `lote` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
@@ -3208,69 +3455,71 @@ CREATE TABLE IF NOT EXISTS `orden_productos` (
 -- Volcado de datos para la tabla `orden_productos`
 --
 
-INSERT INTO `orden_productos` (`id`, `producto`, `unidades`, `gramaje`, `tipo`, `presentacion`, `orden_id`, `observacion`, `caja`, `created_at`) VALUES
-(1, 'GASA CON RAITEX', 0, '', 'Consumible', 'Spray', 1, NULL, '2', '2017-04-21 09:04:25'),
-(2, 'GASAS SIN RAITEX', 200, '', 'Consumible', 'Spray', 1, 'NO DISPONIBLE', '2', '2017-04-21 09:04:25'),
-(3, 'PLACA DE CAUTERIO', 1, '', 'Consumible', 'Spray', 1, NULL, '5', '2017-04-21 09:04:25'),
-(4, 'TUBO DE SUCCION', 1, '', 'Consumible', 'Spray', 1, NULL, '5', '2017-04-21 09:04:25'),
-(5, 'CIPROFLOXACINO', 1, '2MG', 'Medicamento', 'Soluciones', 1, NULL, '5', '2017-04-21 09:04:25'),
-(6, 'GASAS CON RAITEX', 200, '', 'Consumible', 'Spray', 2, NULL, '2', '2017-04-22 11:07:55'),
-(7, 'GASAS SIN RAITEX', 200, '', 'Consumible', 'Spray', 2, NULL, '2', '2017-04-22 11:07:55'),
-(8, 'PLACAS DE CAUTERIO', 1, '', 'Consumible', 'Spray', 2, NULL, '5', '2017-04-22 11:07:55'),
-(9, 'TUBOS DE SUCCION', 1, '', 'Consumible', 'Spray', 2, NULL, '5', '2017-04-22 11:07:55'),
-(10, 'TELA ADHESIVA TIPO OSPITAL DE 5 CM', 6, '', 'Consumible', 'Spray', 2, NULL, '1', '2017-04-22 11:07:55'),
-(11, 'GASAS CON RAITEX', 200, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '4', '2017-04-27 10:39:34'),
-(12, 'GASAS SIN RAITEX', 200, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '4', '2017-04-27 10:39:34'),
-(13, 'PLACAS PARA CAUTERIO', 1, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '3', '2017-04-27 10:39:34'),
-(14, 'TUBO DE SUCCION', 1, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '5', '2017-04-27 10:39:34'),
-(15, 'TELA ADHESIVA TIPO HOSPITAL DE 5 CM', 6, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '1', '2017-04-27 10:39:34'),
-(16, 'EXTENCION PARA VENOCLISIS', 1, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '10', '2017-04-27 10:39:34'),
-(17, 'BULTO DE ROPA PARA CIRUGÍA GENERAL', 1, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '4', '2017-04-27 10:39:34'),
-(18, 'COMPRESA ESTERIL', 1, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '5', '2017-04-27 10:39:34'),
-(19, 'HISOPO ESTÉRIL', 50, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '1', '2017-04-27 10:39:34'),
-(20, 'CALSODADA', 20, 'KILOS', 'Consumible', 'Spray', 3, NULL, '1', '2017-04-27 10:39:34'),
-(21, 'BATA ESTÉRIL PARA CIRUGÍA', 1, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '6', '2017-04-27 10:39:34'),
-(22, 'CIRCUITO DE ANESTECIA', 1, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '2', '2017-04-27 10:39:34'),
-(23, 'HIDROCILINA ', 1, '', 'Medicamento', 'Soluciones', 4, NULL, '5', '2017-04-28 07:50:50'),
-(24, 'CIPROFLOXACINO', 1, '', 'Medicamento', 'Soluciones', 4, NULL, '5', '2017-04-28 07:50:50'),
-(25, 'LIDOCAINA', 1, '', 'Medicamento', 'Soluciones', 4, NULL, '2', '2017-04-28 07:50:50'),
-(26, 'CIPROFLOXACINO', 1, '', 'Medicamento', 'Soluciones', 5, NULL, '2', '2017-04-28 09:55:06'),
-(27, 'HIDROCORTISONA', 1, '', 'Medicamento', 'Soluciones', 5, NULL, '2', '2017-04-28 09:55:06'),
-(28, 'LIDOCAINA UNGUENTO', 1, '', 'Medicamento', 'Soluciones', 5, NULL, '2', '2017-04-28 09:55:06'),
-(29, 'TEMPRA', 1, '', 'Medicamento', 'Soluciones', 5, NULL, '2', '2017-04-28 09:55:06'),
-(30, 'HIDRICORTISONA', 1, '', 'Medicamento', 'Soluciones', 6, NULL, '5', '2017-04-28 10:20:58'),
-(31, 'CIPROFLOXACINO', 1, '', 'Medicamento', 'Soluciones', 6, NULL, '5', '2017-04-28 10:20:58'),
-(32, 'LIDOCAINA HUNGUENTO', 1, '', 'Medicamento', 'Soluciones', 6, NULL, '2', '2017-04-28 10:20:58'),
-(33, 'ETOMIDATO  20 MG/10 ML', 5, '20 MG/10 ML', 'Medicamento', 'Soluciones', 7, NULL, '1', '2017-05-11 14:15:14'),
-(34, 'CANDULA DE RUSH 7.5', 1, 'PIRZA', 'Consumible', 'Spray', 8, NULL, '6', '2017-05-15 10:39:06'),
-(35, 'GUANTE ESTERIL MEDIANO', 100, 'CAJA', 'Consumible', 'Spray', 8, NULL, '2', '2017-05-15 10:39:06'),
-(36, 'CROMICO 4-0 PUNTA DOBLE', 12, 'CAJA', 'Consumible', 'Spray', 8, NULL, '1', '2017-05-15 10:39:06'),
-(37, 'CEPILLO QUIRÚRGICO PARA MANOS', 30, 'CAJA', 'Consumible', 'Spray', 8, NULL, '1', '2017-05-15 10:39:06'),
-(38, 'BOTE ROJO PARA PUNZOCORTANTES', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '3', '2017-05-15 10:39:06'),
-(39, 'EXTENCION PARA VENOCLISIS', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '8', '2017-05-15 10:39:06'),
-(40, 'TUBO DE SUCCION', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '8', '2017-05-15 10:39:06'),
-(41, 'PLACA DE CAUTERIO', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '6', '2017-05-15 10:39:06'),
-(42, 'COMPRESAS ESTERILES', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '6', '2017-05-15 10:39:06'),
-(43, 'CIRCUITOS DE ANESTECIA', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '4', '2017-05-15 10:39:06'),
-(44, 'BULTOS PARA CIRUGÍA GENERAL', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '5', '2017-05-15 10:39:06'),
-(45, 'VENDA DE 30 CM', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '6', '2017-05-15 10:39:06'),
-(46, 'PATA  P/ PACIENTE', 10, 'PAQUETE', 'Consumible', 'Spray', 8, NULL, '1', '2017-05-15 10:39:06'),
-(47, 'CAJA DE CURITAS', 30, 'CAJA', 'Consumible', 'Spray', 8, NULL, '1', '2017-05-15 10:39:06'),
-(48, 'SOLUCIÓN FICIOLOGICA', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '16', '2017-05-15 10:39:06'),
-(49, 'BATA ESTÉRIL P/ CIRUGIA', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '10', '2017-05-15 10:39:06'),
-(50, 'ESTERISIDE', 4, 'LITROS', 'Consumible', 'Soluciones', 8, NULL, '2', '2017-05-15 10:39:06'),
-(51, 'TEMRA ', 1, '10 ML', 'Medicamento', 'Soluciones', 9, NULL, '4', '2017-05-15 11:01:09'),
-(52, 'HIDROCORTIZONA', 1, '500 MG /4 ML', 'Medicamento', 'Soluciones', 9, NULL, '2', '2017-05-15 11:01:09'),
-(53, 'KETOROLACO', 10, '10 MG', 'Medicamento', 'Tabletas', 9, NULL, '1', '2017-05-15 11:01:09'),
-(54, 'PARACETAMOL', 10, '500 MG', 'Medicamento', 'Tabletas', 9, NULL, '1', '2017-05-15 11:01:09'),
-(55, 'OMEPRAZOL', 14, '20 MG', 'Medicamento', 'Tabletas', 9, NULL, '1', '2017-05-15 11:01:09'),
-(56, 'VOLIVEN', 1, '100 ML', 'Medicamento', 'Soluciones', 9, NULL, '5', '2017-05-15 11:01:09'),
-(57, 'ENOXAPARINA 40 MG', 2, '0.4 ML', 'Consumible', 'Soluciones', 10, NULL, '1', '2017-05-19 10:30:47');
+INSERT INTO `orden_productos` (`id`, `producto`, `unidades`, `gramaje`, `tipo`, `presentacion`, `orden_id`, `observacion`, `caja`, `caducidad`, `lote`, `created_at`) VALUES
+(1, 'GASA CON RAITEX', 0, '', 'Consumible', 'Spray', 1, NULL, '2', NULL, NULL, '2017-04-21 09:04:25'),
+(2, 'GASAS SIN RAITEX', 200, '', 'Consumible', 'Spray', 1, 'NO DISPONIBLE', '2', NULL, NULL, '2017-04-21 09:04:25'),
+(3, 'PLACA DE CAUTERIO', 1, '', 'Consumible', 'Spray', 1, NULL, '5', NULL, NULL, '2017-04-21 09:04:25'),
+(4, 'TUBO DE SUCCION', 1, '', 'Consumible', 'Spray', 1, NULL, '5', NULL, NULL, '2017-04-21 09:04:25'),
+(5, 'CIPROFLOXACINO', 1, '2MG', 'Medicamento', 'Soluciones', 1, NULL, '5', NULL, NULL, '2017-04-21 09:04:25'),
+(6, 'GASAS CON RAITEX', 200, '', 'Consumible', 'Spray', 2, NULL, '2', NULL, NULL, '2017-04-22 11:07:55'),
+(7, 'GASAS SIN RAITEX', 200, '', 'Consumible', 'Spray', 2, NULL, '2', NULL, NULL, '2017-04-22 11:07:55'),
+(8, 'PLACAS DE CAUTERIO', 1, '', 'Consumible', 'Spray', 2, NULL, '5', NULL, NULL, '2017-04-22 11:07:55'),
+(9, 'TUBOS DE SUCCION', 1, '', 'Consumible', 'Spray', 2, NULL, '5', NULL, NULL, '2017-04-22 11:07:55'),
+(10, 'TELA ADHESIVA TIPO OSPITAL DE 5 CM', 6, '', 'Consumible', 'Spray', 2, NULL, '1', NULL, NULL, '2017-04-22 11:07:55'),
+(11, 'GASAS CON RAITEX', 200, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '4', NULL, NULL, '2017-04-27 10:39:34'),
+(12, 'GASAS SIN RAITEX', 200, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '4', NULL, NULL, '2017-04-27 10:39:34'),
+(13, 'PLACAS PARA CAUTERIO', 1, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '3', NULL, NULL, '2017-04-27 10:39:34'),
+(14, 'TUBO DE SUCCION', 1, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '5', NULL, NULL, '2017-04-27 10:39:34'),
+(15, 'TELA ADHESIVA TIPO HOSPITAL DE 5 CM', 6, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '1', NULL, NULL, '2017-04-27 10:39:34'),
+(16, 'EXTENCION PARA VENOCLISIS', 1, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '10', NULL, NULL, '2017-04-27 10:39:34'),
+(17, 'BULTO DE ROPA PARA CIRUGÍA GENERAL', 1, 'PIEZAS', 'Consumible', 'Spray', 3, 'OK', '4', NULL, NULL, '2017-04-27 10:39:34'),
+(18, 'COMPRESA ESTERIL', 1, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '5', NULL, NULL, '2017-04-27 10:39:34'),
+(19, 'HISOPO ESTÉRIL', 50, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '1', NULL, NULL, '2017-04-27 10:39:34'),
+(20, 'CALSODADA', 20, 'KILOS', 'Consumible', 'Spray', 3, NULL, '1', NULL, NULL, '2017-04-27 10:39:34'),
+(21, 'BATA ESTÉRIL PARA CIRUGÍA', 1, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '6', NULL, NULL, '2017-04-27 10:39:34'),
+(22, 'CIRCUITO DE ANESTECIA', 1, 'PIEZAS', 'Consumible', 'Spray', 3, NULL, '2', NULL, NULL, '2017-04-27 10:39:34'),
+(23, 'HIDROCILINA ', 1, '', 'Medicamento', 'Soluciones', 4, NULL, '5', NULL, NULL, '2017-04-28 07:50:50'),
+(24, 'CIPROFLOXACINO', 1, '', 'Medicamento', 'Soluciones', 4, NULL, '5', NULL, NULL, '2017-04-28 07:50:50'),
+(25, 'LIDOCAINA', 1, '', 'Medicamento', 'Soluciones', 4, NULL, '2', NULL, NULL, '2017-04-28 07:50:50'),
+(26, 'CIPROFLOXACINO', 1, '', 'Medicamento', 'Soluciones', 5, NULL, '2', NULL, NULL, '2017-04-28 09:55:06'),
+(27, 'HIDROCORTISONA', 1, '', 'Medicamento', 'Soluciones', 5, NULL, '2', NULL, NULL, '2017-04-28 09:55:06'),
+(28, 'LIDOCAINA UNGUENTO', 1, '', 'Medicamento', 'Soluciones', 5, NULL, '2', NULL, NULL, '2017-04-28 09:55:06'),
+(29, 'TEMPRA', 1, '', 'Medicamento', 'Soluciones', 5, NULL, '2', NULL, NULL, '2017-04-28 09:55:06'),
+(30, 'HIDRICORTISONA', 1, '', 'Medicamento', 'Soluciones', 6, NULL, '5', NULL, NULL, '2017-04-28 10:20:58'),
+(31, 'CIPROFLOXACINO', 1, '', 'Medicamento', 'Soluciones', 6, NULL, '5', NULL, NULL, '2017-04-28 10:20:58'),
+(32, 'LIDOCAINA HUNGUENTO', 1, '', 'Medicamento', 'Soluciones', 6, NULL, '2', NULL, NULL, '2017-04-28 10:20:58'),
+(33, 'ETOMIDATO  20 MG/10 ML', 5, '20 MG/10 ML', 'Medicamento', 'Soluciones', 7, NULL, '1', NULL, NULL, '2017-05-11 14:15:14'),
+(34, 'CANDULA DE RUSH 7.5', 1, 'PIRZA', 'Consumible', 'Spray', 8, NULL, '6', NULL, NULL, '2017-05-15 10:39:06'),
+(35, 'GUANTE ESTERIL MEDIANO', 100, 'CAJA', 'Consumible', 'Spray', 8, NULL, '2', NULL, NULL, '2017-05-15 10:39:06'),
+(36, 'CROMICO 4-0 PUNTA DOBLE', 12, 'CAJA', 'Consumible', 'Spray', 8, NULL, '1', NULL, NULL, '2017-05-15 10:39:06'),
+(37, 'CEPILLO QUIRÚRGICO PARA MANOS', 30, 'CAJA', 'Consumible', 'Spray', 8, NULL, '1', NULL, NULL, '2017-05-15 10:39:06'),
+(38, 'BOTE ROJO PARA PUNZOCORTANTES', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '3', NULL, NULL, '2017-05-15 10:39:06'),
+(39, 'EXTENCION PARA VENOCLISIS', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '8', NULL, NULL, '2017-05-15 10:39:06'),
+(40, 'TUBO DE SUCCION', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '8', NULL, NULL, '2017-05-15 10:39:06'),
+(41, 'PLACA DE CAUTERIO', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '6', NULL, NULL, '2017-05-15 10:39:06'),
+(42, 'COMPRESAS ESTERILES', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '6', NULL, NULL, '2017-05-15 10:39:06'),
+(43, 'CIRCUITOS DE ANESTECIA', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '4', NULL, NULL, '2017-05-15 10:39:06'),
+(44, 'BULTOS PARA CIRUGÍA GENERAL', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '5', NULL, NULL, '2017-05-15 10:39:06'),
+(45, 'VENDA DE 30 CM', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '6', NULL, NULL, '2017-05-15 10:39:06'),
+(46, 'PATA  P/ PACIENTE', 10, 'PAQUETE', 'Consumible', 'Spray', 8, NULL, '1', NULL, NULL, '2017-05-15 10:39:06'),
+(47, 'CAJA DE CURITAS', 30, 'CAJA', 'Consumible', 'Spray', 8, NULL, '1', NULL, NULL, '2017-05-15 10:39:06'),
+(48, 'SOLUCIÓN FICIOLOGICA', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '16', NULL, NULL, '2017-05-15 10:39:06'),
+(49, 'BATA ESTÉRIL P/ CIRUGIA', 1, 'PIEZA', 'Consumible', 'Spray', 8, NULL, '10', NULL, NULL, '2017-05-15 10:39:06'),
+(50, 'ESTERISIDE', 4, 'LITROS', 'Consumible', 'Soluciones', 8, NULL, '2', NULL, NULL, '2017-05-15 10:39:06'),
+(51, 'TEMRA ', 1, '10 ML', 'Medicamento', 'Soluciones', 9, NULL, '4', NULL, NULL, '2017-05-15 11:01:09'),
+(52, 'HIDROCORTIZONA', 1, '500 MG /4 ML', 'Medicamento', 'Soluciones', 9, NULL, '2', NULL, NULL, '2017-05-15 11:01:09'),
+(53, 'KETOROLACO', 10, '10 MG', 'Medicamento', 'Tabletas', 9, NULL, '1', NULL, NULL, '2017-05-15 11:01:09'),
+(54, 'PARACETAMOL', 10, '500 MG', 'Medicamento', 'Tabletas', 9, NULL, '1', NULL, NULL, '2017-05-15 11:01:09'),
+(55, 'OMEPRAZOL', 14, '20 MG', 'Medicamento', 'Tabletas', 9, NULL, '1', NULL, NULL, '2017-05-15 11:01:09'),
+(56, 'VOLIVEN', 1, '100 ML', 'Medicamento', 'Soluciones', 9, NULL, '5', NULL, NULL, '2017-05-15 11:01:09'),
+(57, 'ENOXAPARINA 40 MG', 2, '0.4 ML', 'Consumible', 'Soluciones', 10, NULL, '1', NULL, NULL, '2017-05-19 10:30:47');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pacientes`
+--
+-- Creación: 09-09-2017 a las 17:43:34
 --
 
 CREATE TABLE IF NOT EXISTS `pacientes` (
@@ -3296,7 +3545,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `is_paciente` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=227104 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=227229 ;
 
 --
 -- Volcado de datos para la tabla `pacientes`
@@ -3343,11 +3592,13 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (17537, 'JUANA ELENA', 'PACHECO', 'MALAGON', 'PIRINEOS 60 A COL. PORTALES BENITO JUAREZ', '5520359010', NULL, 'empleado', 'JORGE CASTELLANOS CABALLERO', '5520120185', NULL, NULL, 'henemleny@yahoo.com.mx', '1973-05-25', 44, 'ALMOHADAZO', '2017-04-25 14:38:02', NULL, NULL, 0),
 (17606, 'ANDREA LILIA ', 'TORRES', 'MARES', 'AV.521 NO.127 SAN JUAN DE ARAGON 1A SECCION GUSTAVO A MADERO', '57515584', NULL, 'EMPLEADA', 'MARIA DE LOURDES MARES', '', NULL, NULL, 'anli_torresma@prodigy.net.mx', '1986-08-19', 31, 'ALMOHADAZO', '2017-04-21 16:03:17', NULL, NULL, 0),
 (17929, 'CLAUDIA', 'GAONA', 'GONZALEZ', 'SERIS #61 COL. SAN FRANCISCO CULHUACAN DEL COYOACAN', '5533350651', NULL, 'CHEF', 'ALICIA GONZALEZ', '5522709417', NULL, NULL, 'kamvi_clau@yahoo.com.mx', '1982-09-12', 35, 'EXPO TU BODA', '2017-05-02 15:04:19', NULL, NULL, 0),
+(18398, 'ROSELIA', 'VERA', 'DE LA CRUZ', 'CALZADA DE LA VIGA 1033 EDIF. B 102 COL. REFORMA IZTACCIHUATL.', '55792673', NULL, 'AMA DE CASA', '', '', NULL, NULL, '', '1963-09-05', 54, 'COQUE VA', '2017-09-23 11:57:23', NULL, NULL, 0),
 (18481, 'SANDRA ERIKA', 'BERDEJO', 'ANAYA', 'AV. XALPA 102 COL. NUEVA IXTACALA TLALNEPANTLA EDO DE MEX', '46036834', NULL, '', '', '', NULL, NULL, '', '1975-01-01', 43, '', '2017-09-05 07:51:44', NULL, NULL, 0),
 (18580, 'RAQUEL ', 'FLORES ', 'PINEDA', 'CONEJO #45 FRACCIONAMIENTO LOMAS DE LINDAVISTA TLALNEPANTLA', '57145977', NULL, 'HOGAR', 'CARLOS JORGE GARCIA', '5554197454', NULL, NULL, 'rakyflor@hotmail.com', '1950-09-05', 67, 'ALMOHADAZO', '2017-06-22 15:38:24', NULL, NULL, 0),
 (18583, 'LAURA LILIA ', 'DIAZ SANCHEZ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016-12-10 07:54:54', NULL, NULL, 1),
 (18658, 'MONICA ALEJANDRA ', 'ORTIZ', 'HUERTA', 'CASTILLO DE DUBLIN 60 CONDADO DE SAYAVEDRA ATIZAPAN ESTADO DE MEXICO', '19924022', NULL, 'CONTADOR', 'JESUS SALDAÑA CORTES', '', NULL, NULL, 'DUBLIN60@GMAIL.COM', '1972-06-18', 45, 'INTERCAMBIO SERGIO ALTAMIRANO', '2017-07-15 11:10:36', NULL, NULL, 0),
 (18729, 'MARIA GUADALUPE', 'VERGARA', 'RESENDIZ', 'BOLULEVARD REFORMA 153 CD LABOR TULTITLAN IZCALLI ', '58315587', NULL, 'COSTURERA', 'JOAQUIN GALINDO GARCIA', '5532647322', NULL, NULL, '', '1965-12-10', 52, 'RECOMENDACION PERSONAL', '2017-04-22 10:28:34', NULL, NULL, 0),
+(18903, 'MARTHA ', 'VARGAS', 'VILLA FUERTE', 'PRIV VOLCAN KRAKATOA 2 COL. VOLCANES DE CHALCO EDO DE MEX', '30921725', NULL, 'AMA DE CASA', 'JORGE SERGIO VILLANUEVA GUTIERREZ', '10189424', NULL, NULL, '', '1972-07-20', 45, 'COQUE VA', '2017-09-28 13:53:48', NULL, NULL, 0),
 (19012, 'BLANCA ARACELI', 'TAPIA', 'ESCAMILLA', '2DA FCO VILLA M 86A VALLE DE ANAHUAC ECATEPEC EDO DE MEX', '5524984952', NULL, 'HOGAR', '', '', NULL, NULL, '', '1965-06-05', 52, '', '2017-08-16 14:51:56', NULL, NULL, 0),
 (19624, 'JESUS', 'PIÑON', 'TERA', '5 DE DACOTA 305 COL. NAPOLES DEL BENITO JUAREZ', '5559048888', NULL, 'RELACIONES PUBLICAS', '', '', NULL, NULL, 'jesus.pta@hotmail.com', '1973-12-24', 44, 'DR. MOLINA', '2017-08-14 12:07:00', NULL, NULL, 0),
 (19973, 'MARISOL', 'GONZALEZ', 'VENEGAS', 'BCU N MZ 6 LOTE 4 COL. PEDREGAL DE SANTO DOMINGO COYOACAN', '56199447', NULL, 'CONTADOR', 'ALEJANDRO PEÑA', '56179482', NULL, NULL, 'mgonzalez@epcmexico.com.mx', '1982-11-11', 35, 'INTERNET', '2017-05-11 13:32:53', NULL, NULL, 0),
@@ -3537,10 +3788,10 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (22039, 'SALVADOR', 'VELAZQUEZ', 'SANDOVAL', 'LAGO HURON 29 COL. AGUA AZUL CD NEZA EDO MEX', '57655692', NULL, 'COMERCIANTE', 'TERESA HERNANDEZ GOMEZ', '57971501', NULL, NULL, '', '1951-01-15', 66, 'COQUE VA', '2017-06-12 15:47:11', NULL, NULL, 0),
 (22040, 'GABRIELA', 'LUNA', 'HERNANDEZ', 'EL FUERTE #121 COL SAN LORENZO XICOTENCATL', '26330802', NULL, 'HOGAR', 'JORGE LUNA SALAZAR', '57658649', NULL, NULL, '', '1970-03-21', 47, 'COQUE VA', '2017-06-12 15:45:58', NULL, NULL, 0),
 (22041, 'ISABEL', 'CHAVEZ', 'CERVANTES', 'LAZARO CARDENAS N°82 COL. 10 DE ABRIL NAUCALPAN', '53606502', NULL, 'HOGAR', '', '53606502', NULL, NULL, '', '1947-08-28', 70, 'COQUE VA', '2017-06-12 15:44:30', NULL, NULL, 0),
-(22042, 'MANUEL', 'BURGOS', 'FORTIZ', 'CALLE ANTONIO PLAZA #13 COL.XALPA DEL IZTAPALAPA', '24500403', NULL, 'ADMINISTRATIVO', 'LETICIA RAIZ MARQUEZ', '24500403', NULL, NULL, 'rbfbears34@yahoo.com.mx', '1972-05-19', 45, 'COQUE VA', '2017-06-12 15:42:32', NULL, NULL, 0),
-(22043, 'EFRAIN', 'ROBLES', 'SLAZAR', 'LEOPOLDO AVER #32 COL.HEROES DE NACOZARI', '53557548', NULL, 'EMPLEADO', '', '53557548', NULL, NULL, 'efrain.robles@cbre.com', '1969-01-06', 48, 'COQUE VA', '2017-06-12 15:37:15', NULL, NULL, 0),
-(22044, 'CRISTIAN ALEXIS', 'CONSTANTINO', 'ESCOBAR', 'SAN PEDRO TEPETITLAN AV.ALVARO OBREGON ACOLMAN, ESTADO DE MEXICO', '5540321416', NULL, 'ESTUDIANTE', '', '5572232169', NULL, NULL, 'alex_hec@outlook.com', '1997-04-21', 20, 'COQUE VA', '2017-06-12 15:35:32', NULL, NULL, 0);
+(22042, 'MANUEL', 'BURGOS', 'FORTIZ', 'CALLE ANTONIO PLAZA #13 COL.XALPA DEL IZTAPALAPA', '24500403', NULL, 'ADMINISTRATIVO', 'LETICIA RAIZ MARQUEZ', '24500403', NULL, NULL, 'rbfbears34@yahoo.com.mx', '1972-05-19', 45, 'COQUE VA', '2017-06-12 15:42:32', NULL, NULL, 0);
 INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(22043, 'EFRAIN', 'ROBLES', 'SLAZAR', 'LEOPOLDO AVER #32 COL.HEROES DE NACOZARI', '53557548', NULL, 'EMPLEADO', '', '53557548', NULL, NULL, 'efrain.robles@cbre.com', '1969-01-06', 48, 'COQUE VA', '2017-06-12 15:37:15', NULL, NULL, 0),
+(22044, 'CRISTIAN ALEXIS', 'CONSTANTINO', 'ESCOBAR', 'SAN PEDRO TEPETITLAN AV.ALVARO OBREGON ACOLMAN, ESTADO DE MEXICO', '5540321416', NULL, 'ESTUDIANTE', '', '5572232169', NULL, NULL, 'alex_hec@outlook.com', '1997-04-21', 20, 'COQUE VA', '2017-06-12 15:35:32', NULL, NULL, 0),
 (22045, 'RAMIREZ ', 'ENRIQUEZ', 'ALBERTO', 'AV.CONSTITUCION #24 SAN MIGUEL XOMETLA ACOLMAN', '5532433990', NULL, 'ESTUDIANTE', 'ALBERTO RAMIREZ ENRIQUEZ', '5510200178', NULL, NULL, 'boy_enriquez25@gmail.com', '1999-04-25', 18, 'RECOMENDACION PERSONAL', '2017-06-12 15:33:23', NULL, NULL, 0),
 (22046, 'ALEXIS ARMANDO', 'SANCHEZ ', 'GARCIA', 'CALLE REFORMA INDUSTRIAL #5 COL.REFORMA POLITICA', '56932582', NULL, 'EMPLEADO', 'GUADALUPE SANCHEZ GODINEZ', '5514367119', NULL, NULL, 'alexis_armand@hotmail.com', '1996-09-13', 21, 'COQUE VA', '2017-06-12 15:27:36', NULL, NULL, 0),
 (22047, 'TERESA YA NELLI ', 'RAMOS ', 'IBARRA', 'PRIVADA PIRULES CASA 134 LT 49 COLONIA SAN PABLO DE LAS SALINAS TULTITLAN', '5512913292', NULL, 'ESTILISTA', 'EDGAR PRTEGA PEREZ', '5548664482', NULL, NULL, '', '1984-05-02', 33, 'COQUE  VA', '2017-06-12 15:25:30', NULL, NULL, 0),
@@ -3737,10 +3988,10 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (22243, 'PABLO ', 'MORALES ', 'CEDILLO ', 'GOLONDRINA Nº3 BALCONES DEL VALLE TLALNEPANTLA ESTADO DE MEXICO', '5525389774', NULL, 'PENSIONADO', 'MONTSERRAT MORALES LOPEZ ', '5530284567', NULL, NULL, '', '1953-06-30', 63, 'COQUE VA ', '2017-05-12 08:10:15', NULL, NULL, 1),
 (22244, 'INES ', 'ESTRADA ', 'DE CASTILLO ', 'TAMARINDO #2 COLONIA GAMITOS SANTA FE ', '5552570648', NULL, 'HOGAR', 'PATRICIA CASTILLO', '', NULL, NULL, '', '1939-08-23', 77, 'COQUE VA', '2017-05-09 11:52:52', NULL, NULL, 1),
 (22245, 'MARIA LUISA ', 'SAMANO', 'M', 'EDIFICIO TAMAYO 102 ', '56651104', NULL, 'HOGAR', '', '55386368', NULL, NULL, '', '1946-06-21', 71, 'COQUE VA', '2017-06-15 11:55:50', NULL, NULL, 0),
-(22246, 'LYDIA', 'RAMIREZ', 'CASTAÑEDA', 'GUADALUPE #32', '5516006378', NULL, 'HOGAR', 'FABIOLA GONZALEZ', '42043400', NULL, NULL, 'salgonram83@hotmail.com', '1960-10-09', 56, 'COQUE VA', '2017-05-05 13:53:39', NULL, NULL, 1),
-(22247, 'NORMA ', 'DURAN ', 'ORDOÑEZ', 'VALLE DE PASOS #107 VALLE DE ARAGON 2a', '5585917116', NULL, 'HOGAR', 'JORGE ERICK TELLEZ ROJAS', '5512631913', NULL, NULL, 'norma_@hotmail.com', '1968-12-14', 48, 'COQUE VA ', '2017-05-04 09:40:57', NULL, NULL, 1),
-(22248, ' SOFIA DOMINGA', 'VILCHIZ ', 'VILCHIZ ', 'CALLE INSURGENTES #3 COL.SAN JUAN IXHUATEPEC', '44265743', NULL, 'INDEPENDINTE', 'FABIOLA ZAMORA VILCHIZ', '55129083', NULL, NULL, '', '1964-08-04', 52, 'COQUE VA ', '2017-05-12 16:34:54', NULL, NULL, 1);
+(22246, 'LYDIA', 'RAMIREZ', 'CASTAÑEDA', 'GUADALUPE #32', '5516006378', NULL, 'HOGAR', 'FABIOLA GONZALEZ', '42043400', NULL, NULL, 'salgonram83@hotmail.com', '1960-10-09', 56, 'COQUE VA', '2017-05-05 13:53:39', NULL, NULL, 1);
 INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(22247, 'NORMA ', 'DURAN ', 'ORDOÑEZ', 'VALLE DE PASOS #107 VALLE DE ARAGON 2a', '5585917116', NULL, 'HOGAR', 'JORGE ERICK TELLEZ ROJAS', '5512631913', NULL, NULL, 'norma_@hotmail.com', '1968-12-14', 48, 'COQUE VA ', '2017-05-04 09:40:57', NULL, NULL, 1),
+(22248, ' SOFIA DOMINGA', 'VILCHIZ ', 'VILCHIZ ', 'CALLE INSURGENTES #3 COL.SAN JUAN IXHUATEPEC', '44265743', NULL, 'INDEPENDINTE', 'FABIOLA ZAMORA VILCHIZ', '55129083', NULL, NULL, '', '1964-08-04', 52, 'COQUE VA ', '2017-05-12 16:34:54', NULL, NULL, 1),
 (22249, 'CARLOS', 'LADRON DE GUEVARA', '', 'ACUEDUCTO 269', '5520959727', NULL, 'EMPRESARIO', 'CARMEN', '58462485', NULL, NULL, 'carlosladronprodigy.net.mx', '1957-03-22', 60, 'COQUE VA', '2017-05-03 08:39:04', NULL, NULL, 1),
 (22250, 'CLAUDIA', 'RODRIGUEZ', 'HERNANDEZ', 'LOS REYES LA PAZ TURQUESA 11-13 CONJUNTO HABITACIONAL LA PAZ ESTADO DE MEXICO', '5526423525', NULL, 'HOGAR', '', '5545591104', NULL, NULL, 'claudia.4821@hotmail.com', '1974-04-08', 43, 'COQUE VA', '2017-05-19 14:12:28', NULL, NULL, 1),
 (22252, 'LUIS ANGEL', 'MURILLO', 'CASTILLO', 'CALLE 2 DE ANGEL MAZON ·4 COLONIA VICENTE GUERRERO', '5541944227', NULL, 'EMPLEADO', 'PAOLA ROCIO MENDEZ', '5527551361', NULL, NULL, 'murillo_rx@hotmail.com', '1986-10-01', 30, 'DR.MOLINA', '2017-05-17 13:27:52', NULL, NULL, 1),
@@ -3938,10 +4189,10 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (22447, 'JAVIER', 'ORTIZ', 'VARGAS', 'PRIVADA ARBOLEDAS N°3 SANTA ANA MILPA ALTA', '5512027188', NULL, 'EMPLEADA', 'GRACIELA VARGAS', '58444749', NULL, NULL, '', '1964-12-11', 52, 'COQUE VA', '2017-04-27 14:08:58', NULL, NULL, 1),
 (22448, 'ADELA ', 'BENITEZ', 'JUAREZ', 'AGUSTIN GONZALEZ DE COSSIO 218 INT 102', '554126091', NULL, 'VENTAS', 'ANIBAL MANDUJANO', '', NULL, NULL, 'adelagnp11@hotmail.com', '1969-11-01', 48, 'PAOLA FIGUEROA', '2017-06-14 16:41:50', NULL, NULL, 0),
 (22449, 'LUIS ANTONIO', 'FERNANDEZ', 'GOMEZ', 'MZA. 5 LT 3 LOS JILGUEROS', '5524324364', '', 'EMPLEADO FEDERAL', 'MARIA EUGENIA PADILLA', '', NULL, NULL, '', '1960-10-18', 57, 'PROGRAMA DE TV', '2017-06-14 07:54:55', NULL, NULL, 1),
-(22450, 'MONICA', 'GUZMAN', 'LIMA', 'CALLE INDEPENDENCIA 101 DESP 11 COLONIA CENTRO', '5525033763', '', 'abogado litigante', 'ARMANDO ALEJANDRO MENDOZA  ORTIZ', '36287857', NULL, NULL, 'monicaguzmanlima@hotmail.com', '1967-07-18', 49, 'COQUE VA', '2017-06-07 16:50:27', NULL, NULL, 1),
-(22451, 'ERICKA ', 'LOPEZ', 'GARCIA', 'CALLE 589 # 61 SAN JUAN DE ARAGON', '5519561028', '', 'COMERCIANTE', 'LETICIA GARCIA FARFAN ', '5554065489', NULL, NULL, '', '1987-12-21', 29, 'INTERNET', '2017-06-12 15:10:51', NULL, NULL, 1),
-(22452, 'VERONICA PAOLA ', 'MARQUEZ', 'LOPEZ', 'ELIGIO ANCONA # 193 COL. SANTA MARIA LA RIVERA', '5527096465', NULL, 'docente', 'VICTOR GUATAVO CHAVEZ VLERIA', '55123896222', NULL, NULL, 'vpaomarquez@gmail.com', '1986-08-29', 31, 'COQUE VA', '2017-06-16 08:21:22', NULL, NULL, 0);
+(22450, 'MONICA', 'GUZMAN', 'LIMA', 'CALLE INDEPENDENCIA 101 DESP 11 COLONIA CENTRO', '5525033763', '', 'abogado litigante', 'ARMANDO ALEJANDRO MENDOZA  ORTIZ', '36287857', NULL, NULL, 'monicaguzmanlima@hotmail.com', '1967-07-18', 49, 'COQUE VA', '2017-06-07 16:50:27', NULL, NULL, 1);
 INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(22451, 'ERICKA ', 'LOPEZ', 'GARCIA', 'CALLE 589 # 61 SAN JUAN DE ARAGON', '5519561028', '', 'COMERCIANTE', 'LETICIA GARCIA FARFAN ', '5554065489', NULL, NULL, '', '1987-12-21', 29, 'INTERNET', '2017-06-12 15:10:51', NULL, NULL, 1),
+(22452, 'VERONICA PAOLA ', 'MARQUEZ', 'LOPEZ', 'ELIGIO ANCONA # 193 COL. SANTA MARIA LA RIVERA', '5527096465', NULL, 'docente', 'VICTOR GUATAVO CHAVEZ VLERIA', '55123896222', NULL, NULL, 'vpaomarquez@gmail.com', '1986-08-29', 31, 'COQUE VA', '2017-06-16 08:21:22', NULL, NULL, 0),
 (22453, 'LINDA ARACELI', 'REYNA', 'LOPEZ', 'GLADIOLA MZ 38 LT 3 COLONIA JUAN GONZALEZ ROMERO', '5557153945', '', 'HOGAR', 'CRISTOBAL ALEJANDRO HERNANDEZ', '36279336', NULL, NULL, 'arareynalo@hotmail.com', '1973-05-12', 44, 'INTERNET', '2017-06-13 14:44:35', NULL, NULL, 1),
 (22454, 'ANA CRISTINA ', 'FORTINO', 'PACHECO', 'AVENIDA CARMELO PEREZ #575 COLONIA BENITO JUAREZ CIUDAD NEZA', '5560917069', '', 'PROFESORA', 'AMELIA FORTINO PACHECO', '5532335465', NULL, NULL, 'venusina_miss_cris@hotmail.com', '1979-05-30', 38, 'COQUE VA', '2017-06-08 13:46:21', NULL, NULL, 1),
 (22455, 'CLAUDIA ', 'PEÑA ', 'YRIZARRI', 'GUILLERMO PRIETO #82 COLONIA SAN RAFAEL DELEGACION CUAHUTEMOC', '5547850109', NULL, 'ORGANIZADOR DE EVENTOS', 'CARMEN YRIZARRI JIMENEZ', '', NULL, NULL, 'chyynet2012@hotmail.com', '1987-08-09', 30, 'DR.FERNANDO MOLINA', '2017-06-19 14:06:35', NULL, NULL, 0),
@@ -4133,10 +4384,10 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (22647, 'MARIA FERNANDA', 'CASTILLO', 'BARAJAS', 'CALLE 10 #112 AMPLIACION PROGRESO NACIONAL GAM', '5513902625', '', 'ESTUDIANTE', 'MIRIAM BARAJAS TAPIA', '5569301962', NULL, NULL, 'mafercastillo006@hotmail.com', '2000-06-06', 17, 'INTERNET', '2017-07-31 10:32:40', NULL, NULL, 1),
 (22648, 'LUZ MARIA', 'PEDRAZA ', 'AVILES', 'TAMAGNIO # 224 COL. VALLEJO', '5538755194', '', 'EMPLEADA', 'ELVIRA AVILEZ PIÑON', '57638171', NULL, NULL, '', '1972-02-04', 45, 'COQUE VA', '2017-07-27 15:12:40', NULL, NULL, 1),
 (22649, 'PAMELA ', 'LAZCANO', 'MORENO', 'NORTE 7 MAGDALENA DE LAS SALINAS', '5531911371', '', 'ESTUDIANRE', 'MARIA DEL ROSARIO LAZCANO', '53682679', NULL, NULL, '', '1998-04-16', 19, 'INTERNET', '2017-07-26 11:28:58', NULL, NULL, 1),
-(22650, 'CLAUDIA ELEZABETH', 'MANRIQUEZ', 'LOPEZ', 'AGRUPAMIENTO K #6 SAN JUAN DE ARAGON COLONIA NARCISO BARSOLS GUSTAVO A MADERO', '57992876', '', 'EMPLEADA', 'LAURA LOPEZ TORRES', '57953951', NULL, NULL, '', '1974-12-27', 42, 'COQUE VA', '2017-07-26 14:56:02', NULL, NULL, 1),
-(22651, 'SUSANA ', 'AGUSTIN ', 'ESPINOSA', 'REPUBLICA DE ECUADOR #7 COLONIA CENTRO CUAHUTEMOC', '55295940', '', 'COMERCIANTE', 'TANIA CRUZ AGUSTIN', '57375251', NULL, NULL, '', '1949-03-02', 68, 'COQUE VA', '2017-07-26 15:23:06', NULL, NULL, 1),
-(22652, 'ALICIA', 'RODRIGUEZ', 'RODRIGUEZ', 'MARRUECOS 63 INTERIOR 7 COLONIA ROMERO RUBIO V.CARRANZA 15400', '5568580135', '', 'CONTADOR ', 'CESAR MUÑOZ', '57950222', NULL, NULL, '', '1978-08-11', 38, 'COQUE VA', '2017-07-29 10:56:59', NULL, NULL, 1);
+(22650, 'CLAUDIA ELEZABETH', 'MANRIQUEZ', 'LOPEZ', 'AGRUPAMIENTO K #6 SAN JUAN DE ARAGON COLONIA NARCISO BARSOLS GUSTAVO A MADERO', '57992876', '', 'EMPLEADA', 'LAURA LOPEZ TORRES', '57953951', NULL, NULL, '', '1974-12-27', 42, 'COQUE VA', '2017-07-26 14:56:02', NULL, NULL, 1);
 INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(22651, 'SUSANA ', 'AGUSTIN ', 'ESPINOSA', 'REPUBLICA DE ECUADOR #7 COLONIA CENTRO CUAHUTEMOC', '55295940', '', 'COMERCIANTE', 'TANIA CRUZ AGUSTIN', '57375251', NULL, NULL, '', '1949-03-02', 68, 'COQUE VA', '2017-07-26 15:23:06', NULL, NULL, 1),
+(22652, 'ALICIA', 'RODRIGUEZ', 'RODRIGUEZ', 'MARRUECOS 63 INTERIOR 7 COLONIA ROMERO RUBIO V.CARRANZA 15400', '5568580135', '', 'CONTADOR ', 'CESAR MUÑOZ', '57950222', NULL, NULL, '', '1978-08-11', 38, 'COQUE VA', '2017-07-29 10:56:59', NULL, NULL, 1),
 (22653, 'SHARON BELINDA', 'ALVAREZ', 'GONZALEZ', 'AVENIDA MEXICO #425 DELEGACION CUAJIMALPA COLONIA MANZANASTITLAN', '5513077967', NULL, 'HOGAR', 'GUADALUPE GONZALEZ', '5513077967', NULL, NULL, 'sharon2493@gmail.com', '1993-01-24', 24, 'INTERNET', '2017-08-02 13:33:12', NULL, NULL, 0),
 (22654, 'GUADALUPE ', 'GONZALEZ ', 'MARTINEZ', 'AVENIDA MEXICO #425 DELEGACION CUAJIMALPA COLONIA MANZANASTITLAN', '5513077967', NULL, 'HOGAR', 'SHARON ALVAREZ', '5513077967', NULL, NULL, 'sharon2493@gmail.com', '1965-02-28', 52, 'INTERNET', '2017-08-02 13:31:05', NULL, NULL, 0),
 (22655, 'JOEL ALEJANDRO', 'BERNAL', 'JIMENEZ', 'CALLE 651 #155 SAN JUAN DE ARAGON', '67265779', '67265779', 'ESTUDIANTE', 'MARIA LORETO JIMENEZ SANCHEZ', '57690149', NULL, NULL, 'alex_ku_wolf@icloud.com', '1991-09-17', 25, 'COQUE VA', '2017-07-25 12:17:50', NULL, NULL, 1),
@@ -4305,6 +4556,35 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (22825, 'MARCELA NOEMI', 'GONZALEZ', '', 'FELIX CUEVAS 329 B 802 COLONIA DEL VALLE DELEGACION BENITO JUAREZ', '5535663608', '', 'EMPLEADA', 'ALEJANDRA KIEWER ', '5551079278', NULL, NULL, '', '1943-01-16', 74, 'COQUE VA', '2017-09-12 10:25:59', NULL, NULL, 1),
 (22826, 'RICARDO ARON', 'LOPEZ', 'GARCIA', 'AV. CANAL TEZONTLE #40 EDIFICIO 3B-402 C,MORAL III LEYES DE REFORMA IZTAPALAPA', '5522584105', '', 'COQUE VA', 'EDUARDO LOPEZ MONTERO', '5529113651', NULL, NULL, 'ricardoaron10@hotmail.cpm', '1996-08-10', 21, 'CO0QUE VA', '2017-09-12 12:27:06', NULL, NULL, 1),
 (22827, 'RICARDO', 'LORA', 'SORIANO', 'PROLONGACION VALLEJO N56 DEPTO A-106 COLONIA SAN SIMON', '5516856613', '', 'EMPLEADO ADMINISTRATIVO', 'JOSE ANTONIO LOZA SORIANO', '5512362944', NULL, NULL, 'ricardoloza0304@gmail.com', '1957-04-03', 57, 'COQUE VA', '2017-09-12 14:10:53', NULL, NULL, 1),
+(22828, 'TANIA', 'GONZALEZ', 'GUTIERREZ', 'REPUBLRCA DE PERU 29 INT 9COL. CUAUHTEMOC CENTRO', '5529620668', NULL, 'empleada', 'ALINE GONZALEZ', '5535103618', NULL, NULL, 'thanatos_azul@hotmail.com', '1984-11-18', 33, 'COQUE VA', '2017-09-23 09:36:15', NULL, NULL, 0),
+(22829, 'JULIA', 'RAMOS', 'AGUILAR', 'CALLE AZALCA  N.10 COL. LOMAS DE SAN LORENZO', '5529130885', NULL, 'AMA DECASA', 'OSCAR GUITIERREZ', '5518825931', NULL, NULL, '', '1991-01-09', 26, 'INTERNET', '2017-09-25 10:16:14', NULL, NULL, 0),
+(22830, 'MARIA EL CONSUELO', 'PARADA', 'LOPEZ', 'AQUILEA N.11 LOMASESTRELLA DELEG. IZTAPALAPA', '56561795', NULL, 'agente bienes y raices', 'JOSE TORRES ESTRADA', '5545228093', NULL, NULL, 'conyparada@hotmail.com', '1965-11-26', 52, 'INTERNET', '2017-09-25 14:26:45', NULL, NULL, 0),
+(22831, 'MARIA DEL ROCIO', 'JIMENEZ', 'SANTOS', 'AV. DEL DON 56 COL DEL VALLE DE ARAGON 3RA SECCION ECAEPEC DE MORELOS MEXICO', '5529293876', NULL, 'TECNICO EN ATENCION PRIMARIA', 'RODOLFO GARCIA', '', NULL, NULL, '', '1971-05-13', 46, 'COQUE VA', '2017-09-26 13:33:53', NULL, NULL, 0),
+(22832, 'JESSICA', 'BUZOIANU', 'GOMEZ', 'CALLE 6 N.INT. 8  COL. SANPEDRO DE LOS PINOS', '5531149131', NULL, 'administradora', 'RICARDO BUZOIANU', '5531203626', NULL, NULL, 'jessibuzy@hotmail.com', '1979-12-10', 38, 'COQUE VA', '2017-09-26 15:26:15', NULL, NULL, 0),
+(22833, 'MOISES', 'SANCHEZ', 'ROOS', 'CERRADA DE SAN FRANCISCO 12 B EX CERRADA DE SAN FELIPE COACALCO EDO MEX', '5585329060', NULL, 'MUSICA', 'IVETT MENDEZ ROMAN ', '5585329060', NULL, NULL, '', '1961-01-17', 56, 'COQUE VA', '2017-09-27 11:53:44', NULL, NULL, 0),
+(22834, 'IVETT ', 'MENDEZ ', 'ROMAN', 'CERRASA DE SAN FRANCISCO 12 B  COL 12 -B COL. EX HD  SAN FELIPE', '5585329060', NULL, 'SOBRECARGO', '', '', NULL, NULL, '', '1974-08-19', 43, 'INTERNET', '2017-09-27 12:02:22', NULL, NULL, 0),
+(22835, 'YENNY', 'LOPEZ', 'VALENCIA', 'CALLE MORALILLO N. 173 COL. REYNOSA  TAM. AZCAPOTZALCO', '53185152', NULL, 'KAMON TRAEDE ', 'OLIVIA VALENCIA', '', NULL, NULL, 'yen.fer@hotmail.com', '1983-05-19', 34, 'DR. FERNANDE MOLINA', '2017-09-28 08:51:37', NULL, NULL, 0),
+(22836, 'ADRIANA', 'SANCHEZ', 'GUZMAN', 'LIBERTAD 17 COL. EL CHAMIZAL ECATEPEC DE MORELOS', '5512969668', '', 'empleada', 'MARIO JOSE LUIS CEREZO ROSALES', '5523428637', NULL, NULL, 'ladidycerezo@ggmail.com', '1978-04-22', 39, 'COQUE VA', '2017-09-23 11:49:40', '2017-09-29 16:27:27', 14, 1),
+(22837, 'CARLOS ARTURO', 'BARRERA ', '', 'REGIDOR 22RESID 14390 TLALNEPLANTLA EDO. MEX', '5540274928', NULL, 'comerciante', 'ALEIDA LUCIA BARRERA DUARTE', '', NULL, NULL, 'cabugzman@gmail.com', '1961-09-28', 56, 'COQUE VA', '2017-09-28 13:46:15', NULL, NULL, 0),
+(22838, 'ERIKAMIRIELLE', 'BERNAL', 'GRANADOS', 'CALLE 5 N. 103 COL. AGRICOLAORIENTAL', '5516931671', NULL, 'COMERCIANTE', '', '', NULL, NULL, 'mirelusaman@hotmail.com', '1983-08-27', 34, 'COQUE VA', '2017-09-28 13:38:11', NULL, NULL, 0),
+(22839, 'MARIA GABRIELA', 'GARCIA', 'RAYA', 'calle 22 n. 103 col progreso nacional', '5561567067', '', 'COMERCIANTE', 'DIANA LUGO RAYA', '5561567067', NULL, NULL, '', '1968-02-15', 68, 'FACEBOOK', '2017-09-26 10:30:57', '2017-09-29 16:26:00', 14, 1),
+(22840, 'YESSICA ALEJANDRA ', 'HERNANDEZ', 'FERNANDEZ', 'GUILLERMO PRIETO N. 109 INT. 1 COL SAN RAFAEL', '55466390', NULL, 'EMPLEADA', 'RAYMUNDO RAMIREZ', '5538911380', NULL, NULL, '', '1990-11-24', 27, 'COQUE VA', '2017-09-29 13:53:24', NULL, NULL, 0),
+(22841, 'EDGAR', 'ANGELES', 'HERNANDEZ', 'PASADERA 5 FRAC. CAPISTRANOATZAPEN DE ZARAGOZA', '72624303', '72624603', 'ESTUDIANTE', 'CRISTINA ANGELES JUAREZ', '5573934780', NULL, NULL, 'edgar7474eod@gmail.com', '2001-03-13', 16, 'INTERNET', '2017-08-30 15:09:13', '2017-09-29 16:23:36', 14, 1);
+INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(22842, 'GILDA ALICIA', 'SOLCHAGA', 'FLORES', 'TORRE DE PISA37 CEDROS COYOACAN', '55946580', '', 'HOGAR', '', '', NULL, NULL, 'gisi_75@hotmail.com', '1975-01-01', 42, 'MILENIO TV', '2017-09-26 11:59:35', '2017-09-29 16:22:48', 14, 1),
+(22843, 'MANUELA SUSANA', 'JIMENEZ', 'MORA', 'CALLE JAZMINES MZ 83 LT  CERROGORDO BUENA VISTA ECATEPEC', '5576288119', '', 'COMERCIANTE', 'LIDIA MORA SOLIS', '', NULL, NULL, '', '1993-06-26', 0, 'MILENIO NOTICIAS EN TELEVIOSION', '2017-09-26 12:11:30', '2017-09-29 16:22:18', 14, 1),
+(22844, 'CLAUDIA', 'AGUILAR', 'SANCHEZ', 'ANDRES QUINTANA ROO N. 10 B-2 DELEG. TLAHUAC', '5560109228', '', 'GERENTE DE RESTAURANTE', 'SOCORRO SANCHES CASA 21310956', '', NULL, NULL, 'claudiaaguisan@hotmail.com', '1979-05-01', 38, 'COQUE VA', '2017-09-12 09:59:41', '2017-09-29 16:17:45', 14, 1),
+(22845, 'SOFIA', 'CEBALLOS', 'DÍAZ', 'ITZOPAN M 4444 L 23 CAZTECA 3CC ECATEPEC', '57767402', '5557767402', 'AMA DE CASA', 'DIANA', '557141468364', NULL, NULL, '', '1947-05-25', 70, 'EL COQUE VA', '2017-09-12 09:09:09', '2017-09-29 16:21:39', 14, 1),
+(22846, 'KARLA', 'CARDENAS', 'ESTRADA', 'CERRADA256CD.PIEDAD DEL BENITO JUAREZ', '5513334039', '5555198837', 'COMERCIANTE', 'SILVIA ESTRADA ', '5540578457', NULL, NULL, 'karlackane@hotmail.com', '1975-12-12', 41, 'tv', '2017-09-26 11:54:54', '2017-09-29 16:13:47', 14, 1),
+(22847, 'JUDITH AARACELI', 'GUTIERREZ', 'ESPINOZA', 'FERROCERRIL DE CUERNAVACA 307 DEPTO. 204 COL. ANAHUAC', '5581043885', NULL, 'PROFESIONISTA', 'VERONICA GONZALEZ ESPINPZA', '5561175599', NULL, NULL, 'juditharaceligtzesp@outlok.com', '1987-09-04', 30, 'LIC. ARENA', '2017-09-30 11:57:19', NULL, NULL, 0),
+(22848, 'TANIA MAGALI', 'DAVILA', 'RUEDA', 'SAN JOSE REAL 54-202  5TA SECCION LOMAS VERDES NAUCALPAN', '5518438089', NULL, 'PROFESIONISTA', 'MIGUEL AMGEL MEDINA', '5537275303', NULL, NULL, 'tdavilalara26@gmail.comPROFESIONISTA', '1987-01-14', 30, 'LIC. MOLINA', '2017-09-30 11:53:34', NULL, NULL, 0),
+(22849, 'HILARI', 'VILLANUEVA', 'VARGAS', 'PRIVADA VOLCAN KRAKATOA CASA 2 CONJUNTO HABITACIONAL VOLCANES DE CHALCO ESTADO DE MEXICO', '5512114546', '30921725', 'LICENCIADA EN PEDAGOGIA', 'MARTHA VARGAS VILLAFUERTE', '10189424', NULL, NULL, 'hilarivillanueva@outlook.com', '1993-01-11', 24, 'ALMOHADAZO', '2017-09-28 13:56:17', '2017-10-02 08:30:58', 14, 1),
+(22850, 'KARLA', 'ROJAS', 'ARROYO', 'MAR ARAFURA NO. 5 COL. POPOTLA, DEL. MIGUEL HIDALGO', '5580884797', NULL, 'ESTUDIANTE', '', '5580884797', NULL, NULL, 'karla.arrockyo@outlook.com', '1996-01-11', 21, 'INTERNET', '2017-10-02 14:23:08', NULL, NULL, 0),
+(22851, 'GRACIELA ', 'MARIN', '', 'FICANCIS 7 MUJICA 702 DEL. CUAHUTEMOC', '9212735786', NULL, 'EMPLEADA', '', '', NULL, NULL, 'graxiela.marin@gmail.com', '1966-03-29', 51, 'INTERNET', '2017-10-02 14:27:40', NULL, NULL, 0),
+(22852, 'TEOFILO', 'RUIZ', 'DIAZ', 'AV LUIS DONALDO COLOSIO #96 ATIZAPAN DE ZARAGOZA ESTADO DE MEXICO', '5582443442', '', 'EJECUTIVO VENTAS', 'NOE RUIZ DIAZ', '5575382612', NULL, NULL, '', '0000-00-00', 42, 'COQUE VA', '2017-09-26 15:11:59', '2017-10-03 10:33:14', 14, 1),
+(22853, 'LUCERO', 'GARCIA', 'COLIN', '49 CDA JESUS ROMERO  1A  4 LEGISLATURA  GUSTAVO A. MADERO ', '5561229472', '', 'RELACIONES PUBLICAS', 'MARTINA CRUZ LOPEZ', '5534394838', NULL, NULL, 'gcclucero@ gmail.com', '1984-04-16', 33, 'COQUE VA', '2017-10-03 09:36:44', '2017-10-03 12:52:38', 14, 1),
+(22854, 'MIRIAM MARGARITA ', 'ORTEGA ', 'SANCHEZ', 'CALLE YUCATAN 631 TULPETLAC ECATEPEC ESTADO DE MEXICO', '5540764711', '', 'empresario', 'DIANA MELISSA AGUILAR SANCHEZ', '58741127', NULL, NULL, 'miriam_os09@hotmail.com', '1992-09-21', 25, ' COQUE VA', '2017-08-30 14:50:07', '2017-10-03 14:10:16', 14, 1),
+(22855, 'BRENDA', 'MUNGUIA', 'VELASCO', 'TOTONACAS MZ 61 LT 22  COL. AJUSCO  DEL. COYOACAN', '5548536647', '', 'MAESTRA PRE-ESCOLAR', 'TERESA VELASCO', '', NULL, NULL, 'ely.605@hotmail.com', '1976-05-21', 41, 'COQUE VA', '2017-10-03 10:31:59', '2017-10-03 15:14:11', 14, 1),
 (100001, 'Ricardo', 'Velazquez', '', 'Macorina 5', '5535060738', NULL, '', 'Olivia', '', NULL, NULL, '', '1989-02-20', 28, '', '2017-03-03 13:33:16', NULL, NULL, 0),
 (100003, 'MANUEL', 'BURGOS', 'FORTIZ', NULL, '5545155097', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-04-20 13:27:14', NULL, NULL, 0),
 (100004, 'JONATHAN ', 'REYES', '', NULL, '2223051969', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-04-20 13:32:13', NULL, NULL, 1),
@@ -4329,8 +4609,7 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (100025, 'DANAE', 'RODRIGUEZ', 'ANAYA', NULL, '5535765023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-04-21 07:53:47', NULL, NULL, 0),
 (100026, 'LAURA', 'CHAVEZ', 'ROMAN', NULL, '5532248761', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-04-21 08:21:05', NULL, NULL, 0),
 (100027, 'ELVIRA', 'MEDINA', 'BARRERA', NULL, '5540258053', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-21 08:22:36', NULL, NULL, 0),
-(100028, 'VANESSA ', 'BERNAL', '', NULL, '5515759869', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-21 08:24:05', NULL, NULL, 0);
-INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(100028, 'VANESSA ', 'BERNAL', '', NULL, '5515759869', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-21 08:24:05', NULL, NULL, 0),
 (100029, 'SERGIO', 'SERRANO', '', NULL, '554412906655', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-21 08:25:08', NULL, NULL, 0),
 (100030, 'MOISES', 'VELAZQUEZ', 'DE LOS SANTOS', NULL, '5529427487', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'RECOMENDACION', '2017-04-21 09:09:27', NULL, NULL, 0),
 (100031, 'SERGIO ', 'SERRANO', '', NULL, '554412906655', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-21 09:35:30', NULL, NULL, 0),
@@ -4582,7 +4861,8 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (100327, 'DIANA', 'ARANDA', 'MARTINEZ', NULL, '5564726767', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 09:52:54', NULL, NULL, 0),
 (100328, 'SHERIB', 'DIAMANTE', 'MEDINA', NULL, '5580958541', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 09:54:15', NULL, NULL, 0),
 (100329, 'VERONICA', 'ARROYO', '', NULL, '64217295', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 09:54:53', NULL, NULL, 0),
-(100331, 'DANIEL', 'GARCIA', '', NULL, '5534592970', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 09:55:42', NULL, NULL, 0),
+(100331, 'DANIEL', 'GARCIA', '', NULL, '5534592970', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 09:55:42', NULL, NULL, 0);
+INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
 (100332, 'JESSICA ', 'QUINTANAR', '', NULL, '5529577577', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 10:04:32', NULL, NULL, 0),
 (100333, 'BLANCA ESTELA', 'PADILLA', 'URIBE', NULL, '5547200602', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 10:21:51', NULL, NULL, 0),
 (100334, 'SERGIO EDUARDO', 'MORALES', 'CAMPOS', NULL, '5522581273', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 10:22:31', NULL, NULL, 0),
@@ -4631,8 +4911,7 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (100397, 'GABRIELA', 'CASTAÑEDA', 'MORALES', NULL, '5545518039', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FERMANDA TAPIA', '2017-04-27 15:41:18', NULL, NULL, 0),
 (100399, 'MIGUEL', 'ROMERO', 'MOLINA', NULL, '5567628688', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-27 16:09:51', NULL, NULL, 0),
 (100400, 'GRECIA ', 'ONTIVEROS', '', NULL, '5564263742', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-04-27 16:33:10', NULL, NULL, 0),
-(100401, 'ARTURO', 'SILVA', '', NULL, '5578132963', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA ', '2017-04-28 08:30:06', NULL, NULL, 0);
-INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(100401, 'ARTURO', 'SILVA', '', NULL, '5578132963', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA ', '2017-04-28 08:30:06', NULL, NULL, 0),
 (100402, 'MARIA AURORA', 'ORTEGA', 'PEREZ', NULL, '5531188736', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-28 08:35:51', NULL, NULL, 0),
 (100403, 'HILDA', 'PEREZ', 'MIRANDA', NULL, '5531188736', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-28 08:37:49', NULL, NULL, 0),
 (100405, 'ANDREA ITZEL', 'GONZALEZ', 'FLORES', NULL, '5535219597', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-04-28 08:55:31', NULL, NULL, 0),
@@ -4884,7 +5163,8 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (100754, 'ANTONIO', 'JUAREZ', 'PORRAS', NULL, '5540552888', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-15 09:43:42', NULL, NULL, 0),
 (100758, 'PATRICIA', 'COLMENARES', 'VILLAREAL', NULL, '5573089304', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-15 11:15:36', NULL, NULL, 0),
 (100759, 'VALERIA', 'ROSAS', 'VELAZQUEZ', NULL, '5541932791', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-15 11:35:53', NULL, NULL, 0),
-(100760, 'KAREN ROSARIO', 'ORTIZ', '', NULL, '5540789403', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-15 12:01:48', NULL, NULL, 0),
+(100760, 'KAREN ROSARIO', 'ORTIZ', '', NULL, '5540789403', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-15 12:01:48', NULL, NULL, 0);
+INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
 (100761, 'MARIA AURELIA ', 'MARTINEZ ', 'FRANCO ', NULL, '5558731808', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA ', '2017-05-15 12:26:22', NULL, NULL, 0),
 (100762, 'ARACELI ', 'JAIME ', 'CERVANTES ', NULL, '5538640768', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA ', '2017-05-15 12:27:57', NULL, NULL, 0),
 (100763, 'ELSA ROSARIO', 'LOPEZ', 'ROMERO', NULL, '5519061632', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-15 13:48:50', NULL, NULL, 0),
@@ -4932,8 +5212,7 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (100826, 'MARIA DEL CARMEN ESTELA', 'GONZALEZ', 'GONZALEZ', NULL, '58472276', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-20 09:54:45', NULL, NULL, 0),
 (100828, 'DOLORES', 'VEGA', 'PEREZ', NULL, '5542436191', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-20 11:40:21', NULL, NULL, 0),
 (100829, 'LARISSA CONSUELO', 'GONZALEZ', 'CORREA', NULL, '5551680634', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-22 09:15:03', NULL, NULL, 0),
-(100833, 'ANA GABRIELA', 'DE LA ROSA', 'CARACAS', NULL, '5567974157', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-22 10:35:24', NULL, NULL, 0);
-INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(100833, 'ANA GABRIELA', 'DE LA ROSA', 'CARACAS', NULL, '5567974157', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-22 10:35:24', NULL, NULL, 0),
 (100834, 'CAROL VIRIDIANA', 'ESCOBEDO', 'ZUÑIGA', NULL, '5556345527', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-22 10:55:13', NULL, NULL, 0),
 (100836, 'INES ', 'RUIZ', 'DE LA CRUZ', NULL, '5571684443', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-22 11:24:29', NULL, NULL, 0),
 (100837, 'NANCY ', 'YAMA', 'RUIZ', NULL, '5571684443', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-05-22 11:25:00', NULL, NULL, 0),
@@ -5183,7 +5462,8 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (221792, 'ZAVALA', 'DAVALOS', 'LAZARO', NULL, '5543948431', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '22mayo17CV', '2017-06-19 11:26:31', NULL, NULL, 0),
 (221793, 'DOMINGUEZ', 'ALVAREZ', 'SEVE', NULL, '5568060478', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '22mayo17CV', '2017-06-19 13:22:12', NULL, NULL, 0),
 (221796, 'FLOR', 'VILLERAS', 'CHEVERRIA', NULL, '5528195032', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-19 16:16:36', NULL, NULL, 0),
-(221797, 'MARIA GUADALUPE ', 'SANCHEZ', 'GOMEZ', NULL, '5532110465', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-19 16:52:04', NULL, NULL, 0),
+(221797, 'MARIA GUADALUPE ', 'SANCHEZ', 'GOMEZ', NULL, '5532110465', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-19 16:52:04', NULL, NULL, 0);
+INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
 (221798, 'ROSAURA', 'PEREZ', 'SALAS', NULL, '5577279502', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-20 09:59:32', NULL, NULL, 0),
 (221799, 'MARIA TERESA ', 'MENDOZA', 'LOPEZ', NULL, '0458331556875', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TELEVISION', '2017-06-20 10:06:15', NULL, NULL, 0),
 (221800, 'VERONICA ', 'GARCIA', 'CALDERON', NULL, '53101562', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-20 10:11:09', NULL, NULL, 0),
@@ -5231,8 +5511,7 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (221854, 'VERONICA', 'ONOFRE', 'GARDUÑO', NULL, '5511324996', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-21 11:20:56', NULL, NULL, 0),
 (221856, 'ELIZABETH', 'SANCHEZ', 'ROA', NULL, '5574496035', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-21 11:36:05', NULL, NULL, 0),
 (221857, 'MARIA DE JESUS ', 'CRUZ', 'MOTE', NULL, '5538366328', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-21 11:42:17', NULL, NULL, 0),
-(221858, 'ROCIO', 'GUERRERO', 'LUNA', NULL, '5534445400', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-21 11:50:13', NULL, NULL, 0);
-INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(221858, 'ROCIO', 'GUERRERO', 'LUNA', NULL, '5534445400', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-21 11:50:13', NULL, NULL, 0),
 (221859, 'DENICE', 'GOMEZ', 'ESTRADA', NULL, '5526669255', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-06-21 12:04:56', NULL, NULL, 0),
 (221861, 'REYNA', 'SERNA', 'BARRAGAN', NULL, '58906638', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-21 12:54:01', NULL, NULL, 0),
 (221862, 'GLORIA', 'RODRIGUEZ', 'LOPEZ', NULL, '5549315820', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-06-21 13:01:42', NULL, NULL, 0),
@@ -5484,7 +5763,8 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (222206, 'MARIA DE LA LUZ', 'GUEVARA', '', NULL, '5512316121', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-24 09:44:11', NULL, NULL, 0),
 (222210, 'MARGARITA ', 'RODRIGUEZ', '', NULL, '5518553772', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-24 10:26:14', NULL, NULL, 0),
 (222212, 'CATALINA', 'COLIN', 'CORTES', NULL, '5513631134', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-24 10:56:55', NULL, NULL, 0),
-(222213, 'SOLEDAD', 'VALLEJO', '', NULL, '5537322877', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-24 11:01:04', NULL, NULL, 0),
+(222213, 'SOLEDAD', 'VALLEJO', '', NULL, '5537322877', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-24 11:01:04', NULL, NULL, 0);
+INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
 (222214, 'MARIA GUADALUPE', 'PRAD', 'NIETO', NULL, '5585737668', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-24 11:05:43', NULL, NULL, 0),
 (222216, 'MARIA LETICIA', 'PALMA', 'CASTILLO', NULL, '5527013717', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-24 11:39:06', NULL, NULL, 0),
 (222217, 'BENITO', 'GONZALEZ', 'MALPICA', NULL, '5513907293', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-24 11:46:04', NULL, NULL, 0),
@@ -5533,8 +5813,7 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (222277, 'MARIA ELENA', 'DIAZ', 'GOMEZ', NULL, '5519124831', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-26 15:01:30', NULL, NULL, 0),
 (222279, 'GRACIELA ', 'ROSAS ', 'ANDRADE', NULL, '5512645711', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-26 15:24:36', NULL, NULL, 0),
 (222280, 'BRENDA ', 'NIEVES', '', NULL, '5564405320', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-27 08:00:59', NULL, NULL, 0),
-(222282, 'JOSE LUIS', 'DE LA BARRERA', 'ARGUENTA', NULL, '5523060228', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-27 08:37:41', NULL, NULL, 0);
-INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(222282, 'JOSE LUIS', 'DE LA BARRERA', 'ARGUENTA', NULL, '5523060228', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-27 08:37:41', NULL, NULL, 0),
 (222284, 'MAGDALENA', 'BAUTIZTA', 'COLIN', NULL, '5532584807', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-27 09:36:59', NULL, NULL, 0),
 (222286, 'JUAN JOSE', 'GUZMAN', 'MORA', NULL, '5525167532', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-27 09:52:55', NULL, NULL, 0),
 (222287, 'ANTINIO', 'AGUILAR', 'DIAZ', NULL, '5526562994', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-07-27 10:13:30', NULL, NULL, 0),
@@ -5785,12 +6064,12 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (227010, 'ILEANA VALENTINA', 'IBAÑEZ ', 'ESCOBAR ', NULL, '5522171456', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-08-30 14:11:57', NULL, NULL, 0),
 (227011, 'MANUEL ALBERTO', 'ULLOA', 'LICONA', NULL, '5565773165', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2017-08-30 14:15:08', NULL, NULL, 0),
 (227012, 'LUCRECIA', 'AVALOS ', 'VELAZQUEZ ', NULL, '5522284726', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-08-30 14:29:57', NULL, NULL, 0),
-(227013, 'REBECA', 'PADILLA ', 'AYALA', NULL, '5522295152', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2017-08-30 14:38:08', NULL, NULL, 0),
+(227013, 'REBECA', 'PADILLA ', 'AYALA', NULL, '5522295152', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2017-08-30 14:38:08', NULL, NULL, 0);
+INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
 (227014, 'DIANA MARIELLA', 'OLVERA', 'MAGNO', NULL, '5523060314', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 14:43:25', NULL, NULL, 0),
 (227015, 'ALAN', 'GARCIA', 'AMENEYRO', NULL, '5564912151', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 14:45:45', NULL, NULL, 0),
 (227016, 'ARTURO', 'BARRERA', 'GONZALEZ', NULL, '5591863305', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 14:46:48', NULL, NULL, 0),
 (227017, 'FERNANDO', 'BERNABE', 'AGUILAR', NULL, '2281561410', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 14:48:08', NULL, NULL, 0),
-(227018, 'MIRIAM MARGARITA ', 'ORTEGA ', 'SANCHEZ', NULL, '5540764711', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 14:50:07', NULL, NULL, 0),
 (227019, 'CORAL ', 'PAZ', 'LEMUS', NULL, '5539143160', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 14:50:37', NULL, NULL, 0),
 (227020, 'ASTRID PRISILLA', 'CARBONEL', 'CHAVEZ', NULL, '5539143160', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 14:51:39', NULL, NULL, 0),
 (227021, 'SILKE', 'MONCADA', 'VELEZ', NULL, '5566989274', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2017-08-30 14:52:21', NULL, NULL, 0),
@@ -5801,7 +6080,6 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (227026, 'ALEJANDRA', 'CORTES', 'ACUÑA', NULL, '5541751542', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 15:02:02', NULL, NULL, 0),
 (227027, 'GUILLERMO ANDRES', 'MURILLO', 'CASTILLO', NULL, '5544167354', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-08-30 15:03:16', NULL, NULL, 0),
 (227028, 'MARIA VICTORIA ', 'MARTINEZ ', 'SILVESTRE', NULL, '5523096054', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-08-30 15:07:29', NULL, NULL, 0),
-(227029, 'CRISTINA ', 'ANGELES', 'JUAREZ', NULL, '5573934780', '72624603', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-08-30 15:09:13', NULL, NULL, 0),
 (227031, 'VERONICA ', 'AREVALO ', 'LOPEZ ', NULL, '5514909141', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-08-30 15:17:17', NULL, NULL, 0),
 (227032, 'PATRICIA ', 'CRUZ ', 'LOPEZ ', NULL, '5516843120', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-08-30 15:25:40', NULL, NULL, 0),
 (227033, 'juan antonio', 'perez', 'gomez', NULL, '5513687673', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-08-30 15:26:43', NULL, NULL, 0),
@@ -5822,10 +6100,8 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (227062, 'MANOLO', 'FERNANDEZ', 'PASTEN', NULL, '5514677274', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-09-09 10:25:06', NULL, NULL, 0),
 (227063, 'JUAN ANTONIO', 'PEREZ', '', NULL, '5513687673', '5513593287', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-09-11 16:08:48', NULL, NULL, 0),
 (227064, 'RICARDO ELIA', 'ARANDA', 'BUSTAMANTE', NULL, '5526716738', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-09-12 08:06:03', NULL, NULL, 0),
-(227066, 'SOFIA', 'CEBALLOS', 'DÍAZ', NULL, '5557767402', '5557767402', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-09-12 09:09:09', NULL, NULL, 0),
 (227067, 'CARLOS ENRIQUE', 'HERNANDEZ', 'TORRES', NULL, '5563599347', '5563599347', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-09-12 09:40:22', NULL, NULL, 0),
 (227068, 'MANUEL ', 'VILLAREAL', 'SANCHEZ', NULL, '5566010472', '5566010472', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-09-12 09:47:35', NULL, NULL, 0),
-(227069, 'CLAUDIA', 'AGUILAR', 'SANCHEZ', NULL, '5560109228', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 09:59:41', NULL, NULL, 0),
 (227073, 'CYNTHIA', 'SALAZAR', 'LOPEZ', NULL, '5561226490', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 10:38:58', NULL, NULL, 0),
 (227074, 'BELEN', 'PEREZ', 'ORTEGA', NULL, '5529376752', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-12 11:16:37', NULL, NULL, 0),
 (227075, 'LILIA', 'DORANTES', 'PEREZ', NULL, '5523092497', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-12 11:20:43', NULL, NULL, 0),
@@ -5833,8 +6109,7 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (227078, 'VERONICA ', 'CASTRO', '', NULL, '5534346175', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 13:07:52', NULL, NULL, 0),
 (227079, 'LUIS ANGEL ', 'MARGARITO', 'TORRES', NULL, '5571534151', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 13:17:07', NULL, NULL, 0),
 (227080, 'CAROLINA ', 'SANDOVAL', '', NULL, '5518492230', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 13:24:41', NULL, NULL, 0),
-(227081, 'GABRIELA ', 'ROSAS', '', NULL, '5575446213', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 13:33:20', NULL, NULL, 0);
-INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, `telefono`, `telefono2`, `ocupacion`, `nombreFamiliar`, `telefonoFamiliar`, `uriFotoAntes`, `uriFotoDespues`, `email`, `fecha_nacimiento`, `edad`, `referencia`, `created_at`, `updated_at`, `user_update_id`, `is_paciente`) VALUES
+(227081, 'GABRIELA ', 'ROSAS', '', NULL, '5575446213', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 13:33:20', NULL, NULL, 0),
 (227082, 'VERONICA', 'ALVAREZ', '', NULL, '5544213325', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 13:41:58', NULL, NULL, 0),
 (227084, 'ARGELIA', 'FRAGOSO', '', NULL, '5521756814', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 14:10:07', NULL, NULL, 0),
 (227086, 'BETZAMAR', 'TELLEZ', '', NULL, '2226265744', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-12 15:53:57', NULL, NULL, 0),
@@ -5852,12 +6127,130 @@ INSERT INTO `pacientes` (`id`, `nombre`, `apPaterno`, `apMaterno`, `domicilio`, 
 (227100, 'MIRIAM', 'GONALEZ', 'AVALOS', NULL, '5522727115', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-18 13:47:05', NULL, NULL, 0),
 (227101, 'ELENA ', 'VALENCIA', 'FLORES', NULL, '5543759457', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-09-18 14:38:30', NULL, NULL, 0),
 (227102, 'JESSICA', 'BUZOIANU ', '', NULL, '5531149131', '52715428', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YOUTUBE', '2017-09-18 14:41:20', NULL, NULL, 0),
-(227103, 'ALEJANDRA', 'SANCHEZ', '', NULL, '5530559604', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ALMOHADAZO', '2017-09-18 14:47:40', NULL, NULL, 0);
+(227103, 'ALEJANDRA', 'SANCHEZ', '', NULL, '5530559604', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ALMOHADAZO', '2017-09-18 14:47:40', NULL, NULL, 0),
+(227104, 'NORMA', 'SANCHEZ', 'HERNANDEZ', NULL, '5583615420', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-20 13:37:53', NULL, NULL, 0),
+(227105, 'NORMA', 'SANCHEZ', 'HERNANDEZ', NULL, '5583615420', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-20 13:38:02', NULL, NULL, 0),
+(227106, 'NORMA', 'SANCHEZ', 'HERNANDEZ', NULL, '5583615420', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-21 06:53:33', NULL, NULL, 0),
+(227107, 'NORMA', 'SANCHEZ', 'HERNANDEZ', NULL, '5583615420', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-21 11:18:21', NULL, NULL, 0),
+(227108, 'NORMA ', 'SANCHEZ', 'HERNANDEZ', NULL, '5583615420', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-21 13:26:10', NULL, NULL, 0),
+(227109, 'NORMA ', 'SANCHEZ', 'HERNANDEZ', NULL, '5583615420', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-21 14:38:50', NULL, NULL, 0),
+(227110, 'NORMA ', 'SANCHEZ', 'HERNANDEZ', NULL, '5583615420', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-21 14:41:05', NULL, NULL, 0),
+(227111, 'ANGEL GABRIEL ', 'HERNANDEZ', 'LOPEZ', NULL, '5581478462', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'YOUTUBE', '2017-09-21 14:42:23', NULL, NULL, 0),
+(227112, 'FARINA ', 'POLANCO', '', NULL, '1', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DR.MOLINA', '2017-09-21 14:59:35', NULL, NULL, 0),
+(227113, 'KAINOLY', 'GARCIA', 'RIQUELME', NULL, '5521937700', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-22 08:14:34', NULL, NULL, 0),
+(227114, 'MARIA DEL COSUELO', 'PARADA ', 'LOPEZ', NULL, '5518228093', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-09-22 12:09:42', NULL, NULL, 0),
+(227115, 'OFELIA JUDITH', 'RIVERA ', 'CASTELLANOS', NULL, '5543065867', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-22 13:13:10', NULL, NULL, 0),
+(227117, 'VIOLETA', 'CANELLA', 'JUAREZ', NULL, '0457821069422', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-25 09:16:22', NULL, NULL, 0),
+(227118, 'MARIA IVONE', 'RAMIREZ', 'AGUIRRE', NULL, '5560355493', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FACEBOOK', '2017-09-25 09:48:56', NULL, NULL, 0),
+(227119, 'SANDRA GUADALUPE ', 'IZQUIERDO', 'MARTINEZ', NULL, '5584587207', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-25 15:04:44', NULL, NULL, 0),
+(227120, 'MOICES', 'SANCHEZ', 'ROSS', NULL, '5585329060', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-09-25 15:16:53', NULL, NULL, 0),
+(227121, 'IVET', 'MENDEZ', 'ROMAN', NULL, '5585329060', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-09-25 16:17:50', NULL, NULL, 0),
+(227123, 'ARON RAUL', 'ESPINOZA', 'MARTINEZ', 'CALLE 3 #131 COL. ESTADO DE MEXICO MUNICIPIO NEZAHUALCOYOTL', '5570507422', '', 'OPERADOR DE AUTOBUS', 'DENLY RUEDA JIMENEZ', '5570506350', NULL, NULL, 'aaron.r.espinosa.m@gmail.com', '1987-08-25', 30, 'COQUE VA', '2017-09-26 11:43:59', '2017-10-03 15:24:13', 14, 1),
+(227124, 'MARIANA', 'FLORES', '', NULL, '5570507422', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'EL COQUE VA', '2017-09-26 11:51:03', NULL, NULL, 0),
+(227125, 'silvia', 'serna', 'de peña', NULL, '52112732', '5531923202', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'milenio tv', '2017-09-26 11:51:39', NULL, NULL, 0),
+(227126, 'JENNYFER', 'GARCIA', 'TURCIO', NULL, '0445573799219', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO NOTICIAS EN TELEVIOSION', '2017-09-26 11:53:19', NULL, NULL, 0),
+(227127, 'FRANCISCO JAVIER', 'MORA ', 'ENRIQUEZ', NULL, '8688276586', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TV', '2017-09-26 11:54:08', NULL, NULL, 0),
+(227129, 'BEATRIZ', 'HERNANDEZ', 'MARTINEZ', NULL, '5549402876', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-26 11:55:20', NULL, NULL, 0),
+(227130, 'DAMIAN', 'LABIANO', '', NULL, '5566298805', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-26 11:58:03', NULL, NULL, 0),
+(227132, 'maria del carmen ', 'fernandez', 'rodriguez', NULL, '4424378409', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'tv', '2017-09-26 12:00:03', NULL, NULL, 0),
+(227133, 'NORMA ANGELICA', 'JIMENEZ', 'MARQUEZ', NULL, '8441119828', '8442984217', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO', '2017-09-26 12:00:16', NULL, NULL, 0),
+(227134, 'MARTIN JESUS', 'LEON ', 'MENDEZ', NULL, '77000708', '5526834566', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TELEVISION VIO EL ANUNCIO', '2017-09-26 12:00:37', NULL, NULL, 0),
+(227135, 'paulina', 'silva', 'solano', NULL, '5514114368', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'milenio tv', '2017-09-26 12:01:26', NULL, NULL, 0),
+(227136, 'aniceta', 'solano', 'rojas', NULL, '5514114388', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'milenio tv', '2017-09-26 12:03:03', NULL, NULL, 0),
+(227137, 'SARA', 'MARTINEZ', 'ROJAS', NULL, '47519895', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PROGRAMA DE TV', '2017-09-26 12:04:08', NULL, NULL, 0),
+(227139, 'cristina', 'escapite', 'hernadez', NULL, '6566239790', '6561671166', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'miletio tv', '2017-09-26 12:11:41', NULL, NULL, 0),
+(227140, 'maria estela', 'gutierrez', 'rodriguez', NULL, '5562777557', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'tv', '2017-09-26 12:15:50', NULL, NULL, 0),
+(227141, 'JORGE', 'LANDAN', 'KOMSKY', NULL, '5570215433', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TELEVISION', '2017-09-26 12:17:35', NULL, NULL, 0),
+(227142, 'angelina', 'chavez', 'pañeda', NULL, '4291114747', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'milenio tv', '2017-09-26 12:18:29', NULL, NULL, 0),
+(227143, 'leticia ', 'sevada', 'cruz', NULL, '5567979175', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'PROGRAMA DE TV ', '2017-09-26 12:18:54', NULL, NULL, 0),
+(227144, 'joel', 'moratalla', 'castellanos', NULL, '5543018517', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'tv', '2017-09-26 12:25:20', NULL, NULL, 0),
+(227145, 'ARNULFO', 'JIMENEZ', 'SOLER', NULL, '8672056288', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO NOTICIAS', '2017-09-26 12:27:30', NULL, NULL, 0),
+(227146, 'AZAEL', 'LOPEZ', 'HERNANDEZ', NULL, '5585077512', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-26 12:28:49', NULL, NULL, 0),
+(227147, 'mario ernesto', 'garza', 'ramones', NULL, '9232380107', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'milenio tv', '2017-09-26 13:05:34', NULL, NULL, 0),
+(227148, 'isela', 'rebolledo', 'juanico', NULL, '7442936443', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO NOTICIAS EN TELEVIOSION', '2017-09-26 13:09:02', NULL, NULL, 0),
+(227149, 'ARIEL', 'MARTINEZ', 'LOPEZ', NULL, '5528240508', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-26 13:15:07', NULL, NULL, 0),
+(227151, 'JULIO', 'LAZOS', '', NULL, '5554344100', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO', '2017-09-26 15:19:15', NULL, NULL, 0),
+(227152, 'ERIKA MIREL', 'VERNAL', 'GRANADOS', NULL, '5519651971', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-09-27 08:28:21', NULL, NULL, 0),
+(227153, 'GRISELDA', 'VERNAL', 'GRANADOS', NULL, '5519651971', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-09-27 08:34:36', NULL, NULL, 0),
+(227154, 'ARMANDO', 'SOLANO ', 'SUEZ', NULL, '5535638700', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-27 11:01:27', NULL, NULL, 0),
+(227155, 'MARIO', 'MAGAÑA', '', NULL, '5547339579', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-27 12:51:29', NULL, NULL, 0),
+(227156, 'JOSE ', 'GARCIA ', 'GOMEZ', NULL, '5567063259', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-27 14:05:59', NULL, NULL, 0),
+(227157, 'CARLOS', 'BARRERA', '', NULL, '5540274928', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-27 14:35:24', NULL, NULL, 0),
+(227158, 'ESPERANZA JULIA ', 'GONZALEZ', 'LOPEZ', NULL, '5525639976', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'RECOMENDACION PERSONAL', '2017-09-28 11:14:27', NULL, NULL, 0),
+(227159, 'MAECELA ', 'MIRAN ', 'GARCIA', NULL, '92122735786', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET ', '2017-09-28 13:29:02', NULL, NULL, 0),
+(227161, 'ROSA ISELA', 'VAZQUEZ', 'RUIZ', NULL, '5551079567', '52681592', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MIRIAM VARGAS', '2017-09-28 14:19:18', NULL, NULL, 0),
+(227162, 'MARBELIN ZAYD', 'SALDAÑA', 'RIVERA', NULL, '5522754978', '57105471', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'RECOMENDACION PERSONAL', '2017-09-28 14:36:30', NULL, NULL, 0),
+(227163, 'LUZ', 'GARCIA', 'JIMENEZ', NULL, '58738806', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-29 08:26:42', NULL, NULL, 0),
+(227164, 'ALEJANDRO', 'CONSTANTINO ', 'ROSAS', NULL, '5539834222', '5547281015', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO TV', '2017-09-29 09:33:47', NULL, NULL, 0),
+(227165, 'GLORIA', 'CLARK', ' SOLIS ', NULL, '57096438', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO TV', '2017-09-29 10:24:06', NULL, NULL, 0),
+(227166, 'IRENE PAULINA', 'CAMPOS', 'JIMENEZ', NULL, '5524306889', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-09-29 13:51:37', NULL, NULL, 0),
+(227167, 'KARLA', 'ROJAS ', 'AROLLO', NULL, '5519680583', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-10-02 08:21:25', NULL, NULL, 0),
+(227168, 'ELO DIAMARIA', 'FRIA ', 'RODRIGUZ', NULL, '5535551173', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO TV', '2017-10-02 09:13:55', NULL, NULL, 0),
+(227169, 'RICARDO', 'BARBOSA', 'SALSA', NULL, '41116308', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO TV', '2017-10-02 09:53:00', NULL, NULL, 0),
+(227170, 'MAR4ICRUZ', 'MARTINEZ', 'GOMEZ', NULL, '5564825681', '69918374', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TELEVISION', '2017-10-02 10:29:23', NULL, NULL, 0),
+(227171, 'GIOVANA', 'VARGAS', 'ORTIS', NULL, '7731161462', '5539316569', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'INTERNET', '2017-10-02 10:37:35', NULL, NULL, 0),
+(227172, 'MARIA MARLEN', 'MORALES', 'DELICIA', NULL, '5551278708', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-02 11:00:29', NULL, NULL, 0),
+(227173, 'ANA MARIA ', 'MENDOZA', ' MENDOZA', NULL, '5554061484', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO', '2017-10-02 11:01:13', NULL, NULL, 0),
+(227174, 'FELIPE', 'VALDIVIESA', 'CABRERA', NULL, '5518540395', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO', '2017-10-02 11:26:07', NULL, NULL, 0),
+(227175, 'LOURDES ', 'VACA', 'MORALES', NULL, '5543516600', '52825974', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MILENIO', '2017-10-02 11:54:04', NULL, NULL, 0),
+(227176, 'ALEJANDRO', 'MELCHOR', 'MIGUEL', NULL, '5576139113', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-02 13:50:10', NULL, NULL, 0),
+(227177, 'ADRIANA NAYELY', 'RODRIGUEZ', 'ROBLES', NULL, '5575514488', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 08:05:43', NULL, NULL, 0),
+(227178, 'CELENE', 'ARBIZO', 'REYES', NULL, '5531880820', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 08:18:39', NULL, NULL, 0),
+(227179, 'RAFAELA', 'GALEANA', 'CAMPOS', NULL, '5534456227', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 08:20:16', NULL, NULL, 0),
+(227180, 'ANA', 'VAZQUEZ', '', NULL, '5534456227', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 09:04:19', NULL, NULL, 0),
+(227181, 'BLANCA', 'MORALES', 'PONCE', NULL, '5517758117', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 09:17:46', NULL, NULL, 0),
+(227182, 'YARA', 'TORRES', 'BUENO', NULL, '5530160215', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 09:27:07', NULL, NULL, 0),
+(227183, 'PERLA ROSAURA', 'SALGADO', 'ROMERO', NULL, '5570670202', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 09:36:41', NULL, NULL, 0),
+(227185, 'GUADALUPE ', 'SANTIAGO', 'BARRON', NULL, '5515067395', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 10:19:15', NULL, NULL, 0),
+(227186, 'ALEJANDRA', 'GONZALEZ', 'GACHUZ', NULL, '5528640704', '7222866235', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 10:21:01', NULL, NULL, 0),
+(227188, 'ESTELA', 'RUIZ', 'SANDOVAL', NULL, '5563702123', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 10:52:07', NULL, NULL, 0),
+(227189, 'SANDRA', ' GUTIERREZ', 'GALVEZ', NULL, '5530568728', '57424183', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 10:59:38', NULL, NULL, 0),
+(227190, 'MARIA DEL ROCIO', 'CONTRERAS', 'BOLAÑOS', NULL, '5585758143', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 11:05:09', NULL, NULL, 0),
+(227191, 'CLAUDIA ISELA', 'SALINAS', 'MONROY', NULL, '7711794210', '7711590709', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 11:31:08', NULL, NULL, 0),
+(227192, 'BRENDA CAROLINA', 'VAZQUEZ', '', NULL, '5528892334', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 11:35:24', NULL, NULL, 0),
+(227193, 'BERTHA', 'BENABIB', 'POLTAWSKY', NULL, '5519206473', '55347130', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 11:50:02', NULL, NULL, 0),
+(227194, 'DIANA LUISA', 'LOPEZ', 'CABRERA', NULL, '5545256867', '25963288', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 11:52:04', NULL, NULL, 0),
+(227195, 'GLORIA ', 'PATIÑO', 'LOPEZ', NULL, '5531229104', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 11:53:54', NULL, NULL, 0),
+(227196, 'LOURDES', 'ARIAS', 'ORTEZ', NULL, '5549477795', '53560444', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 11:55:43', NULL, NULL, 0),
+(227197, 'LUZ', 'CAMACHO', 'ESPINOZA', NULL, '5541124470', '53560444', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 11:56:43', NULL, NULL, 0),
+(227198, 'MARIA DE LA LUZ', 'AGUILAR', 'HERNANDEZ', NULL, '5516996410', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 12:07:06', NULL, NULL, 0),
+(227199, 'CARLOS FERMIN', 'ROCA', 'VARGAS', NULL, '5581950519', '55393751', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 12:09:50', NULL, NULL, 0),
+(227200, 'MARIA GUADALUPE ELSA', 'VARGAS ', 'ROJO', NULL, '5581950519', '55393751', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 12:10:52', NULL, NULL, 0),
+(227201, 'PATRICIA', 'CASTAÑEDA', 'SANCHEZ', NULL, '5566135936', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 12:25:08', NULL, NULL, 0),
+(227202, 'REMEDIOS', 'VEGA', 'SALDIVAR', NULL, '5526854644', '56348044', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 12:31:39', NULL, NULL, 0),
+(227203, 'VICTORIA LUISA', 'LOPEZ', 'GARCIA', NULL, '5516776288', '56348044', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 12:36:04', NULL, NULL, 0),
+(227204, 'MARIA DEL CARMEN ', 'HERNANDEZ', 'REYES', NULL, '5535652326', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 12:57:14', NULL, NULL, 0),
+(227205, 'RENE', 'GARCIA', 'LOPEZ', NULL, '5537548242', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 14:42:02', NULL, NULL, 0),
+(227206, 'GRISELDA', 'GACIA ', 'DIAS', NULL, '5517611352', '56129471', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-03 14:56:05', NULL, NULL, 0),
+(227207, 'ALEJANDRA ', 'HERNANDEZ', 'PINO', NULL, '5565038782', '58831787', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 07:03:22', NULL, NULL, 0),
+(227208, 'CSLARA ', 'ALVARADO', 'GOMEZ', NULL, '5527529414', '56131964', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 07:06:03', NULL, NULL, 0),
+(227209, 'FELINA', 'RODRIGUEZ', 'GALICIA', NULL, '2491735091', '2224229794', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 07:09:06', NULL, NULL, 0),
+(227210, 'MARIA ELENA', 'AREVALO', 'NAVARRO', NULL, '5526520466', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQURE VA', '2017-10-04 07:15:05', NULL, NULL, 0),
+(227211, 'MARIA GUADALUPE ELSA', 'VARGAS', 'ROJO', NULL, '5581950519', '55393751', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 07:17:21', NULL, NULL, 0),
+(227212, 'PATRICIA', 'CASTAÑEDA', 'SANCHEZ', NULL, '5566135936', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA ', '2017-10-04 07:18:41', NULL, NULL, 0),
+(227213, 'ANA KAREN ', 'ALVARADO', 'FUENTES', NULL, '5543070540', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 08:18:45', NULL, NULL, 0),
+(227214, 'XOCHITL', 'RUIZ', 'ESTRADA', NULL, '5537341637', '50195718', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 08:23:32', NULL, NULL, 0),
+(227215, 'JOSE LUIS ', 'REYES', 'CORTEZ', NULL, '5516404251', '50195718', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 08:25:11', NULL, NULL, 0),
+(227216, 'YOLANDA', 'FUENTES', 'ROSALES', NULL, '5543070540', '50195718', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 08:28:06', NULL, NULL, 0),
+(227217, 'CRISTINA', 'MORALES ', 'SOTO', NULL, '5519207891', '50195718', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 08:29:33', NULL, NULL, 0),
+(227218, 'LAURA', 'RIVERA', 'LOPEZ', NULL, '5564121747', '5527349031', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 08:31:43', NULL, NULL, 0),
+(227219, 'MARIA DE LOURDES', 'LOPEZ ', 'MARTINEZ', NULL, '2223521047', '2225995757', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'HOY', '2017-10-04 09:19:07', NULL, NULL, 0),
+(227220, 'MARIA DOLORES', 'OROZCO', 'DELGADO', NULL, '5585310493', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TV', '2017-10-04 10:40:05', NULL, NULL, 0),
+(227221, 'CONSUELO', 'GONZALEZ', 'ROSAS', NULL, '5546508727', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 10:50:48', NULL, NULL, 0),
+(227222, 'SOFIA', 'GOMEZ', 'TORRES', NULL, '5575021219', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 10:53:44', NULL, NULL, 0),
+(227223, 'MARIA DE LOS ANGELES ', 'ARROLLO', 'ALVAREZ', NULL, '7341327594', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 11:12:19', NULL, NULL, 0),
+(227224, 'MARIA', 'ALVAREZ', 'SOLANO', NULL, '7341327594', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 11:13:06', NULL, NULL, 0),
+(227225, 'YANET GUADALUPE', 'CARLON', 'VILLANUEVA', NULL, '5585761864', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 11:20:18', NULL, NULL, 0),
+(227226, 'ODON', 'DURAN', 'HUERTA VALDEZ', NULL, '5513661756', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 11:30:02', NULL, NULL, 0),
+(227227, 'MARIA VIRGINIA', 'MEDINA', 'RAMIREZ', NULL, '5517006323', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 11:41:15', NULL, NULL, 0),
+(227228, 'FAUSTINO', 'RENDON', 'ACEVEDO', NULL, '7715691852', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'COQUE VA', '2017-10-04 11:50:35', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pagos`
+--
+-- Creación: 30-08-2017 a las 16:56:24
 --
 
 CREATE TABLE IF NOT EXISTS `pagos` (
@@ -6380,12 +6773,23 @@ INSERT INTO `pagos` (`id_pago`, `monto`, `concepto`, `fecha`, `folio_anterior`, 
 (1369, 0, 'PAGARE 1/12', '2017-09-18', 1329, 0, 22551, '2017-09-18', 1545, 3),
 (1305, 550, 'LIQUIDA', '2017-09-18', NULL, 0, 22609, '2017-09-25', 2397, 1),
 (1306, 10333, 'ANTICIPO', '2017-09-18', NULL, 58552, 22610, '2017-07-25', 2398, 1),
-(1332, 58552, 'LIQUIDA', '2017-09-18', 1306, 0, 22610, '2017-08-16', 2398, 2);
+(1332, 58552, 'LIQUIDA', '2017-09-18', 1306, 0, 22610, '2017-08-16', 2398, 2),
+(1339, 3000, 'LIQUIDA', '2017-09-19', NULL, 0, 22610, '2017-09-18', 2399, 1),
+(1339, 3000, 'LIQUIDA', '2017-09-19', NULL, 0, 22610, '2017-09-18', 2400, 1),
+(1339, 2500, 'LIQUIDA', '2017-09-19', NULL, 0, 22610, '2017-09-18', 2401, 1),
+(1339, 1250, 'LIQUIDA', '2017-09-19', NULL, 0, 22610, '2017-09-18', 2402, 1),
+(1370, 27155, 'liquida pagare 2/12, 3/12, 4/12, 5/12, 6/12', '2017-09-22', 1313, -107723, 22624, '2017-09-22', 1641, 5),
+(1371, 3200, 'LIQUIDA', '2017-09-25', NULL, 0, 22578, '2017-09-25', 2418, 1),
+(1372, 7200, 'APARTADO', '2017-09-27', NULL, -7200, 22578, '2017-09-27', 1617, 1),
+(1364, 5000, 'abono', '2017-09-30', 1352, 95900, 22734, '2017-09-12', 2249, 2);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pedidos`
+--
+-- Creación: 30-08-2017 a las 16:56:24
+-- Última actualización: 30-08-2017 a las 16:56:24
 --
 
 CREATE TABLE IF NOT EXISTS `pedidos` (
@@ -6402,6 +6806,8 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
 --
 -- Estructura de tabla para la tabla `pedidos_has_productos`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `pedidos_has_productos` (
   `pedidos_id` int(11) NOT NULL,
@@ -6416,6 +6822,8 @@ CREATE TABLE IF NOT EXISTS `pedidos_has_productos` (
 
 --
 -- Estructura de tabla para la tabla `presupuestos`
+--
+-- Creación: 19-09-2017 a las 16:35:19
 --
 
 CREATE TABLE IF NOT EXISTS `presupuestos` (
@@ -6745,7 +7153,7 @@ INSERT INTO `presupuestos` (`id`, `precio`, `promocion`, `vigencia`, `pacientes_
 (316, NULL, NULL, NULL, 22074, 'VARICES', NULL, NULL, NULL, NULL, NULL),
 (317, NULL, NULL, NULL, 100142, 'ACNE', NULL, NULL, NULL, NULL, NULL),
 (318, NULL, NULL, NULL, 100143, 'LIPOLASER', NULL, NULL, NULL, NULL, NULL),
-(319, NULL, NULL, NULL, 22075, 'LIPOLASER', NULL, NULL, NULL, NULL, 12),
+(319, NULL, NULL, NULL, 22075, 'LIPOLASER', NULL, NULL, NULL, NULL, NULL),
 (320, NULL, NULL, NULL, 22076, 'VARIOS', NULL, NULL, NULL, NULL, NULL),
 (321, NULL, NULL, NULL, 100146, 'VARIOS', NULL, NULL, NULL, NULL, NULL),
 (322, NULL, NULL, NULL, 100147, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
@@ -8648,7 +9056,7 @@ INSERT INTO `presupuestos` (`id`, `precio`, `promocion`, `vigencia`, `pacientes_
 (2217, NULL, NULL, NULL, 227015, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
 (2218, NULL, NULL, NULL, 227016, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
 (2219, NULL, NULL, NULL, 227017, 'AUMENTO DE GLUTEOS', NULL, NULL, NULL, NULL, NULL),
-(2220, NULL, NULL, NULL, 227018, 'facial', NULL, NULL, NULL, NULL, NULL),
+(2220, NULL, NULL, NULL, 22854, 'facial', NULL, NULL, NULL, NULL, NULL),
 (2221, NULL, NULL, NULL, 227019, 'AUMENTO DE GLUTEOS', NULL, NULL, NULL, NULL, NULL),
 (2222, NULL, NULL, NULL, 227020, 'ABDOMINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
 (2223, NULL, NULL, NULL, 227021, '', NULL, NULL, NULL, NULL, NULL),
@@ -8659,7 +9067,7 @@ INSERT INTO `presupuestos` (`id`, `precio`, `promocion`, `vigencia`, `pacientes_
 (2228, NULL, NULL, NULL, 227026, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
 (2229, NULL, NULL, NULL, 227027, 'ABDOMINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
 (2230, NULL, NULL, NULL, 227028, 'AUMENTO DE SENOS ', NULL, NULL, NULL, NULL, NULL),
-(2231, NULL, NULL, NULL, 227029, 'VALORACION', NULL, NULL, NULL, NULL, NULL),
+(2231, NULL, NULL, NULL, 22841, 'VALORACION', NULL, NULL, NULL, NULL, NULL),
 (2232, NULL, NULL, NULL, 22823, 'REJUVENECIMIENTO FACIAL', NULL, NULL, NULL, NULL, NULL),
 (2233, NULL, NULL, NULL, 227031, 'ABDONOPLASTIA ', NULL, NULL, NULL, NULL, NULL),
 (2234, NULL, NULL, NULL, 227032, 'FACIAL ', NULL, NULL, NULL, NULL, NULL),
@@ -8755,10 +9163,10 @@ INSERT INTO `presupuestos` (`id`, `precio`, `promocion`, `vigencia`, `pacientes_
 (2324, NULL, NULL, NULL, 227063, 'ABDOMINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
 (2325, NULL, NULL, NULL, 227064, 'ABDOMINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
 (2326, NULL, NULL, NULL, 22813, 'LIFTING', NULL, NULL, NULL, NULL, NULL),
-(2327, NULL, NULL, NULL, 227066, 'Valoración', NULL, NULL, NULL, NULL, NULL),
+(2327, NULL, NULL, NULL, 22845, 'Valoración', NULL, NULL, NULL, NULL, NULL),
 (2328, NULL, NULL, NULL, 227067, 'VALORACIÓN', NULL, NULL, NULL, NULL, NULL),
 (2329, NULL, NULL, NULL, 227068, 'VALORACIÓN', NULL, NULL, NULL, NULL, NULL),
-(2330, NULL, NULL, NULL, 227069, 'ABDOMINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2330, NULL, NULL, NULL, 22844, 'ABDOMINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
 (2331, NULL, NULL, NULL, 22825, 'VARIOS', NULL, NULL, NULL, NULL, NULL),
 (2332, NULL, NULL, NULL, 22820, 'LIPOLISIS LASER', NULL, NULL, NULL, NULL, NULL),
 (2333, NULL, NULL, NULL, 22816, 'INTERNET', NULL, NULL, NULL, NULL, NULL),
@@ -8826,12 +9234,145 @@ INSERT INTO `presupuestos` (`id`, `precio`, `promocion`, `vigencia`, `pacientes_
 (2395, 0, NULL, NULL, 22551, 'BRASSIER', NULL, NULL, NULL, NULL, NULL),
 (2396, 798, NULL, NULL, 22551, '10% MORATORIO', NULL, NULL, NULL, NULL, NULL),
 (2397, 550, NULL, NULL, 22609, 'SAFE VEIN', NULL, NULL, NULL, NULL, NULL),
-(2398, 68885, NULL, NULL, 22610, 'LIPO PAQ 3 + PAPADA', NULL, NULL, NULL, NULL, NULL);
+(2398, 68885, NULL, NULL, 22610, 'LIPO PAQ 3 + PAPADA', NULL, NULL, NULL, NULL, NULL),
+(2399, 3000, NULL, NULL, 22610, 'FAJA', NULL, NULL, NULL, NULL, NULL),
+(2400, 3000, NULL, NULL, 22610, 'AMINOACIDOS 3', NULL, NULL, NULL, NULL, NULL),
+(2401, 2500, NULL, NULL, 22610, 'TORERA', NULL, NULL, NULL, NULL, NULL),
+(2402, 1250, NULL, NULL, 22610, 'MENTONERA', NULL, NULL, NULL, NULL, NULL),
+(2403, NULL, NULL, NULL, 227104, 'LIPOSUCCIÓN', NULL, NULL, NULL, NULL, NULL),
+(2404, NULL, NULL, NULL, 227105, 'LIPOSUCCIÓN', NULL, NULL, NULL, NULL, NULL),
+(2405, NULL, NULL, NULL, 227106, 'LIPO', NULL, NULL, NULL, NULL, NULL),
+(2406, NULL, NULL, NULL, 227107, 'LIPO', NULL, NULL, NULL, NULL, NULL),
+(2407, NULL, NULL, NULL, 227108, 'LIPOLISIS', NULL, NULL, NULL, NULL, NULL),
+(2408, NULL, NULL, NULL, 227109, 'LIPOLISIS', NULL, NULL, NULL, NULL, NULL),
+(2409, NULL, NULL, NULL, 227110, 'LIPOLISIS', NULL, NULL, NULL, NULL, NULL),
+(2410, NULL, NULL, NULL, 227111, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2411, NULL, NULL, NULL, 227112, 'VARIOS', NULL, NULL, NULL, NULL, NULL),
+(2412, NULL, NULL, NULL, 227113, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2413, NULL, NULL, NULL, 227114, 'PAPADA', NULL, NULL, NULL, NULL, NULL),
+(2414, NULL, NULL, NULL, 227115, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2415, NULL, NULL, NULL, 22836, 'LIPOESCULTURA', NULL, NULL, NULL, NULL, NULL),
+(2416, NULL, NULL, NULL, 227117, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2417, NULL, NULL, NULL, 227118, 'LIPO ESCULTIURA', NULL, NULL, NULL, NULL, NULL),
+(2418, 3200, NULL, NULL, 22578, 'ESTUDIOS PREOPERATORIOS', NULL, NULL, NULL, NULL, NULL),
+(2419, 72000, NULL, NULL, 22578, 'LIPOESCULTURA+LT', NULL, NULL, NULL, NULL, NULL),
+(2420, NULL, NULL, NULL, 227119, 'IMPLANTES DE MAMA', NULL, NULL, NULL, NULL, NULL),
+(2421, NULL, NULL, NULL, 227120, 'TRANSPLANTE DE CABELLO', NULL, NULL, NULL, NULL, NULL),
+(2422, NULL, NULL, NULL, 227121, 'BLEFARO', NULL, NULL, NULL, NULL, NULL),
+(2423, NULL, NULL, NULL, 22839, 'PLASMA', NULL, NULL, NULL, NULL, NULL),
+(2424, NULL, NULL, NULL, 227123, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2425, NULL, NULL, NULL, 227124, 'ABDOMINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2426, NULL, NULL, NULL, 227125, 'revision varices', NULL, NULL, NULL, NULL, NULL),
+(2427, NULL, NULL, NULL, 227126, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2428, NULL, NULL, NULL, 227127, 'Primera Vez', NULL, NULL, NULL, NULL, NULL),
+(2429, NULL, NULL, NULL, 22846, 'varices', NULL, NULL, NULL, NULL, NULL),
+(2430, NULL, NULL, NULL, 227129, 'MANCHAS FACIALES', NULL, NULL, NULL, NULL, NULL),
+(2431, NULL, NULL, NULL, 227130, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2432, NULL, NULL, NULL, 22842, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2433, NULL, NULL, NULL, 227132, 'varices', NULL, NULL, NULL, NULL, NULL),
+(2434, NULL, NULL, NULL, 227133, 'Primera Vez', NULL, NULL, NULL, NULL, NULL),
+(2435, NULL, NULL, NULL, 227134, 'VARICES EN TESTICULOS', NULL, NULL, NULL, NULL, NULL),
+(2436, NULL, NULL, NULL, 227135, 'para varices', NULL, NULL, NULL, NULL, NULL),
+(2437, NULL, NULL, NULL, 227136, 'para varices', NULL, NULL, NULL, NULL, NULL),
+(2438, NULL, NULL, NULL, 227137, 'Primera Vez', NULL, NULL, NULL, NULL, NULL),
+(2439, NULL, NULL, NULL, 22843, 'Primera Vez', NULL, NULL, NULL, NULL, NULL),
+(2440, NULL, NULL, NULL, 227139, 'para varices', NULL, NULL, NULL, NULL, NULL),
+(2441, NULL, NULL, NULL, 227140, 'varices', NULL, NULL, NULL, NULL, NULL),
+(2442, NULL, NULL, NULL, 227141, 'VARICES ', NULL, NULL, NULL, NULL, NULL),
+(2443, NULL, NULL, NULL, 227142, 'para varices', NULL, NULL, NULL, NULL, NULL),
+(2444, NULL, NULL, NULL, 227143, 'Primera Vez', NULL, NULL, NULL, NULL, NULL),
+(2445, NULL, NULL, NULL, 227144, 'varices', NULL, NULL, NULL, NULL, NULL),
+(2446, NULL, NULL, NULL, 227145, 'OPERACION DE VARICES', NULL, NULL, NULL, NULL, NULL),
+(2447, NULL, NULL, NULL, 227146, 'RINOSEMTUMPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2448, NULL, NULL, NULL, 227147, 'Primera Vez', NULL, NULL, NULL, NULL, NULL),
+(2449, NULL, NULL, NULL, 227148, 'Primera Vez', NULL, NULL, NULL, NULL, NULL),
+(2450, NULL, NULL, NULL, 227149, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2451, NULL, NULL, NULL, 22852, 'RINO', NULL, NULL, NULL, NULL, NULL),
+(2452, NULL, NULL, NULL, 227151, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2453, NULL, NULL, NULL, 227152, 'LIPO MESCULTURA', NULL, NULL, NULL, NULL, NULL),
+(2454, NULL, NULL, NULL, 227153, 'LIPOESCULTURA', NULL, NULL, NULL, NULL, NULL),
+(2455, NULL, NULL, NULL, 227154, 'RINOSEMTUMPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2456, NULL, NULL, NULL, 227155, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2457, NULL, NULL, NULL, 227156, 'SAFENO', NULL, NULL, NULL, NULL, NULL),
+(2458, NULL, NULL, NULL, 227157, 'BLEFAFOPLASTIA Y BICHAT', NULL, NULL, NULL, NULL, NULL),
+(2459, NULL, NULL, NULL, 227158, 'SAFENO', NULL, NULL, NULL, NULL, NULL),
+(2460, NULL, NULL, NULL, 227159, 'FACIAL ', NULL, NULL, NULL, NULL, NULL),
+(2461, NULL, NULL, NULL, 22849, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2462, NULL, NULL, NULL, 227161, 'BLEFAROPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2463, NULL, NULL, NULL, 227162, 'IMPLANTES DE MAMA', NULL, NULL, NULL, NULL, NULL),
+(2464, NULL, NULL, NULL, 227163, 'FACIAL', NULL, NULL, NULL, NULL, NULL),
+(2465, NULL, NULL, NULL, 227164, 'TRATAMIENTO FACIAL', NULL, NULL, NULL, NULL, NULL),
+(2466, NULL, NULL, NULL, 227165, 'TRATAMIENTO FACIL', NULL, NULL, NULL, NULL, NULL),
+(2467, NULL, NULL, NULL, 227166, 'LIPO', NULL, NULL, NULL, NULL, NULL),
+(2468, NULL, NULL, NULL, 227167, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2469, NULL, NULL, NULL, 227168, 'TRATAMIENTO FACIAL', NULL, NULL, NULL, NULL, NULL),
+(2470, NULL, NULL, NULL, 227169, 'TRATAMIENTO FACIAL', NULL, NULL, NULL, NULL, NULL),
+(2471, NULL, NULL, NULL, 227170, 'MANCHAS', NULL, NULL, NULL, NULL, NULL),
+(2472, NULL, NULL, NULL, 227171, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2473, NULL, NULL, NULL, 227172, 'CARA', NULL, NULL, NULL, NULL, NULL),
+(2474, NULL, NULL, NULL, 227173, 'MANCHAS EN LA CARA', NULL, NULL, NULL, NULL, NULL),
+(2475, NULL, NULL, NULL, 227174, 'ELEMINAR UNA MANCHA DE LA CARA', NULL, NULL, NULL, NULL, NULL),
+(2476, NULL, NULL, NULL, 227175, 'RITIDECTOMIA', NULL, NULL, NULL, NULL, NULL),
+(2477, NULL, NULL, NULL, 227176, 'SORIASIS', NULL, NULL, NULL, NULL, NULL),
+(2478, NULL, NULL, NULL, 227177, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2479, NULL, NULL, NULL, 227178, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2480, NULL, NULL, NULL, 227179, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2481, NULL, NULL, NULL, 227180, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2482, NULL, NULL, NULL, 227181, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2483, NULL, NULL, NULL, 227182, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2484, NULL, NULL, NULL, 227183, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2485, NULL, NULL, NULL, 22853, 'RINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2486, NULL, NULL, NULL, 227185, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2487, NULL, NULL, NULL, 227186, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2488, NULL, NULL, NULL, 22855, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2489, NULL, NULL, NULL, 227188, ' VARICES', NULL, NULL, NULL, NULL, NULL),
+(2490, NULL, NULL, NULL, 227189, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2491, NULL, NULL, NULL, 227190, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2492, NULL, NULL, NULL, 227191, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2493, NULL, NULL, NULL, 227192, 'NARIZ', NULL, NULL, NULL, NULL, NULL),
+(2494, NULL, NULL, NULL, 227193, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2495, NULL, NULL, NULL, 227194, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2496, NULL, NULL, NULL, 227195, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2497, NULL, NULL, NULL, 227196, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2498, NULL, NULL, NULL, 227197, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2499, NULL, NULL, NULL, 227198, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2500, NULL, NULL, NULL, 227199, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2501, NULL, NULL, NULL, 227200, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2502, NULL, NULL, NULL, 227201, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2503, NULL, NULL, NULL, 227202, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2504, NULL, NULL, NULL, 227203, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2505, NULL, NULL, NULL, 227204, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2506, NULL, NULL, NULL, 227205, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2507, NULL, NULL, NULL, 227206, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2508, NULL, NULL, NULL, 227207, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2509, NULL, NULL, NULL, 227208, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2510, NULL, NULL, NULL, 227209, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2511, NULL, NULL, NULL, 227210, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2512, NULL, NULL, NULL, 227211, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2513, NULL, NULL, NULL, 227212, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2514, NULL, NULL, NULL, 227213, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2515, NULL, NULL, NULL, 227214, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2516, NULL, NULL, NULL, 227215, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2517, NULL, NULL, NULL, 227216, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2518, NULL, NULL, NULL, 227217, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2519, NULL, NULL, NULL, 227218, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2520, NULL, NULL, NULL, 227219, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2521, NULL, NULL, NULL, 227220, 'RETIRO DE IMPLANTES MAMARIOS', NULL, NULL, NULL, NULL, NULL),
+(2522, NULL, NULL, NULL, 227221, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2523, NULL, NULL, NULL, 227222, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2524, NULL, NULL, NULL, 227223, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2525, NULL, NULL, NULL, 227224, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2526, NULL, NULL, NULL, 227225, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2527, NULL, NULL, NULL, 227226, 'VARICES', NULL, NULL, NULL, NULL, NULL),
+(2528, NULL, NULL, NULL, 227227, 'ABDOMINOPLASTIA', NULL, NULL, NULL, NULL, NULL),
+(2529, NULL, NULL, NULL, 227228, 'VARICES', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `productos`
+--
+-- Creación: 30-08-2017 a las 16:56:24
 --
 
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -9037,6 +9578,8 @@ INSERT INTO `productos` (`id`, `nombre`, `tipo`, `presentacion`, `gramaje`, `exi
 --
 -- Estructura de tabla para la tabla `proveedores`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `proveedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -9056,6 +9599,8 @@ INSERT INTO `proveedores` (`id`, `nombre`, `comentario`) VALUES
 
 --
 -- Estructura de tabla para la tabla `relacion_medico_paciente`
+--
+-- Creación: 30-08-2017 a las 16:56:24
 --
 
 CREATE TABLE IF NOT EXISTS `relacion_medico_paciente` (
@@ -9083,6 +9628,9 @@ INSERT INTO `relacion_medico_paciente` (`id_relacion_mp`, `id_medico_principal`,
 --
 -- Estructura de tabla para la tabla `salida_productos_deta`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+-- Última actualización: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `salida_productos_deta` (
   `id_deta` int(11) NOT NULL AUTO_INCREMENT,
@@ -9096,6 +9644,9 @@ CREATE TABLE IF NOT EXISTS `salida_productos_deta` (
 
 --
 -- Estructura de tabla para la tabla `salida_productos_master`
+--
+-- Creación: 30-08-2017 a las 16:56:24
+-- Última actualización: 30-08-2017 a las 16:56:24
 --
 
 CREATE TABLE IF NOT EXISTS `salida_productos_master` (
@@ -9112,6 +9663,8 @@ CREATE TABLE IF NOT EXISTS `salida_productos_master` (
 
 --
 -- Estructura de tabla para la tabla `tipo_citas`
+--
+-- Creación: 30-08-2017 a las 16:56:24
 --
 
 CREATE TABLE IF NOT EXISTS `tipo_citas` (
@@ -9139,6 +9692,8 @@ INSERT INTO `tipo_citas` (`id_cita`, `nombre_cita`, `for_paciente`) VALUES
 --
 -- Estructura de tabla para la tabla `tipo_usuarios`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `tipo_usuarios` (
   `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT,
@@ -9161,6 +9716,8 @@ INSERT INTO `tipo_usuarios` (`id_tipo_usuario`, `nombre_tipo_usuario`, `descripc
 
 --
 -- Estructura de tabla para la tabla `tratamientos`
+--
+-- Creación: 30-08-2017 a las 16:56:24
 --
 
 CREATE TABLE IF NOT EXISTS `tratamientos` (
@@ -10220,6 +10777,8 @@ INSERT INTO `tratamientos` (`id`, `paciente_id`, `tratamiento`, `created_at`) VA
 --
 -- Estructura de tabla para la tabla `usuarios`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -10262,6 +10821,8 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apMaterno`, `apPaterno`, `numeroUsuario
 --
 -- Estructura de tabla para la tabla `ventas`
 --
+-- Creación: 30-08-2017 a las 16:56:24
+--
 
 CREATE TABLE IF NOT EXISTS `ventas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -10278,6 +10839,8 @@ CREATE TABLE IF NOT EXISTS `ventas` (
 
 --
 -- Estructura de tabla para la tabla `ventas_has_productos`
+--
+-- Creación: 30-08-2017 a las 16:56:24
 --
 
 CREATE TABLE IF NOT EXISTS `ventas_has_productos` (
