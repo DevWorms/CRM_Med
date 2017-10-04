@@ -100,6 +100,7 @@ class Usuarios
                             $stm->bindValue(7, $perm_admin, PDO::PARAM_INT);
                             $stm->execute();
 
+<<<<<<< HEAD
                             // SI ES MEDICO  
                             if ($perm_medico == 1) { 
                                 $query = "INSERT INTO cedulas (id_medico, cedula) VALUES (?, ?);"; 
@@ -108,6 +109,16 @@ class Usuarios
                                 $stm->bindValue(2, $cedula, PDO::PARAM_STR); 
                                 $stm->execute(); 
                             }  
+=======
+                            // SI ES MEDICO 
+                            if ($perm_medico == 1) {
+                                $query = "INSERT INTO cedulas (id_medico, cedula) VALUES (?, ?);";
+                                $stm = $this->pdo->prepare($query);
+                                $stm->bindValue(1, $id, PDO::PARAM_INT);
+                                $stm->bindValue(2, $cedula, PDO::PARAM_STR);
+                                $stm->execute();
+                            } 
+>>>>>>> Stagging
 
                             $res['estado'] = 1;
                             $res['id'] = $id;
