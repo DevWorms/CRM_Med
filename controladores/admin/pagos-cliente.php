@@ -17,7 +17,7 @@
                 
                 <div class="caption-full">
                     <h2 style="display:inline; color:#337ab7;">Financiero - Ver Pagos de los Clientes</h2>
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title=""></span>
+                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Ve todos los pagos de un cliente en específico."></span>
                     <div id="error"></div>
                     <hr>
                      <!-- Search Bar -->
