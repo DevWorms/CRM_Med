@@ -98,10 +98,10 @@
                                     <div id="scrollCitas" class="scroll">
                                         <table class="table table-striped" id="citas_by_date">
                                             <thead>
-                                            <tr>
-                                                <th style="text-align:center">Hora</th>
-                                                <th style="text-align:center">Tipo de Cita</th>
-                                            </tr>
+                                                <tr>
+                                                    <th style="text-align:center">Hora</th>
+                                                    <th style="text-align:center">Cantidad de Citas</th>
+                                                </tr>
                                             </thead>
                                             <tbody style="text-align:center;">
                                             </tbody>

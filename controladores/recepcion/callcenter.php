@@ -96,17 +96,18 @@
                                                 </div>
                                             </fieldset>
                                             <br><br>
-                                            <table class="table table-striped" id="citas_by_date">
-                                                <thead>
-                                                <tr>
-                                                    <th style="text-align:center">Hora</th>
-                                                    <th style="text-align:center">Tipo de Cita</th>
-                                                    <th style="text-align:center">Paciente</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody style="text-align:center;">
-                                                </tbody>
-                                            </table>
+                                            <div style="max-height: 300px; overflow-y: scroll;">
+                                                <table class="table table-striped" id="citas_by_date" >
+                                                    <thead>
+                                                    <tr>
+                                                        <th style="text-align:center">Hora</th>
+                                                        <th style="text-align:center">Cantidad de Citas</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody style="text-align:center;">
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </fieldset>
                                     </div>
 
@@ -277,6 +278,5 @@
                 </div>
             </div>
         </div>
-
     <script type="text/javascript" src="<?php echo app_url(); ?>js/callcenter.js"></script>
 <?php include dirname(__FILE__) . '/../layouts/footer.php'; ?>
