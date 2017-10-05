@@ -904,7 +904,7 @@ class Medico {
         $res = ['estado' => 0];
 
         try {
-            $query = "SELECT id, nombre, apPaterno FROM usuarios u INNER JOIN accesos a ON u.id=a.id_usuario WHERE a.medico= true OR a.medico = true OR u.id_tipo=2 OR u.id_tipo=7;";
+            $query = "SELECT id, nombre, apPaterno, id_tipo FROM usuarios u INNER JOIN accesos a ON u.id=a.id_usuario WHERE (a.medico = true) and( u.id_tipo=2 OR u.id_tipo=7) and (u.id_tipo != 5);";
             $stm = $this->pdo->prepare($query);
             $stm->execute();
             $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
