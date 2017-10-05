@@ -11,7 +11,7 @@ $().ready(function() {
         $("#fecha").change(function() {
             var date = Date.parse($("#fecha").val());
             if(!isNaN(date)) {
-                getCitas("fecha");
+                getCountCitas("fecha","citas_by_date");
             }
         });
     }
@@ -805,6 +805,53 @@ function getCitas(fecha_id) {
                     });
                     if (Object.keys(response.citas).length < 1) {
                         $('#citas_by_date tr:last').after('<tr>' +
+                            '<td colspan="2" style="text-align:center">No se encontraron citas el día ' + $("#"+fecha_id).val() + '</td>' +
+                            '</tr>');
+                    }
+                } else {
+                    error(response.mensaje);
+                }
+            },
+            error: function (response) {
+                error("Ocurrio un error");
+            },
+            complete: function () {
+                $("#wait").hide();
+            }
+        });
+    }
+}
+
+function getCountCitas(fecha_id,table_id){
+    var table = document.getElementById("citas_by_date");
+    if (table !== null) {
+        for (var i = table.rows.length - 1; i > 0; i--) {
+            table.deleteRow(i);
+        }
+        $.ajax({
+            type: 'POST',
+            url: APP_URL + 'class/Paciente.php',
+            data: {
+                post: 'getCountCitasHoraByFecha',
+                fecha: $("#" + fecha_id).val()
+            },
+            beforeSend: function () {
+                $("#wait").show();
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+                if (response.estado == 1) {
+                    $("#error").html("");
+                    var contenido = "";
+                    response.conteo_citas.forEach(function (cita) {
+                        contenido += "<tr>";
+                        contenido += "<td>" + cita.hora_ini + "</td>";
+                        contenido += "<td style='text-align: center'>" + cita.citasXhora + "</td>";
+                        contenido += "</tr>";
+                    });
+                    $('#' + table_id + ' tr:last').after(contenido);
+                    if (Object.keys(response.conteo_citas).length < 1) {
+                        $('#' + table_id + ' tr:last').after('<tr>' +
                             '<td colspan="2" style="text-align:center">No se encontraron citas el día ' + $("#"+fecha_id).val() + '</td>' +
                             '</tr>');
                     }

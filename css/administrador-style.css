@@ -49,3 +49,11 @@ footer {
   padding-top: 10px;
 
 }
+
+.scrollCedula {
+  width: 371px;
+  height: 100px;
+  overflow: scroll;
+  overflow-x:hidden;  
+  overflow-y:auto;   
+}
