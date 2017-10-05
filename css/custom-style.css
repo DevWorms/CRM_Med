@@ -180,3 +180,29 @@ p.form-title
 
     height: 540px;
 }
+
+.modal-content
+{
+    border-radius: 20px;
+}
+
+.modal-body
+{
+    border-radius: 20px;
+}
+
+.input-sp-width
+{
+    padding: 6px 30px;
+}
+
+.btn-sp-submit
+{
+    width: 140px;
+    margin: 30px 0;
+}
+
+.form-top-space
+{
+    margin-top: 20px;
+}

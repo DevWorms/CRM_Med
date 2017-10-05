@@ -40,13 +40,13 @@
 
                     <div class="row">
                         <div class="col-md-12">
+                            
                             <ul class="nav nav-tabs nav-bottom-space">
                                 <li class="active"><a data-toggle="tab" href="#por-confirmar">Pagos por confirmar</a></li>
                                 <li><a data-toggle="tab" href="#confirmados">Pagos Confirmados</a></li>
                                 <li><a data-toggle="tab" href="#no-confirmados">Pagos no confirmados</a></li>
                             </ul>
                         
-
                             <div class="tab-content">
                                 <!-- +++++++++  PESTAÑA POR CONFIRMAR  +++++++++ -->
                                 <div id="por-confirmar" class="tab-pane fade in active">
@@ -397,7 +397,9 @@
                                         </div>
                                     </div>
                                     <!-- Fin Tarjeta -->
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
