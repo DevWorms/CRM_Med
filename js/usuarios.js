@@ -18,6 +18,26 @@ $('document').ready(function () {
         }
     });
 
+    $(function() {
+        var i = $('#div_inputCedulas p').size() + 1;
+        $('#add_cedula').click(function() {
+            $("<p><input type='text' class='form-control' id='cedula"+i+"' name='cedulas[]' value=''" +
+            "placeholder='Cedula profesional'><a href='#' id='delete_cedula"+i+"' onclick='deleteCedula("+i+")'style='font-size:10px'>Eliminar</a></p>"
+        ).appendTo("#div_inputCedulas");
+                i++;
+                return false;
+        });
+    });
+
+
+    $("#perm_medico").click(function () { 
+        if($("#perm_medico").prop('checked') == true) {
+            medicoCedula(true);
+        } else {
+            medicoCedula(false);
+        }
+    });
+
     getListUsuarios();
 
     $('#type').change(function () {
@@ -30,7 +50,7 @@ $('document').ready(function () {
                 $("#perm_financiero").prop('checked', true);
                 $("#perm_citas").prop('checked', true);
                 $("#perm_admin").prop('checked', true);
-                medicoCedula(false);
+                medicoCedula(true);
                 break;
             case "2":
                 // Activa los permisos de Médico
@@ -76,6 +96,10 @@ $('document').ready(function () {
     });
 });
 
+function deleteCedula(i) {
+    $("#cedula"+i).parents('p').remove();
+}
+
 function medicoCedula(enable) {
     if (enable) {
         $("#div_cedula").show();
@@ -86,6 +110,7 @@ function medicoCedula(enable) {
 
 function createUsuario() {
     var data = $("#newUser").serialize();
+    console.log(data);
     if (($('#password').val() != $('#confirm_password').val()) && ($('#password').val())) {
         $.notify("Las contraseñas no coinciden", "error");
         $("#error").fadeIn(1000, function () {
@@ -94,15 +119,22 @@ function createUsuario() {
     } else {
         // Si es médico, la cédula es obligatoria
         if ($("#type").val() == "2") {
-            if (!$("#cedula").val()) {
+            let cedulas = $('#div_inputCedulas p').size() + 1; // Cuántas cedulas hay?
+            let cVacias = 0;
+            for (var i = 1; i < cedulas; i++) {
+                if (!$("#cedula"+i).val()) {
+                    cVacias=cVacias+1;
+                }
+            }
+            if(cVacias > 0) {
                 $.notify("Ingresa la cédula del médico", "error");
                 $("#error").fadeIn(1000, function () {
                     $("#error").html('<div class="alert alert-danger"> &nbsp; Ingresa la cédula del médico</div>');
                 });
-
-                return;
+                return; 
             }
         }
+        /*
         $.ajax({
             type: 'POST',
             url: APP_URL + 'class/Usuarios.php',
@@ -124,6 +156,7 @@ function createUsuario() {
                 console.log(response);
             }
         });
+        */
     }
 }
 
@@ -134,7 +167,7 @@ function cleanAll() {
     $('#apPat').val("");
     $('#apMat').val("");
     $('#username').val("");
-    $('#cedula').val("");
+    $('#cedula1').val("");
     $('#perm_farmacia').prop("checked", false);
     $('#perm_recepcion').prop("checked", false);
     $('#perm_medico').prop("checked", false);
@@ -158,13 +191,16 @@ function getListUsuarios() {
             var contenido = "";
             if (response.estado == "1") {
                 response.rows.forEach(function (item) {
-                    contenido += "<tr>";
-                    contenido += "<td>" + item.nombre + " " + ((item.apPaterno == null) ? "" : item.apPaterno) + " " + ((item.apMaterno == null) ? "" : item.apMaterno) + "</td>";
-                    contenido += "<td>" + item.numeroUsuario + "</td>";
-                    contenido += "<td>" + item.incorporacion + "</td>";
-                    contenido += "<td>" + ((item.nombre_tipo_usuario == null) ? "sin tipo" : item.nombre_tipo_usuario) + "</td>";
-                    contenido += "<td>" + "<a href='#' onclick='openEditUser(" + item.id + ")'><i class='glyphicon glyphicon-pencil'></i></a>" + "</td>";
-                    contenido += "</tr>";
+                    if (item.id_tipo != 5) {
+                        contenido += "<tr>";
+                        contenido += "<td>" + item.nombre + " " + ((item.apPaterno == null) ? "" : item.apPaterno) + " " + ((item.apMaterno == null) ? "" : item.apMaterno) + "</td>";
+                        contenido += "<td>" + item.numeroUsuario + "</td>";
+                        contenido += "<td>" + item.incorporacion + "</td>";
+                        contenido += "<td>" + ((item.nombre_tipo_usuario == null) ? "sin tipo" : item.nombre_tipo_usuario) + "</td>";
+                        contenido += "<td>" + "<a href='#' onclick='openEditUser(" + item.id + ")'><i class='glyphicon glyphicon-pencil'></i></a>" + "</td>";
+                        contenido += "</tr>";
+                    }
+                    
                 });
                 $("#listUsuarios").html(contenido);
             }

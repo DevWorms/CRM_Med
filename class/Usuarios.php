@@ -35,8 +35,8 @@ class Usuarios
         $numero = $data['username'];
         $password = hash('sha256', $data['password']);
         $password2 = hash('sha256', $data['confirm_password']);
-        $tipo = (isset($data['type'])) ? $data['type'] : 0;
-        $cedula = $data['cedula'];
+        $tipo = (isset($data['permiso'])) ? $data['permiso'] : 0;
+        $cedulas = $data['cedulas'];
 
         $perm_farmacia = (isset($data['perm_farmacia']) ? 1 : 0);
         $perm_recepcion = (isset($data['perm_recepcion']) ? 1 : 0);
@@ -62,7 +62,7 @@ class Usuarios
         } else {
             if (($password === $password2) && !empty($password)) {
                 // Si es médico
-                if ($tipo == 2 && empty($cedula)) {
+                if ($tipo == 2 && count($cedulas) == 0) {
                     $res['mensaje'] = "Ingresa la cédula del médico";
                 } else {
                     try {
@@ -83,7 +83,7 @@ class Usuarios
                             $stm->bindValue(3, $apPaterno, PDO::PARAM_STR);
                             $stm->bindValue(4, $numero, PDO::PARAM_INT);
                             $stm->bindValue(5, $password, PDO::PARAM_STR);
-                            $stm->bindValue(6, $tipo, PDO::PARAM_STR);
+                            $stm->bindValue(6, $tipo, PDO::PARAM_INT);
                             $stm->execute();
 
                             $id = $this->pdo->lastInsertId();
@@ -100,26 +100,16 @@ class Usuarios
                             $stm->bindValue(7, $perm_admin, PDO::PARAM_INT);
                             $stm->execute();
 
-<<<<<<< HEAD
-                            // SI ES MEDICO  
-                            if ($perm_medico == 1) { 
-                                $query = "INSERT INTO cedulas (id_medico, cedula) VALUES (?, ?);"; 
-                                $stm = $this->pdo->prepare($query); 
-                                $stm->bindValue(1, $id, PDO::PARAM_INT); 
-                                $stm->bindValue(2, $cedula, PDO::PARAM_STR); 
-                                $stm->execute(); 
-                            }  
-=======
                             // SI ES MEDICO 
                             if ($perm_medico == 1) {
-                                $query = "INSERT INTO cedulas (id_medico, cedula) VALUES (?, ?);";
-                                $stm = $this->pdo->prepare($query);
-                                $stm->bindValue(1, $id, PDO::PARAM_INT);
-                                $stm->bindValue(2, $cedula, PDO::PARAM_STR);
-                                $stm->execute();
+                                foreach ($cedulas as $cedula) {
+                                    $query = "INSERT INTO cedulas (id_medico, cedula) VALUES (?, ?);";
+                                    $stm = $this->pdo->prepare($query);
+                                    $stm->bindValue(1, $id, PDO::PARAM_INT);
+                                    $stm->bindValue(2, $cedula, PDO::PARAM_STR);
+                                    $stm->execute();
+                                }
                             } 
->>>>>>> Stagging
-
                             $res['estado'] = 1;
                             $res['id'] = $id;
                         }
@@ -220,7 +210,7 @@ class Usuarios
     {
         $res = ["estado" => 0];
 
-        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos as ac ON ac.id_usuario = usr.id";
+        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos as ac ON ac.id_usuario = usr.id;";
 
         $stm = $this->pdo->prepare($query);
 

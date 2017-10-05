@@ -69,7 +69,12 @@ include dirname(__FILE__) . '/../layouts/header.php';
                             <div class="col-md-6 form-group">
                                 <div id="div_cedula" style="display: none">
                                     <label for="cedula">Cedula profesional</label>
-                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula profesional">
+                                    <a href="#" id="add_cedula" style="font-size:10px">&nbsp;&nbsp;&nbsp;Agregar cédula</a>
+                                    <div class="col-md-12"id="div_inputCedulas">
+                                        <p>
+                                        <input type="text" class="form-control" id="cedula1" name="cedulas[]" placeholder="Cedula profesional">
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -78,27 +83,27 @@ include dirname(__FILE__) . '/../layouts/header.php';
                             <div class="col-md-8">
                                 <div class="col-md-3 form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_farmacia" name="perm_farmacia">Farmacia</label>
+                                        <label><input type="checkbox" id="perm_farmacia" name="permiso[]" value="4">Farmacia</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_recepcion" name="perm_recepcion">Recepción</label>
+                                        <label><input type="checkbox" id="perm_recepcion" name="permiso[]" value="1">Recepción</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_medico" name="perm_medico">Médico</label>
+                                        <label><input type="checkbox" id="perm_medico" name="permiso[]" value="2">Médico</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_financiero" name="perm_financiero">Financiero</label>
+                                        <label><input type="checkbox" id="perm_financiero" name="permiso[]">Financiero</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2 form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_citas" name="perm_citas">Citas</label>
+                                        <label><input type="checkbox" id="perm_citas" name="permiso[]" value="6">Citas</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_admin" name="perm_admin">Administrador</label>
+                                        <label><input type="checkbox" id="perm_admin" name="permiso[]" value="3">Administrador</label>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +141,7 @@ include dirname(__FILE__) . '/../layouts/header.php';
                                 <thead>
                                     <th>Usuario</th>
                                     <th>Número de usuario</th>
-                                    <th>Incorporacoón</th>
+                                    <th>Incorporación</th>
                                     <th>Tipo de usuario</th>
                                     <th></th>
                                 </thead>
