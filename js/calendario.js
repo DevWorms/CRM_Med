@@ -135,7 +135,9 @@ function loadMedicos() {
         success: function(response) {
             var medicos = response.medicos;
             medicos.forEach(function(medico) {
-                $("#medico-").append("<option value='" + medico.id + "'>" + medico.nombre + " " + medico.apPaterno + "</option>");
+                if (medico.id_tipo != 5) {
+                    $("#medico-").append("<option value='" + medico.id + "'>" + medico.nombre + " " + medico.apPaterno + "</option>");
+                }
             });
         },
         error: function(response) {
@@ -228,7 +230,6 @@ function openModal(cita) {
 
     if (cita.asistencia == 0) {
         $("#asistencia-detalleEvento").html('<select id="asistioSelect-detalleEvento" class="form-control">\n' +
-            //'                                                <option disabled selected></option>\n' +
             '                                                <option value="1">Si</option>\n' +
             '                                                <option value="2">No</option>\n' +
             '                                            </select>');

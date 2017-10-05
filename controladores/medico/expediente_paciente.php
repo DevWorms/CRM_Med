@@ -25,7 +25,7 @@
                         </div>
                         <div id="header">
                         </div>
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Acceso al expediente completo del paciente "></span>
+                        <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Acceso al expediente completo del paciente "></span>
                         
                         <hr>
                         <div id="error"></div>

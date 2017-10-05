@@ -104,37 +104,22 @@ function medicoCedula(enable) {
     if (enable) {
         $("#div_cedula").show();
     } else {
+        var nCedulas = $('#div_inputCedulas p').size() + 1;
         $("#div_cedula").hide();
+        $("#cedula1").val(" ");
+        // Se eliminan los campos de cedula
+        for (var i = 2; i < nCedulas; i++) {
+            deleteCedula(i);
+        }
     }
 }
 
 function createUsuario() {
-    var data = $("#newUser").serialize();
-    console.log(data);
-    if (($('#password').val() != $('#confirm_password').val()) && ($('#password').val())) {
-        $.notify("Las contraseñas no coinciden", "error");
-        $("#error").fadeIn(1000, function () {
-            $("#error").html('<div class="alert alert-danger"> &nbsp; Las contraseñas no coinciden</div>');
-        });
-    } else {
-        // Si es médico, la cédula es obligatoria
-        if ($("#type").val() == "2") {
-            let cedulas = $('#div_inputCedulas p').size() + 1; // Cuántas cedulas hay?
-            let cVacias = 0;
-            for (var i = 1; i < cedulas; i++) {
-                if (!$("#cedula"+i).val()) {
-                    cVacias=cVacias+1;
-                }
-            }
-            if(cVacias > 0) {
-                $.notify("Ingresa la cédula del médico", "error");
-                $("#error").fadeIn(1000, function () {
-                    $("#error").html('<div class="alert alert-danger"> &nbsp; Ingresa la cédula del médico</div>');
-                });
-                return; 
-            }
-        }
-        /*
+    
+    if (camposValidos()) {
+        // Si los campos son válidos
+        var data = $("#newUser").serialize();
+        console.log(data);
         $.ajax({
             type: 'POST',
             url: APP_URL + 'class/Usuarios.php',
@@ -156,9 +141,49 @@ function createUsuario() {
                 console.log(response);
             }
         });
-        */
     }
 }
+
+function camposValidos() {
+    // si existe algún campo está vacio
+    if ( !$('#nombre').val() || !$('#apPat').val() || !$('#apMat').val() || !$('#password').val() || 
+    !$('#confirm_password').val() || !$('#username').val() || !validarCamposCedulas()) {
+        (!$('#nombre').val())? $.notify('Falta nombre', 'error'):'';
+        (!$('#apPat').val())? $.notify('Falta Apellido paterno', 'error'):'';
+        (!$('#apMat').val())? $.notify('Falta Apellido materno', 'error'):'';
+        (!$('#username').val())? $.notify('Falta numero de usuario', 'error'):'';
+        (!$('#password').val() || !$('#confirm_password').val())? $.notify('Falta contraseña', 'error'):'';
+        ($('#password').val() != $('#confirm_password').val())? $.notify('Las contraseñas deben de coincidir', 'error'):'';
+        (!$('#type').val()) ? $.notify('Indique el tipo de usuario', 'error'):'';   
+        return false;
+    } else {
+        // si todos los campos están llenos
+        // -> EVALUAR TIPO DE CARACTERES (falta)
+        return true;    
+    }
+}
+
+function validarCamposCedulas() {
+    console.log('entraaaa');
+    if ($("#perm_medico").prop('checked') == true) {
+        let cedulas = $('#div_inputCedulas p').size() +1; // Cuántas cedulas hay?
+        let cVacias = 0;
+        for (var i = 1; i < cedulas; i++) {
+            if (!$("#cedula"+i).val()) {
+                cVacias=cVacias+1;
+            }
+        }
+        
+        if(cVacias == 0) {
+            return true;
+        } else {
+            $.notify("Falta cédula del médico", "error");
+            return false;
+            
+        }
+    }
+}
+
 
 function cleanAll() {
     $('#password').val("");
