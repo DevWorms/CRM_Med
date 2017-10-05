@@ -85,27 +85,27 @@ include dirname(__FILE__) . '/../layouts/header.php';
                             <div class="col-md-8">
                                 <div class="col-md-3 form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_farmacia" name="permiso[]" value="4">Farmacia</label>
+                                        <label><input type="checkbox" id="perm_farmacia" name="perm_farmacia">Farmacia</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_recepcion" name="permiso[]" value="1">Recepción</label>
+                                        <label><input type="checkbox" id="perm_recepcion" name="perm_recepcion" >Recepción</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_medico" name="permiso[]" value="2">Médico</label>
+                                        <label><input type="checkbox" id="perm_medico" name="perm_medico" >Médico</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_financiero" name="permiso[]">Financiero</label>
+                                        <label><input type="checkbox" id="perm_financiero" name="perm_financiero">Financiero</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2 form-group">
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_citas" name="permiso[]" value="6">Citas</label>
+                                        <label><input type="checkbox" id="perm_citas" name="perm_citas">Citas</label>
                                     </div>
                                     <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_admin" name="permiso[]" value="3">Administrador</label>
+                                        <label><input type="checkbox" id="perm_admin" name="perm_admin" >Administrador</label>
                                     </div>
                                 </div>
                             </div>
