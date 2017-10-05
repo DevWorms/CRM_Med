@@ -120,6 +120,7 @@ function createUsuario() {
         // Si los campos son válidos
         var data = $("#newUser").serialize();
         console.log(data);
+        
         $.ajax({
             type: 'POST',
             url: APP_URL + 'class/Usuarios.php',
@@ -138,23 +139,23 @@ function createUsuario() {
                 }
             },
             error: function (response) {
-                console.log(response);
             }
         });
+    
     }
 }
 
 function camposValidos() {
     // si existe algún campo está vacio
     if ( !$('#nombre').val() || !$('#apPat').val() || !$('#apMat').val() || !$('#password').val() || 
-    !$('#confirm_password').val() || !$('#username').val() || !validarCamposCedulas()) {
+    !$('#confirm_password').val() || !$('#username').val()) {
         (!$('#nombre').val())? $.notify('Falta nombre', 'error'):'';
         (!$('#apPat').val())? $.notify('Falta Apellido paterno', 'error'):'';
         (!$('#apMat').val())? $.notify('Falta Apellido materno', 'error'):'';
         (!$('#username').val())? $.notify('Falta numero de usuario', 'error'):'';
         (!$('#password').val() || !$('#confirm_password').val())? $.notify('Falta contraseña', 'error'):'';
         ($('#password').val() != $('#confirm_password').val())? $.notify('Las contraseñas deben de coincidir', 'error'):'';
-        (!$('#type').val()) ? $.notify('Indique el tipo de usuario', 'error'):'';   
+       // (!$('#type').val()) ? $.notify('Indique el tipo de usuario', 'error'):'';   
         return false;
     } else {
         // si todos los campos están llenos
