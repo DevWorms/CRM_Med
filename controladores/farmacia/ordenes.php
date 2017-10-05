@@ -55,18 +55,20 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="producto">Producto&nbsp;&nbsp;</label>
+                                        <br>
                                         <input type="text" class="form-control"  id="producto" name="producto" placeholder="Nombre Producto">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="unidades">Capacidad de empaque&nbsp;&nbsp;</label>
-                                        <input type="number" class="form-control" id="unidades" name="unidades" placeholder="Capacidad de empaque">
+                                        <input type="text" class="form-control" id="unidades" name="unidades" placeholder="Capacidad de empaque">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="gramaje">Gramaje&nbsp;&nbsp;</label>
+                                        <br>
                                         <input type="text" class="form-control" id="gramaje" name="gramaje" placeholder="gramos">
                                     </fieldset>
                                 </div>
@@ -77,6 +79,7 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="tipo">Tipo&nbsp;&nbsp;</label>
+                                        <br>
                                         <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Consumible, Medicamento">
                                     </fieldset>
                                 </div>
@@ -92,13 +95,13 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="caja">Caja&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <br>
                                         <input type="text" class="form-control" id="caja" name="caja" placeholder="Caja">
                                     </fieldset>
                                 </div>
                             </div>
                             <br>
                             <div class="col-md-12">
-
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="fecha2">Fecha de Caducidad</label>
