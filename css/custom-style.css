@@ -145,6 +145,38 @@ p.form-title
     color: #a7a7a7;
 }
 
-.space25px {
-	margin-top: 25px;
+.space25px
+{
+    margin-top: 25px;
+}
+
+.nav-bottom-space
+{
+    margin-bottom: 30px;
+}
+
+.caja-pago
+{
+    height: 150px;
+    margin-bottom: 30px;
+    padding: 20px 10px;
+
+    border: 1px solid #979797;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+}
+
+.caja-pago_label
+{
+    font-weight: bold;
+}
+
+#por-confirmar,
+#confirmados,
+#no-confirmados
+{
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    height: 540px;
 }
