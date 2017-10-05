@@ -70,10 +70,12 @@ include dirname(__FILE__) . '/../layouts/header.php';
                                 <div id="div_cedula" style="display: none">
                                     <label for="cedula">Cedula profesional</label>
                                     <a href="#" id="add_cedula" style="font-size:10px">&nbsp;&nbsp;&nbsp;Agregar cédula</a>
-                                    <div class="col-md-12"id="div_inputCedulas">
-                                        <p>
-                                        <input type="text" class="form-control" id="cedula1" name="cedulas[]" placeholder="Cedula profesional">
-                                        </p>
+                                    <div class="scrollCedula">
+                                        <div class="col-md-12"id="div_inputCedulas">
+                                            <p>
+                                            <input type="text" class="form-control" id="cedula1" name="cedulas[]" placeholder="Cedula profesional">
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
