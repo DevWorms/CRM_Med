@@ -27,6 +27,20 @@
             locale: 'es',
             defaultDate: '2017-09-12',
             navLinks: true, // can click day/week names to navigate views
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end) {
+                // Display the modal.
+                // You could fill in the start and end fields based on the parameters
+                $('.modal').modal('show');
+            },
+            eventClick: function(event, element) {
+                // Display the modal and set the values to the event values.
+                $('.modal').modal('show');
+                $('.modal').find('#title').val(event.title);
+                $('.modal').find('#starts-at').val(event.start);
+                $('.modal').find('#ends-at').val(event.end);
+            },
             editable: true,
             eventLimit: true, // allow "more" link when too many events
             events: [
@@ -81,7 +95,7 @@
                 },
                 {
                     title: 'Corte de Caja',  
-                                    
+
                     start: '2017-09-28'
                 }
             ]
