@@ -84,9 +84,9 @@ class Calendario {
 
             for ($i = 0; $i < count($resultado); $i ++) {
                 if ($resultado[$i]["asistencia"] == 1 || $resultado[$i]["asistencia"] == 3) {
-                    $resultado[$i]["color"] = "#19ff60";
+                    $resultado[$i]["color"] = "#42e7d5";
                 } else if($resultado[$i]["asistencia"] == 2 || $resultado[$i]["asistencia"] == 0){
-                    $resultado[$i]["color"] = "#ff1919";
+                    $resultado[$i]["color"] = "#19a4e7";
                 }
                 //$resultado[$i]["tipo_cita"] = $this->getCita($resultado[$i]["tipo_cita"]);
             }
