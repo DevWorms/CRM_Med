@@ -137,10 +137,8 @@ p.form-title
 
 .modal-subtitle
 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
-
-    text-align: left;
 
     color: #a7a7a7;
 }
@@ -161,6 +159,7 @@ p.form-title
     margin-bottom: 30px;
     padding: 20px 10px;
 
+    color: #737373;
     border: 1px solid#d4d4d4;
     border-radius: 10px;
     background-color: #f8f8f8;
@@ -272,8 +271,25 @@ a.a-salidas
     background-color: #d9534f;
 }
 
+.por-confirmar
+{
+    width: 180px;
+
+    background-color: #777;
+}
+
 .confirmar-modal_botones
 {
     margin-top: 30px;
     margin-bottom: 10px;
+}
+
+.confirmar-highlight
+{
+    color: #5cb85c;
+}
+
+.eliminar-highlight
+{
+    color: #d9534f;
 }

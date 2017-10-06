@@ -38,6 +38,7 @@ $route = new Route();
 	$route->add('/mis_pacientes', 'controladores/medico/mis_pacientes.php');
 	$route->add('/expediente_folio', 'controladores/medico/expediente_paciente.php');
 	$route->add('/quirofano', 'controladores/medico/quirofano.php');
+	$route->add('/mis_pacientes_espera', 'controladores/medico/mis_pacientes_espera.php');
 
 	//	OTRAS RUTAS
 	$route->add('/', 'controladores/index.php');

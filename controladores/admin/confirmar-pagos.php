@@ -17,7 +17,7 @@
                 <div class="caption-full">
                     
                     <h2 style="display:inline; color:#337ab7;">Financiero - Confirmar Pagos </h2>
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title=""></span>
+                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Ve pagos por confirmar, confirmalos o eliminalos."></span>
                     <div id="error"></div>
                     <hr>
                     <!-- Search Bar -->
@@ -82,7 +82,7 @@
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
@@ -128,7 +128,7 @@
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
@@ -174,7 +174,7 @@
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
@@ -220,7 +220,7 @@
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
@@ -269,7 +269,7 @@
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
@@ -314,7 +314,7 @@
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
@@ -362,7 +362,7 @@
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
@@ -396,7 +396,7 @@
                         
                         <div class="row">
                             <div class="col-xs-12" align="center">
-                                <span class="modal-title">¿Esta seguro que desea confirmar este pago?</span>
+                                <p class="modal-title">¿Esta seguro que desea <span class="confirmar-highlight">confirmar</span> este pago?</p>
                             </div>
                         </div>
                         
@@ -421,7 +421,7 @@
                         
                         <div class="row">
                             <div class="col-xs-12" align="center">
-                                <span class="modal-title">¿Esta seguro que desea eliminar este pago?</span>
+                                <p class="modal-title">¿Esta seguro que desea <span class="eliminar-highlight">eliminar</span> este pago?</p>
                             </div>
                         </div>
                         
