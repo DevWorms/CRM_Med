@@ -1,8 +1,11 @@
 <?php
+
 include dirname(__FILE__) . '/../controladores/datos/ConexionBD.php';
 include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 /**
  * Created by PhpStorm.

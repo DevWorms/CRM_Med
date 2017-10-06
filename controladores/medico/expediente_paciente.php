@@ -232,11 +232,10 @@
 
                                     <div class="col-md-12" align="center"> 
                                         <label for="tipo_documento">Selecciona Documento</label><br>
-                                        <select class="selectpicker" id="tipo_documento" name="tipo_documento">
-                                            <option selected disabled>Selecciona un tipo</option>
-                                            <option value="1">Expediente Clínico: Cirugía</option>
-                                            <option value="2">Expediente Clínico: Tratamiento</option>   
-                                            <option value="3">Otro</option>
+                                        <select class="selectpicker" id="tipo_documento" name="tipo_documento" onchange="cargarDocumentos()">
+                                        <?php 
+                                            mostrarExpedientesMaster();
+                                         ?>
                                         </select>
 
                                         <hr class="dashed">
@@ -250,8 +249,7 @@
                                             <div class="col-md-12" >
                                                 <div class="col-md-4 form-group">
                                                     <label for="nombre_documento">Nombre del Documento</label><br>
-                                                    <select class="selectpicker" id="nombre_documento" name="nombre_documento">
-                                                        <?php echo Mostrar_Nombre_Documentos(2); ?>
+                                                    <select class="form-control" id="nombre_documento" name="nombre_documento">
                                                     </select>
                                                 </div>
 

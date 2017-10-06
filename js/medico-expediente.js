@@ -1164,3 +1164,29 @@ function loadPresupuestosFaster() {
         }
     }
 }
+
+/**
+ * [cargarDocumentos a partir del expediente master]
+ * Se dispara en el evenvto onchange
+ */
+function cargarDocumentos(){
+    var tipoDoc= $("#tipo_documento").val();
+    $.ajax({
+            type: 'POST',
+            url: APP_URL + 'controladores/utilidades/funciones/func_option_select.php',
+            data: {
+                'post': 'Mostrar_Nombre_Documentos',
+                'tipo_expediente': tipoDoc
+            },
+            success: function (response) {
+                $("#nombre_documento").html(response);
+            },
+            error: function (response) {
+                $("#error").fadeIn(1000, function () {
+                    $("#error").html('<div class="alert alert-danger"> &nbsp; Ocurrio algo inesperado</div>');
+                });
+            }
+        });
+    
+    nombre_documento
+}

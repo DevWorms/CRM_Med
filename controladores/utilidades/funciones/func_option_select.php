@@ -39,9 +39,35 @@
         $sentencia->BindParam(1,$tipo);
         $sentencia->execute();
         $resultado = $sentencia->fetchAll();
-
+        echo "<option value='0'>Selecciona un documento</option>";
         foreach ($resultado as $expediente) {   
                 echo '<option value = "' . $expediente["id_expediente"] . '">' . $expediente["nombre_expediente"] . '</option>';
+        }
+    }
+
+    function mostrarExpedientesMaster(){
+        $pdo = ConexionBD::obtenerInstancia()->obtenerBD();
+
+        $operacion = "SELECT * FROM tipo_expediente";
+        $sentencia = $pdo->prepare($operacion);
+        $sentencia->execute();
+        $resultado = $sentencia->fetchAll();
+        echo "<option value='0'>Selecciona un expediente</option>";
+        foreach ($resultado as $expediente) {   
+                echo '<option value = "' . $expediente["id_tipo"] . '">' . $expediente["descripcion"] . '</option>';
+        }
+    }
+
+    /******** LLAMANDO FUNCIOENS DE CARGA DE EXCELES QUE REQUIEREN PARAMETROS DESDE AJAX****/
+    if(isset($_POST['post'])){
+        $post = $_POST['post'];
+        switch ($post) {
+            case 'Mostrar_Nombre_Documentos':
+                echo Mostrar_Nombre_Documentos($_POST['tipo_expediente']);
+                break;            
+            default:
+                echo json_encode(array('estado' =>0 ,'mensaje' => 'Funcion no encotrada' ));
+                break;
         }
     }
 
