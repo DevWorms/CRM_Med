@@ -155,6 +155,34 @@ class Medico {
         // Devuelve json como respuesta
         echo json_encode($res);
     }
+    //pacientes en espera
+    public function misPacientesEspera() {
+        $res = ['estado' => 0];
+        try {
+            if ($this->checkPermisos()) {
+                $query = "SELECT pacientes.id, pacientes.nombre, pacientes.apPaterno, pacientes.apMaterno, 
+                              pacientes.telefono, citas.hora_ini
+                          FROM (relacion_medico_paciente 
+                          INNER JOIN pacientes ON pacientes.id=relacion_medico_paciente.id_paciente)
+                          INNER JOIN citas ON citas.pacientes_id=pacientes.id  
+                          WHERE id_medico_principal=:id OR id_medico_secundario=:id;";
+                $stm = $this->pdo->prepare($query);
+                $stm->bindValue(":id", $_SESSION["Id"], PDO::PARAM_INT);
+                $stm->execute();
+                $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
+
+                $res['estado'] = 1;
+                $res['pacientes'] = $resultado;
+            } else {
+                $res['mensaje'] = "No cuentas con los permisos correspondientes";
+            }
+        } catch (Exception $ex) {
+            $res['mensaje'] = $ex->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
 
     /*
      * Devuelve el detalle de procedimientos y citas de la función misPacientes
@@ -1030,6 +1058,9 @@ if (isset($_POST['get'])) {
             case 'misPacientes':
                 $m->misPacientes();
                 break;
+            case 'misPacientesEspera':
+                $m->misPacientesEspera();
+                break;  
             case 'detalleMiPaciente':
                 $m->detalleMiPaciente($_POST['id']);
                 break;
