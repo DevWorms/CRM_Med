@@ -293,3 +293,21 @@ a.a-salidas
 {
     color: #d9534f;
 }
+
+/* Talones de pago*/
+
+.talonesPago_btn
+{
+  margin-top: 33px;
+  height: 138px;
+}
+
+.talonesPago_btnLetra
+{
+  font-size: 29px;
+}
+
+.talon-pagoViejo-tamano-calendario-input
+{
+    width: 100%;
+}
