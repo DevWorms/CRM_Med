@@ -27,6 +27,11 @@ $route = new Route();
 	$route->add('/reporte_citas_usuarios', 'controladores/admin/reporte_cita_usuarios.php');
 	$route->add('/caja', 'controladores/admin/caja.php');
 
+	$route->add('/confirmar', 'controladores/admin/confirmar-pagos.php');
+  	$route->add('/talones', 'controladores/admin/talones-pago.php');
+  	$route->add('/finanzas', 'controladores/admin/finanzas.php');
+  	$route->add('/finanzas-caja', 'controladores/admin/finanzas-caja.php');
+  	$route->add('/pagos-cliente', 'controladores/admin/pagos-cliente.php');
 
 	//	RUTAS DE MÉDICO
 	$route->add('/recibir_paciente', 'controladores/medico/recibir_paciente.php');

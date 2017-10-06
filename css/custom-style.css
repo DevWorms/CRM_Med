@@ -137,14 +137,159 @@ p.form-title
 
 .modal-subtitle
 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
-
-    text-align: left;
 
     color: #a7a7a7;
 }
 
-.space25px {
-	margin-top: 25px;
+.space25px
+{
+    margin-top: 25px;
+}
+
+.nav-bottom-space
+{
+    margin-bottom: 30px;
+}
+
+.caja-pago
+{
+    height: 150px;
+    margin-bottom: 30px;
+    padding: 20px 10px;
+
+    color: #737373;
+    border: 1px solid#d4d4d4;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+}
+
+.caja-pago_label
+{
+    font-weight: bold;
+}
+
+#por-confirmar,
+#confirmados,
+#no-confirmados
+{
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    height: 540px;
+}
+
+.modal-content
+{
+    border-radius: 20px;
+}
+
+.modal-body
+{
+    border-radius: 20px;
+}
+
+.input-sp-width
+{
+    padding: 6px 30px;
+}
+
+.btn-sp-submit
+{
+    width: 140px;
+    margin: 30px 0;
+}
+
+.form-top-space
+{
+    margin-top: 20px;
+}
+
+.textarea-sp
+{
+    width: 95% !important;
+    margin-top: 10px;
+}
+
+a.a-entradas
+{
+    color: #2ab52a;
+}
+
+.nav-tabs > li.active > a.a-entradas,
+.nav-tabs > li.active > a.a-entradas:hover,
+.nav-tabs > li.active > a.a-entradas:focus
+{
+    cursor: default;
+
+    color: #18a118;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    background-color: #fff;
+}
+
+a.a-salidas
+{
+    color: #ff6c6c;
+}
+
+.nav-tabs > li.active > a.a-salidas,
+.nav-tabs > li.active > a.a-salidas:hover,
+.nav-tabs > li.active > a.a-salidas:focus
+{
+    cursor: default;
+
+    color: #fe4444;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    background-color: #fff;
+}
+
+.status-box
+{
+    margin-top: 5px;
+    padding: 2px 9px;
+
+    letter-spacing: 2px;
+
+    color: white;
+    border-radius: 7px;
+}
+
+.confirmado
+{
+    width: 130px;
+
+    background-color: #5cb85c;
+}
+
+.no-confirmado
+{
+    width: 165px;
+
+    background-color: #d9534f;
+}
+
+.por-confirmar
+{
+    width: 180px;
+
+    background-color: #777;
+}
+
+.confirmar-modal_botones
+{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.confirmar-highlight
+{
+    color: #5cb85c;
+}
+
+.eliminar-highlight
+{
+    color: #d9534f;
 }

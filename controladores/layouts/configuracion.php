@@ -101,7 +101,7 @@
                                 <div class="form-group space25px" align="center">
                                     <div class="row">
                                         <div class="col-xs-offset-4 col-xs-4">
-                                            <button type="submit" class="btn btn-default btn-block boton-rojo"  name="enviar" id="enviar">Cambiar contraseña</button>
+                                            <button type="submit" class="btn btn-block boton-rojo"  name="enviar" id="enviar">Cambiar datos</button>
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                 <div class="form-group space25px" align="center">
                                     <div class="row">
                                         <div class="col-xs-offset-4 col-xs-4">
-                                            <button type="submit" class="btn btn-default btn-block boton-rojo"  name="enviar" id="enviar">Cambiar contraseña</button>
+                                            <button type="submit" class="btn btn-block boton-rojo"  name="enviar" id="enviar">Cambiar contraseña</button>
                                         </div>
                                     </div>
                                 </div>

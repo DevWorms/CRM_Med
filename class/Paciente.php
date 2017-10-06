@@ -451,6 +451,29 @@ class Paciente
         return json_encode($res);
     }
 
+    /**
+     * [getCountCitasHoraByFecha regrese el contendo de citas por cada horario en un dia especifico]
+     * @param  [date] $fecha [fecha a buscar]
+     * @return [json]        [lista de conteos]
+     */
+    public function getCountCitasHoraByFecha($fecha){
+        $res['estado'] = 0;
+        $res['mensaje'] = "No se encontraron citas";
+        
+        $query = "SELECT count(hora_ini) as citasXhora, fecha,hora_ini FROM citas c WHERE fecha = :fecha GROUP BY hora_ini ORDER BY hora_ini;";
+        
+        $stm = $this->pdo->prepare($query);
+        $stm->bindValue(':fecha',$fecha);
+        $stm->execute();
+        $resultado = $stm->fetchAll();
+
+        $res['estado'] = 1;
+        $res['mensaje'] = "Citas encontradas";
+        $res['conteo_citas'] = $resultado;
+
+        return json_encode($res);
+    }
+
     private function getCita($id_cita) {
         $nombre_cita = "No archivado";
 
@@ -886,6 +909,9 @@ if (isset($_POST['get'])) {
                 break;
             case 'deleteCita':
                 echo $p->deleteCita($_POST['cita_id']);
+                break;
+            case 'getCountCitasHoraByFecha':
+                echo $p->getCountCitasHoraByFecha($_POST['fecha']);
                 break;
             default:
                 header("Location: " . app_url() . "404");

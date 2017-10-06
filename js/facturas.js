@@ -234,7 +234,10 @@ function createFacture() {
 }
 
 function addProducto() {
-    $('#productos tr:last').after('<tr>' +
+    var fechaCaducidad = new Date($("#fecha2").val());
+    var hoy = new Date();
+    if(fechaCaducidad >  hoy){
+        $('#productos tr:last').after('<tr>' +
         '<td>' + $('#producto').val() + '<input id="v_producto[]" name="v_producto[]" type="hidden" value="' + $('#producto').val() + '"></td>' +
         '<td>' + $('#unidades').val() + '<input id="v_unidades[]" name="v_unidades[]" type="hidden" value="' + $('#unidades').val() + '"></td>' +
         '<td>' + $('#gramaje').val() + '<input id="v_gramaje[]" name="v_gramaje[]" type="hidden" value="' + $('#gramaje').val() + '"></td>' +
@@ -245,8 +248,11 @@ function addProducto() {
         '<td>' + $('#lote').val() + '<input id="v_lote[]" name="v_lote[]" type="hidden" value="' + $('#lote').val() + '"></td>' +
         '<td><a style="color:red" href="#" onclick="event.preventDefault();removeProducto(this)"><i class="glyphicon glyphicon-remove"></i></a></td>' + 
         '</tr>');
-
-    cleanProductoForm();
+        cleanProductoForm();
+    }else{
+        $.notify("La fecha de caducidad no puede ser menor a la actual", "error");
+    }
+    
 }
 
 function removeProducto(rProducto){
