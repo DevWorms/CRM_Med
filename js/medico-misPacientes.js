@@ -3,6 +3,7 @@
  */
 $().ready(function() {
     loadMisPacientes();
+    loadMisPacientesEspera();
 });
 
 function loadMisPacientes() {
@@ -51,6 +52,75 @@ function loadMisPacientes() {
                     });
                 } else {
                     $("#pacientes_div").html(
+                        "<h5 >No tienes pacientes asignados</h5>"
+                    );
+                    $('#table_en_espera tr:last').after('<tr>' +
+                        '<td colspan="4" style="text-align:center">No tienes pacientes asignados</td>' +
+                        '</tr>');
+                }
+            } else {
+                msg(response.mensaje, "danger");
+            }
+        },
+        error: function (response) {
+            msg("Ocurrio un error", "danger");
+        },
+        complete: function () {
+            var others = document.querySelectorAll('*[id^="info_paciente_"]');
+            others.forEach(function (item) {
+                //$(item).slideUp(500);
+            });
+            $("#wait").hide();
+        }
+    });
+}
+function loadMisPacientesEspera() {
+    $.ajax({
+        type: 'POST',
+        url: APP_URL + 'class/Medico.php',
+        data : {
+            get: 'misPacientesEspera'
+        },
+        beforeSend: function () {
+            $("#wait").show();
+        },
+        success: function (response) {
+            response = JSON.parse(response);
+            if (response.estado == 1) {
+                if (response.pacientes.length > 0) {
+                    $("#pacientes_div_e").html("");
+                    var i = 1;
+                    response.pacientes.forEach(function (p) {
+                        var nombre = p.nombre + " " + p.apPaterno;
+                        if (p.apMaterno) {
+                            nombre = nombre + " " + p.apMaterno;
+                        }
+
+                        $("#pacientes_div_e").append(
+                            '<h5 id="paciente_' + i + '" style="cursor:pointer" onclick="showDetail(' + p.id + ')"> '
+                             + i + '. ' + p.id + ' - ' + nombre +' - '+p.hora_ini+' </h5>' +
+                            '<div id="info_paciente_' + p.id + '" style="display: none">' +
+                            '<table class="table sm-table table-condensed" id="tratamientos_' + p.id + '">' +
+                            '<thead>' +
+                            '<tr>' +
+                            '<th>Procedimientos</th>' +
+                            '<th>Ultima cita</th>' +
+                            '<th>Proxima Cita</th>' +
+                            '<th>Teléfono</th>' +
+                            '<th>Ver Completo</th>' +
+                            '</tr>' +
+                            '</thead>' +
+                            '<tbody>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '<hr class="gradient">'
+                        );
+
+                        i = i+1;
+                    });
+                } else {
+                    $("#pacientes_div_e").html(
                         "<h5 >No tienes pacientes asignados</h5>"
                     );
                     $('#table_en_espera tr:last').after('<tr>' +

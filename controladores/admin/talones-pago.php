@@ -22,7 +22,11 @@
                     <br>
                     
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 talonesPago_btn"><center>
+                            <a href="talon_nuevo"><span class="btn btn-primary talonesPago_btnLetra" id="talon_nuevoId">Talon nuevo</span></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="talon_viejo"><span class="btn btn-primary talonesPago_btnLetra" id="talon_viejoId">Talon viejo</span></a>
+                        </center>
                             
                         </div>
                     </div>

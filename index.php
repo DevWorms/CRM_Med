@@ -29,6 +29,8 @@ $route = new Route();
 
 	$route->add('/confirmar', 'controladores/admin/confirmar-pagos.php');
   	$route->add('/talones', 'controladores/admin/talones-pago.php');
+  	$route->add('/talon_nuevo', 'controladores/admin/talon-nuevo.php');
+  	$route->add('/talon_viejo', 'controladores/admin/talon-viejo.php');
   	$route->add('/finanzas', 'controladores/admin/finanzas.php');
   	$route->add('/finanzas-caja', 'controladores/admin/finanzas-caja.php');
   	$route->add('/pagos-cliente', 'controladores/admin/pagos-cliente.php');
@@ -38,6 +40,7 @@ $route = new Route();
 	$route->add('/mis_pacientes', 'controladores/medico/mis_pacientes.php');
 	$route->add('/expediente_folio', 'controladores/medico/expediente_paciente.php');
 	$route->add('/quirofano', 'controladores/medico/quirofano.php');
+	$route->add('/mis_pacientes_espera', 'controladores/medico/mis_pacientes_espera.php');
 
 	//	OTRAS RUTAS
 	$route->add('/', 'controladores/index.php');

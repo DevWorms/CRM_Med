@@ -29,6 +29,9 @@ class Usuarios
      */
     public function createUser($data)
     {
+        $res = [ 
+            'estado' => 0, 
+        ]; 
         $nombre = $data['nombre'];
         $apMaterno = $data['apMat'];
         $apPaterno = $data['apPat'];
@@ -45,9 +48,24 @@ class Usuarios
         $perm_citas = (isset($data['perm_citas']) ? 1 : 0);
         $perm_admin = (isset($data['perm_admin']) ? 1 : 0);
 
-        $res = [
-            'estado' => 0,
-        ];
+        
+        if($perm_farmacia == 1) {
+            $tipo = 4;
+        } else if ( $perm_recepcion == 1 ) {
+            $tipo = 1;
+        } elseif ($perm_medico == 1) {
+            if ($perm_admin == 1 && $perm_medico == 1) {
+                $tipo = 7;
+            } else {
+                $tipo = 2;
+            }
+        } elseif ($perm_citas == 1) {
+            $tipo = 6;
+        } elseif ($perm_admin == 1) {
+            $tipo = 3;
+        } else {
+            $tipo = 0; // ningun rol 
+        }
 
         if (empty($nombre) || empty($apPaterno) || empty($numero) || empty($password)) {
             if (empty($password)) {

@@ -15,8 +15,9 @@
         <div class="col-md-9">
             <div class="thumbnail">
                 <div class="caption-full">
+                    
                     <h2 style="display:inline; color:#337ab7;">Financiero - Confirmar Pagos </h2>
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title=""></span>
+                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Ve pagos por confirmar, confirmalos o eliminalos."></span>
                     <div id="error"></div>
                     <hr>
                     <!-- Search Bar -->
@@ -38,6 +39,7 @@
                     <!-- Search Bar -->
                     <br>
 
+                    <!-- Tarjetas -->
                     <div class="row">
                         <div class="col-md-12">
                             
@@ -54,33 +56,41 @@
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 caja-pago">
                                             <div class="col-xs-8">
-                                                <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <span class="caja-pago_label"># Recibo:</span>
+                                                    <br>
                                                     <span class="caja-pago_label">Nombre del Cliente:</span>
                                                     <br>
                                                     <span class="caja-pago_label">Concepto:</span>
                                                     <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
+                                                    <span class="caja-pago_label">Monto:</span>
+                                                    <br>
+                                                    <span class="caja-pago_label">Financiamiento (Meses):</span>
                                                 </div>
                                                 <div class="col-xs-6">
+                                                    <span>10308</span>
+                                                    <br>
                                                     <span>Juan Pérez Rodriguez</span>
                                                     <br>
                                                     <span>Operación</span>
                                                     <br>
                                                     <span>$ 20,000</span>
+                                                    <br>
+                                                    <span>12 MESES</span>
                                                 </div>    
                                             </div>
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
                                                     <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
+                                                        <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirmar">Confirmar</button>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                                                        <button class="btn btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-eliminar">Eliminar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,33 +102,41 @@
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 caja-pago">
                                             <div class="col-xs-8">
-                                                <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <span class="caja-pago_label"># Recibo:</span>
+                                                    <br>
                                                     <span class="caja-pago_label">Nombre del Cliente:</span>
                                                     <br>
                                                     <span class="caja-pago_label">Concepto:</span>
                                                     <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
+                                                    <span class="caja-pago_label">Monto:</span>
+                                                    <br>
+                                                    <span class="caja-pago_label">Financiamiento (Meses):</span>
                                                 </div>
                                                 <div class="col-xs-6">
+                                                    <span>10308</span>
+                                                    <br>
                                                     <span>Juan Pérez Rodriguez</span>
                                                     <br>
                                                     <span>Operación</span>
                                                     <br>
                                                     <span>$ 20,000</span>
+                                                    <br>
+                                                    <span>12 MESES</span>
                                                 </div>    
                                             </div>
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
                                                     <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
+                                                        <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirmar">Confirmar</button>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                                                        <button class="btn btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-eliminar">Eliminar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,33 +148,41 @@
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 caja-pago">
                                             <div class="col-xs-8">
-                                                <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <span class="caja-pago_label"># Recibo:</span>
+                                                    <br>
                                                     <span class="caja-pago_label">Nombre del Cliente:</span>
                                                     <br>
                                                     <span class="caja-pago_label">Concepto:</span>
                                                     <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
+                                                    <span class="caja-pago_label">Monto:</span>
+                                                    <br>
+                                                    <span class="caja-pago_label">Financiamiento (Meses):</span>
                                                 </div>
                                                 <div class="col-xs-6">
+                                                    <span>10308</span>
+                                                    <br>
                                                     <span>Juan Pérez Rodriguez</span>
                                                     <br>
                                                     <span>Operación</span>
                                                     <br>
                                                     <span>$ 20,000</span>
+                                                    <br>
+                                                    <span>12 MESES</span>
                                                 </div>    
                                             </div>
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
                                                     <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
+                                                        <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirmar">Confirmar</button>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                                                        <button class="btn btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-eliminar">Eliminar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,33 +194,41 @@
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 caja-pago">
                                             <div class="col-xs-8">
-                                                <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <span class="caja-pago_label"># Recibo:</span>
+                                                    <br>
                                                     <span class="caja-pago_label">Nombre del Cliente:</span>
                                                     <br>
                                                     <span class="caja-pago_label">Concepto:</span>
                                                     <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
+                                                    <span class="caja-pago_label">Monto:</span>
+                                                    <br>
+                                                    <span class="caja-pago_label">Financiamiento (Meses):</span>
                                                 </div>
                                                 <div class="col-xs-6">
+                                                    <span>10308</span>
+                                                    <br>
                                                     <span>Juan Pérez Rodriguez</span>
                                                     <br>
                                                     <span>Operación</span>
                                                     <br>
                                                     <span>$ 20,000</span>
+                                                    <br>
+                                                    <span>12 MESES</span>
                                                 </div>    
                                             </div>
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
                                                     <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
+                                                        <button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirmar">Confirmar</button>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                                                        <button class="btn btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-eliminar">Eliminar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -204,38 +238,45 @@
                                 </div>
 
                                 <!-- +++++++++  PESTAÑA CONFIRMADOS  +++++++++ -->
-                                <div id="confirmados" class="tab-pane fade">            
-                                    <!-- Tarjeta Pagos por confirmar -->
+                                <div id="confirmados" class="tab-pane fade">
+                                    <!-- Tarjeta Pagos confirmados -->
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 caja-pago">
                                             <div class="col-xs-8">
-                                                <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <span class="caja-pago_label"># Recibo:</span>
+                                                    <br>
                                                     <span class="caja-pago_label">Nombre del Cliente:</span>
                                                     <br>
                                                     <span class="caja-pago_label">Concepto:</span>
                                                     <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
+                                                    <span class="caja-pago_label">Monto:</span>
+                                                    <br>
+                                                    <span class="caja-pago_label">Financiamiento (Meses):</span>
                                                 </div>
                                                 <div class="col-xs-6">
+                                                    <span>10308</span>
+                                                    <br>
                                                     <span>Juan Pérez Rodriguez</span>
                                                     <br>
                                                     <span>Operación</span>
                                                     <br>
                                                     <span>$ 20,000</span>
+                                                    <br>
+                                                    <span>12 MESES</span>
                                                 </div>    
                                             </div>
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                                                    <div class="col-xs-offset-4 col-xs-4">
+                                                        <div class="status-box confirmado" align="center">
+                                                            <span>CONFIRMADO</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -243,37 +284,44 @@
                                     </div>
                                     <!-- Fin Tarjeta -->
 
-                                    <!-- Tarjeta Pagos por confirmar -->
+                                    <!-- Tarjeta Pagos confirmados -->
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 caja-pago">
                                             <div class="col-xs-8">
-                                                <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <span class="caja-pago_label"># Recibo:</span>
+                                                    <br>
                                                     <span class="caja-pago_label">Nombre del Cliente:</span>
                                                     <br>
                                                     <span class="caja-pago_label">Concepto:</span>
                                                     <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
+                                                    <span class="caja-pago_label">Monto:</span>
+                                                    <br>
+                                                    <span class="caja-pago_label">Financiamiento (Meses):</span>
                                                 </div>
                                                 <div class="col-xs-6">
+                                                    <span>10308</span>
+                                                    <br>
                                                     <span>Juan Pérez Rodriguez</span>
                                                     <br>
                                                     <span>Operación</span>
                                                     <br>
                                                     <span>$ 20,000</span>
+                                                    <br>
+                                                    <span>12 MESES</span>
                                                 </div>    
                                             </div>
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                                                    <div class="col-xs-offset-4 col-xs-4">
+                                                        <div class="status-box confirmado" align="center">
+                                                            <span>CONFIRMADO</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -283,114 +331,45 @@
                                 </div>
 
                                 <!-- +++++++++  PESTAÑA NO CONFIRMADOS  +++++++++ -->
-                                <div id="no-confirmados" class="tab-pane fade">            
-                                    <!-- Tarjeta Pagos por confirmar -->
+                                <div id="no-confirmados" class="tab-pane fade">
+                                    <!-- Tarjeta Pagos no confirmados -->
                                     <div class="row">
                                         <div class="col-xs-10 col-xs-offset-1 caja-pago">
                                             <div class="col-xs-8">
-                                                <div class="col-xs-5">
+                                                <div class="col-xs-6">
+                                                    <span class="caja-pago_label"># Recibo:</span>
+                                                    <br>
                                                     <span class="caja-pago_label">Nombre del Cliente:</span>
                                                     <br>
                                                     <span class="caja-pago_label">Concepto:</span>
                                                     <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
+                                                    <span class="caja-pago_label">Monto:</span>
+                                                    <br>
+                                                    <span class="caja-pago_label">Financiamiento (Meses):</span>
                                                 </div>
                                                 <div class="col-xs-6">
+                                                    <span>10308</span>
+                                                    <br>
                                                     <span>Juan Pérez Rodriguez</span>
                                                     <br>
                                                     <span>Operación</span>
                                                     <br>
                                                     <span>$ 20,000</span>
+                                                    <br>
+                                                    <span>12 MESES</span>
                                                 </div>    
                                             </div>
                                             <div class="col-xs-4">
                                                 <div class="row">
                                                     <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
+                                                        <span class="caja-pago_label">Fecha de Pago:</span><span> 10-10-2017</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 50px;">
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Fin Tarjeta -->
-
-                                    <!-- Tarjeta Pagos por confirmar -->
-                                    <div class="row">
-                                        <div class="col-xs-10 col-xs-offset-1 caja-pago">
-                                            <div class="col-xs-8">
-                                                <div class="col-xs-5">
-                                                    <span class="caja-pago_label">Nombre del Cliente:</span>
-                                                    <br>
-                                                    <span class="caja-pago_label">Concepto:</span>
-                                                    <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <span>Juan Pérez Rodriguez</span>
-                                                    <br>
-                                                    <span>Operación</span>
-                                                    <br>
-                                                    <span>$ 20,000</span>
-                                                </div>    
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <div class="row">
-                                                    <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-top: 50px;">
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Fin Tarjeta -->
-
-                                    <!-- Tarjeta Pagos por confirmar -->
-                                    <div class="row">
-                                        <div class="col-xs-10 col-xs-offset-1 caja-pago">
-                                            <div class="col-xs-8">
-                                                <div class="col-xs-5">
-                                                    <span class="caja-pago_label">Nombre del Cliente:</span>
-                                                    <br>
-                                                    <span class="caja-pago_label">Concepto:</span>
-                                                    <br>
-                                                    <span class="caja-pago_label">Cantidad:</span>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <span>Juan Pérez Rodriguez</span>
-                                                    <br>
-                                                    <span>Operación</span>
-                                                    <br>
-                                                    <span>$ 20,000</span>
-                                                </div>    
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <div class="row">
-                                                    <div class="col-xs-12" align="right">
-                                                        <span><b>Fecha de Pago:</b> 10-10-2017</span>
-                                                    </div>
-                                                </div>
-                                                <div class="row" style="margin-top: 50px;">
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-success">Confirmar</button>
-                                                    </div>
-                                                    <div class="col-xs-6">
-                                                        <button class="btn btn-sm btn-block btn-danger">Eliminar</button>
+                                                    <div class="col-xs-offset-2 col-xs-8">
+                                                        <div class="status-box no-confirmado" align="center">
+                                                            <span>NO CONFIRMADO</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -402,9 +381,63 @@
                             
                         </div>
                     </div>
+                    <!-- Tarjetas -->
+
                 </div>
             </div>
         </div>
+
+        <!-- Modals -->
+        <div id="modal-confirmar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body" style="background:#EFEFEF !important;" align="center">
+                        
+                        <div class="row">
+                            <div class="col-xs-12" align="center">
+                                <p class="modal-title">¿Esta seguro que desea <span class="confirmar-highlight">confirmar</span> este pago?</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row confirmar-modal_botones">
+                            <div class="col-xs-offset-3 col-xs-3">
+                                <button class="btn btn-sm btn-default btn-block">SI</button>
+                            </div>
+                            <div class="col-xs-3">
+                                <button class="btn btn-sm btn-default btn-block">NO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal-eliminar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body" style="background:#EFEFEF !important;" align="center">
+                        
+                        <div class="row">
+                            <div class="col-xs-12" align="center">
+                                <p class="modal-title">¿Esta seguro que desea <span class="eliminar-highlight">eliminar</span> este pago?</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row confirmar-modal_botones">
+                            <div class="col-xs-offset-3 col-xs-3">
+                                <button class="btn btn-sm btn-default btn-block">SI</button>
+                            </div>
+                            <div class="col-xs-3">
+                                <button class="btn btn-sm btn-default btn-block">NO</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Modals -->
     </div>
 </div>
 

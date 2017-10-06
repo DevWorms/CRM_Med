@@ -3,6 +3,8 @@ include dirname(__FILE__) . '/../controladores/datos/ConexionBD.php';
 include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 include dirname(__FILE__) . '/FileUpload.php';
 
+error_reporting(0);
+
 if(!isset($_SESSION)){
     session_start();
 }
@@ -137,6 +139,34 @@ class Medico {
                               pacientes.telefono
                           FROM relacion_medico_paciente 
                           INNER JOIN pacientes ON pacientes.id=relacion_medico_paciente.id_paciente 
+                          WHERE id_medico_principal=:id OR id_medico_secundario=:id;";
+                $stm = $this->pdo->prepare($query);
+                $stm->bindValue(":id", $_SESSION["Id"], PDO::PARAM_INT);
+                $stm->execute();
+                $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
+
+                $res['estado'] = 1;
+                $res['pacientes'] = $resultado;
+            } else {
+                $res['mensaje'] = "No cuentas con los permisos correspondientes";
+            }
+        } catch (Exception $ex) {
+            $res['mensaje'] = $ex->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
+    //pacientes en espera
+    public function misPacientesEspera() {
+        $res = ['estado' => 0];
+        try {
+            if ($this->checkPermisos()) {
+                $query = "SELECT pacientes.id, pacientes.nombre, pacientes.apPaterno, pacientes.apMaterno, 
+                              pacientes.telefono, citas.hora_ini
+                          FROM (relacion_medico_paciente 
+                          INNER JOIN pacientes ON pacientes.id=relacion_medico_paciente.id_paciente)
+                          INNER JOIN citas ON citas.pacientes_id=pacientes.id  
                           WHERE id_medico_principal=:id OR id_medico_secundario=:id;";
                 $stm = $this->pdo->prepare($query);
                 $stm->bindValue(":id", $_SESSION["Id"], PDO::PARAM_INT);
@@ -902,7 +932,7 @@ class Medico {
         $res = ['estado' => 0];
 
         try {
-            $query = "SELECT id, nombre, apPaterno FROM usuarios u INNER JOIN accesos a ON u.id=a.id_usuario WHERE a.medico= true OR a.medico = true OR u.id_tipo=2 OR u.id_tipo=7;";
+            $query = "SELECT id, nombre, apPaterno, id_tipo FROM usuarios u INNER JOIN accesos a ON u.id=a.id_usuario WHERE (a.medico = true) and( u.id_tipo=2 OR u.id_tipo=7) and (u.id_tipo != 5);";
             $stm = $this->pdo->prepare($query);
             $stm->execute();
             $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
@@ -1030,6 +1060,9 @@ if (isset($_POST['get'])) {
             case 'misPacientes':
                 $m->misPacientes();
                 break;
+            case 'misPacientesEspera':
+                $m->misPacientesEspera();
+                break;  
             case 'detalleMiPaciente':
                 $m->detalleMiPaciente($_POST['id']);
                 break;
