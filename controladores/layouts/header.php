@@ -49,14 +49,14 @@
         .cuadradoAsitio {
             width: 20px;
             height: 20px;
-            background: #19ff60;
+            background: #42e7d5;
             position: absolute;
         }
 
         .cuadradoNoAsitio {
             width: 20px;
             height: 20px;
-            background: #ff1919;
+            background: #19a4e7;
             position: absolute;
         }
 
