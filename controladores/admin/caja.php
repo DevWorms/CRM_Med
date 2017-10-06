@@ -131,7 +131,7 @@
 
 
     <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">    
+        <div class="modal-dialog custom-width">    
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -139,8 +139,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            <table class="table table-bordered">
+                        <div class="col-md-12" >
+                            <table class="table table-bordered table-condensed">
                                 <thead>
                                     <tr>
                                         <th>Folio del Paciente</th>
@@ -152,7 +152,6 @@
                                         <th>Folio</th>
                                         <th>Forma de Pago</th>
                                         <th>Observaciones</th>
-                                        <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody id="corteDeCaja"></tbody>

@@ -19,3 +19,7 @@ table
     background-position: top;
 }
 
+.custom-width
+{
+	width: 1000px;
+}
