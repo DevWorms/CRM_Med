@@ -15,15 +15,15 @@
         <div class="col-md-9">
             <div class="thumbnail">
                 <div class="caption-full">
-                    <h2 style="display:inline; color:#337ab7;">Financiero - Capturar Talones de Pago </h2>
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title=""></span>
+                    <h2 style="display:inline; color:#337ab7;">Financiero - Capturar Talones Nuevos</h2>
+                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Captura talones de pago nuevos."></span>
                     <div id="error"></div>
                     <hr>
                     <br>
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="talones"><span class="btn btn-primary" id="regrsar_nuevoId">regresar</span></a>
+                            <a href="talones" class="btn btn-default btn-sm" id="regrsar_nuevoId"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;&nbsp;Regresar</a>
                             <br>
                             <br>
                             <div class="form-group row">

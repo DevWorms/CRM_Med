@@ -22,12 +22,13 @@
                     <br>
                     
                     <div class="row">
-                        <div class="col-md-12 talonesPago_btn"><center>
-                            <a href="talon_nuevo"><span class="btn btn-primary talonesPago_btnLetra" id="talon_nuevoId">Talon nuevo</span></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="talon_viejo"><span class="btn btn-primary talonesPago_btnLetra" id="talon_viejoId">Talon viejo</span></a>
-                        </center>
-                            
+                        <div class="col-md-12 talonesPago_btn">
+                            <div class="col-xs-3 col-xs-offset-3" align="center">
+                                <a href="talon_nuevo" class="btn btn-primary btn-lg" id="talon_nuevoId">Talon nuevo</a>
+                            </div>
+                            <div class="col-xs-3" align="center">
+                                <a href="talon_viejo" class="btn btn-primary btn-lg" id="talon_viejoId">Talon viejo</a>                            
+                            </div>
                         </div>
                     </div>
                 </div>
