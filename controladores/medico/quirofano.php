@@ -45,7 +45,7 @@
                             <form id="form-genSalidas">
                             <input type="hidden" id="user" name="user" value="<?php echo $_SESSION["Id"];?>">
                             <input type="hidden" id="medico" name="medico" value="">
-                            <input type="hidden" id="paciente" name="paciente" value="">
+                            <input type="hidden" id="paciente" name="paciente" value="" >
                             <input type="hidden" id="get" name="get" value="generarSalida">
                             <div class="row">
                                 <div class="col-md-12">
@@ -79,11 +79,8 @@
                                 <div class="col-md-12">
                                     <ul class="nav nav-tabs">
                                         <li class="active"><a data-toggle="tab" href="#resumen">Resumen</a></li>
-                                        <li><a data-toggle="tab" href="#presupuesto">Nuevo Presupuesto      </a></li>
-                                        <li><a data-toggle="tab" href="#detalle_presupuestos" onclick="loadPresupuestos();">Ver Presupuestos</a></li>
                                         <li><a data-toggle="tab" href="#observaciones" onclick="loadObservaciones();">Observaciones</a></li>
-                                        <li><a data-toggle="tab" href="#documentos" onclick="getDocuments(); loadPresupuestosFaster();">Documentos</a>      </li>
-                                        <li><a data-toggle="tab" href="#administracion">Administración</a></li>
+                                        <li><a data-toggle="tab" href="#documentos" onclick="getDocuments(); loadPresupuestosFaster();">Documentos</a></li>
                                     </ul>
                                     <div class="tab-content"> 
                             <!-- +++++++++++++++++    PESTAÑA DE RESUMEN    ++++++++++++++++++++ -->
@@ -168,79 +165,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                                                        <!-- +++++++++++++++++    PESTAÑA DE NUEVO PRESUPUESTO    ++++++++++++++++++++ -->
-                                            <div id="presupuesto" class="tab-pane fade">
-                                                
-                                                <h3>Nuevo Presupuesto</h3>
-                                                <br>                                    
-                                                
-                                                <div class="col-md-12">
-                                                    <div class="col-md-6 form-group">
-                                                        <label for="nombre_presupuesto">Nombre</label>
-                                                        <input type="text" id="nombre_presupuesto" name="nombre_presupuesto" class="form-control">
-                                                    </div>
-
-                                                    <div class="col-md-6 form-group">
-                                                        <label for="tipo_presupuesto">Tipo</label><br>
-                                                        <select class="selectpicker" id="tipo_presupuesto" name="tipo_presupuesto">
-                                                            <option value="1">Tratamiento</option>
-                                                            <option value="2">Cirugía</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="col-md-8 form-group">
-                                                        <label for="descripcion_presupuesto">Descripción</label>
-                                                        <textarea id="descripcion_presupuesto" name="descripcion_presupuesto" class="form-control" rows="4"></textarea>
-                                                    </div>
-                                                    <div class="col-md-4 form-group">
-                                                        <label for="numero_citas">Número de Sesiones o Consultas</label>
-                                                        <input type="number" id="numero_citas" name="numero_citas" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="col-md-3 form-group">
-                                                        <label for="precio_normal">Precio Normal</label>
-                                                        <input type="number" id="precio_normal" name="precio_normal" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-3 form-group">
-                                                        <label for="precio_promocion">Precio Promoción</label>
-                                                        <input type="number" id="precio_promocion" name="precio_promocion" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-3 form-group">
-                                                        <label for="precio_contado">Precio Contado</label>
-                                                        <input type="number" id="precio_contado" name="precio_contado" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-3 form-group">
-                                                        <label for="fecha">Vigencia</label>
-                                                        <input type="text" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
-                                                    </div>
-                                                </div>
-
-                                                <div align="right" class="col-md-12">
-                                                    <br>
-                                                    <button class="btn btn-success" id="crear_presupuesto" name="crear_presupuesto">Generar Presupuesto</button>
-                                                </div>
-
-                                            </div>
-                                                          <!-- +++++++++++++++++    PESTAÑA DE PRESUPUESTOS    ++++++++++++++++++++ -->
-                                            <div id="detalle_presupuestos" class="tab-pane fade">
-                                                <h3>Detalle de Presupuestos</h3> 
-                                                <br>
-
-                                                <div class="col-md-12">
-                                                    <button type="button" onclick="filtrar(1);" class="btn btn-primary" >Todos</button>
-                                                    <button type="button" onclick="filtrar(2);" class="btn btn-info" >Tratamientos</button>
-                                                    <button type="button" onclick="filtrar(3);" class="btn btn-success" >Cirugías</button>
-                                                    <button type="button" onclick="filtrar(4);" class="btn btn-default" >No Iniciados</button>
-                                                    <button type="button" onclick="filtrar(5);" class="btn btn-danger" >Vigencia Cadúca</button>
-                                                    <br><br>
-                                                </div>
-
-                                                <div id="prespuestos"></div>
-                                            </div>
+                                                           
                                             <!-- +++++++++++++++++    PESTAÑA DE OBSERVACIONES    ++++++++++++++++++++ -->
                                             <div id="observaciones" class="tab-pane fade">
                                                 <h3>Observaciones</h3>
@@ -381,29 +306,6 @@
                                 </div>
                                 -->
 
-
-                                <!-- +++++++++++++++++    
-                                    PESTAÑA DE ADMINISTRACIÓN    
-                                    ++++++++++++++++++++ -->
-                                <div id="administracion" class="tab-pane fade">
-                                    <h3>Administrar Paciente</h3>
-                                    
-                                    <table class="table sm-table table-condensed" id="admon_table">
-                                        <thead>
-                                            <tr>
-                                                <th>Presupuesto</th>
-                                                <th>Pagado</th>
-                                                <th>Restante</th>             
-                                                <th>% Para que se opere</th>
-                                                <th>Opciones</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                </div>
 
                            <!--Aqui se acab la sección de xpediente medico -->     
                             </div>
@@ -918,4 +820,6 @@
                 </div>
             </div>
 <script src="<?php echo app_url(); ?>js/salida_productos.js" type="text/javascript"></script>
+<script src="<?php echo app_url(); ?>js/medico-expediente.js" type="text/javascript"></script>
+<script src="<?php echo app_url(); ?>js/medico_quirofano.js" type="text/javascript"></script>
 <?php include dirname(__FILE__) . '/../layouts/footer.php'; ?>
