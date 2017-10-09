@@ -162,12 +162,17 @@ class Medico {
         $res = ['estado' => 0];
         try {
             if ($this->checkPermisos()) {
-                $query = "SELECT pacientes.id, pacientes.nombre, pacientes.apPaterno, pacientes.apMaterno, 
-                              pacientes.telefono, citas.hora_ini
-                          FROM (relacion_medico_paciente 
-                          INNER JOIN pacientes ON pacientes.id=relacion_medico_paciente.id_paciente)
-                          INNER JOIN citas ON citas.pacientes_id=pacientes.id  
-                          WHERE id_medico_principal=:id OR id_medico_secundario=:id;";
+                $query = "SELECT pacientes.id, 
+                          pacientes.nombre,
+                          pacientes.apPaterno,
+                          pacientes.apMaterno,
+                          presupuestos.nombre as tratamiento, 
+                          citas.hora_ini from 
+                      ((citas INNER JOIN pacientes ON citas.pacientes_id=pacientes.id) INNER JOIN
+                      relacion_medico_paciente ON pacientes.id = relacion_medico_paciente.id_paciente) 
+                      INNER JOIN presupuestos ON citas.pacientes_id=presupuestos.pacientes_id 
+                      WHERE (citas.asistencia = 3 AND citas.tipo_cita=1) AND (id_medico_principal=:id OR id_medico_secundario=:id);";
+
                 $stm = $this->pdo->prepare($query);
                 $stm->bindValue(":id", $_SESSION["Id"], PDO::PARAM_INT);
                 $stm->execute();

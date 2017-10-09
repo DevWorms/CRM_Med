@@ -3,6 +3,7 @@
  */
 $().ready(function() {
     loadPacientesEnespera();
+    loadMisPacientesEnespera();
 });
 
 function loadPacientesEnespera() {
@@ -38,6 +39,51 @@ function loadPacientesEnespera() {
                     });
                 } else {
                     $('#table_en_espera tr:last').after('<tr>' +
+                        '<td colspan="4" style="text-align:center">No hay pacientes en espera</td>' +
+                        '</tr>');
+                }
+            } else {
+                msg(response.mensaje, "danger");
+            }
+        },
+        error: function (response) {
+            msg("Ocurrio un error", "danger");
+        }
+    });
+}
+function loadMisPacientesEnespera() {
+    var table = document.getElementById("mis_en_espera");
+    if (table !== null) {
+        for (var i = table.rows.length - 1; i > 0; i--) {
+            table.deleteRow(i);
+        }
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: APP_URL + 'class/Medico.php',
+        data : {
+            get: 'misPacientesEspera'
+        },
+        success: function (response) {
+            response = JSON.parse(response);
+            if (response.estado == 1) {
+                if (response.pacientes.length > 0) {
+                    response.pacientes.forEach(function (p) {
+                        var nombre = p.nombre + " " + p.apPaterno;
+                        if (p.apMaterno) {
+                            nombre = nombre + " " + p.apMaterno;
+                        }
+
+                        $('#mis_en_espera tr:last').after('<tr>' +
+                            '<td >' + nombre + '</td>' +
+                            '<td style="text-align:center">' + p.tratamiento + '</td>' +
+                            '<td style="text-align:center">' + p.hora_ini + '</td>' +
+                            '<td><span class="btn btn-success" onclick="atender(' + p.id + ')">Atender Paciente</span></td>' +
+                            '</tr>');
+                    });
+                } else {
+                    $('#mis_en_espera tr:last').after('<tr>' +
                         '<td colspan="4" style="text-align:center">No hay pacientes en espera</td>' +
                         '</tr>');
                 }
