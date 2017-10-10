@@ -1,4 +1,7 @@
-<?php include dirname(__FILE__) . '/../layouts/header.php'; ?>
+<?php include dirname(__FILE__) . '/../layouts/header.php'; 
+ include dirname(__FILE__) . '/../utilidades/funciones/func_option_select.php'; 
+ ?>
+
 <style>
     .ui-autocomplete { z-index:2147483647; }
 </style>
@@ -67,14 +70,32 @@
                                 </div>
                             </div>
                             <br>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <textarea style="resize: none;" name="procedimiento" id="procedimiento"  class="form-control" placeholder="Información del procedimiento"></textarea>
+                              <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" id="searchMed" name="searchMed" class="form-control" placeholder="Médico que realiza la cirugia">
                                 </div>
                             </div>
                             <br>
                             <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea style="resize: none;" name="procedimiento" id="procedimiento"  class="form-control" placeholder="Información del procedimiento"></textarea>
+                                   </div>
+                            </div>
+                            <br>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div id="error"></div>
+                                    <div id="progressbox" style="">
+                                        <div id="progressbar" class="progressbar"></div ><div id="statustxt" class="statustxt">0%</div>
+                                    </div>
+                                    <div id="header">
+                                    </div>
+                                    <hr>
+                                    <div id="error"></div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <ul class="nav nav-tabs">
@@ -167,54 +188,51 @@
                                         </div>
                                                            
                                             <!-- +++++++++++++++++    PESTAÑA DE OBSERVACIONES    ++++++++++++++++++++ -->
-                                            <div id="observaciones" class="tab-pane fade">
-                                                <h3>Observaciones</h3>
-                                                <br>
+                                                   <div id="observaciones" class="tab-pane fade">
+                                            <h3>Observaciones</h3>
+                                            <br>
 
-                                                <div>
-                                                    <label for="nueva_observacion">Agrega una nueva observación</label>
-                                                    <textarea id="nueva_observacion" name="nueva_observacion" class="form-control" rows="2"></textarea>
+                                            <div>
+                                                <label for="nueva_observacion">Agrega una nueva observación</label>
+                                                <textarea id="nueva_observacion" name="nueva_observacion" class="form-control" rows="2"></textarea>
 
-                                                    <div align="right">
-                                                        <br>
-                                                        <button class="btn btn-primary" id="btn_nueva_observacion" name="btn_nueva_observacion">Añadir observación</button>
-                                                    </div>
-
-                                                    <hr class="dashed">
+                                                <div align="right">
+                                                    <br>
+                                                    <button class="btn btn-primary" id="btn_nueva_observacion" name="btn_nueva_observacion">Añadir observación</button>
                                                 </div>
 
-                                                <div id="observaciones_table"></div>
-
-
+                                                <hr class="dashed">
                                             </div>
+
+                                            <div id="observaciones_table"></div>
+
+
+                                        </div>
                                             <!-- +++++++++++++++++    PESTAÑA DE DOCUMENTOS    ++++++++++++++++++++ -->
-                                            <div id="documentos" class="tab-pane fade">
-                                                <h3>Agregar Nuevo Documento</h3>
-                                                <br>
+                                    <div id="documentos" class="tab-pane fade">
+                                    <h3>Agregar Nuevo Documento</h3>
+                                    <br>
 
-                                                <div class="col-md-12" align="center"> 
-                                                    <label for="tipo_documento">Selecciona Documento</label><br>
-                                                    <select class="selectpicker" id="tipo_documento" name="tipo_documento">
-                                                        <option selected disabled>Selecciona un tipo</option>
-                                                        <option value="1">Expediente Clínico: Cirugía</option>
-                                                        <option value="2">Expediente Clínico: Tratamiento</option>   
-                                                        <option value="3">Otro</option>
-                                                    </select>
+                                    <div class="col-md-12" align="center"> 
+                                        <label for="tipo_documento">Selecciona Documento</label><br>
+                                        <select class="selectpicker" id="tipo_documento" name="tipo_documento" onchange="cargarDocumentos()">
+                                        <?php 
+                                            mostrarExpedientesMaster();
+                                         ?>
+                                        </select>
 
-                                                    <hr class="dashed">
-                                                </div>
-                                            </div>
+                                        <hr class="dashed">
+                                    </div>
                                             
                             <!--    +++++++++++++++++++++++++++++++++++++++++++++   
                                     MOSTRAR ESTA PARTE CUANDO ESCOGEN VALUE 1 O 2   
-                           
-                                    <div id="docs1" style="display: none">
+                           -->
+                                     <div id="docs1" style="display: none">
                                         <form enctype="multipart/form-data" method="POST" id="uploadDocument" name="uploadDocument">
                                             <div class="col-md-12" >
                                                 <div class="col-md-4 form-group">
                                                     <label for="nombre_documento">Nombre del Documento</label><br>
-                                                    <select class="selectpicker" id="nombre_documento" name="nombre_documento">
-                                                        <?php //echo Mostrar_Nombre_Documentos(2); ?>
+                                                    <select class="form-control" id="nombre_documento" name="nombre_documento">
                                                     </select>
                                                 </div>
 
@@ -252,10 +270,11 @@
                                             </div>
                                         </form>
                                     </div>
-
                                     <div id="docs2" style="display: none">
                                         <form enctype="multipart/form-data" method="POST" id="uploadOtroDocument" name="uploadOtroDocument">
-                                            +++++++++++++++++++++++++++++++++++++++++++++         MOSTRAR ESTA PARTE CUANDO ESCOGEN VALUE 3       +++++++++++++++++++++++++++++++++++++++++++++   
+                                            <!--    +++++++++++++++++++++++++++++++++++++++++++++   -->
+                                            <!--      MOSTRAR ESTA PARTE CUANDO ESCOGEN VALUE 3     -->
+                                            <!--    +++++++++++++++++++++++++++++++++++++++++++++   -->
                                             <div class="col-md-12">
                                                 <div class="col-md-6 form-group">
                                                     <label for="nombre_otro_documento">Nombre del documento</label>
@@ -280,9 +299,10 @@
                                         </form>
                                     </div>
 
-                                    MOSTRAR ESTA PARTE CUANDO ESCOGEN VALUE 1 O 2   
+
+                                   <!-- MOSTRAR ESTA PARTE CUANDO ESCOGEN VALUE 1 O 2   
                                     Y ADEMÁS SELECCIONAN UN PRESUPUESTO, PARA       
-                                    MOSTRAR LOS DOCUMENTOS ASOCIADOS AL PRESUPUESTO 
+                                    MOSTRAR LOS DOCUMENTOS ASOCIADOS AL PRESUPUESTO -->
                                     <div class="col-md-12">
                                         <hr class="gradient">
 
@@ -304,7 +324,6 @@
                                     </div>
 
                                 </div>
-                                -->
 
 
                            <!--Aqui se acab la sección de xpediente medico -->     
@@ -819,7 +838,7 @@
                     </div>
                 </div>
             </div>
-<script src="<?php echo app_url(); ?>js/salida_productos.js" type="text/javascript"></script>
+
 <script src="<?php echo app_url(); ?>js/medico-expediente.js" type="text/javascript"></script>
 <script src="<?php echo app_url(); ?>js/medico_quirofano.js" type="text/javascript"></script>
 <?php include dirname(__FILE__) . '/../layouts/footer.php'; ?>
