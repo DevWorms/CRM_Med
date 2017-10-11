@@ -1,5 +1,9 @@
     <?php 
-        error_reporting(E_ALL);
+        if(!isset($_SESSION)){
+            session_start();
+        }
+
+        error_reporting(0);
         include dirname(__FILE__) . '/../layouts/header.php';
         include dirname(__FILE__) . '/../utilidades/funciones/func_option_select.php'; 
     ?>
@@ -31,7 +35,7 @@
                                         <b>Nombre de Usuario:</b>
                                     </div>
                                     <div class="col-xs-4">
-                                        <p>Juan Pérez</p>
+                                        <p><?php echo $_SESSION['Nombre']; ?></p>
                                     </div>
                                 </div>
                                 <div class="row config-info">
@@ -39,7 +43,7 @@
                                         <b>Clave de Usuario:</b>
                                     </div>
                                     <div class="col-xs-4">
-                                        <p>0999099</p>
+                                        <p><?php echo $_SESSION['numeroUsuario']; ?></p>
                                     </div>
                                 </div> 
                                 <div class="row boton-cambiar">
@@ -79,13 +83,13 @@
                         <div class="modal-body" style="background:#EFEFEF !important;" align="center">
                             <p class="modal-title">Usuario</p>
                             
-                            <p class="modal-subtitle">Introduce tu nuevo nombre y clave de Usuario</p>
+                            <p class="modal-subtitle">Introduce tu nuevo nombre </p>
                             
-                            <form class="space25px">
+                            <form class="space25px" id="form-updatePerfil">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-offset-1 col-xs-10">
-                                            <input type="text" placeholder="Nombre de Usuario" class="form-control" id="user_name" name="user_name" required>
+                                            <input type="text" placeholder="Nombre de Usuario" class="form-control" id="nombre" name="nombre" required value="<?php echo $_SESSION["name"]; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -93,15 +97,24 @@
                                 <div class="form-group space25px">
                                     <div class="row">
                                         <div class="col-xs-offset-1 col-xs-10">
-                                            <input type="text" placeholder="Clave de Usuario" class="form-control" id="user_id" name="user_id" required>
+                                            <input type="text" placeholder="Apellido paterno" class="form-control" id="paterno" name="paterno" required value="<?php echo $_SESSION["paterno"]; ?>">
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="form-group space25px">
+                                    <div class="row">
+                                        <div class="col-xs-offset-1 col-xs-10">
+                                            <input type="text" placeholder="Apellido materno" class="form-control" id="materno" name="materno" required value="<?php echo $_SESSION["materno"]; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="get" id="get" value="updatePerfil">
+                                <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $_SESSION["Id"]; ?>">
                                 <div class="form-group space25px" align="center">
                                     <div class="row">
                                         <div class="col-xs-offset-4 col-xs-4">
-                                            <button type="submit" class="btn btn-block boton-rojo"  name="enviar" id="enviar">Cambiar datos</button>
+                                            <button type="button" class="btn btn-danger"  name="enviar" id="enviar" onclick="updatePerfil()">Cambiar datos</button>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +133,7 @@
 
                             <p class="modal-subtitle">Introduce dos veces tu contraseña nueva para confirmar, los campos debajo deben coincidir para poder continuar.</p>
                             
-                            <form class="space25px">
+                            <form class="space25px" id="form-updatePass">
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-offset-1 col-xs-10">
@@ -136,11 +149,12 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <input type="hidden" name="get" id="get" value="updatePassword">
+                                <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $_SESSION["Id"]; ?>">
                                 <div class="form-group space25px" align="center">
                                     <div class="row">
                                         <div class="col-xs-offset-4 col-xs-4">
-                                            <button type="submit" class="btn btn-block boton-rojo"  name="enviar" id="enviar">Cambiar contraseña</button>
+                                            <button type="button" class="btn btn-danger"  name="enviar" id="enviar" onclick="updatePassword()">Cambiar contraseña</button>
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +163,5 @@
                     </div>
                 </div>
             </div>
- 
-    <script type="text/javascript" src="<?php echo app_url(); ?>js/recepcion.js"></script>
+    <script src="<?php echo app_url(); ?>js/configuracion.js"></script>
     <?php include dirname(__FILE__) . '/../layouts/footer.php'; ?>

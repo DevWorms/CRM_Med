@@ -456,6 +456,64 @@ class Usuarios
         // Devuelve json como respuesta
         echo json_encode($res);
     }
+
+    /**
+     * [updatePerfil Ajuste rapido del perfil del usuario]
+     * @param  [int] $id      
+     * @param  [string] $nombre  
+     * @param  [string] $paterno 
+     * @param  [string] $materno 
+     * @return [json]          
+     */
+    public function updatePerfil($id,$nombre,$paterno,$materno){
+
+        $res = ["estado" => 0];
+        $res["mensaje"] = "No se actualizarons los datos";
+
+        $query = "UPDATE usuarios SET nombre = :nombre,apMaterno = :apMaterno, apPaterno= :apPaterno WHERE id = :id";
+
+        $stm = $this->pdo->prepare($query);
+        $stm->bindValue(":nombre", $nombre);
+        $stm->bindValue(":apMaterno", $materno);
+        $stm->bindValue(":apPaterno", $paterno);
+        $stm->bindValue(":id",$id );
+
+        if($stm->execute()){
+            $res["estado"] = 1;
+            $res["mensaje"] = "Datos actualizados correctamente, cierre sesion y vuelva a iniciar para verlo reflejado";
+        }
+
+        return json_encode($res);
+    }
+
+    /**
+     * [updatePassword cambiar contraseña]
+     * @param  [int] $id   
+     * @param  [string] $pass 
+     * @return [json]       
+     */
+    public function updatePassword($id,$pass,$confirm){
+
+        $res = ["estado" => 0];
+        $res["mensaje"] = "No se actualizo el password";
+
+        if($pass == $confirm){
+            $query = "UPDATE usuarios SET password = :pass WHERE id = :id";
+            $pass = hash('sha256', $pass);
+            $stm = $this->pdo->prepare($query);
+            $stm->bindValue(":pass", $pass);
+            $stm->bindValue(":id",$id );
+            if($stm->execute()){
+                $res["estado"] = 1;
+                $res["mensaje"] = "Password actualizado correctamente";
+            }
+        }else{
+            $res["mensaje"] = "No coinciden tus contraseñas favor de verificar";
+        }
+        
+
+        return json_encode($res);
+    }
 }
 
 if (isset($_POST['get'])) {
@@ -490,6 +548,12 @@ if (isset($_POST['get'])) {
                 break;
             case "reporteCitasUsuariosBySearch";
                 echo $f->reporteCitasUsuariosBySearch($_POST["search"]);
+                break;
+            case "updatePerfil":
+                echo $f->updatePerfil($_POST['id_usuario'], $_POST['nombre'], $_POST['paterno'], $_POST['materno']);
+                break;
+            case "updatePassword":
+                echo $f->updatePassword($_POST['id_usuario'], $_POST['pwd'],$_POST['pwd_confirm']);
                 break;
             default:
                 header("Location: " . app_url() . "404");
