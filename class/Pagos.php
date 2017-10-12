@@ -204,6 +204,10 @@ class Pagos {
 
         return $id[0][0]+1;
     }
+
+    public function createPagoV2(){
+        
+    }
 }
 
 if (isset($_POST['get'])) {

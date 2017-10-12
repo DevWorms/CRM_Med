@@ -55,7 +55,7 @@
             <div class="thumbnail">
 
                 <!--TITULO-->
-                <h2 style="display:inline; color:#337ab7;">Recepción - Pagos (versión 1) </h2>
+                <h2 style="display:inline; color:#337ab7;">Recepción - Pagos</h2>
                 <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Registra pagos a los pacientes así como ventas en recepción, similar a la versión beta."></span>
                 <hr>
                 <!-- / TITULO -->
@@ -101,6 +101,7 @@
                                 </div>
                             </div>
                             <div id="error"></div>
+                            <input type="hidden" name="user_id" name="user_id">
                             <!--/ BUSCADOR --> 
                             <div class="row">
                                 <div class="col-md-6">
@@ -185,6 +186,26 @@
                         <!-- TAB 2 PAGO VERSION 2-->
                         <article id="tab2" "> 
                             <div class="jumbotron">
+                                <!--FILA CABECERA-->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <fieldset class="form-inline">
+                                            <label for="">Paciente&nbsp;&nbsp;</label><br>
+                                            <input type="text" class="search-query form-control input-width" id="paciente_Pagos" name="paciente_Pagos" placeholder="" required/>
+                                            <input type="hidden" id="paciente_id" name="paciente_id">
+                                        </fieldset>
+                                    </div>
+                                    <br><br>
+                                    <div class="col-md-12">
+                                        <fieldset class="form-inline">
+                                            <label for="">Médico&nbsp;&nbsp;</label><br>
+                                            <input type="text" class="search-query form-control input-width" id="searchMed" name="searchMed" placeholder="" required/>
+                                            <input type="hidden" id="medico_id" name="medico_id">
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <br>
+                                <!-- /FILA CABECERA-->
                                 <!-- PRIMERA FILA -->
                                 <div class="form-group row">
                                     <div class="col-md-4">
@@ -205,13 +226,6 @@
                                         <fieldset class="form-inline">
                                             <label for="">Folio&nbsp;&nbsp;</label><br>
                                             <input type="text" class="search-query form-control input-width" id="folio_Pagos" name="folio_Pagos" placeholder="" required/>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <fieldset class="form-inline">
-                                            <label for="">Paciente&nbsp;&nbsp;</label><br>
-                                            <input type="text" class="search-query form-control input-width" id="paciente_Pagos" name="paciente_Pagos" placeholder="" required/>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -272,23 +286,15 @@
                                         </fieldset> 
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-4" style="text-align: right;">
                                         <fieldset class="form-inline">
-                                            <label for="alertas">Médico que autoriza&nbsp;&nbsp;</label><br>
-                                            <input type="text" class="form-control input-width" id="alertas" name="alertas" required>
+                                            <label for="">&nbsp;&nbsp;</label><br>
+                                            <button class="btn btn-primary col-md-12">Registrar Pago</button>
                                         </fieldset>
                                     </div>
+
                                 </div>
                                 <!-- FIN TERCERA FILA -->
-                                <!-- CUARTA FILA-->
-                                <div class="row">
-
-                                    <div class="col-md-12" style="text-align: right;">
-                                        <button class="btn btn-primary">Registrar Pago</button>
-                                    </div>
-
-                                </div>
-                                <!-- / CUARTA FILA -->
                             </div>
                         </article>
                         <!-- / TAB 2 PAGO VERSION 2-->

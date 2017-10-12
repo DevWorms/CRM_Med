@@ -153,6 +153,8 @@ $(document).ready(function() {
 /******************
  * PAGOS VERSION 2
  *****************/
+
+ //BUSCADOR Y SELECTOR DE PACIENTE 
  $("#paciente_Pagos").on( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
             $( this ).autocomplete( "instance" ).menu.active ) {
@@ -191,6 +193,52 @@ $(document).ready(function() {
             // add placeholder to get the comma-and-space at the end
             terms.push( "" );
             this.value = terms.join( "" );
+            return false;
+        }
+    });
+  // BUSCADOR Y SELECTOR DE MEDICO QUE SOLICITE
+$("#searchMed").on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+        }
+    }).autocomplete({
+        minLength: 0,
+        source: function (request, response) {
+            $.ajax({
+                type : 'POST',
+                post: 'autoSearch',
+                url  : APP_URL + 'class/Usuarios.php',
+                data : {
+                    get: 'getMedicosSearch',
+                    param: $("#searchMed").val()
+                },
+                success: function (data) {
+                    data = JSON.parse(data);
+                    response($.map(data.medicos, function (el) {
+                        return el.id + " - " + el.apPaterno + " " + el.nombre;
+                    }));
+                },error:function(error){
+                    console.log(error);
+                }
+            });
+        },
+        focus: function() {
+            // prevent value inserted on focus
+            return false;
+        },
+        delay: 300,
+        select: function( event, ui ) {
+            var terms = String(this.value).split(".");
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( "" );
+            var medico = ui.item.value.split(" - ")[0];
+            $("#medico").val(medico);
             return false;
         }
     });
