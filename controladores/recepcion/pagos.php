@@ -60,25 +60,7 @@
                 <hr>
                 <!-- / TITULO -->
                 
-                <!--BUSCADOR-->
-                <div class="form-group row">
-                    <div class="col-md-12" align="center">
-                        <div id="custom-search-input">
-                            <div class="input-group col-md-9" >
-                                <input type="text" class="search-query form-control" id="param" name="param" placeholder="Buscar ..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" id="busqueda">
-                                        <span class=" glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div id="error"></div>
-                <!--/ BUSCADOR --> 
-
+            
                 <div class="wrap">
                     <!--TABS MENU-->
                     <ul class="tabs_pagos">
@@ -98,12 +80,28 @@
                         </li>
                     </ul>
                     <!-- / TABS MENU -->
-
+                    <hr>
                     <!--TABS CONTENT-->
                     <div class="secciones">
                         <!-- TAB 1 PAGO VERSION 1 -->
                         <article id="tab1">
-
+                            <!--BUSCADOR-->
+                            <div class="form-group row">
+                                <div class="col-md-12" align="center">
+                                    <div id="custom-search-input">
+                                        <div class="input-group col-md-9" >
+                                            <input type="text" class="search-query form-control" id="param" name="param" placeholder="Buscar ..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button" id="busqueda">
+                                                    <span class=" glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="error"></div>
+                            <!--/ BUSCADOR --> 
                             <div class="row">
                                 <div class="col-md-6">
                                     <!--  FORMULARIO PAGO V1 NUEVO PAGO-->

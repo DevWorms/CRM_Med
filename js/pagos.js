@@ -4,6 +4,9 @@
 
 var id = null;
 $(document).ready(function() {
+    /******************
+     * PAGOS VERSION 1
+     *****************/
     if (!$("#user_id").val()) {
         $("#nuevoPago input").prop("disabled", true);
         $("#nuevoPresupuesto input").prop("disabled", true);
@@ -146,8 +149,57 @@ $(document).ready(function() {
         });
         return false;
     });
+
+/******************
+ * PAGOS VERSION 2
+ *****************/
+ $("#paciente_Pagos").on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+        }
+    }).autocomplete({
+        minLength: 0,
+        source: function (request, response) {
+            $.ajax({
+                type : 'POST',
+                post: 'autoSearch',
+                url  : APP_URL + 'class/Paciente.php',
+                data : {
+                    post: 'allSearch',
+                    param: $("#paciente_Pagos").val()
+                },
+                success: function (data) {
+                    data = JSON.parse(data);
+                    response($.map(data.pacientes, function (el) {
+                        return el.id + " - " + el.apPaterno + " " + el.nombre;
+                    }));
+                }
+            });
+        },
+        focus: function() {
+            // prevent value inserted on focus
+            return false;
+        },
+        delay: 700,
+        select: function( event, ui ) {
+            var terms = String(this.value).split(".");
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( "" );
+            return false;
+        }
+    });
+
 });
 
+/******************
+ * PAGOS VERSION 1
+ *****************/
 function getPaciente() {
     if ($("#param").val()) {
         var id = String($("#param").val()).split(" - ");
@@ -222,3 +274,10 @@ function loadPresupuestos(id) {
         }
     });
 }
+
+/******************
+ * PAGOS VERSION 2
+ *****************/
+
+
+
