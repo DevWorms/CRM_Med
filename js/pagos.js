@@ -3,7 +3,7 @@
  */
 
 var id = null;
-$().ready(function() {
+$(document).ready(function() {
     if (!$("#user_id").val()) {
         $("#nuevoPago input").prop("disabled", true);
         $("#nuevoPresupuesto input").prop("disabled", true);
