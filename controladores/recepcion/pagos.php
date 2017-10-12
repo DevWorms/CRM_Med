@@ -184,7 +184,22 @@
                         <!-- /TAB 1 PAGO VERSION 1 -->
 
                         <!-- TAB 2 PAGO VERSION 2-->
-                        <article id="tab2" "> 
+                        <article id="tab2">
+                            <div class="form-group row">
+                                <div class="col-md-12" align="center">
+                                    <div id="custom-search-input">
+                                        <div class="input-group col-md-9" >
+                                            <input type="text" class="search-query form-control" id="param" name="param" placeholder="Buscar ..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button" id="busqueda">
+                                                    <span class=" glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <span>jajaja</span>
+                                </div>
+                            </div>
                             <div class="jumbotron">
                                 <!--FILA CABECERA-->
                                 <div class="row">
