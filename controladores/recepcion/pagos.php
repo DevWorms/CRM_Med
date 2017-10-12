@@ -92,7 +92,7 @@
                         <li>
                             <a href="#tab2" style="text-decoration:none;">
                                 <span class="tab-text" id="tab2n">
-                                    Nuevo módulo
+                                    Pagos Versión 2
                                 </span>
                             </a>
                         </li>
@@ -193,7 +193,7 @@
                                         <fieldset class="form-inline">
                                             <label for="">Fecha&nbsp;&nbsp;</label><br>
                                             <div class="input-group">
-                                                <input type="date" class="search-query form-control" id="fecha_Pagos" name="fecha_Pagos" placeholder="aaaa / mm / dd" required/>
+                                                <input type="date" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-primary" type="button">
                                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -286,7 +286,7 @@
                                 <div class="row">
 
                                     <div class="col-md-12" style="text-align: right;">
-                                        <button class="btn btn-primary">Aceptar</button>
+                                        <button class="btn btn-primary">Registrar Pago</button>
                                     </div>
 
                                 </div>
