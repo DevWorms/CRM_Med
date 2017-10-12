@@ -47,7 +47,8 @@
                             <!--FORM-->
                             <form id="form-genSalidas">
                             <input type="hidden" id="user" name="user" value="<?php echo $_SESSION["Id"];?>">
-                            <input type="hidden" id="medico" name="medico" value="">
+                            <input type="hidden" id="medico" name="medico" value='<?php echo $_SESSION["Id"]; ?>' >
+                              <input type="hidden" id="medicoCirugia" name="medicoCirugia" value='<?php echo $_SESSION["Id"]; ?>'>
                             <input type="hidden" id="paciente" name="paciente" value="" >
                             <input type="hidden" id="get" name="get" value="generarSalida">
                             <div class="row">
@@ -66,13 +67,13 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" id="searchMed" name="searchMed" class="form-control" placeholder="Médico responsable">
+                                    <input type="text" id="searchMed" name="searchMed" class="form-control" placeholder="Médico responsable" value='<?php echo $_SESSION["Id"].'- '.$_SESSION['Nombre'];?>'>
                                 </div>
                             </div>
                             <br>
                               <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" id="searchMed" name="searchMed" class="form-control" placeholder="Médico que realiza la cirugia">
+                                    <input type="text" id="searchMedCirugia" name="searchMedCirugia" class="form-control" placeholder="Médico que realiza la cirugia" value='<?php echo $_SESSION["Id"].'- '.$_SESSION['Nombre'];?>'>
                                 </div>
                             </div>
                             <br>
