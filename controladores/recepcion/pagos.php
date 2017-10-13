@@ -185,48 +185,69 @@
 
                         <!-- TAB 2 PAGO VERSION 2-->
                         <article id="tab2">
-                            <div class="form-group row">
-                                <div class="col-md-12" align="center">
-                                    <div id="custom-search-input">
-                                        <div class="input-group col-md-9" >
-                                            <input type="text" class="search-query form-control" id="param" name="param" placeholder="Buscar ..." />
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-primary" type="button" id="busqueda">
-                                                    <span class=" glyphicon glyphicon-search"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <span>jajaja</span>
-                                </div>
-                            </div>
                             <div class="jumbotron">
                                 <!--FILA CABECERA-->
                                 <div class="row">
+                                    <!-- Buscador -->
                                     <div class="col-md-12">
-                                        <fieldset class="form-inline">
-                                            <label for="">Paciente&nbsp;&nbsp;</label><br>
-                                            <input type="text" class="search-query form-control input-width" id="paciente_Pagos" name="paciente_Pagos" placeholder="" required/>
-                                            <input type="hidden" id="paciente_id" name="paciente_id">
-                                        </fieldset>
+                                        <div class="form-group row">
+                                            <div id="custom-search-input">
+                                                <div class="input-group col-md-12" >
+                                                    <input type="text" class="search-query form-control" id="param" name="param" placeholder="Buscar ..." />
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-primary" type="button" id="busqueda">
+                                                            <span class=" glyphicon glyphicon-search"></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <br><br>
-                                    <div class="col-md-12">
-                                        <fieldset class="form-inline">
-                                            <label for="">Médico&nbsp;&nbsp;</label><br>
-                                            <input type="text" class="search-query form-control input-width" id="searchMed" name="searchMed" placeholder="" required/>
-                                            <input type="hidden" id="medico_id" name="medico_id">
+                                    <!-- Datos paciente -->
+                                    <div class="col-md-6">
+                                        <br>
+                                         Descripción 1
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br>
+                                        <fieldset class="form-inline " style="width: 70%;">
+                                            <label for="">Procedimiento / Producto&nbsp;&nbsp;</label><br>
+                                            <select class="selectpicker" id="Proce_Produ" name="Proce_Produ">
+                                                <option value="Consumible">Procedimiento</option>
+                                                <option value="Consumible">Producto</option>
+                                            </select>
                                         </fieldset>
                                     </div>
                                 </div>
                                 <br>
-                                <!-- /FILA CABECERA-->
-                                <!-- PRIMERA FILA -->
-                                <div class="form-group row">
-                                    <div class="col-md-4">
+                            </div>
+                            <div class="jumbotron">
+                                <!--FILA CABECERA-->
+                                <div class="container">         
+                                    <table class="table table-striped">
+                                        <thead>
+                                             <tr>
+                                                <th>Monto</th>
+                                                <th>Concepto</th>
+                                                <th>Nombre de presupuesto</th>
+                                                <th>Precio de presupuesto</th>
+                                                <th>Número de Recibo</th>
+                                                <th>Restante</th>
+                                                <th>Fecha</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <fieldset class="form-inline">
                                             <label for="">Fecha&nbsp;&nbsp;</label><br>
-                                            <div class="input-group">
+                                            <div class="input-group calendario_pago">
                                                 <input type="date" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-primary" type="button">
@@ -236,80 +257,95 @@
                                             </div>
                                         </fieldset>
                                     </div>
-
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <fieldset class="form-inline">
                                             <label for="">Folio&nbsp;&nbsp;</label><br>
                                             <input type="text" class="search-query form-control input-width" id="folio_Pagos" name="folio_Pagos" placeholder="" required/>
                                         </fieldset>
                                     </div>
                                 </div>
-                                <!-- FIN PRIMERA FILA -->
 
-                                <!-- SEGUNDA FILA -->
-                                <div class="form-group row space">
-                                    <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <fieldset class="form-inline">
-                                            <label for="">Procedimiento / Producto&nbsp;&nbsp;</label><br>
-                                            <select class="selectpicker" id="Proce_Produ" name="Proce_Produ">
-                                              <option value="Consumible">Procedimiento</option>
-                                              <option value="Consumible">Producto</option>
-                                            </select>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <fieldset class="form-inline">
-                                            <label for="">Forma de pago&nbsp;&nbsp;</label><br>
-                                            <select class="selectpicker" id="forma_pago" name="forma_pago">
-                                              <option value="Consumible">Efectivo</option>
-                                              <option value="Consumible">VISA</option>
-                                              <option value="Consumible">AMEX</option>
-                                              <option value="Consumible">Financiamiento</option>
-                                            </select>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <fieldset class="form-inline">
-                                            <label for="">Planes de Financiamiento&nbsp;&nbsp;</label><br>
-                                            <select class="selectpicker" id="planes_pago" name="planes_pago">
-                                              <option value="Consumible">3 Meses</option>
-                                              <option value="Consumible">6 Meses</option>
-                                              <option value="Consumible">12 Meses</option>
-                                              <option value="Consumible">18 Meses</option>
-                                              <option value="Consumible">24 Meses</option>
-                                            </select>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <!-- FIN SEGUNDA FILA -->
-
-                                <!-- TERCERA FILA -->
-                                <div class="form-group row space">
-                                    <div class="col-md-4">
-                                        <fieldset class="form-inline">
+                                            <br>
                                             <label for="piezas">Importe&nbsp;&nbsp;</label><br>
-                                            <input type="text" id="piezas" name="piezas" class="form-control input-width" required>
+                                            <input type="text" id="importe_pago" name="importe_pago" class="form-control input-width" required>
                                         </fieldset>
                                     </div>
-
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <fieldset class="form-inline">
+                                            <br>
                                             <label for="existencia">Observaciones&nbsp;&nbsp;</label><br>
                                             <input type="text" id="existencia" name="existencia" class="form-control input-width" required>
                                         </fieldset> 
                                     </div>
-
-                                    <div class="col-md-4" style="text-align: right;">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <br>
                                         <fieldset class="form-inline">
-                                            <label for="">&nbsp;&nbsp;</label><br>
-                                            <button class="btn btn-primary col-md-12">Registrar Pago</button>
+                                            <label for="">Forma de pago&nbsp;&nbsp;</label><br>
+                                            <select class="selectpicker" id="forma_pago" name="forma_pago">
+                                                <option value="Consumible">Efectivo</option>
+                                                <option value="Consumible">VISA</option>
+                                                <option value="Consumible">AMEX</option>
+                                                <option value="Consumible">Financiamiento</option>
+                                            </select>
                                         </fieldset>
                                     </div>
-
                                 </div>
-                                <!-- FIN TERCERA FILA -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br>
+                                        <input type="checkbox" id="finan" name="finan" value="Ocultar_pago" onclick="Mostrar_Ocultar_Pago()"> ¿Es con financiamiento?
+                                     </div>
+                                </div>
+                                <div id="financi_seleci" name="financi_seleci" class="container" style="display: none">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <hr class="pago_linea">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <fieldset class="form-inline">
+                                                <br>
+                                                <label for="">Meses&nbsp;&nbsp;</label><br>
+                                                <select class="selectpicker" id="meses_pago" name="meses_pago">
+                                                    <option value="Consumible">3 Meses</option>
+                                                    <option value="Consumible">6 Meses</option>
+                                                    <option value="Consumible">12 Meses</option>
+                                                    <option value="Consumible">18 Meses</option>
+                                                    <option value="Consumible">24 Meses</option>
+                                                </select>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <fieldset class="form-inline">
+                                                <br>
+                                                <label for="existencia">Financiera&nbsp;&nbsp;</label><br>
+                                                <input type="text" id="financiera" name="financiera" class="form-control input-width" required>
+                                            </fieldset> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <br>
+                                            <hr class="pago_linea">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <br>
+                                        <button class="btn btn-primary col-md-12">Imprimir</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br>
+                                        <button class="btn btn-primary col-md-12">Registrar Pago</button>
+                                    </div>
+                                </div>
                             </div>
                         </article>
                         <!-- / TAB 2 PAGO VERSION 2-->

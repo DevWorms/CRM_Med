@@ -327,5 +327,20 @@ function loadPresupuestos(id) {
  * PAGOS VERSION 2
  *****************/
 
+/* CheckBox Selección */
 
+function Mostrar(){
+    document.getElementById("financi_seleci").style.display = "block";
+}
+function Ocultar(){
+    document.getElementById("financi_seleci").style.display = "none";
+}
+function Mostrar_Ocultar_Pago(){
+    var caja = document.getElementById("financi_seleci");
+    if (caja.style.display == "none") {
+        Mostrar();
+    }else{
+        Ocultar();
+    }
+}
 
