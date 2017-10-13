@@ -89,7 +89,7 @@
         });
     });
 
-    $('#hora, #hora2, #new_hora, #reagendarCita-hora').timepicker(
+    $('#hora, #hora2, #new_hora, #reagendarCita-hora, #horaQuirofano, #horaSalidaQuirofano').timepicker(
         $.timepicker.regional['es']
     );
 </script>
