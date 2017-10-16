@@ -14,8 +14,9 @@ $().ready(function () {
     }
 
     $("#crear_presupuesto").click(function () {
-        event.preventDefault();
+        
         nuevoPresupuesto();
+        event.preventDefault();
     });
 
     $("#btn_nueva_observacion").click(function () {
