@@ -326,5 +326,155 @@ $(document).ready(function() {
             return false;
         }
     });
+
+
+
+
+
 });
 
+
+
+
+function addToPre(id, nombre, existencia) {
+
+    var contenido = "";
+
+    contenido += "<tr><td style='display:none'>" + id + "</td><td>" + nombre + "</td><td>" + existencia + "</td>";
+    contenido += "<td><input class='form-control' type='number' min='1' max='" + existencia + "' name='cantidad'/></td>";
+    contenido += "<td><a href='#' style='color:red' onclick='removeRow(this)'><i class='glyphicon glyphicon-remove'></i></a></td>"
+    contenido += "</tr>";
+
+    if ($("#preOutPoducts tr:last").length > 0) {
+
+        $("#preOutPoducts tr:last").after(contenido);
+
+    } else {
+
+        $("#preOutPoducts").html(contenido);
+
+    }
+
+}
+
+
+function pastProductoSelection() {
+
+    var contenido = "";
+    $("#preOutPoducts tr").each(function(ind, elem) {
+        var val = $(elem).children("td");
+        var idProd = $(val)[0].innerText;
+        var nombreProd = $(val)[1].innerText;
+        var cantidad = $($(val)[3].firstChild).val();
+        var existencia = $(val)[2].innerText;
+        if (cantidad) {
+            if (Number(cantidad) > 0 && Number(cantidad) <= Number(existencia)) {
+                contenido += "<tr>";
+                contenido += "<td style='display:none'>" + idProd;
+                contenido += "<input id='out_productoId[]' name='out_productoId[]' type='hidden' value='" + idProd + "'></td>";
+                contenido += "<td>" + nombreProd + "</td>";
+                contenido += "<td>" + cantidad;
+                contenido += "<input id='out_productoCant[]' name='out_productoCant[]' type='hidden' value='" + cantidad + "'></td>";
+                contenido += "<td><a href='#' style='color:red' onclick='removeRow(this)'><i class='glyphicon glyphicon-remove'></i></a></td>"
+                contenido += "</tr>";
+            } else {
+                if (Number(cantidad) == 0) {
+                    $.notify("No puedes agregar la salida de 0 " + nombreProd, "warning");
+                } else {
+                    $.notify("Intentaste agregar una cantidad de " + cantidad + " con una existencia de " + existencia + " para el producto " + nombreProd, "warning");
+                }
+            }
+        } else {
+            $.notify("Ingresaste una cantidad no valida para el producto " + nombreProd, "warning");
+        }
+    });
+
+    if ($("#productosToOut tr:last").length > 0) {
+        $("#productosToOut tr:last").after(contenido);
+    } else {
+        $("#productosToOut").html(contenido);
+    }
+    $("#modal-addOutProduct").modal("hide");
+    $("#preOutPoducts").html("");
+
+}
+
+
+function removeRow(elemento) {
+    $(elemento).parent("td").parent("tr").remove();
+}
+
+
+function generarIngreso() {
+    if (salidaValida()) {
+        var formData = $("#form-genSalidas").serialize();
+        $.ajax({
+            url: APP_URL + 'class/Inventario.php',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            beforeSend: function() {
+                $("#wait").show();
+            },
+            success: function(response) {
+                if (response.estado == "1") {
+                    $.notify(response.mensaje, "success");
+                } else {
+                    $.notify(response.mensaje, "error");
+                }
+            },
+            error: function(error) {
+                $.notify(error, "error");
+            },
+            complete: function() {
+                $("#productosToOut").html("");
+                $("#paciente").val("");
+                $("#searchPac").val("");
+                $("#comentario").val("");
+                $("#wait").hide();
+            }
+        });
+    }
+}
+
+function isDuplicatedProduct(id) {
+    var toReturn = false;
+    $("#preOutPoducts tr").each(function(ind, elem) {
+        var val = $(elem).children("td");
+        var idProd = $(val)[0].innerText;
+        if (Number(id) === Number(idProd)) {
+            toReturn = true;
+            return false;
+        }
+    });
+    if (!toReturn) {
+        $("#productosToOut tr").each(function(ind, elem) {
+            var val = $(elem).children("td");
+            var idProd = $(val)[0].innerText;
+            if (Number(id) === Number(idProd)) {
+                toReturn = true;
+                return false;
+            }
+        });
+    }
+
+    return toReturn;
+}
+
+function salidaValida() {
+    if ($("#productosToOut tr").length <= 0) { // Si no existen productos para la salida
+        $.notify("Para generar la salida de productos debe agregar al menos 1", "warning");
+        return false;
+    } else if (!$("#medico").val() && !$("#paciente").val()) { // Si uno de los dos campos está vacío
+        $.notify("Debe elegir un medico o un paciente", "warning");
+        return false;
+    } else {
+        if (!$("#medico").val()) { // Si medico está vacío se manda 0 como id a la BD
+            $("#medico").val(0);
+        }
+        if (!$("#paciente").val()) { // Si paciente está vacío se manda 0 como id a la BD
+            $("#paciente").val(0);
+        }
+        return true;
+    }
+}
