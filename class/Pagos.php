@@ -6,7 +6,7 @@ include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 if (!isset($_SESSION)) {
     session_start();
 }
-
+error_reporting(E_ALL);
 /**
  * Created by PhpStorm.
  * User: rk521
@@ -205,9 +205,85 @@ class Pagos {
         return $id[0][0]+1;
     }
 
-    public function createPagoV2(){
-        
+    /**PAGOS VERSION 2**/
+    public function getPagos($paciente,$presupuesto){
+        $res = ['estado' => 0];
+        $query = "SELECT * FROM pagos WHERE pacientes_id = :paciente AND id_presupuesto = :presupuesto";
+        $stm = $this->pdo->prepare($query);
+        $stm->bindParam(":paciente", $paciente);
+        $stm->bindParam(":presupuesto" ,$presupuesto);
+        $stm->execute();
+        $res['pagos'] = $stm->fetchAll();
+        $res['no_pagos'] = count($res['pagos']);
+        $res['estado'] = 1 ;
+
+        return json_encode($res);
     }
+
+    public function crearPago($pago){
+        $res = ['estado' => 0];
+        $res['mensaje'] = "No se guardo el pago";
+        //obtenemos datos del presupuesto
+        $query ="SELECT * FROM presupuestos WHERE id = :presupuesto";
+        $stm = $this->pdo->prepare($query);
+        $stm->bindParam(":presupuesto" , $pago['presupuesto']);
+        $stm->execute();
+        $presupuesto = $stm->fetchAll();
+
+
+        //obtenemos lo pagado para generar el SALDO que generara este pago
+        $query ="SELECT * FROM pagos WHERE id_presupuesto = :presupuesto AND pacientes_id = :paciente";
+        $stm = $this->pdo->prepare($query);
+        $stm->bindParam(":presupuesto" , $pago['presupuesto']);
+        $stm->bindParam(":paciente" , $pago['paciente_id']);
+        $stm->execute();
+        $pagos = $stm->fetchAll();
+        $acumulado = 0;
+        foreach ($pagos as $p) {
+            $acumulado += $p['monto'];
+        }
+        //le sumamos el nuevo importe
+        $acumulado += $pago['importe_pago'];
+
+        //obtenemos el saldo que queda despeus de este pago
+        $saldo = $presupuesto[0]["precio"] - $acumulado;
+
+        //obtenido el dato del saldo generamos el pago en la BD
+        $query = "INSERT INTO pagos (fecha,folio_anterior,monto,concepto,forma_pago,observaciones,plan_financiamiento,financiera,id_presupuesto,pacientes_id,saldo) VALUES (:fecha,:folio_anterior,:monto,:concepto,:forma_pago,:observaciones,:plan_financiamiento,:financiera,:id_presupuesto,:pacientes_id,:saldo)";
+
+        $stm = $this->pdo->prepare($query);
+        $stm->bindParam(":fecha",$pago['fecha']);
+        $stm->bindParam(":folio_anterior",$pago['folio_Pagos']);
+        $stm->bindParam(":monto",$pago['importe_pago']);
+        $stm->bindParam(":concepto",$pago['concepto']);
+        $stm->bindParam(":forma_pago",$pago['forma_pago']);
+        $stm->bindParam(":observaciones",$pago['observaciones']);
+
+        //validamos si es con financiamiento
+        $financiera = "";
+        $meses = 0;
+        if(isset($pago['finan'])){
+            $financiera = $pago['financiera'];
+            $meses = $pago['meses_pago'];
+        }
+        $stm->bindParam(":plan_financiamiento",$meses);
+        $stm->bindParam(":financiera",$financiera);
+        $stm->bindParam(":id_presupuesto",$pago['presupuesto']);
+        $stm->bindParam(":pacientes_id",$pago['paciente_id']);
+        $stm->bindParam(":saldo",$saldo);
+
+        
+
+        // insertamos
+        if($stm->execute()){
+            $res['estado'] = 1;
+            $res['mensaje'] = "Se genero el pago exitosamente";
+        }
+
+        return json_encode($res);
+    }
+
+    
 }
 
 if (isset($_POST['get'])) {
@@ -227,6 +303,12 @@ if (isset($_POST['get'])) {
                 break;
             case 'addPresupuesto':
                 echo $p->addPresupuesto($_POST);
+                break;
+            case 'getPagos':
+                echo $p->getPagos($_POST['paciente'] , $_POST['presupuesto']);
+                break;
+            case 'crearPago':
+                echo $p->crearPago($_POST);
                 break;
             default:
                 header("Location: " . app_url() . "404");

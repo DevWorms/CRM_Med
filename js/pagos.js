@@ -167,8 +167,7 @@ $(document).ready(function() {
                 type : 'POST',
                 post: 'autoSearch',
                 url  : APP_URL + 'class/Paciente.php',
-                data : {
-                    post: 'allSearch',
+                data : {                    post: 'allSearch',
                     param: $("#paciente_Pagos").val()
                 },
                 success: function (data) {
@@ -186,6 +185,7 @@ $(document).ready(function() {
         delay: 700,
         select: function( event, ui ) {
             var terms = String(this.value).split(".");
+            $("#paciente_id").val(ui.item.value.split("-")[0].trim());
             // remove the current input
             terms.pop();
             // add the selected item
@@ -241,6 +241,11 @@ $("#searchMed").on( "keydown", function( event ) {
             $("#medico").val(medico);
             return false;
         }
+    });
+
+    // generar informacion y presupuesto del paciente
+    $("#btn-paciente").click(function(){
+        obtenerPaciente();
     });
 
 });
@@ -344,3 +349,188 @@ function Mostrar_Ocultar_Pago(){
     }
 }
 
+function mostrarDescripcion(descripcion){
+    $("#review_paciente").html(descripcion);
+}
+
+function obtenerPresupuesto(id){
+
+    $.ajax({
+        type: 'POST',
+        url: APP_URL + 'class/Pagos.php',
+        data: {
+            get: 'getPresupuestos',
+            'id': id
+        },
+        success: function (response) {
+            response = JSON.parse(response);
+            if (response.estado == 1) {
+                var contenido = "<option value='0'>Seleccionar presupuesto</option>";
+                var presupuestos = 0;
+                response.presupuestos.forEach(function (presupuesto) {
+                    contenido+= "<option value='" + presupuesto.id + "'>" + presupuesto.nombre;
+                    contenido += "- $ " + presupuesto.precio + "</option>";;
+                    presupuestos++;
+                });
+
+                if(presupuestos <= 0){
+                   contenido = "<option value='0'>Sin presupuestos</option>";
+                }
+                $("#Proce_Produ").html(contenido);
+                $("#Proce_Produ").slideDown(350);
+                
+            }
+            else {
+                $("#error").fadeIn(1000, function () {
+                    $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                });
+            }
+        },
+        error: function (response) {
+            $("#error").fadeIn(1000, function () {
+                $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+            });
+        }
+    });
+}
+
+function obtenerPaciente() {
+    if ($("#paciente_id").val()) {
+        var id = $("#paciente_id").val();
+
+        $.ajax({
+            type: 'POST',
+            url: APP_URL + 'class/Paciente.php',
+            data: {
+                get: 'paciente',
+                'id': id
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+                if (response.estado == 1) {
+                    var paciente = response.paciente[0];
+                    var contenido = "<p style='font-size:95%'>";
+                    contenido += "Nombre "+ paciente.nombre + " " + paciente.apPaterno + " " + paciente.apMaterno + "<br>";
+                    contenido += "Telefono: " + paciente.telefono + "<br>";
+                    contenido += "Folio: " + paciente.id;
+                    contenido += "</p>"; 
+                    mostrarDescripcion(contenido);
+                    // Carga los presupuestos
+                    obtenerPresupuesto(paciente.id);
+                }
+                else {
+                    $("#error").fadeIn(1000, function () {
+                        $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                    });
+                }
+            },
+            error: function (response) {
+                $("#error").fadeIn(1000, function () {
+                    $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                });
+            }
+        });
+    }else{
+        $.notify("Debes selecionar un paciente","info");
+    }
+}
+
+function obtenerPagos(){
+    if ($("#paciente_id").val() && $("#Proce_Produ").val() !=0) {
+        var paciente = $("#paciente_id").val();
+        var presupuesto = $("#Proce_Produ").val();
+        $.ajax({
+            type: 'POST',
+            url: APP_URL + 'class/Pagos.php',
+            data: {
+                'get': 'getPagos',
+                'paciente': paciente,
+                'presupuesto' : presupuesto
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+                if (response.estado == 1) {
+                    // cantidad de resultados
+                    var preContenido = "<h4> Ver tabla de pagos - Pagos efectuados: ";
+                    preContenido+= response.no_pagos + " &nbsp;";
+                    preContenido +="<i class='glyphicon glyphicon-circle-arrow-down'>";
+
+                    $("#pre-tabla-pagos").html(preContenido);
+                    $("#pre-tabla-pagos").slideDown(350);
+
+                    var pagos = response.pagos;
+                    var contenido = "";
+                    pagos.forEach(function(pago){
+                        contenido += "<tr>";
+                        contenido += "<td>" + pago.fecha + "</td>";
+                        contenido += "<td>" + pago.folio_anterior + "</td>";
+                        contenido += "<td>" + pago.concepto + "</td>";
+                        contenido += "<td> $" + pago.monto + "</td>";
+                        contenido += "<td> $" + pago.saldo + "</td>";
+                        contenido += "<td>" + pago.forma_pago + "</td>";
+                        contenido +="</tr>";
+                    });
+
+                    $("#tabla-pagos tbody").html(contenido);
+                    $("#presupuesto").val(presupuesto);
+
+                }
+                else {
+                    $("#error").fadeIn(1000, function () {
+                        $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                    });
+                }
+            },
+            error: function (response) {
+                $("#error").fadeIn(1000, function () {
+                    $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                });
+            }
+        });
+    }else{
+        $("#btn-imprimir").hide(350);
+        $("#tabla-pagos").hide(350); 
+        $("#pre-tabla-pagos").hide(350)
+        $.notify("Debes selecionar un paciente y un presupuesto","info");
+    } 
+}
+
+function mostrarTabla(){
+    $("#btn-imprimir").slideToggle(350);
+    $("#tabla-pagos").slideToggle(400);
+}
+
+function crearPago(){
+    if ($("#paciente_id").val() && $("#Proce_Produ").val() !=0) {
+    var datos = $("#form-crearPago").serialize();
+    datos += "&get=crearPago";
+    $.ajax({
+            url: APP_URL + 'class/Pagos.php',
+            type: 'POST',
+            dataType: 'json',
+            data: datos,
+            beforeSend: function() {
+                $("#wait").show();
+            },
+            success: function(response) {
+                if (response.estado == "1") {
+                    $.notify(response.mensaje, "success");
+                    obtenerPagos();
+                } else {
+                    $.notify(response.mensaje, "error");
+                }
+            },
+            error: function(error) {
+                $.notify(error, "error");
+                $("#wait").hide();
+            },
+            complete: function() {
+                $("#wait").hide();
+            }
+        });
+    }else {
+        $.notify("Debes selecionar un paciente y un presupuesto","info");
+    }
+    
+
+}
