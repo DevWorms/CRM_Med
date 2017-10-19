@@ -434,6 +434,54 @@ function generarIngreso() {
                 $("#wait").hide();
             }
         });
+
+        /* segundo ajax a quirofano*/
+            var paciente_id = $('#paciente').val();
+            var medico_responsable = $('#medico').val();
+            var medico_cirugia = $('#medicoCirugia').val();
+            var informacion = $('#infoProcedimiento').val();
+            var fecha_entrada = $('#fechaEntrada').val()
+            var hora_entrada = $('#horaQuirofano').val()
+            var fecha_salida = $('#fechaSalida').val()
+            var hora_salida = $('#horaSalidaQuirofano').val()
+
+            $.ajax({
+            url: APP_URL + 'class/Medico.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                get: 'addQuirofano',
+                id_paciente : paciente_id,
+                medico_responsable : medico_responsable,
+                medico_opera: medico_cirugia,
+                informacion: informacion,
+                fecha_ingreso: fecha_entrada,
+                hora_ingreso: hora_entrada,
+                fecha_salida: fecha_salida,
+                hora_salida: hora_salida
+            },
+            beforeSend: function() {
+                $("#wait").show();
+            },
+            success: function(response) {
+                if (response.estado == "1") {
+                    $.notify(response.mensaje, "success");
+                } else {
+                    $.notify(response.mensaje, "error");
+                }
+            },
+            error: function(error) {
+                $.notify(error, "error");
+            },
+            complete: function() {
+                $("#productosToOut").html("");
+                $("#paciente").val("");
+                $("#searchPac").val("");
+                $("#comentario").val("");
+                $("#wait").hide();
+            }
+        });
+
     }
 }
 
@@ -475,6 +523,7 @@ function salidaValida() {
         if (!$("#paciente").val()) { // Si paciente está vacío se manda 0 como id a la BD
             $("#paciente").val(0);
         }
+        $('#infoProcedimiento').val($('#procedimiento').val());
         return true;
     }
 }

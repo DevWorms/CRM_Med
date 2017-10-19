@@ -25,7 +25,7 @@
         var nowDate = new Date();
         var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 
-        $('#fecha, #fecha2, #new_fecha,#e-fecha, #reagendarCita-fecha').pikaday({
+        $('#fecha, #fecha2, #new_fecha,#e-fecha, #reagendarCita-fecha,#fechaEntrada,#fechaSalida').pikaday({
             format: 'YYYY-MM-DD',
             disableDayFn: function (date) {
                 var today = moment().add(1, 'd').format('YYYY-MM-DD');

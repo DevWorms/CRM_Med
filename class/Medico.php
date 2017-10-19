@@ -1048,6 +1048,38 @@ class Medico {
         // Devuelve json como respuesta
         echo json_encode($res);
     }
+
+
+
+        /*
+     * Agregar entrada a quirofano
+     */
+    public function addQuirofano($id_paciente,$medico_responsable,$medico_opera,$informacion,$fecha_ingreso,$hora_ingreso,$fecha_salida,$hora_salida) {
+               $res = [
+            'estado' => 0,
+        ];
+        try{
+                // si podemos insertar al menos 1 comenzamos insertando el master
+                $query = "INSERT INTO quirofano (paciente_id,medicor_id,medicoc_id,informacion,fecha_i,hora_i,fecha_s,hora_s) VALUES ('$id_paciente','$medico_responsable','$medico_opera','$informacion','$fecha_ingreso','$hora_ingreso','$fecha_salida','$hora_salida')";
+                $stm = $this->pdo->prepare($query);
+                $stm->bindParam(1,$id_paciente, PDO::PARAM_INT);
+                $stm->bindParam(2,$medico_responsable, PDO::PARAM_INT);
+                $stm->bindParam(3,$medico_opera, PDO::PARAM_INT);
+                $stm->bindParam(4,$informacion, PDO::PARAM_STR);
+                $stm->bindParam(5,$fecha_ingreso, PDO::PARAM_STR);
+                $stm->bindParam(5,$hora_ingreso,PDO::PARAM_STR);
+                $stm->bindParam(5,$fecha_salida,PDO::PARAM_STR);
+                $stm->bindParam(5,$hora_salida,PDO::PARAM_STR);
+                $stm->execute();
+                $res['estado'] = 1;
+            
+        } catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+        echo json_encode($res);
+    }
+
+
 }
 
 if (isset($_POST['get'])) {

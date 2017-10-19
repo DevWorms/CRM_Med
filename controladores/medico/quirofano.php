@@ -51,6 +51,9 @@
                               <input type="hidden" id="medicoCirugia" name="medicoCirugia" value='<?php echo $_SESSION["Id"]; ?>'>
                             <input type="hidden" id="paciente" name="paciente" value="" >
                             <input type="hidden" id="get" name="get" value="generarSalida">
+                            <!-- Datos para quirofano-->
+                            <input type="hidden" id="infoProcedimiento" name="infoProcedimiento" value="" >
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table table-bordered">
@@ -83,7 +86,7 @@
                                 <label for="">Entrada al quirófano</label>
                                     <fieldset class="form-inline">
                                         <div class="input-group">
-                                            <input type="text" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
+                                            <input type="text" class="search-query form-control" id="fechaEntrada" name="fechaEntrada" placeholder="aaaa / mm / dd" required/>
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" type="button">
                                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -100,7 +103,7 @@
                                     <label for="">Salida del quirófano</label>
                                         <fieldset class="form-inline">
                                         <div class="input-group">
-                                            <input type="text" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
+                                            <input type="text" class="search-query form-control" id="fechaSalida" name="fechaSalida" placeholder="aaaa / mm / dd" required/>
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" type="button">
                                                     <span class="glyphicon glyphicon-calendar"></span>
