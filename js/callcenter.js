@@ -32,7 +32,7 @@ $('document').ready(function() {
             event.preventDefault();
         }
     }).autocomplete({
-        minLength: 0,
+        minLength: 4,
         source: function (request, response) {
             $.ajax({
                 type : 'POST',
@@ -44,7 +44,13 @@ $('document').ready(function() {
                 success: function (data) {
                     data = JSON.parse(data);
                     response($.map(data.pacientes, function (el) {
-                        return el.id + " - " + el.apPaterno + " " + el.nombre;
+                        var apMaterno = "";
+
+                        if(el.apMaterno != null){
+                            apMaterno = el.apMaterno;
+                        }
+
+                            return el.id + " - " + el.apPaterno + " " + apMaterno + " " + el.nombre;
                     }));
                 }
             });
@@ -120,7 +126,7 @@ $('document').ready(function() {
             event.preventDefault();
         }
     }).autocomplete({
-        minLength: 0,
+        minLength: 4,
         source: function (request, response) {
             $.ajax({
                 type : 'POST',
@@ -335,9 +341,11 @@ function loadData(data) {
     $('#registrar_cita').css({"visibility": "visible"});
     $('#pago').css({"visibility": "visible"});
 
-    document.getElementById("nombreP").innerHTML = "Nombre: <a href='" + APP_URL + "/paciente#" + data.id + "'>" + nombre + "</a>";
-    document.getElementById("telP").innerHTML = "Teléfono: " + data.telefono;
-    document.getElementById("folioP").innerHTML = "Folio: " + data.id;
+    document.getElementById("nombreP").innerHTML = "Nombre: " + "<b>" + nombre + "</b>";
+    document.getElementById("telP").innerHTML = "Teléfono: " + "<b>" + data.telefono + "</b>";
+    document.getElementById("folioP").innerHTML = "Folio: " + "<b>" + data.id + "</b>";
+
+    document.getElementById("msgCitaUpdate").innerHTML = "Actualizar Cita";
 
     if (cita.length > 0) {
         cita = cita[0];

@@ -15,18 +15,16 @@
             <div class="col-md-9">
                 <div class="thumbnail">
                     <div class="caption-full">
-                        <h2 style="display:inline; color:#337ab7;">Actualizar Citas </h2>
+                        <h2 style="display:inline; color:#337ab7;"> Call Center - Citas </h2>
                         <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
-                              title="Encuentra a un usuario a través del buscador escribiendo su nombre; si la búsqueda arroja un resultado, podrás reprogramar sus citas"></span>
+                              title="Módulo para crear nuevas citas o actualizar citas generadas"></span>
                         <hr>
 
                         <div class="row">
                             <div class="col-md-12" align="center">
                                 <div align="center">
-                                    <a class="btn btn-primary" data-toggle="tab" href="#searchUser" role="button">Buscar
-                                        usuario</a>
-                                    <a class="btn btn-primary" data-toggle="tab" href="#firstDate" role="button">Usuarios de
-                                        primera vez</a>
+                                    <a class="btn btn-primary" data-toggle="tab" href="#searchUser" role="button">Buscar usuario</a>
+                                    <a class="btn btn-primary" data-toggle="tab" href="#firstDate" role="button">Nuevo Usuario</a>
                                 </div>
                             </div>
                         </div>
@@ -54,30 +52,30 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row space">
-                                    <div class="col-md-5" align="right">
-                                        <!--
-                                            <img src="../../img/user-male.png" class="img-rounded" width="100" height="100">
-                                        -->
-                                    </div>
 
-                                    <div class="col-md-7">
-                                        <fieldset class="form-inline">
-                                            <div>
-                                                <p id="nombreP">
-                                                    <!--  NOMBRE DEL PACIENTE  -->
-                                                </p>
-                                                <p id="telP">
-                                                    <!--  TELÉFONO DEL PACIENTE  -->
-                                                </p>
-                                                <p id="folioP">
-                                                    <!--  FOLIO DEL PACIENTE  -->
-                                                </p>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                </div>
                                 <hr>
+
+
+                                <div class="alert alert-info" role="alert">
+                                    <p id="nombreP">
+                                       Ingresa el nombre de un paciente en el buscador.
+                                    </p>
+                                    <p id="telP">
+                                    </p>
+                                    <p id="folioP">
+                                    </p>
+                                </div>
+
+
+                                <hr>
+                                <div align="center">
+                                    <h3>
+                                        <p id="msgCitaUpdate">
+                                        </p>
+                                    </h3>
+                                    <br>
+                                </div>
+
                                 <div class="form-group row space" align="center">
                                     <div class="col-md-5">
                                         <fieldset class="form-inline">

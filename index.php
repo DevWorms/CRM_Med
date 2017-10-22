@@ -4,8 +4,12 @@ include 'App/route.php';
 
 $route = new Route();
 
+	
+	//	RUTAS DE CALL CENTER
+    $route->add('/citas_programar', 'controladores/callcenter/callcenter.php');
+    $route->add('/directorio_center', 'controladores/callcenter/directorio.php');
+
 	//	RUTAS DE RECEPCIÓN
-    $route->add('/citas_programar', 'controladores/recepcion/callcenter.php');
 	$route->add('/citas', 'controladores/recepcion/recepcion.php');
 	$route->add('/control', 'controladores/recepcion/registro.php');
 	$route->add('/calendario', 'controladores/recepcion/calendario.php');

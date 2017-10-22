@@ -13,10 +13,11 @@ $perm_citas = $_SESSION['accesos_citas'];
 
     <!-- MOSTRAR ACCESOS LATERALES POR PERMISOS DE USUARIO	-->
     <div class="list-group">
-        <!--	Permisos de Recepción	-->
+        <!--	Permisos de Call Center	   -->
         <?php
         if ($perm_citas == 1)	{
-            echo	'<a href="' . app_url() . 'citas_programar" class="list-group-item "><i class="fa fa-pencil-square-o"></i>&nbsp Recepción - Programar Citas</a>';
+            echo	'<a href="' . app_url() . 'citas_programar" class="list-group-item "><i class="fa fa-phone"></i>&nbsp Call Center - Programar Citas</a>';
+            echo    '<a href="' . app_url() . 'directorio_center" class="list-group-item "><i class="fa fa-users"></i>&nbsp Call Center - Directorio</a>';
         }
         ?>
         <!--	Permisos de Recepción	-->
@@ -34,7 +35,7 @@ $perm_citas = $_SESSION['accesos_citas'];
             echo    '<a href="'. app_url() .'catalogo" class="list-group-item"><i class="fa fa-plus"></i>&nbsp Farmacia - Añadir Productos</a>';
             echo	'<a href="'. app_url() .'orden_compra" class="list-group-item"><i class="fa fa-list-alt"></i>&nbsp Farmacia - Ordenes de Compra</a>';
             echo    '<a href="'. app_url() .'registrar_factura" class="list-group-item"><i class="fa fa-clipboard"></i>&nbsp Farmacia - Registrar Factura</a>';
-            echo    '<a href="'. app_url() .'salida_productos" class="list-group-item"><i class="fa fa-arrow-right"></i>&nbsp Farmacia - Salida Productos</a>';
+            echo    '<a href="'. app_url() .'salida_productos" class="list-group-item"><i class="fa fa-external-link"></i>&nbsp Farmacia - Salida Productos</a>';
             echo    '<a href="'. app_url() .'rep_salida_productos" class="list-group-item"><i class="fa fa-file-text"></i></span>&nbsp Farmacia - Reporte Salida Productos</a>';
         }
         ?>
@@ -43,7 +44,7 @@ $perm_citas = $_SESSION['accesos_citas'];
         if ($perm_medico == 1) {
             echo    '<a href="'. app_url() .'recibir_paciente" class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp Médico - Pacientes en Espera <span class="label label-danger counting" id="counterEnEspera">0</span></a>';
             echo    '<a href="'. app_url() .'mis_pacientes" class="list-group-item"><i class="fa fa-heartbeat"></i>&nbsp Médico - Mis Pacientes</a>';
-            echo    '<a href="'. app_url() .'mis_pacientes_espera" class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp Médico-Mis Pacientes en Espera</a>';
+            echo    '<a href="'. app_url() .'mis_pacientes_espera" class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp ELIMINAR Médico - Mis Pacientes en Espera</a>';
             echo    '<a href="'. app_url() .'quirofano" class="list-group-item"><i class="fa fa-hospital-o"></i>&nbsp Médico - Quirófano</a>';
         }
         ?>

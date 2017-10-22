@@ -76,7 +76,7 @@ $().ready(function() {
             event.preventDefault();
         }
     }).autocomplete({
-        minLength: 3,
+        minLength: 4,
         source: function (request, response) {
             $.ajax({
                 type : 'POST',
@@ -89,7 +89,13 @@ $().ready(function() {
                 success: function (data) {
                     data = JSON.parse(data);
                     response($.map(data.pacientes, function (el) {
-                        return el.id + " - " + el.apPaterno + " " + el.nombre;
+                        var apMaterno = "";
+
+                        if(el.apMaterno != null){
+                            apMaterno = el.apMaterno;
+                        }
+
+                            return el.id + " - " + el.apPaterno + " " + apMaterno + " " + el.nombre;
                     }));
                 }
             });
@@ -119,7 +125,7 @@ $().ready(function() {
             event.preventDefault();
         }
     }).autocomplete({
-        minLength: 3,
+        minLength: 4,
         source: function (request, response) {
             $.ajax({
                 type : 'POST',
@@ -132,7 +138,13 @@ $().ready(function() {
                 success: function (data) {
                     data = JSON.parse(data);
                     response($.map(data.pacientes, function (el) {
-                        return el.id + " - " + el.apPaterno + " " + el.nombre;
+                        var apMaterno = "";
+
+                        if(el.apMaterno != null){
+                            apMaterno = el.apMaterno;
+                        }
+
+                            return el.id + " - " + el.apPaterno + " " + apMaterno + " " + el.nombre;
                     }));
                 }
             });
@@ -532,7 +544,7 @@ function loadData(data) {
     $('#registrar_cita').css({"visibility": "visible"});
     $('#pago').css({"visibility": "visible"});
 
-    document.getElementById("nombreP").innerHTML = "Nombre: <a href='" + APP_URL + "/paciente#" + data.id + "'>" + nombre + "</a>";
+    document.getElementById("nombreP").innerHTML = "Nombre: <a href='" + APP_URL + "paciente#" + data.id + "' target=_blank>" + nombre + "</a>";
     document.getElementById("telP").innerHTML = "Teléfono: " + data.telefono;
     document.getElementById("folioP").innerHTML = "Folio: " + data.id;
 

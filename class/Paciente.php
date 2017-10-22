@@ -13,7 +13,7 @@ include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 class Paciente
 {
     private $pdo;
-    private $pagination = 10;
+    private $pagination = 20;
 
     /**
      * Pedidos constructor.
@@ -222,6 +222,28 @@ class Paciente
         return json_encode($res);
     }
 
+    public function countPagesUsers() {
+        $res = [
+            'estado' => 0,
+        ];
+
+        try {
+            $query = 'SELECT count(id) FROM pacientes WHERE is_paciente = "0";';
+            $stm = $this->pdo->prepare($query);
+
+            $stm->execute();
+            $resultado = $stm->fetchAll();
+
+            $res['pagesUsers'] = ceil($resultado[0][0] / $this->pagination);
+            $res['estado'] = 1;
+        } catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        return json_encode($res);
+    }
+
     public function getPacientes($page = 1) {
         $res['estado'] = 0;
         try {
@@ -230,6 +252,31 @@ class Paciente
                 $from = 0;
             }
             $query = "SELECT * FROM pacientes  ORDER BY id ASC LIMIT :from, :to;";
+            $stm = $this->pdo->prepare($query);
+            $stm->bindValue(":from", $from, PDO::PARAM_INT );
+            $stm->bindValue(":to", $this->pagination, PDO::PARAM_INT );
+            $stm->execute();
+            $resultado = $stm->fetchAll();
+
+            $res['pacientes'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+            $res['estado'] = 0;
+        }
+
+        // Devuelve json como respuesta
+        return json_encode($res);
+    }
+
+    public function getPacientesPrimera($page = 1) {
+        $res['estado'] = 0;
+        try {
+            $from = (($page - 1) * $this->pagination);
+            if ($from < 0) {
+                $from = 0;
+            }
+            $query = "SELECT * FROM pacientes WHERE is_paciente = 0 ORDER BY apPaterno ASC LIMIT :from, :to;";
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":from", $from, PDO::PARAM_INT );
             $stm->bindValue(":to", $this->pagination, PDO::PARAM_INT );
@@ -874,6 +921,10 @@ if (isset($_POST['get'])) {
                 $page = (isset($_POST['page'])) ? $_POST['page'] : null;
                 echo $p->getPacientes($page);
                 break;
+            case 'pacientesPrimera':
+                $page = (isset($_POST['page'])) ? $_POST['page'] : null;
+                echo $p->getPacientesPrimera($page);
+                break;
             case 'update':
                 echo $p->updatePaciente($_POST);
                 break;
@@ -888,6 +939,9 @@ if (isset($_POST['get'])) {
                 break;
             case 'pages':
                 echo $p->countPages();
+                break;
+            case 'pagesUsers':
+                echo $p->countPagesUsers();
                 break;
             case 'autoSearch':
                 echo $p->searchByLastNameOrId($_POST['param']);

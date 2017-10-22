@@ -1,0 +1,16 @@
+Paleta de colores:
+
+------ FUENTE ------
+Azul - #93ebff
+Verde / Agua - #49d9da
+
+
+------ TODOS ------
+Verde - #88d381
+Azul - #84a0c6
+Rojo - #f36b86
+Amarillo - #ffefb2
+Verde / Oscuro - #35716c
+Verde / Gris - #87bfb4
+Gris - #c7c7c7
+Negro - #413c3d
