@@ -44,10 +44,8 @@ $perm_citas = $_SESSION['accesos_citas'];
         if ($perm_medico == 1) {
             echo    '<a href="'. app_url() .'recibir_paciente" class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp Médico - Pacientes en Espera <span class="label label-danger counting" id="counterEnEspera">0</span></a>';
             echo    '<a href="'. app_url() .'mis_pacientes" class="list-group-item"><i class="fa fa-heartbeat"></i>&nbsp Médico - Mis Pacientes</a>';
+            echo    '<a href="'. app_url() .'mis_pacientes_espera" class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp ELIMINAR Médico - Mis Pacientes en Espera</a>';
             echo    '<a href="'. app_url() .'quirofano" class="list-group-item"><i class="fa fa-hospital-o"></i>&nbsp Médico - Quirófano</a>';
-
-
-            //echo    '<a href="'. app_url() .'mis_pacientes_espera" class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp ELIMINAR Médico - Mis Pacientes en Espera</a>';
         }
         ?>
         <!--    Permisos de Administrador   -->
@@ -56,15 +54,13 @@ $perm_citas = $_SESSION['accesos_citas'];
             echo    '<a href="'. app_url() .'usuarios" class="list-group-item"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp Administrador - Nuevos Usuarios</a>';
             echo    '<a href="'. app_url() .'reporte_citas" class="list-group-item"><i class="fa fa-server"></i>&nbsp Administrador - Reporte Citas</a>';
             echo    '<a href="'. app_url() .'reporte_citas_usuarios" class="list-group-item"><i class="fa fa-th-list"></i>&nbsp Administrador - Reporte Citas Usuarios</a>';
-           
-            /*
             echo    '<a href="'. app_url() .'caja" class="list-group-item"><i class="fa fa-line-chart"></i>&nbsp Administrador - Corte de Caja</a>';
+
             echo    '<a href="'. app_url() .'confirmar" class="list-group-item"><i class="fa fa-check-square-o"></i>&nbsp Financiero - Confirmar Pagos</a>';
             echo    '<a href="'. app_url() .'talones" class="list-group-item"><i class="fa fa-money"></i>&nbsp Financiero - Talones de Pago</a>';
             echo    '<a href="'. app_url() .'finanzas" class="list-group-item"><i class="fa fa-dollar"></i>&nbsp Financiero - Ingresos/Egresos</a>';
             echo    '<a href="'. app_url() .'finanzas-caja" class="list-group-item"><i class="fa fa-line-chart"></i>&nbsp Financiero - Corte de Caja</a>';
             echo    '<a href="'. app_url() .'pagos-cliente" class="list-group-item"><i class="fa fa-address-card"></i>&nbsp Financiero - Ver Pagos Cliente</a>';
-            */
         }
         ?>
     </div>
