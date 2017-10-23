@@ -24,6 +24,6 @@ function obtenerFechaHoy() {
         $am_pm = "pm";
     }
 
-    echo $dias[date('w')] . " " . date('d') . " de " . $meses[date('n') - 1] . " del " . date('Y') . " - " . $hora . ":" . $minuto . $am_pm;
+    echo $dias[date('w')] . " " . date('d') . " de " . $meses[date('n') - 1] . " del " . date('Y');
 }
 ?>

@@ -543,6 +543,12 @@ class Paciente
         $res['estado'] = 0;
         $paciente = $data['id_paciente'];
         if (!$this->idExists($paciente)) {
+
+            /*  
+            $tratamientoPrevio = $data['tratamiento'];
+            $queryAsistencia = "SELECT COUNT(0) FROM citas WHERE asistencia = 0 AND presupuesto_id = :tratamientoPrevio";
+            */
+
             try {
                 $fecha = $data['fecha'];
                 $hora = $data['hora'];
@@ -560,6 +566,7 @@ class Paciente
                 $stm->bindValue(":presupuesto_id", $tratamiento, PDO::PARAM_INT);
                 $stm->bindValue(":usuario_id", $_SESSION["Id"], PDO::PARAM_INT);
                 $stm->execute();
+
 
                 $res['estado'] = 1;
                 $res['id'] = $this->pdo->lastInsertId();

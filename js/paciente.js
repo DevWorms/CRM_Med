@@ -111,16 +111,15 @@ function loadPaciente(id) {
 
                 // Muestra la cita
                 response.citas.forEach(function (cita, i) {
-                    /*if (i === 0) {
-                        pC.html(
-                            '<a href="#" data-toggle="modal" data-target="#cita_' + cita.id + '">' + cita.fecha + ' ' + cita.hora_ini + '</a>'
-                        );
-                    } else {*/
+
+                    if(cita.asistencia == 1)    {
+
                         oC.append(
-                            '<a href="#" data-toggle="modal" data-target="#cita_' + cita.id + '">' + cita.fecha + ' ' + cita.hora_ini + '</a>'+
+                            cita.fecha + ' ' + cita.hora_ini + 
                             '<br>'
                         );
-                    //}
+
+                    }
 
                     var template = _.template($('#modal_cita_paciente').text());
                     $('#modalsCitas').append(template(cita));
