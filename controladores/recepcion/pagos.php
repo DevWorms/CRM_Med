@@ -9,9 +9,8 @@
     <?php include dirname(__FILE__) . "/../layouts/navbar.php"; ?>
 </div>
 <!-- /NAVBAR -->
-
+    
 <!-- TABS LOGIC -->
- 
 <script type="text/javascript">
     $(document).ready(function(){
         //La que inicia
@@ -21,6 +20,7 @@
         $('.secciones article').hide();
         //Muestra el primer tab
         $('.secciones article:first').show();
+
         $('ul.tabs_pagos li a').click(function(){
             //Remueve todas las clases 'active'
             $('ul.tabs_pagos li a').removeClass('activee');
@@ -43,7 +43,7 @@
     });
 </script>
 <!-- /TABS LOGIC-->
- 
+
 <div class="container">
     <div class="row">
         <!--MENU-->
@@ -63,7 +63,6 @@
             
                 <div class="wrap">
                     <!--TABS MENU-->
- 
                     <ul class="tabs_pagos">
                         <li>
                             <a href="#tab1" style="text-decoration:none;">
@@ -72,7 +71,6 @@
                                 </span>
                             </a>
                         </li>
- 
                         <li>
                             <a href="#tab2" style="text-decoration:none;">
                                 <span class="tab-text" id="tab2n">
@@ -81,14 +79,10 @@
                             </a>
                         </li>
                     </ul>
- 
                     <!-- / TABS MENU -->
- 
                     <hr>
- 
                     <!--TABS CONTENT-->
                     <div class="secciones">
-
                         <!-- TAB 1 PAGO VERSION 1 -->
                         <article id="tab1">
                             <!--BUSCADOR-->
@@ -107,7 +101,7 @@
                                 </div>
                             </div>
                             <div id="error"></div>
-                            <input type="hidden" name="user_id" name="user_id">
+                            <input type="hidden" name="user_id" id="user_id">
                             <!--/ BUSCADOR --> 
                             <div class="row">
                                 <div class="col-md-6">
@@ -124,15 +118,15 @@
                                                     <br>
                                                     <label for="monto">Monto</label>
                                                     <input type="number" id="monto" name="monto" class="form-control" required>
- 
+
                                                     <br>
                                                     <label for="concepto">Concepto</label>
                                                     <input type="text" id="concepto" name="concepto" class="form-control" required>
- 
+
                                                     <br>
                                                     <label for="recibo">Número de Recibo</label>
                                                     <input type="number" id="recibo" name="recibo" class="form-control" required>
- 
+
                                                     <br>
                                                     <label for="fecha">Fecha de Recibo</label>
                                                     <input type="text" id="fechaAbierta" name="fecha" class="form-control" readonly>
@@ -162,7 +156,7 @@
                                                     <br>
                                                     <label for="costo_pres">Costo Presupuesto</label>
                                                     <input type="number" id="precio" name="precio" class="form-control" required>
- 
+
                                                     <br>
                                                     <div class="form-group" align="right">
                                                         <button type="submit" class="btn btn-primary" id="registrar">Crear nuevo presupuesto</button>
@@ -179,14 +173,13 @@
                                             <div class="col-md-12">
                                                 <select id="mostrar_presup" class="form-control" name="mostrar_presup">
                                                     <option value="0">Otros</option>
-                                                 </select>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- /RESUPUESTO DEL PACIENTE -->
                                 </div>
                             </div>     
- 
                         </article>
                         <!-- /TAB 1 PAGO VERSION 1 -->
 
@@ -248,11 +241,9 @@
                                         <tbody>
                                         </tbody>
                                     </table>
-                                    <!--
-                                        <button class="btn btn-primary" style="float: right;display: none;" id="btn-imprimir">
-                                            Imprimir <i class="glyphicon glyphicon-print"></i>
-                                        </button> 
-                                    -->
+                                    <button class="btn btn-primary" style="float: right;display: none;" id="btn-imprimir">
+                                        Imprimir <i class="glyphicon glyphicon-print"></i>
+                                    </button> 
                                 </div>
                                 <form id="form-crearPago">
                                     <input type="hidden" name="paciente_id" id="paciente_id">
