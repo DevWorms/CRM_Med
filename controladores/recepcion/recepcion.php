@@ -22,9 +22,9 @@
                         <div class="row">
                             <div class="col-md-12" align="center">
                                 <div align="center">
-                                    <a class="btn btn-primary active" role="button">Usuarios con registro previo</a>
+                                    <a class="btn btn-primary active" role="button">Generar cita a <i>Paciente</i></a>
 
-                                    <a class="btn btn-primary" <?php echo '<a href="' . app_url() . 'primera_cita"' ?> role="button">Usuarios de primera vez</a>
+                                    <a class="btn btn-primary" <?php echo '<a href="' . app_url() . 'primera_cita"' ?> role="button">Generar cita a <i>Lead</i></a>
                                 </div>
                             </div>
                         </div>

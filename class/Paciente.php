@@ -206,7 +206,7 @@ class Paciente
         ];
 
         try {
-            $query = "SELECT count(id) FROM pacientes;";
+            $query = 'SELECT count(id) FROM pacientes WHERE is_paciente = "1";';
             $stm = $this->pdo->prepare($query);
 
             $stm->execute();
@@ -251,7 +251,7 @@ class Paciente
             if ($from < 0) {
                 $from = 0;
             }
-            $query = "SELECT * FROM pacientes  ORDER BY id ASC LIMIT :from, :to;";
+            $query = "SELECT * FROM pacientes WHERE is_paciente = 1 ORDER BY apPaterno ASC LIMIT :from, :to;";
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":from", $from, PDO::PARAM_INT );
             $stm->bindValue(":to", $this->pagination, PDO::PARAM_INT );

@@ -11,12 +11,14 @@ $route = new Route();
 
 	//	RUTAS DE RECEPCIÓN
 	$route->add('/citas', 'controladores/recepcion/recepcion.php');
-	$route->add('/control', 'controladores/recepcion/registro.php');
+	$route->add('/registro', 'controladores/recepcion/registro.php');
 	$route->add('/calendario', 'controladores/recepcion/calendario.php');
 	$route->add('/admin', 'controladores/recepcion/pagos.php');
 	$route->add('/primera_cita', 'controladores/recepcion/primera.php');
 	$route->add('/pagos', 'controladores/recepcion/pagos.php');
 	$route->add('/paciente', 'controladores/recepcion/paciente.php');
+	$route->add('/control', 'controladores/recepcion/control.php');
+	$route->add('/leads', 'controladores/recepcion/leads.php');
 
 	//	RUTAS DE FARMACIA
 	$route->add('/orden_compra', 'controladores/farmacia/ordenes.php');

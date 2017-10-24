@@ -24,9 +24,10 @@ $perm_citas = $_SESSION['accesos_citas'];
         <?php
         if ($perm_recepcion == 1)	{
             echo	'<a href="' . app_url() . 'citas" class="list-group-item "><i class="fa fa-pencil-square-o"></i></span>&nbsp Recepción - Programar Citas</a>';
-            echo	'<a href="' . app_url() . 'control" class="list-group-item "><i class="fa fa-user"></i></span>&nbsp Recepción - Control Pacientes</a>';
-            echo	'<a href="' . app_url() . 'calendario" class="list-group-item "><i class="fa fa-calendar"></i>&nbsp Recepción - Calendario</a>';
+            echo    '<a href="' . app_url() . 'calendario" class="list-group-item "><i class="fa fa-calendar"></i>&nbsp Recepción - Calendario</a>';
             echo    '<a href="'. app_url() .'pagos" class="list-group-item"><i class="fa fa-usd"></i>&nbsp Recepción - Pagos</a>';
+            echo	'<a href="' . app_url() . 'registro" class="list-group-item "><i class="fa fa-user-o"></i></span>&nbsp Recepción - Registro Pacientes</a>';
+            echo    '<a href="' . app_url() . 'control" class="list-group-item "><i class="fa fa-user"></i></span>&nbsp Recepción - Control Pacientes</a>';
         }
         ?>
         <!--	Permisos de Farmacia	-->
