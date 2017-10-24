@@ -54,9 +54,10 @@
         <div class="col-md-9">
             <div class="thumbnail">
 
+                <div class="caption-full">
                 <!--TITULO-->
-                <h2 style="display:inline; color:#337ab7;">Recepción - Pagos</h2>
-                <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Registra pagos a los pacientes así como ventas en recepción, similar a la versión beta."></span>
+                <h2 style="display:inline; color:#337ab7; ">&nbsp; Recepción - Pagos</h2>
+                <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Registra pagos de los pacientes."></span>
                 <hr>
                 <!-- / TITULO -->
                 
@@ -357,7 +358,7 @@
                     </div>
                     <!--/ TABS CONTENT -->
     
-                    
+                    </div>
                 </div>
                 
             </div>

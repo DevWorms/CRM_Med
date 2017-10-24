@@ -17,7 +17,7 @@
 
                         <h2 style="display:inline; color:#337ab7;">Recepción - Registro de Pacientes </h2>
 
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Agrega un paciente existente al sistema"></span>
+                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Agrega un paciente existente al sistema."></span>
 
                         <div id="error"></div>
                         <hr>

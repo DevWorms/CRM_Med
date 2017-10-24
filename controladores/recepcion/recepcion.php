@@ -16,7 +16,7 @@
                 <div class="thumbnail">
                     <div class="caption-full">
 						<h2 style="display:inline; color:#337ab7;">Recepción - Programar Citas </h2>
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Encuentra a un usuario a través del buscador escribiendo su nombre; si la búsqueda arroja un resultado, podrás programarle una nueva cita"></span>
+                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Programar nuevas citas a pacientes o a leads."></span>
                         <hr>
 
                         <div class="row">

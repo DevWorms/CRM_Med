@@ -15,9 +15,9 @@
                 <div class="thumbnail">
                     <div class="caption-full">
 
-                        <h2 style="display:inline; color:#337ab7;">Call Center - Directorio de Usuarios </h2>
+                        <h2 style="display:inline; color:#337ab7;">Call Center - Directorio de Leads </h2>
 
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Nombres y números de teléfono de los usuarios registrados."></span>
+                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Información de leads registrados."></span>
                         <hr>
                         <div id="error"></div>
 

@@ -17,7 +17,7 @@
 
                         <h2 style="display:inline; color:#337ab7;">Recepción - Control Pacientes </h2>
 
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Modifica y controla el registro de Pacientes y Leads"></span>
+                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Modifica y controla el registro de Pacientes y Leads."></span>
 
                         <div id="error"></div>
                         <hr>

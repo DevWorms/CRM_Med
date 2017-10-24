@@ -17,14 +17,14 @@
                     <div class="caption-full">
                         <h2 style="display:inline; color:#337ab7;"> Call Center - Citas </h2>
                         <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
-                              title="Módulo para crear nuevas citas o actualizar citas generadas"></span>
+                              title="Módulo para crear nuevas citas o actualizar citas generadas."></span>
                         <hr>
 
                         <div class="row">
                             <div class="col-md-12" align="center">
                                 <div align="center">
-                                    <a class="btn btn-primary" data-toggle="tab" href="#searchUser" role="button">Buscar usuario</a>
-                                    <a class="btn btn-primary" data-toggle="tab" href="#firstDate" role="button">Nuevo Usuario</a>
+                                    <a class="btn btn-primary" data-toggle="tab" href="#searchUser" role="button">Modificar Cita</a>
+                                    <a class="btn btn-primary" data-toggle="tab" href="#firstDate" role="button">Generar Cita</a>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                         <div id="custom-search-input">
                                             <div class="input-group col-md-9">
                                                 <input type="text" class="search-query form-control"
-                                                       placeholder="Folio o Nombre del Paciente" id="prospecto"
+                                                       placeholder="Folio o Nombre del Lead" id="prospecto"
                                                        name="prospecto" autofocus/>
                                                 <span class="input-group-btn">
                                                         <button class="btn btn-primary" type="button" id="busqueda">
@@ -58,7 +58,7 @@
 
                                 <div class="alert alert-info" role="alert">
                                     <p id="nombreP">
-                                       Ingresa el nombre de un paciente en el buscador.
+                                       Ingresa el nombre de un lead en el buscador.
                                     </p>
                                     <p id="telP">
                                     </p>

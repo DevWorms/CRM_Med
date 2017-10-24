@@ -208,11 +208,11 @@ function tableEditPacientes(page) {
                         var telefono2 = paciente.telefono2;
 
                         if(paciente.telefono == null || paciente.telefono == "") {
-                            telefono = "No Disponible";
+                            telefono = " - ";
                         }
 
                         if(paciente.telefono2 == null || paciente.telefono2 == "") {
-                            telefono2 = "No Disponible";
+                            telefono2 = " - ";
                         }
 
                         if(paciente.is_paciente == "0"){
