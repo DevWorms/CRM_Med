@@ -75,7 +75,7 @@
                         <li>
                             <a href="#tab2" style="text-decoration:none;">
                                 <span class="tab-text" id="tab2n">
-                                    Pagos Versión 2
+                                    Agregar Presupuesto
                                 </span>
                             </a>
                         </li>
@@ -198,9 +198,11 @@
                                                 <label for="">Forma de pago&nbsp;&nbsp;</label><br>
                                                 <select class="selectpicker" id="forma_pago" name="forma_pago">
                                                     <option value="Efectivo">Efectivo</option>
-                                                    <option value="VISA">VISA</option>
-                                                    <option value="AMEX">AMEX</option>
+                                                    <option value="Tarjeta Crédito">Tarjeta de Crédito</option>
+                                                    <option value="Tarjeta Débito">Tarjeta de Débito</option>
+                                                    <option value="AMEX">American Express</option>
                                                     <option value="Financiamiento">Financiamiento</option>
+                                                    <option value="Otro">Otro Medio (Añadir en Observaciones)</option>
                                                 </select>
                                             </fieldset>
                                         </div>
