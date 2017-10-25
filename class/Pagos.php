@@ -205,6 +205,9 @@ class Pagos {
         return $id[0][0]+1;
     }
 
+
+
+
     /**PAGOS VERSION 2**/
     public function getPagos($paciente,$presupuesto){
         $res = ['estado' => 0];
@@ -221,6 +224,9 @@ class Pagos {
     }
 
     public function crearPago($pago){
+
+        date_default_timezone_set('America/Mexico_City');
+
         $res = ['estado' => 0];
         $res['mensaje'] = "No se guardo el pago";
         //obtenemos datos del presupuesto
@@ -248,11 +254,21 @@ class Pagos {
         //obtenemos el saldo que queda despeus de este pago
         $saldo = $presupuesto[0]["precio"] - $acumulado;
 
+        //Obtener fechas
+        $fechaPago = $pago['fecha'];
+
+        if($fechaPago == "0000-00-00" || $fechaPago == "" || $fechaPago == null)
+            $fechaPago = date("Y-m-d");
+
+
         //obtenido el dato del saldo generamos el pago en la BD
-        $query = "INSERT INTO pagos (fecha,folio_anterior,monto,concepto,forma_pago,observaciones,plan_financiamiento,financiera,id_presupuesto,pacientes_id,saldo) VALUES (:fecha,:folio_anterior,:monto,:concepto,:forma_pago,:observaciones,:plan_financiamiento,:financiera,:id_presupuesto,:pacientes_id,:saldo)";
+        $query = "INSERT INTO pagos (fecha,folio_anterior,monto,concepto,forma_pago,observaciones,plan_financiamiento,financiera,id_presupuesto,pacientes_id,resta,fechado) VALUES (now(),:folio_anterior,:monto,:concepto,:forma_pago,:observaciones,:plan_financiamiento,:financiera,:id_presupuesto,:pacientes_id,:resta,:fechado)";
 
         $stm = $this->pdo->prepare($query);
-        $stm->bindParam(":fecha",$pago['fecha']);
+
+        //  AGREGAR LA COMPARACIÓN PARA LA FECHA Y QUE QUEDE CORREGIDO DE UNA VEZ POR TODAS :D
+
+        $stm->bindParam(":fechado",$fechaPago);
         $stm->bindParam(":folio_anterior",$pago['folio_Pagos']);
         $stm->bindParam(":monto",$pago['importe_pago']);
         $stm->bindParam(":concepto",$pago['concepto']);
@@ -270,7 +286,7 @@ class Pagos {
         $stm->bindParam(":financiera",$financiera);
         $stm->bindParam(":id_presupuesto",$pago['presupuesto']);
         $stm->bindParam(":pacientes_id",$pago['paciente_id']);
-        $stm->bindParam(":saldo",$saldo);
+        $stm->bindParam(":resta",$saldo);
 
         
 

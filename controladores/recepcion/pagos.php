@@ -68,7 +68,7 @@
                         <li>
                             <a href="#tab1" style="text-decoration:none;">
                                 <span class="tab-text" id="tab1n">
-                                    Pagos Versión 1
+                                    Registrar Pago
                                 </span>
                             </a>
                         </li>
@@ -84,108 +84,10 @@
                     <hr>
                     <!--TABS CONTENT-->
                     <div class="secciones">
-                        <!-- TAB 1 PAGO VERSION 1 -->
+
+
+                        <!-- TAB 2 -->
                         <article id="tab1">
-                            <!--BUSCADOR-->
-                            <div class="form-group row">
-                                <div class="col-md-12" align="center">
-                                    <div id="custom-search-input">
-                                        <div class="input-group col-md-9" >
-                                            <input type="text" class="search-query form-control" id="param" name="param" placeholder="Buscar Paciente..." />
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-primary" type="button" id="busqueda">
-                                                    <span class=" glyphicon glyphicon-search"></span>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="error"></div>
-                            <input type="hidden" name="user_id" id="user_id">
-                            <!--/ BUSCADOR --> 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <!--  FORMULARIO PAGO V1 NUEVO PAGO-->
-                                    <form id="nuevoPago" name="nuevoPago" method="POST">
-                                        <h2>Nuevo Pago</h2>
-                                        <div class="jumbotron">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label for="selec_presup">Selecciona Presupuesto</label>
-                                                    <select id="selec_presup" class="form-control" name="selec_presup">
-                                                        <option value="0">Otros</option>
-                                                    </select>
-                                                    <br>
-                                                    <label for="monto">Monto</label>
-                                                    <input type="number" id="monto" name="monto" class="form-control" required>
-
-                                                    <br>
-                                                    <label for="concepto">Concepto</label>
-                                                    <input type="text" id="concepto" name="concepto" class="form-control" required>
-
-                                                    <br>
-                                                    <label for="recibo">Número de Recibo</label>
-                                                    <input type="number" id="recibo" name="recibo" class="form-control" required>
-
-                                                    <br>
-                                                    <label for="fecha">Fecha de Recibo</label>
-                                                    <input type="text" id="fechaAbierta" name="fecha" class="form-control" readonly>
-
-                                                    <br>
-                                                    <div class="form-group" align="right">
-                                                        <button type="submit" class="btn btn-primary" id="registrar">
-                                                            Registrar Pago
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!--  /FORMULARIO PAGO V1 NUEVO PAGO-->
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- FORMULARIO PAGO V1 MUEVO PRESUPUESTO-->
-                                    <form id="nuevoPresupuesto" name="nuevoPresupuesto" method="POST">
-                                        <h2>Nuevo Presupuesto</h2>
-                                        <div class="jumbotron">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label for="nom_presup">Nombre Presupuesto</label>
-                                                    <input type="text" id="nombre" name="nombre" class="form-control" required>
-
-                                                    <br>
-                                                    <label for="costo_pres">Costo Presupuesto</label>
-                                                    <input type="number" id="precio" name="precio" class="form-control" required>
-
-                                                    <br>
-                                                    <div class="form-group" align="right">
-                                                        <button type="submit" class="btn btn-primary" id="registrar">Crear nuevo presupuesto</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!-- /FORMULARIO PAGO V1 NUEVO PRESUPUESTO-->
-                                    <!--RESUPUESTO DEL PACIENTE -->
-                                    <h2>Presupuestos del Paciente</h2>
-                                    <div class="jumbotron">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <select id="mostrar_presup" class="form-control" name="mostrar_presup">
-                                                    <option value="0">Otros</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /RESUPUESTO DEL PACIENTE -->
-                                </div>
-                            </div>     
-                        </article>
-                        <!-- /TAB 1 PAGO VERSION 1 -->
-
-                        <!-- TAB 2 PAGO VERSION 2-->
-                        <article id="tab2">
                             <div class="jumbotron">
                                 <!--FILA CABECERA-->
                                 <div class="row">
@@ -252,15 +154,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <fieldset class="form-inline">
-                                                <label for="">Fecha&nbsp;&nbsp;</label><br>
-                                                <div class="input-group calendario_pago">
-                                                    <input type="date" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-primary" type="button">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </button>
-                                                    </span>
-                                                </div>
+                                                <label for="piezas">Importe&nbsp;&nbsp;</label><br>
+                                                <input type="text" id="importe_pago" name="importe_pago" class="form-control input-width" required>
                                             </fieldset>
                                         </div>
                                         <div class="col-md-6">
@@ -275,8 +170,17 @@
                                         <div class="col-md-6">
                                             <fieldset class="form-inline">
                                                 <br>
-                                                <label for="piezas">Importe&nbsp;&nbsp;</label><br>
-                                                <input type="text" id="importe_pago" name="importe_pago" class="form-control input-width" required>
+                                                <label for="">Fecha de Recibo&nbsp;&nbsp;
+                                                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Agrega la fecha únicamente cuando registres un pago anterior; si el pago es actual, déjalo en blanco."></span>
+                                                </label><br>
+                                                <div class="input-group calendario_pago">
+                                                    <input type="date" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-primary" type="button">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </button>
+                                                    </span>
+                                                </div>
                                             </fieldset>
                                         </div>
                                         <div class="col-md-6">
@@ -353,7 +257,60 @@
                                 </div>
                             </div>
                         </article>
-                        <!-- / TAB 2 PAGO VERSION 2-->
+                        <!-- / TAB PAGO-->
+
+
+                        <!-- TAB 1 PAGO VERSION 1 -->
+                        <article id="tab2">
+                            <!--BUSCADOR-->
+                            <div class="form-group row">
+                                <div class="col-md-12" align="center">
+                                    <div id="custom-search-input">
+                                        <div class="input-group col-md-9" >
+                                            <input type="text" class="search-query form-control" id="param" name="param" placeholder="Buscar Paciente..." />
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button" id="busqueda">
+                                                    <span class=" glyphicon glyphicon-search"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="error"></div>
+                            <input type="hidden" name="user_id" id="user_id">
+                            <!--/ BUSCADOR --> 
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- FORMULARIO PAGO V1 MUEVO PRESUPUESTO-->
+                                    <form id="nuevoPresupuesto" name="nuevoPresupuesto" method="POST">
+                                        <h2>Nuevo Presupuesto</h2>
+                                        <div class="jumbotron">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="nom_presup">Nombre Presupuesto</label>
+                                                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+
+                                                    <br>
+                                                    <label for="costo_pres">Costo Presupuesto</label>
+                                                    <input type="number" id="precio" name="precio" class="form-control" required>
+
+                                                    <br>
+                                                    <div class="form-group" align="right">
+                                                        <button type="submit" class="btn btn-primary" id="registrar">Crear nuevo presupuesto</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>     
+                        </article>
+                        <!-- /TAB 1 PAGO VERSION 1 -->
 
                     </div>
                     <!--/ TABS CONTENT -->

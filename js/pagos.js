@@ -328,6 +328,11 @@ function loadPresupuestos(id) {
     });
 }
 
+
+
+
+
+
 /******************
  * PAGOS VERSION 2
  *****************/
@@ -466,7 +471,7 @@ function obtenerPagos(){
                         contenido += "<td>" + pago.folio_anterior + "</td>";
                         contenido += "<td>" + pago.concepto + "</td>";
                         contenido += "<td> $" + pago.monto + "</td>";
-                        contenido += "<td> $" + pago.saldo + "</td>";
+                        contenido += "<td> $" + pago.resta + "</td>";
                         contenido += "<td>" + pago.forma_pago + "</td>";
                         contenido +="</tr>";
                     });
@@ -511,6 +516,7 @@ function crearPago(){
             data: datos,
             beforeSend: function() {
                 $("#wait").show();
+                console.log(datos);
             },
             success: function(response) {
                 if (response.estado == "1") {

@@ -45,7 +45,6 @@ $perm_citas = $_SESSION['accesos_citas'];
         if ($perm_medico == 1) {
             echo    '<a href="'. app_url() .'recibir_paciente" class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp Médico - Pacientes en Espera <span class="label label-danger counting" id="counterEnEspera">0</span></a>';
             echo    '<a href="'. app_url() .'mis_pacientes" class="list-group-item"><i class="fa fa-heartbeat"></i>&nbsp Médico - Mis Pacientes</a>';
-            echo    '<a href="'. app_url() .'mis_pacientes_espera" class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp ELIMINAR Médico - Mis Pacientes en Espera</a>';
             echo    '<a href="'. app_url() .'quirofano" class="list-group-item"><i class="fa fa-hospital-o"></i>&nbsp Médico - Quirófano</a>';
         }
         ?>

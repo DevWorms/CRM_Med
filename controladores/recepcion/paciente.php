@@ -83,12 +83,6 @@
 
                                     <hr class="gradient">
                                     <H3 align="center"> Historial de Pagos </H3>
-                                    <br>
-                                    Sesiones programadas:
-                                    <br>
-                                    Sesiones pagadas:
-                                    <br>
-                                    Sesiones faltantes:
                                     <br><br>
 
                                     <table class="table table-hover" id="table_pagos">
@@ -115,6 +109,7 @@
         </div>
     </div>
             <script src="<?php echo app_url(); ?>js/paciente.js" type="text/javascript"></script>
+            
 <?php include dirname(__FILE__) . '/../layouts/footer.php'; ?>
             <div id="modalsCitas"></div>
             <script type="text/template" id="modal_cita_paciente">
