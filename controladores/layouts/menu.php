@@ -56,11 +56,13 @@ $perm_citas = $_SESSION['accesos_citas'];
             echo    '<a href="'. app_url() .'reporte_citas_usuarios" class="list-group-item"><i class="fa fa-th-list"></i>&nbsp Administrador - Reporte Citas Usuarios</a>';
             echo    '<a href="'. app_url() .'caja" class="list-group-item"><i class="fa fa-line-chart"></i>&nbsp Administrador - Corte de Caja</a>';
 
+            /*
             echo    '<a href="'. app_url() .'confirmar" class="list-group-item"><i class="fa fa-check-square-o"></i>&nbsp Financiero - Confirmar Pagos</a>';
             echo    '<a href="'. app_url() .'talones" class="list-group-item"><i class="fa fa-money"></i>&nbsp Financiero - Talones de Pago</a>';
             echo    '<a href="'. app_url() .'finanzas" class="list-group-item"><i class="fa fa-dollar"></i>&nbsp Financiero - Ingresos/Egresos</a>';
             echo    '<a href="'. app_url() .'finanzas-caja" class="list-group-item"><i class="fa fa-line-chart"></i>&nbsp Financiero - Corte de Caja</a>';
             echo    '<a href="'. app_url() .'pagos-cliente" class="list-group-item"><i class="fa fa-address-card"></i>&nbsp Financiero - Ver Pagos Cliente</a>';
+            */
         }
         ?>
     </div>

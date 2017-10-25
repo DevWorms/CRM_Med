@@ -19,6 +19,7 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
         <li>
             <p class="navbar-fecha"> <?php ObtenerFechaHoy(); ?> </p>
         </li>
+        <!--
         <li class="dropdown">
             <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bell-o icono-notificaciones" aria-expanded="true"></i><span class="badge">0</span>
@@ -27,6 +28,7 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
               <p>No tienes notificaciones</p>
             </div>   
         </li>
+        -->
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php echo $_SESSION['Nombre']; ?> <span class="caret"></span></a>
             <ul class="dropdown-menu">
