@@ -22,7 +22,7 @@
                         <hr>  
                             
                             <div class="col-md-12">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="fecha">Fecha de Requerimiento</label>
                                         <div class="input-group">
@@ -35,10 +35,10 @@
                                         </div>
                                     </fieldset>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <fieldset class="form-inline">
-                                        <label for="credito">Días de crédito&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <input type="number" class="form-control" id="credito" name="credito">
+                                        <label for="credito">Días de crédito (Opcional)</label>
+                                        <input type="number" class="form-control" id="credito" name="credito" placeholder="Días de crédito por los productos solicitados.">
                                     </fieldset>
                                 </div>
                             </div>

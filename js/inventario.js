@@ -194,11 +194,11 @@ function getCatalogo(page) {
                 response.inventario.forEach(function(producto) {
                     $('#catalogo tr:last').after('<tr' + getColorAlerta(producto) + '>' +
                         '<td>' + producto.nombre + '</td>' +
-                        '<td>' + producto.existencia + '</td>' +
                         '<td>' + producto.tipo + '</td>' +
                         '<td>' + producto.presentacion + ' con ' + producto.pzs_presentacion + ' piezas de ' + producto.cant_gramaje + ' ' + producto.gramaje + '</td>' +
-                        '<td>' + producto.lote + '</td>' +
                         '<td>' + producto.caducidad + '</td>' +
+                        '<td>' + producto.lote + '</td>' +
+                        '<td>' + producto.existencia + '</td>' +
                         '<td><a href="#" onclick="showEditProducto(' + producto.id + ')"><i class="glyphicon glyphicon-pencil"></i></a></td>' +
                         '</tr>');
                 });

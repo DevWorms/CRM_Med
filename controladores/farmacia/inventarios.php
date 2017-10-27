@@ -47,11 +47,11 @@
                             <thead>
                             <tr>
                                 <th>Producto</th>
-                                <th>Existencia</th>
                                 <th>Tipo</th>
                                 <th>Presentación</th>
-                                <th>Lote</th>
                                 <th>Fecha de Caducidad</th>
+                                <th>Lote</th>
+                                <th>Existencia</th>
                                 <th>Editar</th>
                             </tr>
                             </thead>

@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 
 class Inventario {
     private $pdo;
-    private $pagination = 10;
+    private $pagination = 20;
 
     /**
      * Inventario constructor.
