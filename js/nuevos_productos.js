@@ -169,13 +169,6 @@ function initPageNumbers() {
 function getPage(page_num) {
     $('li.active').removeClass("active");
     $("#page-" + page_num).attr("class", "active");
-
-    //Clear the existing data view
-    var table = document.getElementById("catalogo");
-    for (var i = table.rows.length - 1; i > 0; i--) {
-        table.deleteRow(i);
-    }
-    getCatalogo(page_num);
 }
 
 function getCatalogo(page) {

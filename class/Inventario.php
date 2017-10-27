@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 
 class Inventario {
     private $pdo;
-    private $pagination = 5;
+    private $pagination = 10;
 
     /**
      * Inventario constructor.
@@ -21,7 +21,7 @@ class Inventario {
         try {
             $from = (($page - 1) * $this->pagination);
 
-            $query = "SELECT * FROM productos ORDER BY caducidad ASC LIMIT :from, :to";
+            $query = "SELECT * FROM productos WHERE existencia > 0 ORDER BY caducidad ASC, nombre ASC LIMIT :from, :to";
             $stm = $this->pdo->prepare($query);
 
             $stm->bindValue(":from", $from, PDO::PARAM_INT );
@@ -46,7 +46,7 @@ class Inventario {
         ];
 
         try {
-            $query = "SELECT count(id) FROM productos;";
+            $query = "SELECT count(id) FROM productos WHERE existencia > 0;";
             $stm = $this->pdo->prepare($query);
 
             $stm->execute();
@@ -69,7 +69,7 @@ class Inventario {
 
         try {
 
-            $query = "SELECT * FROM productos WHERE nombre LIKE :search;";
+            $query = "SELECT * FROM productos WHERE nombre LIKE :search AND existencia > 0 ORDER BY caducidad ASC;";
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":search", "%$string%", PDO::PARAM_STR);
 
@@ -155,14 +155,14 @@ class Inventario {
         echo json_encode($res);
     }
 
-    public function createProducto($nombre, $fecha, $tipo, $presentacion, $gramaje, $piezas, $alerta, $lote,$descripcion,$existencia,$cant_gramaje) {
+    public function createProducto($nombre, $fecha, $tipo, $presentacion, $gramaje, $piezas, $lote,$descripcion,$existencia,$cant_gramaje) {
         $res = [
             'estado' => 0,
         ];
 
         try {
-            $query = "INSERT INTO productos (nombre, tipo, gramaje, presentacion, existencia, caducidad, minStock, lote, pzs_presentacion, descripcion, cant_gramaje)
-            VALUES ('$nombre', '$tipo', '$gramaje', '$presentacion', '$existencia', '$fecha', '$alerta', '$lote', '$piezas', '$descripcion', '$cant_gramaje')";
+            $query = "INSERT INTO productos (nombre, tipo, gramaje, presentacion, existencia, caducidad, lote, pzs_presentacion, descripcion, cant_gramaje)
+            VALUES ('$nombre', '$tipo', '$gramaje', '$presentacion', '$existencia', '$fecha', '$lote', '$piezas', '$descripcion', '$cant_gramaje')";
             $stm = $this->pdo->prepare($query);
 
             $stm->bindValue(1, $nombre, PDO::PARAM_STR);
@@ -170,12 +170,11 @@ class Inventario {
             $stm->bindValue(3, $presentacion, PDO::PARAM_STR);
             $stm->bindValue(4, $gramaje, PDO::PARAM_STR);
             $stm->bindValue(5, $fecha, PDO::PARAM_STR);
-            $stm->bindValue(6, $alerta, PDO::PARAM_INT);
-            $stm->bindValue(7, $lote, PDO::PARAM_INT);
-            $stm->bindValue(8, $piezas, PDO::PARAM_STR);
-            $stm->bindValue(9, $descripcion, PDO::PARAM_STR);
-            $stm->bindValue(10, $existencia, PDO::PARAM_INT);
-            $stm->bindValue(11, $cant_gramaje, PDO::PARAM_STR);
+            $stm->bindValue(6, $lote, PDO::PARAM_INT);
+            $stm->bindValue(7, $piezas, PDO::PARAM_STR);
+            $stm->bindValue(8, $descripcion, PDO::PARAM_STR);
+            $stm->bindValue(9, $existencia, PDO::PARAM_INT);
+            $stm->bindValue(10, $cant_gramaje, PDO::PARAM_STR);
             $stm->execute();
 
             $res['estado'] = 1;
@@ -211,13 +210,13 @@ class Inventario {
         echo json_encode($res);
     }
 
-    public function modifyProducto($nombre, $fecha, $tipo, $presentacion, $gramaje, $piezas, $alerta, $lote,$descripcion,$existencia,$cant_gramaje,$idProducto) {
+    public function modifyProducto($nombre, $fecha, $tipo, $presentacion, $gramaje, $piezas, $lote,$descripcion,$existencia,$cant_gramaje,$idProducto) {
         $res = [
             'estado' => 0,
         ];
 
         try {
-            $query = "UPDATE productos SET nombre = ?, tipo = ?, presentacion = ?, gramaje = ?, caducidad = ?, minStock = ?, lote = ?, pzs_presentacion = ?,descripcion = ?,existencia = ?,cant_gramaje = ? WHERE id = ?";
+            $query = "UPDATE productos SET nombre = ?, tipo = ?, presentacion = ?, gramaje = ?, caducidad = ?, lote = ?, pzs_presentacion = ?,descripcion = ?,existencia = ?,cant_gramaje = ? WHERE id = ?";
             $stm = $this->pdo->prepare($query);
 
             $stm->bindValue(1, $nombre, PDO::PARAM_STR);
@@ -225,13 +224,12 @@ class Inventario {
             $stm->bindValue(3, $presentacion, PDO::PARAM_STR);
             $stm->bindValue(4, $gramaje, PDO::PARAM_STR);
             $stm->bindValue(5, $fecha, PDO::PARAM_STR);
-            $stm->bindValue(6, $alerta, PDO::PARAM_INT);
-            $stm->bindValue(7, $lote, PDO::PARAM_INT);
-            $stm->bindValue(8, $piezas, PDO::PARAM_STR);
-            $stm->bindValue(9, $descripcion, PDO::PARAM_STR);
-            $stm->bindValue(10, $existencia, PDO::PARAM_INT);
-            $stm->bindValue(11, $cant_gramaje, PDO::PARAM_STR);
-            $stm->bindValue(12, $idProducto, PDO::PARAM_INT);
+            $stm->bindValue(6, $lote, PDO::PARAM_INT);
+            $stm->bindValue(7, $piezas, PDO::PARAM_STR);
+            $stm->bindValue(8, $descripcion, PDO::PARAM_STR);
+            $stm->bindValue(9, $existencia, PDO::PARAM_INT);
+            $stm->bindValue(10, $cant_gramaje, PDO::PARAM_STR);
+            $stm->bindValue(11, $idProducto, PDO::PARAM_INT);
             $stm->execute();
 
             $res['estado'] = 1;
@@ -456,13 +454,13 @@ if (isset($_POST['get'])) {
                 $i->searchProducto($_POST['search']);
                 break;
             case 'create':
-                $i->createProducto($_POST['nombre'], $_POST['fecha'], $_POST['tipo'], $_POST['presentacion'], $_POST['gramaje'], $_POST['piezas'], $_POST['alertas'], $_POST['lote'],$_POST['descripcion'],$_POST['existencia'], $_POST['cant_gramaje']);
+                $i->createProducto($_POST['nombre'], $_POST['fecha'], $_POST['tipo'], $_POST['presentacion'], $_POST['gramaje'], $_POST['piezas'], $_POST['lote'],$_POST['descripcion'],$_POST['existencia'], $_POST['cant_gramaje']);
                 break;
             case 'getProductoById':
                 $i->getProductoById($_POST['idProd']);
                 break;
             case 'modifyProducto':
-                $i->modifyProducto($_POST['e-nombre'], $_POST['e-fecha'], $_POST['e-tipo'], $_POST['e-presentacion'], $_POST['e-gramaje'], $_POST['e-piezas'], $_POST['e-alertas'], $_POST['e-lote'],$_POST['e-descripcion'],$_POST['e-existencia'], $_POST['e-cant_gramaje'],$_POST['idProducto']);
+                $i->modifyProducto($_POST['e-nombre'], $_POST['e-fecha'], $_POST['e-tipo'], $_POST['e-presentacion'], $_POST['e-gramaje'], $_POST['e-piezas'], $_POST['e-lote'],$_POST['e-descripcion'],$_POST['e-existencia'], $_POST['e-cant_gramaje'],$_POST['idProducto']);
                 break;
             case 'searchProductoToOut':
                 $i->searchProductoToOut($_POST['busqueda']);

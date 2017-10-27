@@ -22,10 +22,11 @@ $route = new Route();
 
 	//	RUTAS DE FARMACIA
 	$route->add('/orden_compra', 'controladores/farmacia/ordenes.php');
-	$route->add('/catalogo', 'controladores/farmacia/catalogo-productos.php');
+	$route->add('/agregar_productos', 'controladores/farmacia/nuevos-productos.php');
 	$route->add('/registrar_factura', 'controladores/farmacia/facturas.php');
 	$route->add('/salida_productos', 'controladores/farmacia/salida-productos.php');
 	$route->add('/rep_salida_productos', 'controladores/farmacia/reporte-salidas.php');
+	$route->add('/inventario', 'controladores/farmacia/inventarios.php');
 
 	//	RUTAS DE ADMINISTRADOR
 	$route->add('/usuarios', 'controladores/admin/usuarios.php');
