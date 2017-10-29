@@ -150,17 +150,34 @@ function getReporteSalidas(){
         },
         success: function(response){
             if(response.estado == "1"){
-                console.log(response.salidas);
                 var contenido = "";
                 var salidas = response.salidas;
                 for (var i = 0; i < salidas.length ; i++) {
+
+                    var paciente = salidas[i].nPaciente;
+                    var comentario = salidas[i].comentario;
+                    var personal = salidas[i].nMedico;
+                    var fecha = salidas[i].fecha;
+
+                    if(comentario == "" || comentario == null)  
+                        comentario = " - "
+
+                    if(paciente == "" || paciente == null)  
+                        paciente = " - "
+
+                    if(personal == "" || personal == null)  
+                        personal = " - "
+
+                    console.log(fecha);
+
+
                     contenido += "<tr>";
-                    contenido += "<td>" + salidas[i].nUsuario + "</td>";
-                    contenido += "<td>" + salidas[i].nMedico + "</td>";
-                    contenido += "<td>" + salidas[i].nPaciente + "</td>";
-                    contenido += "<td>" + salidas[i].fecha + "</td>";
-                    contenido += "<td>" + salidas[i].comentario + "</td>";
-                    contenido += "<td><a href='#' onclick=getDetalleSalida(" + salidas[i].id + ")>Detalles <i class='glyphicon glyphicon-align-left'></td>";
+                    contenido += "<td align='center'>" + salidas[i].nUsuario + "</td>";
+                    contenido += "<td align='center'>" + personal + "</td>";
+                    contenido += "<td align='center'>" + paciente + "</td>";
+                    contenido += "<td align='center'>" + fecha + "</td>";
+                    contenido += "<td align='center'>" + comentario + "</td>";
+                    contenido += "<td align='center'><a href='#' onclick=getDetalleSalida(" + salidas[i].id + ")><i class='fa fa-list-ul'></td>";
                     contenido += "<tr>";
                 }
                 $("#repMasterOutProductos").html(contenido);

@@ -438,8 +438,7 @@ class Usuarios
             $query = "SELECT u.id, u.apPaterno, u.nombre
             from usuarios u inner join accesos a
             on u.id = a.id_usuario
-            where (u.nombre like :search or u.apPaterno like :search or u.id like :search)
-            and a.medico = true order by u.id asc;";
+            where (u.nombre like :search or u.apPaterno like :search or u.id like :search) order by u.id asc;";
 
             $stm = $this->pdo->prepare($query);
 

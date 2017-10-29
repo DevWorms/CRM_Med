@@ -17,7 +17,8 @@ $(document).ready(function() {
                 dataType: "json",
                 success: function(data) {
                     response($.map(data.productos, function(el) {
-                        return el.id + " - " + el.nombre + " - " + el.existencia;
+                        
+                        return el.id + " | " + el.nombre + " | " + el.existencia + " en existencia";
                     }));
                 },
                 error: function(data) {
@@ -40,7 +41,7 @@ $(document).ready(function() {
             // add placeholder to get the comma-and-space at the end
             terms.push("");
             this.value = terms.join("");
-            var valores = ui.item.value.split(" - ");
+            var valores = ui.item.value.split("|");
             if (!isDuplicatedProduct(valores[0])) {
                 addToPre(valores[0], valores[1], valores[2]);
             } else {
@@ -147,8 +148,12 @@ function addToPre(id, nombre, existencia) {
 
     var contenido = "";
 
+    var existencia_numero = existencia.split(" en existencia");
+    existencia = existencia_numero[0];
+    existencia = Number(existencia);
+
     contenido += "<tr><td style='display:none'>" + id + "</td><td>" + nombre + "</td><td>" + existencia + "</td>";
-    contenido += "<td><input class='form-control' type='number' min='1' max='" + existencia + "' name='cantidad'/></td>";
+    contenido += "<td><input class='form-control' type='number' min='1' max='" + existencia +"' name='cantidad' value='1'/></td>";
     contenido += "<td><a href='#' style='color:red' onclick='removeRow(this)'><i class='glyphicon glyphicon-remove'></i></a></td>"
     contenido += "</tr>";
 
@@ -174,6 +179,13 @@ function pastProductoSelection() {
         var nombreProd = $(val)[1].innerText;
         var cantidad = $($(val)[3].firstChild).val();
         var existencia = $(val)[2].innerText;
+
+        var existencia_numero = existencia.split(" en existencia");
+        
+        existencia = existencia_numero[0];
+
+        console.log(existencia);
+
         if (cantidad) {
             if (Number(cantidad) > 0 && Number(cantidad) <= Number(existencia)) {
                 contenido += "<tr>";

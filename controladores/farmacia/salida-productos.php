@@ -19,7 +19,7 @@
                     <h2 style="display:inline; color:#337ab7;">Farmacia - Salida de Productos </h2>
 
                     <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
-                          title="Registrar la salida de productos de farmacia y sus involucrados"></span>
+                          title="Registra la salida de productos de farmacia."></span>
                     <hr>
                     <div class="row">
                         <div class="col-md-1"></div>
@@ -43,24 +43,32 @@
                                             <th style="display: none;">id</th>
                                             <th>Producto</th>
                                             <th>Cantidad</th>
-                                            <th>&nbsp;</th>
+                                            <th>Quitar</th>
                                         </thead>
                                         <tbody id="productosToOut"></tbody>
                                     </table>
                                 </div>
                             </div>
-                            <br>
+
+                            <hr>
+                            <h4 align="center">
+                            Selecciona el paciente o personal del establecimiento que solicita la salida del producto; debes seleccionar al menos uno.
+                            </h4> 
+                            <br><br>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" id="searchPac" name="searchPac" class="form-control" placeholder="Para que paciente">
+                                        <label for="">Nombre de Paciente</label><br>
+                                        <input type="text" id="searchPac" name="searchPac" class="form-control" placeholder="Paciente que solicita la salida">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" id="searchMed" name="searchMed" class="form-control" placeholder="Médico que solicita">
+                                        <label for="">Nombre de Personal</label><br>
+                                        <input type="text" id="searchMed" name="searchMed" class="form-control" placeholder="Personal que solicita la salida"> 
                                 </div>
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-8">
+                                        <label for="comentario">Comentario (Opcional)</label><br>
                                     <textarea style="resize: none;" name="comentario" id="comentario"  class="form-control" placeholder="Comentarios ..."></textarea>
                                 </div>
                             </div>
@@ -92,6 +100,8 @@
                   <h4 class="modal-title">Agregar productos</h4>
                 </div>
                 <div class="modal-body">
+                    <h5 align="center">Los productos se muestran ordenados por <b>fecha de caducidad</b>, por lo cual recomendamos que selecciones siempre los primeros productos.</h5>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <input type="text" class="form-control ui-autocomplete-input" id="searchProd" name="searchProd" placeholder="Buscar producto" required>
@@ -106,7 +116,7 @@
                                     <th>Producto</th>
                                     <th>Existencia</th>
                                     <th>Cantidad</th>
-                                    <th>&nbsp;</th>
+                                    <th>Quitar</th>
                                 </thead>
                                 <tbody id="preOutPoducts">
                                 </tbody>

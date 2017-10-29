@@ -16,29 +16,29 @@ $perm_citas = $_SESSION['accesos_citas'];
         <!--	Permisos de Call Center	   -->
         <?php
         if ($perm_citas == 1)	{
-            echo	'<a href="' . app_url() . 'citas_programar" class="list-group-item "><i class="fa fa-phone"></i>&nbsp Call Center - Programar Citas</a>';
-            echo    '<a href="' . app_url() . 'directorio_center" class="list-group-item "><i class="fa fa-users"></i>&nbsp Call Center - Directorio</a>';
+            //echo	'<a href="' . app_url() . 'citas_programar" class="list-group-item "><i class="fa fa-phone"></i>&nbsp Call Center - Programar Citas</a>';
+            //echo    '<a href="' . app_url() . 'directorio_center" class="list-group-item "><i class="fa fa-users"></i>&nbsp Call Center - Directorio</a>';
         }
         ?>
         <!--	Permisos de Recepción	-->
         <?php
         if ($perm_recepcion == 1)	{
-            echo	'<a href="' . app_url() . 'citas" class="list-group-item "><i class="fa fa-pencil-square-o"></i></span>&nbsp Recepción - Programar Citas</a>';
-            echo    '<a href="' . app_url() . 'calendario" class="list-group-item "><i class="fa fa-calendar"></i>&nbsp Recepción - Calendario</a>';
+            //echo	'<a href="' . app_url() . 'citas" class="list-group-item "><i class="fa fa-pencil-square-o"></i></span>&nbsp Recepción - Programar Citas</a>';
+            //echo    '<a href="' . app_url() . 'calendario" class="list-group-item "><i class="fa fa-calendar"></i>&nbsp Recepción - Calendario</a>';
             echo    '<a href="'. app_url() .'pagos" class="list-group-item"><i class="fa fa-usd"></i>&nbsp Recepción - Pagos</a>';
-            echo	'<a href="' . app_url() . 'registro" class="list-group-item "><i class="fa fa-user-o"></i></span>&nbsp Recepción - Registro Pacientes</a>';
-            echo    '<a href="' . app_url() . 'control" class="list-group-item "><i class="fa fa-user"></i></span>&nbsp Recepción - Control Pacientes</a>';
+            //echo	'<a href="' . app_url() . 'registro" class="list-group-item "><i class="fa fa-user-o"></i></span>&nbsp Recepción - Registro Pacientes</a>';
+            //echo    '<a href="' . app_url() . 'control" class="list-group-item "><i class="fa fa-user"></i></span>&nbsp Recepción - Control Pacientes</a>';
         }
         ?>
         <!--	Permisos de Farmacia	-->
         <?php
         if ($perm_farmacia == 1)	{
             echo    '<a href="'. app_url() .'agregar_productos" class="list-group-item"><i class="fa fa-plus"></i>&nbsp Farmacia - Añadir Productos</a>';
+            //echo    '<a href="'. app_url() .'salida_productos" class="list-group-item"><i class="fa fa-external-link"></i>&nbsp Farmacia - Salida de Productos</a>';
+            //echo    '<a href="'. app_url() .'rep_salida_productos" class="list-group-item"><i class="fa fa-file-text"></i></span>&nbsp Farmacia - Reporte de Salidas</a>';
             echo    '<a href="'. app_url() .'inventario" class="list-group-item"><i class="fa fa-list-ol"></i>&nbsp Farmacia - Inventario</a>';
             echo	'<a href="'. app_url() .'orden_compra" class="list-group-item"><i class="fa fa-list-alt"></i>&nbsp Farmacia - Ordenes de Compra</a>';
             echo    '<a href="'. app_url() .'registrar_factura" class="list-group-item"><i class="fa fa-clipboard"></i>&nbsp Farmacia - Registrar Factura</a>';
-            echo    '<a href="'. app_url() .'salida_productos" class="list-group-item"><i class="fa fa-external-link"></i>&nbsp Farmacia - Salida Productos</a>';
-            echo    '<a href="'. app_url() .'rep_salida_productos" class="list-group-item"><i class="fa fa-file-text"></i></span>&nbsp Farmacia - Reporte Salida Productos</a>';
         }
         ?>
         <!--    Permisos de Médico   -->

@@ -543,36 +543,48 @@ class Paciente
         $res['estado'] = 0;
         $paciente = $data['id_paciente'];
         if (!$this->idExists($paciente)) {
-
-            /*  
+ 
             $tratamientoPrevio = $data['tratamiento'];
-            $queryAsistencia = "SELECT COUNT(0) FROM citas WHERE asistencia = 0 AND presupuesto_id = :tratamientoPrevio";
-            */
 
-            try {
-                $fecha = $data['fecha'];
-                $hora = $data['hora'];
-                $tipo = $data['tipo'];
-                $comentario = $data['comentario'];
-                $tratamiento = $data['tratamiento'];
+            $queryAsistencia = "SELECT COUNT(asistencia) AS total FROM citas WHERE pacientes_id = :id_usuario AND presupuesto_id = :id_presupuesto AND asistencia = 0";
 
-                $query = "INSERT INTO citas (fecha, hora_ini, tipo_cita, pacientes_id, comentario, presupuesto_id,usuario_id) values (:fecha, :hora_ini, :tipo_cita, :pacientes_id, :comentario, :presupuesto_id,:usuario_id);";
-                $stm = $this->pdo->prepare($query);
-                $stm->bindValue(":fecha", $fecha, PDO::PARAM_STR);
-                $stm->bindValue(":hora_ini", $hora, PDO::PARAM_STR);
-                $stm->bindValue(":tipo_cita", $tipo, PDO::PARAM_INT);
-                $stm->bindValue(":pacientes_id", $paciente, PDO::PARAM_INT);
-                $stm->bindValue(":comentario", $comentario, PDO::PARAM_STR);
-                $stm->bindValue(":presupuesto_id", $tratamiento, PDO::PARAM_INT);
-                $stm->bindValue(":usuario_id", $_SESSION["Id"], PDO::PARAM_INT);
-                $stm->execute();
+            $stmAsistencia = $this->pdo->prepare($queryAsistencia);
+            $stmAsistencia->bindValue(":id_usuario", $paciente, PDO::PARAM_STR);
+            $stmAsistencia->bindValue(":id_presupuesto", $tratamientoPrevio, PDO::PARAM_STR);
+            $stmAsistencia->execute();
+
+            $resultadoAsistencia = $stmAsistencia->fetch();
+
+            if($resultadoAsistencia['total'] == 0)    {
+                try {   
+                    $fecha = $data['fecha'];
+                    $hora = $data['hora'];
+                    $tipo = $data['tipo'];
+                    $comentario = $data['comentario'];
+                    $tratamiento = $data['tratamiento'];
+
+                    $query = "INSERT INTO citas (fecha, hora_ini, tipo_cita, pacientes_id, comentario, presupuesto_id,usuario_id) values (:fecha, :hora_ini, :tipo_cita, :pacientes_id, :comentario, :presupuesto_id,:usuario_id);";
+                    $stm = $this->pdo->prepare($query);
+                    $stm->bindValue(":fecha", $fecha, PDO::PARAM_STR);
+                    $stm->bindValue(":hora_ini", $hora, PDO::PARAM_STR);
+                    $stm->bindValue(":tipo_cita", $tipo, PDO::PARAM_INT);
+                    $stm->bindValue(":pacientes_id", $paciente, PDO::PARAM_INT);
+                    $stm->bindValue(":comentario", $comentario, PDO::PARAM_STR);
+                    $stm->bindValue(":presupuesto_id", $tratamiento, PDO::PARAM_INT);
+                    $stm->bindValue(":usuario_id", $_SESSION["Id"], PDO::PARAM_INT);
+                    $stm->execute();
 
 
-                $res['estado'] = 1;
-                $res['id'] = $this->pdo->lastInsertId();
-            } catch (Exception $ex) {
-                $res['mensaje'] = $ex->getMessage();
+                    $res['estado'] = 1;
+                    $res['id'] = $this->pdo->lastInsertId();
+                } catch (Exception $ex) {
+                    $res['mensaje'] = $ex->getMessage();
+                }
+            } else{
+                $res['mensaje'] = "Ya se tiene una cita programada para el paciente " . $paciente . " con el mismo tratamiento. Actualizar o eliminar la cita programada.";
             }
+
+
         } else {
             $res['mensaje'] = "No se encontro el folio " . $paciente;
         }

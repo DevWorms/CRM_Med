@@ -16,15 +16,14 @@
         <div class="col-md-9">
             <div class="thumbnail">
                 <div class="caption-full">
-                    <h2 style="display:inline; color:#337ab7;">Farmacia - Reporte Salida de Productos </h2>
+                    <h2 style="display:inline; color:#337ab7;">Farmacia - Reporte de Salidas</h2>
 
                     <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
-                          title="Enlista las salidas de productos generadas"></span>
+                          title="Detalle de salidas de Inventario."></span>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Filtros de búsqueda</h4>
-                            <hr>
+                            <h4 align="center">Filtros de búsqueda</h4>
                             <form id="form-getSalidas">
                             <input type="hidden" id="get" name="get" class="form-control" value="reporteSalidaProductos">
                             <div class="row">
@@ -41,30 +40,30 @@
                                     <input type="hidden" id="paciente" name="paciente" class="form-control" value="0">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" id="fecha" name="fecha" class="form-control" placeholder="Fecha de salida">
+                                    <input type="text" id="fechaAbierta" name="fecha" class="form-control" placeholder="Fecha de salida">
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
+                                <br><br><br>
                                 <div class="col-md-12" align="right">
                                     <button type="button" class="btn btn-primary" onclick="getReporteSalidas()">
                                         Buscar Salidas <i class="glyphicon glyphicon-search"></i>
                                     </button>
                                 </div>
-                            </div>
                             </form>
+                            </div>
+                            <hr>
+                            <br>
                             <br>
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Usuario</th>
-                                                <th>Médico</th>
-                                                <th>Paciente</th>
-                                                <th>Fecha</th>
-                                                <th>Comentario</th>
-                                                <th>&nbsp;</th>
+                                                <th style="text-align:center">Usuario que generó la salida</th>
+                                                <th style="text-align:center">Personal que solicitó la salida</th>
+                                                <th style="text-align:center">Paciente que solicitó la salida</th>
+                                                <th style="text-align:center">Fecha de solicitud</th>
+                                                <th style="text-align:center">Comentario de solicitud</th>
+                                                <th style="text-align:center">Listado de productos</th>
                                             </tr>
                                         </thead>
                                         <tbody id="repMasterOutProductos"></tbody>
@@ -84,7 +83,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Detall de  productos</h4>
+                  <h4 class="modal-title">Listado de productos</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">

@@ -2,6 +2,7 @@
 include dirname(__FILE__) . '/../controladores/datos/ConexionBD.php';
 include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 
+
 class Inventario {
     private $pdo;
     private $pagination = 20;
@@ -248,7 +249,7 @@ class Inventario {
 
         try {
 
-            $query = "SELECT id, nombre, existencia FROM productos WHERE nombre LIKE :search AND existencia > 0 ORDER BY caducidad ASC limit 15;";
+            $query = "SELECT id, nombre, existencia, caducidad FROM productos WHERE nombre LIKE :search AND existencia > 0 ORDER BY caducidad ASC limit 15;";
 
             $stm = $this->pdo->prepare($query);
             $stm->bindValue(":search", "%$string%", PDO::PARAM_STR);
@@ -268,6 +269,9 @@ class Inventario {
 
 
     public function generarSalida($data){
+
+    date_default_timezone_set('America/Mexico_City');
+
         $res = [
             'estado' => 0,
         ];
@@ -289,13 +293,15 @@ class Inventario {
             }
 
             if($tempIns < count($ids)){
+                $fecha = date("Y-m-d H:i:s");
                 // si podemos insertar al menos 1 comenzamos insertando el master
-                $query = "INSERT INTO salida_productos_master (user_id,medico_id,paciente_id,comentario) VALUES(?,?,?,?)";
+                $query = "INSERT INTO salida_productos_master (user_id,medico_id,paciente_id,fecha_salida,comentario) VALUES(?,?,?,?,?)";
                 $stm = $this->pdo->prepare($query);
                 $stm->bindParam(1,$data["user"]);
                 $stm->bindParam(2,$data["medico"]);
                 $stm->bindParam(3,$data["paciente"]);
-                $stm->bindParam(4,$data["comentario"]);
+                $stm->bindParam(4,$fecha);
+                $stm->bindParam(5,$data["comentario"]);
                 if($stm->execute()){
                     $idMaster = $this->pdo->lastInsertId();
                     // Una vez insertado el master insertamos detalle y checamos existencia uno a uno
@@ -372,7 +378,7 @@ class Inventario {
             $query .= ' s.fecha_salida as fecha,s.comentario as comentario';
             $query .= ' FROM salida_productos_master AS s ';
             $query .= ' LEFT JOIN usuarios AS u ON s.user_id = u.id';
-            $query .= ' LEFT JOIN usuarios AS m ON s.medico_id = m.id AND m.id_tipo = 2';
+            $query .= ' LEFT JOIN usuarios AS m ON s.medico_id = m.id';
             $query .= ' LEFT JOIN pacientes AS p ON s.paciente_id = p.id WHERE 1=1 ';
 
         if($usuario == 0 AND $medico == 0 AND $paciente == 0 AND $fecha == ""){

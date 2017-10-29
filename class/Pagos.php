@@ -3,6 +3,8 @@
 include dirname(__FILE__) . '/../controladores/datos/ConexionBD.php';
 include dirname(__FILE__) . '/../controladores/sesion/Session.php';
 
+date_default_timezone_set('America/Mexico_City');
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -224,8 +226,6 @@ class Pagos {
     }
 
     public function crearPago($pago){
-
-        date_default_timezone_set('America/Mexico_City');
 
         $res = ['estado' => 0];
         $res['mensaje'] = "No se guardo el pago";
