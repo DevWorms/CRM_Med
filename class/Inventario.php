@@ -87,6 +87,36 @@ class Inventario {
         echo json_encode($res);
     }
 
+    public function sortProducto($string) {
+        $res = [
+            'estado' => 0,
+        ];
+
+        try {
+
+            if($string == 1)
+                $query = "SELECT * FROM productos WHERE existencia > 0 ORDER BY caducidad ASC;";
+
+            else if($string == 2)
+                $query = "SELECT * FROM productos WHERE existencia > 0 ORDER BY nombre ASC;";
+
+            else
+                $query = "SELECT * FROM productos WHERE existencia > 0 ORDER BY existencia ASC;";
+
+            $stm = $this->pdo->prepare($query);
+            $stm->execute();
+            $resultado = $stm->fetchAll();
+
+            $res['productos'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+
+        // Devuelve json como respuesta
+        echo json_encode($res);
+    }
+
     public function getPresentacion($string){
         $res = [
             'estado' => 0,
@@ -458,6 +488,9 @@ if (isset($_POST['get'])) {
                 break;
             case 'search':
                 $i->searchProducto($_POST['search']);
+                break;
+            case 'ordenar':
+                $i->sortProducto($_POST['search']);
                 break;
             case 'create':
                 $i->createProducto($_POST['nombre'], $_POST['fecha'], $_POST['tipo'], $_POST['presentacion'], $_POST['gramaje'], $_POST['piezas'], $_POST['lote'],$_POST['descripcion'],$_POST['existencia'], $_POST['cant_gramaje']);

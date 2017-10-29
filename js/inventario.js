@@ -288,6 +288,52 @@ function searchProducto() {
     });
 }
 
+function ordenarPor(valor) {
+    
+    console.log(valor);
+
+    $.ajax({
+        type: 'POST',
+        url: APP_URL + 'class/Inventario.php',
+        data: {
+            get: 'ordenar',
+            search: valor
+        },
+        success: function(response) {
+            response = JSON.parse(response);
+
+            if (response.estado == 1) {
+                var table = document.getElementById("catalogo");
+                for (var i = table.rows.length - 1; i > 0; i--) {
+                    table.deleteRow(i);
+                }
+                $('#pagination').html("");
+
+                response.productos.forEach(function(producto) {
+
+                    $('#catalogo tr:last').after('<tr' + getColorAlerta(producto) + '>' +
+
+                        '<td>' + producto.nombre + '</td>' +
+                        '<td>' + producto.existencia + '</td>' +
+                        '<td>' + producto.tipo + '</td>' +
+                        '<td>' + producto.presentacion + ' con ' + producto.pzs_presentacion + ' piezas de ' + producto.cant_gramaje + ' ' + producto.gramaje + '</td>' +
+                        '<td>' + producto.lote + '</td>' +
+                        '<td>' + producto.caducidad + '</td>' +
+                        '<td><a href="#" onclick="showEditProducto(' + producto.id + ')"><i class="glyphicon glyphicon-pencil"></i></a></td>' +
+                        '</tr>');
+                });
+            } else {
+                $("#error").fadeIn(1000, function() {
+                    $("#error").html('<div class="alert alert-danger"> &nbsp; ' + response.mensaje + '</div>');
+                });
+            }
+        },
+        error: function(response) {
+            console.log(response);
+        }
+    });
+}
+
 function createProducto() {
     if (camposValidos()) { // Si todos los campos son validos
         var data = $("#create-form").serialize();
@@ -447,3 +493,4 @@ function camposValidos() {
         }
     }
 }
+

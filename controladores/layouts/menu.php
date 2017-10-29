@@ -36,7 +36,7 @@ $perm_citas = $_SESSION['accesos_citas'];
             echo    '<a href="'. app_url() .'agregar_productos" class="list-group-item"><i class="fa fa-plus"></i>&nbsp Farmacia - Añadir Productos</a>';
             //echo    '<a href="'. app_url() .'salida_productos" class="list-group-item"><i class="fa fa-external-link"></i>&nbsp Farmacia - Salida de Productos</a>';
             //echo    '<a href="'. app_url() .'rep_salida_productos" class="list-group-item"><i class="fa fa-file-text"></i></span>&nbsp Farmacia - Reporte de Salidas</a>';
-            echo    '<a href="'. app_url() .'inventario" class="list-group-item"><i class="fa fa-list-ol"></i>&nbsp Farmacia - Inventario</a>';
+            //echo    '<a href="'. app_url() .'inventario" class="list-group-item"><i class="fa fa-list-ol"></i>&nbsp Farmacia - Inventario</a>';
             echo	'<a href="'. app_url() .'orden_compra" class="list-group-item"><i class="fa fa-list-alt"></i>&nbsp Farmacia - Ordenes de Compra</a>';
             echo    '<a href="'. app_url() .'registrar_factura" class="list-group-item"><i class="fa fa-clipboard"></i>&nbsp Farmacia - Registrar Factura</a>';
         }

@@ -23,9 +23,7 @@
                         <div id="error"></div>
 
                         <hr>
-
                         
-
                         <div class="form-group row">
                             <div class="col-md-12" align="center">
                                 <form action="" method="POST" id="search-form">
@@ -40,6 +38,30 @@
                                 </form>
                             </div>
                         </div>
+
+                        <hr>
+
+
+                        <div class="col-md-4" align="center">
+                            <button type="button" class="btn btn-primary" onclick="ordenarPor(1)">
+                                Ordenar por Caducidad
+                            </button>
+                        </div>
+
+                        <div class="col-md-4" align="center">
+                            <button type="button" class="btn btn-primary" onclick="ordenarPor(2)">
+                                Ordenar por Nombre
+                            </button>
+                        </div>
+
+                        <div class="col-md-4" align="center">
+                            <button type="button" class="btn btn-primary" onclick="ordenarPor(3)">
+                                Ordenar por Existencia
+                            </button>
+                        </div>
+
+
+                        <br><br><br>
 
                         <div id="error"></div>
                         <!-- Contactos -->
