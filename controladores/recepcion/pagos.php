@@ -68,7 +68,7 @@
                         <li>
                             <a href="#tab1" style="text-decoration:none;">
                                 <span class="tab-text" id="tab1n">
-                                    Registrar Pago
+                                    Registrar Nuevo Pago
                                 </span>
                             </a>
                         </li>
@@ -76,6 +76,13 @@
                             <a href="#tab2" style="text-decoration:none;">
                                 <span class="tab-text" id="tab2n">
                                     Agregar Presupuesto
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab3" style="text-decoration:none;">
+                                <span class="tab-text" id="tab3n">
+                                    Venta de Productos
                                 </span>
                             </a>
                         </li>
@@ -260,6 +267,27 @@
                             </div>
                         </article>
                         <!-- / TAB PAGO-->
+
+
+                        <!-- TAB 1 PAGO VERSION 1 -->
+                        <article id="tab3">
+                            <!--BUSCADOR-->
+                            <div class="form-group row">
+                            </div>
+                            <div id="error"></div>
+                            <input type="hidden" name="user_id" id="user_id">
+                            <!--/ BUSCADOR --> 
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-8">
+                                    Hola Mundo de Ventas
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>     
+                        </article>
+                        <!-- /TAB 1 PAGO VERSION 1 -->
 
 
                         <!-- TAB 1 PAGO VERSION 1 -->

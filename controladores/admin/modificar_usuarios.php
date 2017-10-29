@@ -13,8 +13,8 @@ include dirname(__FILE__) . '/../layouts/header.php';
         <div class="col-md-9">
             <div class="thumbnail">
                 <div class="caption-full">
-                    <h2 style="display:inline; color:#337ab7;">Administrador - Crear usuario </h2>
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Añade nuevos usuarios para el uso del sistema."></span>
+                    <h2 style="display:inline; color:#337ab7;">Administrador - Modificar usuarios</h2>
+                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Gestiona los usuarios en la aplicación."></span>
                     <hr>
                     <div id="error"></div>
 
@@ -57,30 +57,38 @@ include dirname(__FILE__) . '/../layouts/header.php';
                         <div class="col-md-12">
                             <div class="col-md-6 form-group">
                                 <label for="type">Tipo de usuario</label>
-                                <select id="type" name="type" class="form-control">
+                                <select id="type" class="form-control">
                                     <option disabled selected>Seleccionar tipo</option>
-                                    <option value="5">Call Center</option>
-                                    <option value="4">Recepción</option>
-                                    <option value="3">Farmacia</option>
-                                    <option value="2">Médico</option>
-                                    <option value="7">Médico Administrador</option>
-                                    <option value="6">Financiero</option>
                                     <option value="1">Administrador</option>
+                                    <option value="2">Médico</option>
+                                    <option value="3">Farmacia</option>
+                                    <option value="4">Recepcion</option>
+                                    <option value="5">Call Center</option>
+                                    <option value="6">Financiero</option>
                                 </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <div id="div_cedula" style="display: none">
+                                    <label for="cedula">Cedula profesional</label>
+                                    <a href="#" id="add_cedula" style="font-size:10px">&nbsp;&nbsp;&nbsp;Agregar cédula</a>
+                                    <div class="scrollCedula">
+                                        <div class="col-md-12"id="div_inputCedulas">
+                                            <p>
+                                            <input type="text" class="form-control" id="cedula1" name="cedulas[]" placeholder="Cedula profesional">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-8">
-                                <BR>
-                                <h4>Agrega los permisos que tendrá este usuario.</h4>
-                                <hr>
-
                                 <div class="col-md-3 form-group">
+                                    <div class="checkbox">
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="perm_citas" name="perm_citas">Call Center</label>
                                     </div>
-                                    <div class="checkbox">
                                         <label><input type="checkbox" id="perm_recepcion" name="perm_recepcion" >Recepción</label>
                                     </div>
                                 </div>
@@ -93,18 +101,12 @@ include dirname(__FILE__) . '/../layouts/header.php';
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-2 form-group">
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="perm_financiero" name="perm_financiero">Financiero</label>
                                     </div>
                                     <div class="checkbox">
                                         <label><input type="checkbox" id="perm_admin" name="perm_admin" >Administrador</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 form-group">
-                                    <div class="checkbox">
-                                        <label><input type="checkbox" id="perm_med_admin" name="perm_med_admin">Médico Administrador</label>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +116,43 @@ include dirname(__FILE__) . '/../layouts/header.php';
                     </form>
                     <!-- formulario -->
 
-                    <br><br><br><br><br><br>
+                    <!--TITULO CONTENIDO MODIFICAR-->
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12" align="left">
+                            <H3 id="actualizarUsuario" style="cursor:pointer">
+                                <span class="glyphicon glyphicon-refresh"></span> 
+                                Modificar Usuario
+                            </H3>  
+                        </div> 
+                    </div>
+                    <!--TITULO CONTENIDO MODIFICAR-->
+
+                    <!--INICIO CONTENIDO MODIFICAR-->
+                    <div id="sectionActUsr" class="row" style="max-width: 100%;display: none">
+                        <div class="col-md-12">
+                        <div class="input-group">
+                                <input type="text" class="search-query form-control" placeholder="Buscar usuario..." id="searcUsuario" name="searcUsuario" autofocus/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" id="busquedaU" onclick="getUserSearch()">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                            <hr>
+                            <table class="table table-bordered table-responsive">
+                                <thead>
+                                    <th>Usuario</th>
+                                    <th>Número de usuario</th>
+                                    <th>Incorporación</th>
+                                    <th>Tipo de usuario</th>
+                                    <th></th>
+                                </thead>
+                                <tbody id="listUsuarios"></tbody>
+                            </table>
+                        </div>
+                    </div>  
+                    <!--FIN CONTENIDO MODIFICAR-->
 
                 </div> 
             </div>

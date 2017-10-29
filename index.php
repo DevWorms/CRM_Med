@@ -30,6 +30,7 @@ $route = new Route();
 
 	//	RUTAS DE ADMINISTRADOR
 	$route->add('/usuarios', 'controladores/admin/usuarios.php');
+	$route->add('/modificar_usuarios', 'controladores/admin/modificar_usuarios.php');
 	$route->add('/reporte_citas', 'controladores/admin/reportes.php');
 	$route->add('/reporte_citas_usuarios', 'controladores/admin/reporte_cita_usuarios.php');
 	$route->add('/caja', 'controladores/admin/caja.php');

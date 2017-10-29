@@ -53,6 +53,7 @@ $perm_citas = $_SESSION['accesos_citas'];
         <?php
         if ($perm_administrador == 1) {
             echo    '<a href="'. app_url() .'usuarios" class="list-group-item"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp Administrador - Nuevos Usuarios</a>';
+            echo    '<a href="'. app_url() .'modificar_usuarios" class="list-group-item"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp Administrador - Modificar Usuarios</a>';
             echo    '<a href="'. app_url() .'reporte_citas" class="list-group-item"><i class="fa fa-server"></i>&nbsp Administrador - Reporte Citas</a>';
             echo    '<a href="'. app_url() .'reporte_citas_usuarios" class="list-group-item"><i class="fa fa-th-list"></i>&nbsp Administrador - Reporte Citas Usuarios</a>';
             echo    '<a href="'. app_url() .'caja" class="list-group-item"><i class="fa fa-line-chart"></i>&nbsp Administrador - Corte de Caja</a>';

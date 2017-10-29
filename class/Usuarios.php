@@ -39,7 +39,6 @@ class Usuarios
         $password = hash('sha256', $data['password']);
         $password2 = hash('sha256', $data['confirm_password']);
         $tipo = (isset($data['permiso'])) ? $data['permiso'] : 0;
-        $cedulas = $data['cedulas'];
 
         $perm_farmacia = (isset($data['perm_farmacia']) ? 1 : 0);
         $perm_recepcion = (isset($data['perm_recepcion']) ? 1 : 0);
@@ -47,25 +46,10 @@ class Usuarios
         $perm_financiero = (isset($data['perm_financiero']) ? 1 : 0);
         $perm_citas = (isset($data['perm_citas']) ? 1 : 0);
         $perm_admin = (isset($data['perm_admin']) ? 1 : 0);
+        $perm_med_admin = (isset($data['perm_med_admin']) ? 1 : 0);
 
-        
-        if($perm_farmacia == 1) {
-            $tipo = 4;
-        } else if ( $perm_recepcion == 1 ) {
-            $tipo = 1;
-        } elseif ($perm_medico == 1) {
-            if ($perm_admin == 1 && $perm_medico == 1) {
-                $tipo = 7;
-            } else {
-                $tipo = 2;
-            }
-        } elseif ($perm_citas == 1) {
-            $tipo = 6;
-        } elseif ($perm_admin == 1) {
-            $tipo = 3;
-        } else {
-            $tipo = 0; // ningun rol 
-        }
+        $tipo = $data['type']; 
+
 
         if (empty($nombre) || empty($apPaterno) || empty($numero) || empty($password)) {
             if (empty($password)) {
@@ -79,10 +63,6 @@ class Usuarios
             }
         } else {
             if (($password === $password2) && !empty($password)) {
-                // Si es médico
-                if ($tipo == 2 && count($cedulas) == 0) {
-                    $res['mensaje'] = "Ingresa la cédula del médico";
-                } else {
                     try {
                         $query = "SELECT numeroUsuario FROM usuarios WHERE numeroUsuario=:numeroUsuario;";
                         $stm = $this->pdo->prepare($query);
@@ -93,8 +73,7 @@ class Usuarios
                         if (count($resultado) > 0) {
                             $res['mensaje'] = "El número de usuario ya se encuentra registrado";
                         } else {
-                            $query = "INSERT INTO usuarios (nombre, apMaterno, apPaterno, numeroUsuario, password, incorporacion, id_tipo) VALUES (
-                  ?, ?, ?, ?, ?, NOW(), ? );";
+                            $query = "INSERT INTO usuarios (nombre, apMaterno, apPaterno, numeroUsuario, password, incorporacion, id_tipo) VALUES (?, ?, ?, ?, ?, NOW(), ? );";
                             $stm = $this->pdo->prepare($query);
                             $stm->bindValue(1, $nombre, PDO::PARAM_STR);
                             $stm->bindValue(2, $apMaterno, PDO::PARAM_STR);
@@ -106,8 +85,7 @@ class Usuarios
 
                             $id = $this->pdo->lastInsertId();
 
-                            $query = "INSERT INTO accesos (id_usuario, farmacia, recepcion, medico, financiero, citas, admin) VALUES (
-                  ?, ?, ?, ?, ?, ?, ?);";
+                            $query = "INSERT INTO accesos (id_usuario, farmacia, recepcion, medico, financiero, citas, admin, medico_admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
                             $stm = $this->pdo->prepare($query);
                             $stm->bindValue(1, $id, PDO::PARAM_STR);
                             $stm->bindValue(2, $perm_farmacia, PDO::PARAM_INT);
@@ -116,25 +94,16 @@ class Usuarios
                             $stm->bindValue(5, $perm_financiero, PDO::PARAM_INT);
                             $stm->bindValue(6, $perm_citas, PDO::PARAM_INT);
                             $stm->bindValue(7, $perm_admin, PDO::PARAM_INT);
+                            $stm->bindValue(8, $perm_med_admin, PDO::PARAM_INT);
                             $stm->execute();
 
-                            // SI ES MEDICO 
-                            if ($perm_medico == 1) {
-                                foreach ($cedulas as $cedula) {
-                                    $query = "INSERT INTO cedulas (id_medico, cedula) VALUES (?, ?);";
-                                    $stm = $this->pdo->prepare($query);
-                                    $stm->bindValue(1, $id, PDO::PARAM_INT);
-                                    $stm->bindValue(2, $cedula, PDO::PARAM_STR);
-                                    $stm->execute();
-                                }
-                            } 
+
                             $res['estado'] = 1;
                             $res['id'] = $id;
                         }
                     } catch (Exception $e) {
                         $res['mensaje'] = $e->getMessage() . $e->getLine();
                     }
-                }
             } else {
                 $res['mensaje'] = "Las contraseñas no coinciden";
             }
