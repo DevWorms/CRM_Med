@@ -132,6 +132,7 @@ class Usuarios
         $perm_financiero = (isset($data['e-perm_financiero']) ? 1 : 0);
         $perm_citas = (isset($data['e-perm_citas']) ? 1 : 0);
         $perm_admin = (isset($data['e-perm_admin']) ? 1 : 0);
+        $perm_med_admin = (isset($data['e-perm_med_admin']) ? 1 : 0);
 
         $res = [
             'estado' => 0,
@@ -161,7 +162,7 @@ class Usuarios
                     $stm->execute();
 
 
-                    $query = "UPDATE accesos SET farmacia= ?, recepcion= ?, medico= ?, financiero= ?, citas= ?, admin= ? WHERE id_usuario = ?";
+                    $query = "UPDATE accesos SET farmacia= ?, recepcion= ?, medico= ?, financiero= ?, citas= ?, admin= ?, medico_admin= ? WHERE id_usuario = ?";
                     $stm = $this->pdo->prepare($query);
                     $stm->bindValue(1, $perm_farmacia, PDO::PARAM_INT);
                     $stm->bindValue(2, $perm_recepcion, PDO::PARAM_INT);
@@ -169,7 +170,8 @@ class Usuarios
                     $stm->bindValue(4, $perm_financiero, PDO::PARAM_INT);
                     $stm->bindValue(5, $perm_citas, PDO::PARAM_INT);
                     $stm->bindValue(6, $perm_admin, PDO::PARAM_INT);
-                    $stm->bindValue(7, $id_usuario, PDO::PARAM_STR);
+                    $stm->bindValue(7, $perm_med_admin, PDO::PARAM_INT);
+                    $stm->bindValue(8, $id_usuario, PDO::PARAM_STR);
                     $stm->execute();
 
                     $res['estado'] = 1;
@@ -197,7 +199,7 @@ class Usuarios
     {
         $res = ["estado" => 0];
 
-        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos as ac ON ac.id_usuario = usr.id;";
+        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas, ac.admin, ac.medico_admin FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos as ac ON ac.id_usuario = usr.id WHERE tipo.nombre_tipo_usuario != 'Developer';";
 
         $stm = $this->pdo->prepare($query);
 
@@ -217,7 +219,7 @@ class Usuarios
         $search = "%" . $search . "%";
         $res = ["estado" => 0];
 
-        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE usr.nombre LIKE ? OR usr.apPaterno LIKE ? OR usr.apMaterno LIKE ? OR usr.numeroUsuario lIKE ? OR tipo.nombre_tipo_usuario LIKE ? ";
+        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas, ac.admin, ac.medico_admin FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE tipo.nombre_tipo_usuario != 'Developer' AND usr.nombre LIKE ? OR usr.apPaterno LIKE ? OR usr.apMaterno LIKE ? OR usr.numeroUsuario lIKE ? OR tipo.nombre_tipo_usuario LIKE ? ";
 
         $stm = $this->pdo->prepare($query);
         $stm->bindParam(1, $search);
@@ -239,7 +241,7 @@ class Usuarios
     public function getUsuario($id)
     {
         $res = ["estado" => 0];
-        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas, ac.admin FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE usr.id = :usuario_id";
+        $query = "SELECT usr.id,usr.nombre,usr.apPaterno,usr.apMaterno,usr.numeroUsuario,usr.incorporacion,usr.id_tipo, tipo.nombre_tipo_usuario,ac.farmacia,ac.recepcion,ac.medico,ac.financiero,ac.citas, ac.admin, ac.medico_admin FROM usuarios AS usr LEFT JOIN tipo_usuarios AS tipo ON usr.id_tipo = tipo.id_tipo_usuario RIGHT JOIN accesos AS ac ON ac.id_usuario = usr.id WHERE usr.id = :usuario_id";
         $stm = $this->pdo->prepare($query);
         $stm->bindParam(":usuario_id", $id);
         $stm->execute();

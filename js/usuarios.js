@@ -8,10 +8,6 @@ $('document').ready(function () {
         createUsuario();
     });
 
-    $("#actualizarUsuario").click(function (e) {
-        $("#sectionActUsr").slideToggle(500);
-    });
-
     $("#searcUsuario").keypress(function (e) {
         if (e.keyCode == 13) {
             getUserSearch();
@@ -299,7 +295,7 @@ function openEditUser(idUser) {
                 checkarPermiso(usuario.citas, $("#e-perm_citas"));
                 checkarPermiso(usuario.financiero, $("#e-perm_financiero"));
                 checkarPermiso(usuario.admin, $("#e-perm_admin"));
-                checkarPermiso(usuario.admin, $("#e-perm_med_admin"));
+                checkarPermiso(usuario.medico_admin, $("#e-perm_med_admin"));
 
 
                 //BOTON
@@ -342,6 +338,7 @@ function modifyUser(id) {
                 $("#wait").show();
                 $("#modal-editUser").modal('hide');
                 $("#editModifyUser").html("");
+                console.log(data);
             },
             success: function (response) {
                 if (response.estado == 1) {
