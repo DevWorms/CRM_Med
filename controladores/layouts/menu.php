@@ -7,6 +7,7 @@ $perm_medico = $_SESSION['accesos_medico'];
 $perm_administrador = $_SESSION['accesos_admin'];
 $perm_financiero = $_SESSION['accesos_financiero'];
 $perm_citas = $_SESSION['accesos_citas'];
+$perm_med_admin = $_SESSION['accesos_med_admin'];
 ?>
 
 <div class="col-md-3">
@@ -49,6 +50,12 @@ $perm_citas = $_SESSION['accesos_citas'];
             echo    '<a href="'. app_url() .'quirofano" class="list-group-item"><i class="fa fa-hospital-o"></i>&nbsp Médico - Quirófano</a>';
         }
         ?>
+        <!--    Permisos de Médico Administrador  -->
+        <?php
+        if ($perm_med_admin == 1) {
+            
+        }
+        ?>
         <!--    Permisos de Administrador   -->
         <?php
         if ($perm_administrador == 1) {
@@ -57,7 +64,11 @@ $perm_citas = $_SESSION['accesos_citas'];
             echo    '<a href="'. app_url() .'reporte_citas" class="list-group-item"><i class="fa fa-server"></i>&nbsp Administrador - Reporte Citas</a>';
             echo    '<a href="'. app_url() .'reporte_citas_usuarios" class="list-group-item"><i class="fa fa-th-list"></i>&nbsp Administrador - Reporte Citas Usuarios</a>';
             echo    '<a href="'. app_url() .'caja" class="list-group-item"><i class="fa fa-line-chart"></i>&nbsp Administrador - Corte de Caja</a>';
-
+        }
+        ?>
+        <!--    Permisos de Financiero  -->
+        <?php
+        if ($perm_financiero == 1) {
             echo    '<a href="'. app_url() .'confirmar" class="list-group-item"><i class="fa fa-check-square-o"></i>&nbsp Financiero - Confirmar Pagos</a>';
             echo    '<a href="'. app_url() .'talones" class="list-group-item"><i class="fa fa-money"></i>&nbsp Financiero - Talones de Pago</a>';
             echo    '<a href="'. app_url() .'finanzas" class="list-group-item"><i class="fa fa-dollar"></i>&nbsp Financiero - Ingresos/Egresos</a>';

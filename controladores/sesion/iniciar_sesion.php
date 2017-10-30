@@ -17,17 +17,21 @@ if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
         // Valida el inicio de sesión normal
         if (count($resultado) == 1) {
             $resultado = $resultado[0];
-            if ($resultado['citas'] == 1 && $resultado['recepcion'] == 0) { //citas
-                $res['url'] = "citas_programar";
-            } elseif ($resultado['citas'] == 0 && $resultado['recepcion'] == 0 && $resultado['farmacia'] == 1) { // Si es farmacia
-                $res['url'] = "catalogo";
-            } elseif ( $resultado['citas'] == 0 && $resultado['recepcion'] == 0 && $resultado['farmacia'] == 0 
-                && $resultado['medico'] == 1 ) { // Si es medico
-                $res['url'] = "mis_pacientes";
-            } elseif ($resultado['citas'] == 1 && $resultado['recepcion'] == 1 && $resultado['farmacia'] == 1 
-            && $resultado['medico'] == 1 ) { // Admin
+            if ($resultado['id_tipo'] == 1) {           //  ADMINISTRADOR
+                $res['url'] = "reporte_citas";
+            } elseif ($resultado['id_tipo'] == 2) {     //  MÉDICO
+                $res['url'] = "recibir_paciente";
+            } elseif ($resultado['id_tipo'] == 3) {     //  FARMACIA
+                $res['url'] = "agregar_productos";
+            } elseif ($resultado['id_tipo'] == 4) {     //  RECEPCIÓN
                 $res['url'] = "citas";
-            } else { // Si es medico
+            } elseif ($resultado['id_tipo'] == 5) {     //  CALL CENTER
+                $res['url'] = "citas_programar";
+            } elseif ($resultado['id_tipo'] == 6) {     //  FINANCIERO
+                $res['url'] = "confirmar";
+            } elseif ($resultado['id_tipo'] == 7) {     //  MÉDICO ADMINISTRADOR
+                $res['url'] = "citas";
+            } elseif ($resultado['id_tipo'] == 8) {     //  DEVELOPER
                 $res['url'] = "citas";
             }
 
@@ -46,6 +50,7 @@ if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
             $_SESSION["accesos_medico"] = $resultado["medico"];
             $_SESSION["accesos_recepcion"] = $resultado["recepcion"];
             $_SESSION["accesos_admin"] = $resultado["admin"];
+            $_SESSION["accesos_med_admin"] = $resultado["medico_admin"];
             session_write_close();
             
             $res['estado'] = 1;
