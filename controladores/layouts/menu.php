@@ -25,7 +25,7 @@ $perm_med_admin = $_SESSION['accesos_med_admin'];
         <?php
         if ($perm_recepcion == 1)	{
             //echo	'<a href="' . app_url() . 'citas" class="list-group-item "><i class="fa fa-pencil-square-o"></i></span>&nbsp Recepción - Programar Citas</a>';
-            //echo    '<a href="' . app_url() . 'calendario" class="list-group-item "><i class="fa fa-calendar"></i>&nbsp Recepción - Calendario</a>';
+            echo    '<a href="' . app_url() . 'calendario" class="list-group-item "><i class="fa fa-calendar"></i>&nbsp Recepción - Calendario</a>';
             echo    '<a href="'. app_url() .'pagos" class="list-group-item"><i class="fa fa-usd"></i>&nbsp Recepción - Pagos</a>';
             //echo	'<a href="' . app_url() . 'registro" class="list-group-item "><i class="fa fa-user-o"></i></span>&nbsp Recepción - Registro Pacientes</a>';
             //echo    '<a href="' . app_url() . 'control" class="list-group-item "><i class="fa fa-user"></i></span>&nbsp Recepción - Control Pacientes</a>';
@@ -53,7 +53,7 @@ $perm_med_admin = $_SESSION['accesos_med_admin'];
         <!--    Permisos de Médico Administrador  -->
         <?php
         if ($perm_med_admin == 1) {
-            
+
         }
         ?>
         <!--    Permisos de Administrador   -->

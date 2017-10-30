@@ -31,7 +31,7 @@ if (isset($_POST['id_usuario']) && isset($_POST['contrasena'])) {
                 $res['url'] = "confirmar";
             } elseif ($resultado['id_tipo'] == 7) {     //  MÉDICO ADMINISTRADOR
                 $res['url'] = "citas";
-            } elseif ($resultado['id_tipo'] == 8) {     //  DEVELOPER
+            } else {                                    
                 $res['url'] = "citas";
             }
 
