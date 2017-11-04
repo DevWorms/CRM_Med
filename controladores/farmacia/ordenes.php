@@ -11,11 +11,11 @@
             <form action="" method="POST" id="create-form">
             <input type="hidden" id="get" name="get" value="create">
             <div class="col-md-9">
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
-                        <h2 style="display:inline; color:#337ab7;">Farmacia - Ordenes de compra </h2>
+                        <h2 style="display:inline;" class="title_header">Farmacia - Ordenes de compra </h2>
 
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Genera una nueva orden de compra para los productos en inventario"></span>
+                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Genera una nueva orden de compra para los productos en inventario"></span>
 
                         <div id="error"></div>
 

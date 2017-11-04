@@ -3,7 +3,7 @@ include dirname(__FILE__) . '/../sesion/sesion.php';
 include dirname(__FILE__) . '/../utilidades/funciones/func_fechas.php';
 ?>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default border_header">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

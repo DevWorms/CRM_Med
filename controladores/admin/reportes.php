@@ -12,11 +12,11 @@
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
 
             <div class="col-md-9">
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
 
-                        <h2 style="display:inline; color:#337ab7;">Administrador - Reporte Citas </h2>
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Revisa el número de citas que se tuvieron al día y cuales se llevaron a cabo."></span>
+                        <h2 style="display:inline;" class="title_header">Administrador - Reporte Citas </h2>
+                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Revisa el número de citas que se tuvieron al día y cuales se llevaron a cabo."></span>
                         <div id="error"></div>
                         <br>
                         <div>

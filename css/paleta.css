@@ -1,0 +1,53 @@
+
+/* +++++++++++++++++++++++	*/
+/* CIRCULOS DE INFORMACIÓN  */
+/* +++++++++++++++++++++++ 	*/
+.circulo_info{
+    color: #f28424;
+}
+
+/* +++++++++++++++++++++++	*/
+/* 			BORDES 			*/
+/* +++++++++++++++++++++++ 	*/
+.border_header{
+	border-color: #88d381;
+	background-color: #fff;
+}
+
+.border_footer{
+	border-color: #88d381;
+	background-color: #fff;
+}
+
+.border_menu{
+	border-color: #93ebff;
+}
+
+.border_content{
+	border-color: #49d9da;
+}
+
+/* +++++++++++++++++++++++	*/
+/* 		   TITULOS	 		*/
+/* +++++++++++++++++++++++ 	*/
+.title_header{
+	color:#84a0c6;
+}
+
+/* +++++++++++++++++++++++	*/
+/* 		   HR COLOR 		*/
+/* +++++++++++++++++++++++ 	*/
+hr{
+	border-color: #49d9da;
+}
+
+hr.dashed{
+	border-color: #49d9da;
+}
+
+/* +++++++++++++++++++++++	*/
+/* 		  HOVER MENU 		*/
+/* +++++++++++++++++++++++ 	*/
+a.list-group-item:hover, button.list-group-item:hover, a.list-group-item:focus, button.list-group-item:focus{
+	background-color: #93ebff;
+}

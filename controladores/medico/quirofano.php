@@ -17,11 +17,11 @@
 
         <input type="hidden" id="get" name="get" value="create">
         <div class="col-md-9">
-            <div class="thumbnail">
+            <div class="thumbnail border_content">
                 <div class="caption-full">
-                    <h2 style="display:inline; color:#337ab7;">Médico - Quirófano </h2></h2>
+                    <h2 style="display:inline;" class="title_header">Médico - Quirófano </h2></h2>
 
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
+                    <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right"
                           title="Registro de pacientes ingresados a quirófano y sus involucrados"></span>
                     <hr>
                     <div class="row">

@@ -3,7 +3,7 @@
 </div>
 <!-- Importantes para footer -->
 
-<div class="container custom-footer">
+<div class="container border_footer custom-footer">
     <div class="col-xs-offset-3 col-xs-6" align="center">
         <p>2017</p>
     </div>

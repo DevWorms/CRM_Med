@@ -13,12 +13,12 @@
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
 
 			<div class="col-md-9"  style="overflow-x: scroll;">
-                <div class="thumbnail"  style="overflow-x: scroll;">
+                <div class="thumbnail border_content"  style="overflow-x: scroll;">
                     <div class="caption-full" ng-app="">
 
-                        <h2 style="display:inline; color:#337ab7;">Farmacia - Añadir Productos </h2>
+                        <h2 style="display:inline;" class="title_header">Farmacia - Añadir Productos </h2>
 
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Añade productos nuevos al inventario de Farmacia; puedes visualizar una vista preliminar en la parte final del formulario."></span>
+                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Añade productos nuevos al inventario de Farmacia; puedes visualizar una vista preliminar en la parte final del formulario."></span>
 
                         <div id="error"></div>
 
@@ -61,7 +61,7 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="piezas">Cantidad de Piezas</label>
-                                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Cantidad de piezas o productos que contiene la presentación."></span>
+                                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Cantidad de piezas o productos que contiene la presentación."></span>
                                         <br>
                                         <input type="text" id="piezas" name="piezas" class="form-control input-width" placeholder="Ejemplo: 5, 10, 20, 100" ng-model="piezas" required>
                                     </fieldset>
@@ -70,7 +70,7 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="existencia">Cantidad de gramaje</label>
-                                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="La cantidad de gramaje que tiene el producto."></span>
+                                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="La cantidad de gramaje que tiene el producto."></span>
                                         <br>
                                         <input type="text" id="cant_gramaje" name="cant_gramaje" class="form-control input-width" placeholder="Ejemplo: 1, 10, 15, 20" ng-model="cantidad" required>
                                     </fieldset>
@@ -79,7 +79,7 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="">Gramaje</label>
-                                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Unidad de medida que tiene el producto."></span>
+                                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Unidad de medida que tiene el producto."></span>
                                         <br>
                                         <input type="text" class="form-control ui-autocomplete-input input-width" id="gramaje" name="gramaje" placeholder="Ejemplo: gr, ui, pz, ml" ng-model="gramaje" required/>
                                     </fieldset>
@@ -93,7 +93,7 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="">Fecha de Caducidad</label>
-                                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Si el producto no caduca, recomendamos agrega una fecha superior a 2 años."></span>
+                                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Si el producto no caduca, recomendamos agrega una fecha superior a 2 años."></span>
                                         <br>
                                         <div class="input-group">
                                         <input type="text" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" ng-model="caducidad" required/>
@@ -109,7 +109,7 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="lote">Lote</label>
-                                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Número de Lote del producto que gestiona mejor su trazabilidad."></span>
+                                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Número de Lote del producto que gestiona mejor su trazabilidad."></span>
                                         <br>
                                         <input type="text" id="lote" name="lote" class="form-control input-width" placeholder="Lote del Producto" ng-model="lote" required>
                                     </fieldset>
@@ -118,7 +118,7 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="existencia">Existencia </label>
-                                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Este será el número que se restará cada que se genere una salida del producto."></span>
+                                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Este será el número que se restará cada que se genere una salida del producto."></span>
                                         <br>
                                         <input type="text" id="existencia" name="existencia" class="form-control input-width" placeholder="Cantidad de productos a ingresar" ng-model="existencia" required>
                                     </fieldset> 

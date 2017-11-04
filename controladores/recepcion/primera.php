@@ -12,10 +12,10 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_option_select.php';
     <div class="row">
         <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
         <div class="col-md-9">
-            <div class="thumbnail">
+            <div class="thumbnail border_content">
                 <div class="caption-full">
-                    <h2 style="display:inline; color:#337ab7;">Recepción - Programar Citas </h2>
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
+                    <h2 style="display:inline;" class="title_header">Recepción - Programar Citas </h2>
+                    <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right"
                           title="Programar nuevas citas a leads."></span>
                     <hr>
 

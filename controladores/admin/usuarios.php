@@ -11,10 +11,10 @@ include dirname(__FILE__) . '/../layouts/header.php';
     <div class="row">
         <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
         <div class="col-md-9">
-            <div class="thumbnail">
+            <div class="thumbnail border_content">
                 <div class="caption-full">
-                    <h2 style="display:inline; color:#337ab7;">Administrador - Crear usuario </h2>
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Añade nuevos usuarios para el uso del sistema."></span>
+                    <h2 style="display:inline;" class="title_header">Administrador - Crear usuario </h2>
+                    <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Añade nuevos usuarios para el uso del sistema."></span>
                     <hr>
                     <div id="error"></div>
 

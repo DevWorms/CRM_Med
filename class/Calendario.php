@@ -210,26 +210,17 @@ class Calendario {
      */
     private function getColor($id_cita) {
         switch ($id_cita) {
-            case 1:
-                $color_agenda = "#42e7d5";
+            case 1:     //  PRIMERA VEZ
+                $color_agenda = "#49d9da";
                 break;
-            case 2:
-                $color_agenda = "#f4bd42";
+            case 5:     //  VALORACIÓN
+                $color_agenda = "#88d381";
                 break;
-            case 3:
-                $color_agenda = "#7693ff";
-                break;
-            case 4:
-                $color_agenda = "#00bcd4";
-                break;
-            case 5:
-                $color_agenda = "#bee705";
-                break;
-            case 6:
+            case 6:     //  REVISIÓN
                 $color_agenda = "#b6c8e7";
                 break;
-            default:
-                $color_agenda = "#424242";
+            default:    //  TRATAMIENTO
+                $color_agenda = "#87bfb4";
         }
 
         return $color_agenda;

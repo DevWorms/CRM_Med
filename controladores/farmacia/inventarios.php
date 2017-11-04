@@ -13,12 +13,12 @@
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
 
 			<div class="col-md-9"  style="overflow-x: scroll;">
-                <div class="thumbnail"  style="overflow-x: scroll;">
+                <div class="thumbnail border_content"  style="overflow-x: scroll;">
                     <div class="caption-full">
 
-                        <h2 style="display:inline; color:#337ab7;">Farmacia - Inventario</h2>
+                        <h2 style="display:inline;" class="title_header">Farmacia - Inventario</h2>
 
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Inventario actual de farmacia."></span>
+                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Inventario actual de farmacia."></span>
 
                         <div id="error"></div>
 

@@ -11,11 +11,11 @@
 
         <input type="hidden" id="get" name="get" value="create">
         <div class="col-md-9">
-            <div class="thumbnail">
+            <div class="thumbnail border_content">
                 <div class="caption-full">
-                    <h2 style="display:inline; color:#337ab7;">Farmacia - Registrar Factura </h2>
+                    <h2 style="display:inline;" class="title_header">Farmacia - Registrar Factura </h2>
 
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
+                    <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right"
                           title="Registra los productos solicitados en la orden de compra y corrobora que todos los productos hayan sido entregados"></span>
                     <hr>
 

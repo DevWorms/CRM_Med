@@ -52,12 +52,12 @@
         
         <!-- CONTENIDO-->
         <div class="col-md-9">
-            <div class="thumbnail">
+            <div class="thumbnail border_content">
 
                 <div class="caption-full">
                 <!--TITULO-->
-                <h2 style="display:inline; color:#337ab7; ">&nbsp; Recepción - Pagos</h2>
-                <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Registra pagos de los pacientes."></span>
+                <h2 style="display:inline;" class="title_header">&nbsp; Recepción - Pagos</h2>
+                <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Registra pagos de los pacientes."></span>
                 <hr>
                 <!-- / TITULO -->
                 
@@ -178,7 +178,7 @@
                                             <fieldset class="form-inline">
                                                 <br>
                                                 <label for="">Fecha de Recibo&nbsp;&nbsp;
-                                                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Agrega la fecha únicamente cuando registres un pago anterior; si el pago es actual, déjalo en blanco."></span>
+                                                    <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Agrega la fecha únicamente cuando registres un pago anterior; si el pago es actual, déjalo en blanco."></span>
                                                 </label><br>
                                                 <div class="input-group calendario_pago">
                                                     <input type="date" class="search-query form-control" id="fecha" name="fecha" placeholder="aaaa / mm / dd" required/>

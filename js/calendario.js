@@ -69,7 +69,7 @@ function loadEvents() {
                         total = response.eventos.length;
 
                         response.eventos.forEach(function(item) {
-                            var title = item.tipo_cita + " - " + item.apPaterno;
+                            var title = " " + item.apPaterno;
                             if (item.apMaterno) {
                                 title = title + " " + item.apMaterno;
                             }

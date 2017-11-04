@@ -12,12 +12,12 @@
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
 
             <div class="col-md-9">
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
 
-                        <h2 style="display:inline; color:#337ab7;">Recepción - Control Pacientes </h2>
+                        <h2 style="display:inline;" class="title_header">Recepción - Control Pacientes </h2>
 
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Modifica y controla el registro de Pacientes y Leads."></span>
+                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Modifica y controla el registro de Pacientes y Leads."></span>
 
                         <div id="error"></div>
                         <hr>

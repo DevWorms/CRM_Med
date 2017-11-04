@@ -198,7 +198,7 @@ function loadPaciente(id) {
                 }
                 nombre = nombre + " - " + paciente.id
 
-                $("#header").html('<h2 style="display:inline; color:#337ab7;">' + nombre + '</h2>');
+                $("#header").html('<h2 style="display:inline;" class="title_header">' + nombre + '</h2>');
 
                 // Informacion del paciente
                 var domicilio = "", ocupacion = "", fecha_nacimiento = "", edad = "", created_at = "";

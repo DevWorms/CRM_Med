@@ -17,15 +17,12 @@
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
 
             <div class="col-md-9">
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
                         <div id="error"></div>
-                        <div id="progressbox" style="">
-                            <div id="progressbar" class="progressbar"></div ><div id="statustxt" class="statustxt">0%</div>
+                        <div id="header" style="display: inline">
                         </div>
-                        <div id="header">
-                        </div>
-                        <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Acceso al expediente completo del paciente "></span>
+                        <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Acceso al expediente completo del paciente "></span>
                         
                         <hr>
                         <div id="error"></div>

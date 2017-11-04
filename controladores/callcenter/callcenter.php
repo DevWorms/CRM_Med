@@ -13,11 +13,10 @@
         <div class="row">
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
             <div class="col-md-9">
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
-                        <h2 style="display:inline; color:#337ab7;"> Call Center - Citas </h2>
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
-                              title="Módulo para crear nuevas citas o actualizar citas generadas."></span>
+                        <h2 style="display:inline;" class="title_header"> Call Center - Citas </h2>
+                        <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Módulo para crear nuevas citas o actualizar citas generadas."></span>
                         <hr>
 
                         <div class="row">

@@ -111,10 +111,10 @@
         <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
 
         <div class="col-md-9">
-            <div class="thumbnail">
+            <div class="thumbnail border_content">
                 <div class="caption-full">
-                    <h3 style="display:inline; color:#337ab7;">Administrador - Corte de Caja</h3>
-                    <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title=""></span>
+                    <h2 style="display:inline;" class="title_header">Administrador - Corte de Caja</h3>
+                    <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title=""></span>
                     <div id="error"></div>
                     <hr>
                     <br>

@@ -12,16 +12,39 @@
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
 
             <div class="col-md-9">
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
 
-                        <h2 style="display:inline; color:#337ab7;">Recepción - Calendario </h2>
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Revisa la agenda diaria."></span>
+                        <h2 style="display:inline;" class="title_header">Recepción - Calendario </h2>
+                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Revisa la agenda diaria."></span>
                         <button class="btn btn-default" id="print">Imprimir</button>
                         <div id="error"></div>
-
-
                         <hr>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div>
+                                    <div class="cuadradoAsitio" style="background-color: #79e2e3"></div>
+                                    <p style="margin-left: 30px;">Primera Vez</p>
+                                </div>
+                                <div>
+                                    <div class="cuadradoNoAsitio" style="background-color: #a5de9f"></div>
+                                    <p style="margin-left: 30px; margin-top: 0;">Valoración</p>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <div class="cuadradoAsitio" style="background-color: #c7d5ed"></div>
+                                    <p style="margin-left: 30px;">Revisión</p>
+                                </div>
+                                <div>
+                                    <div class="cuadradoNoAsitio" style="background-color: #87beb4"></div>
+                                    <p style="margin-left: 30px; margin-top: 0;">Tratamiento</p>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        
                         <div id='calendar'></div>
                     </div>      
                 </div>          

@@ -12,12 +12,12 @@
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
 
             <div class="col-md-9">
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
 
-                        <h2 style="display:inline; color:#337ab7;">Recepción - Registro de Pacientes Existentes</h2>
+                        <h2 style="display:inline;" class="title_header">Recepción - Registro de Pacientes Existentes</h2>
 
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Agrega un paciente existente al sistema."></span>
+                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Agrega un paciente existente al sistema."></span>
 
                         <div id="error"></div>
                         <hr>
@@ -84,7 +84,7 @@
                                     <input type="text" id="referencia" name="referencia" class="form-control">
                                 </div>
                                 <div class="col-md-5 form-group">
-                                    <label for="folio">¿Folio anterior? <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Si el usuario ya estaba previamente registrado, puedes agregar el folio con el que fue dado de alta; en caso contrario dejar este espacio en blanco"></span></label>
+                                    <label for="folio">¿Folio anterior? <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Si el usuario ya estaba previamente registrado, puedes agregar el folio con el que fue dado de alta; en caso contrario dejar este espacio en blanco"></span></label>
                                     <input type="number" id="folio" name="folio" class="form-control">
                                 </div>
                             </div>
