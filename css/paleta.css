@@ -1,36 +1,49 @@
 
 /* +++++++++++++++++++++++	*/
+/* 		BOTONES ÉXITO 		*/
+/* +++++++++++++++++++++++ 	*/
+.btn_exito	{
+	border-color: #88d381;
+	background-color: #88d381;
+}
+
+/* +++++++++++++++++++++++	*/
 /* CIRCULOS DE INFORMACIÓN  */
 /* +++++++++++++++++++++++ 	*/
 .circulo_info{
-    color: #f28424;
+    color: #f36b86;
+}
+
+.tooltip.right .tooltip-inner {
+    	background-color: #f36b86;
+}
+
+.tooltip.right .tooltip-arrow {
+  	border-right-color: #f36b86;
 }
 
 /* +++++++++++++++++++++++	*/
 /* 			BORDES 			*/
 /* +++++++++++++++++++++++ 	*/
-.border_header{
-	border-color: #88d381;
-	background-color: #fff;
-}
-
-.border_footer{
-	border-color: #88d381;
-	background-color: #fff;
-}
-
-.border_menu{
+.border_header, .border_footer	{
 	border-color: #93ebff;
 }
 
-.border_content{
+.border_menu, .border_content	{
 	border-color: #49d9da;
+}
+
+/* +++++++++++++++++++++++	*/
+/* 			FONDOS 			*/
+/* +++++++++++++++++++++++ 	*/
+.border_header, .border_footer	{
+	background-color: #fff;
 }
 
 /* +++++++++++++++++++++++	*/
 /* 		   TITULOS	 		*/
 /* +++++++++++++++++++++++ 	*/
-.title_header{
+.title_header	{
 	color:#84a0c6;
 }
 
@@ -49,5 +62,6 @@ hr.dashed{
 /* 		  HOVER MENU 		*/
 /* +++++++++++++++++++++++ 	*/
 a.list-group-item:hover, button.list-group-item:hover, a.list-group-item:focus, button.list-group-item:focus{
-	background-color: #93ebff;
+	background-color: #49d9da;
+	color:#fbfbfb;
 }
