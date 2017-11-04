@@ -159,7 +159,7 @@
                         <br>        
                         <div class="form-group row" align="center">
                             <div class="col-md-12">
-                                <a class="btn btn-success" href="#" id="registrar_cita" role="button" style="visibility: hidden"><span class="glyphicon glyphicon-edit"></span> Confirmar Cita</a>
+                                <a class="btn btn-success btn_exito" href="#" id="registrar_cita" role="button" style="visibility: hidden"><span class="glyphicon glyphicon-edit"></span> Confirmar Cita</a>
 
                                 <!--
                                     <a class="btn btn-info" href="#" role="button" id="pago" style="visibility: hidden"><span class="glyphicon glyphicon-usd"></span> Agregar Pago</a>

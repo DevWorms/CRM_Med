@@ -75,7 +75,7 @@
             height:     100%;
             width:      100%;
             background: rgba( 255, 255, 255, .8 )
-            url('img/FhHRx.gif')
+            url('img/loading.gif')
             50% 50%
             no-repeat;
         }

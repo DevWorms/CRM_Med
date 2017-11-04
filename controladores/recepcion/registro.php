@@ -93,7 +93,7 @@
                             </div>
 
                             <div class="form-group" align="right">
-                                <span class="btn btn-primary" id="registrar">Crear nuevo registro</span>
+                                <span class="btn btn-success btn_exito" id="registrar">Crear nuevo registro</span>
                             </div>
 
                             <div id="segmentoActualizar">

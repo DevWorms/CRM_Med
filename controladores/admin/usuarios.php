@@ -108,7 +108,7 @@ include dirname(__FILE__) . '/../layouts/header.php';
                                     </div>
                                 </div>
                             </div>
-                            <span class="btn btn-primary" id="registrar">Crear nuevo usuario</span>
+                            <span class="btn btn-success btn_exito"id="registrar">Crear nuevo usuario</span>
                             <div class="col-md-8"></div>
                         </div>
                     </form>

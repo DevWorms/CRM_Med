@@ -133,7 +133,7 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_option_select.php';
                         <div class="col-md-12">
                             <div class="col-md-8 form-group"></div>
                             <div class="col-md-4 form-group">
-                                <a class="btn btn-success" href="#" id="new_registrar_cita" role="button">
+                                <a class="btn btn-success btn_exito" href="#" id="new_registrar_cita" role="button">
                                     <span class="glyphicon glyphicon-edit"></span> Confirmar Cita
                                 </a>
                             </div>

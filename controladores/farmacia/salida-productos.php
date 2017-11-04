@@ -76,7 +76,7 @@
                             <div class="row">
                                 <div class="col-md-9"></div>
                                 <div class="col-md-3">
-                                    <button class="btn btn-primary" type="button" onclick="generarSalida()">
+                                    <button class="btn btn-success btn_exito" type="button" onclick="generarSalida()">
                                         <i class="glyphicon glyphicon-tag"></i>
                                         Registrar salida
                                     </button>

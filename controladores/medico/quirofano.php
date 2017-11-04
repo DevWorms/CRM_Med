@@ -278,7 +278,7 @@
                             <div class="row">
                                 <div class="col-md-9"></div>
                                 <div class="col-md-3">
-                                    <button class="btn btn-primary" type="button" onclick="generarIngreso()">
+                                    <button class="btn btn-success btn_exito" type="button" onclick="generarIngreso()">
                                         <i class="glyphicon glyphicon-tag"></i>
                                          Registrar ingreso
                                     </button>

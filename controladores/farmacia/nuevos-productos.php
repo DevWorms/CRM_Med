@@ -138,7 +138,7 @@
 
                                 <div class="col-md-4" align="right">
                                     <fieldset class="form-inline fs-sp">
-                                        <button class="btn btn-primary btn-form" onclick="event.preventDefault(); createProducto();" name=""><b>Añadir</b></button>
+                                        <button class="btn btn-success btn_exito" onclick="event.preventDefault(); createProducto();" name=""><b>Añadir</b></button>
                                     </fieldset>
                                 </div>                      
                             </div>

@@ -153,7 +153,7 @@
                         </table>
                         
                         <div class="form-group" align="center">
-                                <button onclick="event.preventDefault(); createFacture();" class="derecha btn btn-danger">Generar orden de compra</button>
+                                <button onclick="event.preventDefault(); createFacture();" class="btn btn-success btn_exito">Generar orden de compra</button>
                         </div>
                     </div>
                 </div>

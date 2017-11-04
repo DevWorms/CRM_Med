@@ -260,7 +260,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <br>
-                                        <button class="btn btn-primary col-md-12" type="button"
+                                        <button class="btn btn-success col-md-12 btn_exito" type="button"
                                         onclick="crearPago()">Registrar Pago</button>
                                     </div>
                                 </div>
@@ -329,7 +329,7 @@
 
                                                     <br>
                                                     <div class="form-group" align="right">
-                                                        <button type="submit" class="btn btn-primary" id="registrar">Crear nuevo presupuesto</button>
+                                                        <button type="submit" class="btn btn-success btn_exito" id="registrar">Crear nuevo presupuesto</button>
                                                     </div>
                                                 </div>
                                             </div>
