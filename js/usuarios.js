@@ -219,7 +219,7 @@ function getListUsuarios() {
             }
         }, error: function (error) {
             $("#wait").hide();
-            error(error);
+            //error(error);
         }, complete: function () {
             $("#wait").hide();
         }
@@ -252,7 +252,8 @@ function getUserSearch() {
             }
         }, error: function (error) {
             $("#wait").hide();
-            error(error);
+            //error(error);
+            console.log(error);
         }, complete: function () {
             $("#wait").hide();
         }

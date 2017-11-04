@@ -21,11 +21,15 @@
                         <br>
                         <div>
                             <div class="cuadradoAsitio"></div>
-                            <p style="margin-left: 30px;">La cita se llevo a cabo</p>
+                            <p style="margin-left: 30px;">La cita de primera vez se llevó a cabo</p>
                         </div>
                         <div>
                             <div class="cuadradoNoAsitio"></div>
-                            <p style="margin-left: 30px; margin-top: 0;">La cita NO se llevo a cabo</p>
+                            <p style="margin-left: 30px; margin-top: 0;">Otras citas que se llevaron a cabo</p>
+                        </div>
+                        <div>
+                            <div class="cuadradoNoAsitio" style="background:#ea62a1"></div>
+                            <p style="margin-left: 30px; margin-top: 0;">Citas que no se llevaron a cabo</p>
                         </div>
                         <hr>
                         <div id='calendar'></div>
@@ -47,7 +51,7 @@
                                     Fecha
                                 </th>
                                 <th>
-                                    Hora
+                                    Hora Programada
                                 </th>
                                 <th>
                                     Paciente

@@ -43,6 +43,9 @@ class Medico {
     public function pacientesEnEspera() {
         $res = ['estado' => 0];
 
+        date_default_timezone_set('America/Mexico_City');
+        $today = date("Y-m-d");
+
         try {
             $query = "SELECT pacientes.id, 
                           pacientes.nombre,
@@ -52,9 +55,9 @@ class Medico {
                           citas.hora_ini from 
                       ((citas INNER JOIN pacientes ON citas.pacientes_id=pacientes.id) 
                       INNER JOIN presupuestos ON citas.pacientes_id=presupuestos.pacientes_id) 
-                      WHERE citas.asistencia = 3 AND citas.tipo_cita=1;";
+                      WHERE citas.asistencia = 3 AND citas.tipo_cita=1 AND citas.fecha = :fecha";
             $stm = $this->pdo->prepare($query);
-
+            $stm->bindValue(":fecha", $today, PDO::PARAM_STR);
             $stm->execute();
             $resultado = $stm->fetchAll();
 
@@ -77,8 +80,8 @@ class Medico {
             if ($medico_id == null) {
                 if ($this->checkPermisos()) {
                     $query = "SELECT id FROM pacientes WHERE id=:id;";
-                    $stm = $this->pdo->prepare($query);
-                    $stm->bindValue(":id", $paciente_id, PDO::PARAM_INT);
+                        $stm = $this->pdo->prepare($query);
+                        $stm->bindValue(":id", $paciente_id, PDO::PARAM_INT);
                     $stm->execute();
 
                     if ($stm->rowCount() > 0) {
@@ -140,39 +143,6 @@ class Medico {
                           FROM relacion_medico_paciente 
                           INNER JOIN pacientes ON pacientes.id=relacion_medico_paciente.id_paciente 
                           WHERE id_medico_principal=:id OR id_medico_secundario=:id;";
-                $stm = $this->pdo->prepare($query);
-                $stm->bindValue(":id", $_SESSION["Id"], PDO::PARAM_INT);
-                $stm->execute();
-                $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
-
-                $res['estado'] = 1;
-                $res['pacientes'] = $resultado;
-            } else {
-                $res['mensaje'] = "No cuentas con los permisos correspondientes";
-            }
-        } catch (Exception $ex) {
-            $res['mensaje'] = $ex->getMessage();
-        }
-
-        // Devuelve json como respuesta
-        echo json_encode($res);
-    }
-    //pacientes en espera
-    public function misPacientesEspera() {
-        $res = ['estado' => 0];
-        try {
-            if ($this->checkPermisos()) {
-                $query = "SELECT pacientes.id, 
-                          pacientes.nombre,
-                          pacientes.apPaterno,
-                          pacientes.apMaterno,
-                          presupuestos.nombre as tratamiento, 
-                          citas.hora_ini from 
-                      ((citas INNER JOIN pacientes ON citas.pacientes_id=pacientes.id) INNER JOIN
-                      relacion_medico_paciente ON pacientes.id = relacion_medico_paciente.id_paciente) 
-                      INNER JOIN presupuestos ON citas.pacientes_id=presupuestos.pacientes_id 
-                      WHERE (citas.asistencia = 3 AND citas.tipo_cita=1) AND (id_medico_principal=:id OR id_medico_secundario=:id);";
-
                 $stm = $this->pdo->prepare($query);
                 $stm->bindValue(":id", $_SESSION["Id"], PDO::PARAM_INT);
                 $stm->execute();
@@ -910,13 +880,16 @@ class Medico {
     public function countEnEspera() {
         $res = ['estado' => 0];
 
+        date_default_timezone_set('America/Mexico_City');
+        $today = date("Y-m-d");
+
         try {
             $query = "SELECT count(pacientes.id) from 
                       ((citas INNER JOIN pacientes ON citas.pacientes_id=pacientes.id) 
                       INNER JOIN presupuestos ON citas.pacientes_id=presupuestos.pacientes_id) 
-                      WHERE citas.asistencia = 3 AND citas.tipo_cita=1;";
+                      WHERE citas.asistencia = 3 AND citas.tipo_cita=1 AND citas.fecha = :fecha;";
             $stm = $this->pdo->prepare($query);
-
+            $stm->bindValue(":fecha", $today, PDO::PARAM_STR);
             $stm->execute();
             $resultado = $stm->fetchAll();
 

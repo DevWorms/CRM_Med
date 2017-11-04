@@ -373,8 +373,41 @@ class Usuarios
     public function reporteCitasUsuarios()
     {
         $res = ["estado" => 0];
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario,SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) AS primeravez,SUM(CASE WHEN citas.tipo_cita = 2 THEN 1 ELSE 0 END) AS preoperatorios,SUM(CASE WHEN citas.tipo_cita = 3 THEN 1 ELSE 0 END) AS cirugia, SUM(CASE WHEN citas.tipo_cita = 4 THEN 1 ELSE 0 END) AS postoperatorio,SUM(CASE WHEN citas.tipo_cita = 5 THEN 1 ELSE 0 END) AS valoracion,SUM(CASE WHEN citas.tipo_cita = 6 THEN 1 ELSE 0 END) AS revision, SUM(CASE WHEN citas.tipo_cita = 7 THEN 1 ELSE 0 END) as tratamiento FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 GROUP BY citas.usuario_id";
+        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,
+            SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) AS primeravez,
+            SUM(CASE WHEN citas.tipo_cita = 5 THEN 1 ELSE 0 END) AS valoracion,
+            SUM(CASE WHEN citas.tipo_cita = 6 THEN 1 ELSE 0 END) AS revision,
+            SUM(CASE WHEN citas.tipo_cita = 7 THEN 1 ELSE 0 END) as tratamiento 
+        FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id 
+        WHERE (usuarios.id_tipo = 4 OR usuarios.id_tipo = 5) AND usuarios.estatus = 1 
+
+        AND (citas.fecha BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY)AND NOW())
+
+        GROUP BY citas.usuario_id ORDER BY primeravez DESC";
         $stm = $this->pdo->prepare($query);
+        $stm->execute();
+        $resultado = $stm->fetchAll();
+        $res["estado"] = 1;
+        $res["rows"] = $resultado;
+        return json_encode($res);
+    }
+
+    public function reporteCitasUsuariosDia($search)
+    {
+        $res = ["estado" => 0];
+        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,
+            SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) AS primeravez,
+            SUM(CASE WHEN citas.tipo_cita = 5 THEN 1 ELSE 0 END) AS valoracion,
+            SUM(CASE WHEN citas.tipo_cita = 6 THEN 1 ELSE 0 END) AS revision,
+            SUM(CASE WHEN citas.tipo_cita = 7 THEN 1 ELSE 0 END) as tratamiento 
+        FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id 
+        WHERE (usuarios.id_tipo = 4 OR usuarios.id_tipo = 5) AND usuarios.estatus = 1 
+
+        AND (citas.fecha BETWEEN DATE_SUB(NOW(), INTERVAL :dias DAY)AND NOW())
+
+        GROUP BY citas.usuario_id ORDER BY primeravez DESC";
+        $stm = $this->pdo->prepare($query);
+        $stm->bindParam(":dias", $search);
         $stm->execute();
         $resultado = $stm->fetchAll();
         $res["estado"] = 1;
@@ -386,7 +419,7 @@ class Usuarios
     {
         $res = ["estado" => 0];
         $search = "%" . $search . "%";
-        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,usuarios.numeroUsuario,SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) AS primeravez,SUM(CASE WHEN citas.tipo_cita = 2 THEN 1 ELSE 0 END) AS preoperatorios,SUM(CASE WHEN citas.tipo_cita = 3 THEN 1 ELSE 0 END) AS cirugia, SUM(CASE WHEN citas.tipo_cita = 4 THEN 1 ELSE 0 END) AS postoperatorio,SUM(CASE WHEN citas.tipo_cita = 5 THEN 1 ELSE 0 END) AS valoracion,SUM(CASE WHEN citas.tipo_cita = 6 THEN 1 ELSE 0 END) AS revision, SUM(CASE WHEN citas.tipo_cita = 7 THEN 1 ELSE 0 END) as tratamiento FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE citas.usuario_id != 0 AND (usuarios.nombre LIKE ? OR usuarios.apPaterno LIKE ? OR usuarios.apMaterno LIKE ? OR usuarios.numeroUsuario lIKE ? ) GROUP BY citas.usuario_id";
+        $query = "SELECT usuarios.nombre,usuarios.id,usuarios.apPaterno,usuarios.apMaterno,SUM(CASE WHEN citas.tipo_cita = 1 THEN 1 ELSE 0 END) AS primeravez,SUM(CASE WHEN citas.tipo_cita = 5 THEN 1 ELSE 0 END) AS valoracion,SUM(CASE WHEN citas.tipo_cita = 6 THEN 1 ELSE 0 END) AS revision, SUM(CASE WHEN citas.tipo_cita = 7 THEN 1 ELSE 0 END) as tratamiento FROM usuarios LEFT JOIN citas ON usuarios.id = citas.usuario_id WHERE (usuarios.id_tipo = 4 OR usuarios.id_tipo = 5) AND usuarios.estatus = 1 AND (usuarios.nombre LIKE ? OR usuarios.apPaterno LIKE ? OR usuarios.apMaterno LIKE ? OR usuarios.numeroUsuario lIKE ? ) AND (citas.fecha BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY)AND NOW()) GROUP BY citas.usuario_id ORDER BY primeravez DESC";
         $stm = $this->pdo->prepare($query);
         $stm->bindParam(1, $search);
         $stm->bindParam(2, $search);
@@ -515,6 +548,9 @@ if (isset($_POST['get'])) {
                 break;
             case 'reporteCitasUsuarios':
                 echo $f->reporteCitasUsuarios();
+                break;
+            case 'reporteDias':
+                echo $f->reporteCitasUsuariosDia($_POST["search"]);
                 break;
             case "reporteCitasUsuariosBySearch";
                 echo $f->reporteCitasUsuariosBySearch($_POST["search"]);

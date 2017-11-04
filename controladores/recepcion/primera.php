@@ -16,7 +16,7 @@ include dirname(__FILE__) . '/../utilidades/funciones/func_option_select.php';
                 <div class="caption-full">
                     <h2 style="display:inline; color:#337ab7;">Recepción - Programar Citas </h2>
                     <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right"
-                          title="Encuentra a un usuario a través del buscador escribiendo su nombre; si la búsqueda arroja un resultado, podrás programarle una nueva cita"></span>
+                          title="Programar nuevas citas a leads."></span>
                     <hr>
 
                     <div class="row">

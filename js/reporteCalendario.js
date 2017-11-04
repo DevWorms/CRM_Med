@@ -31,13 +31,15 @@ $(document).ready(function() {
                     if (response.estado == 1) {
                         var events = [];
                         response.eventos.forEach(function (item) {
-                            var title = item.cuantas;
+                            var title = "   " + item.cuantas;
                             if(item.asistencia == "1"){
-                                title += " cita(s) se llevaron a cabo";
-                            }else if(item.asistencia == "0" || item.asistencia == "2"){
-                                title += " cita(s) no se lllevaron a cabo";
+                                title += " Asistencia(s)";
+                            }else if(item.asistencia == "0"){
+                                title += " - Primera vez";
+                            }else if(item.asistencia == "2"){
+                                title += " - Otras cita(s)";
                             }else if(item.asistencia == 3){
-                                title += " cita(s) de primera vez se llevaron a cabo";
+                                title += " Primera vez";
                             }
 
                             var event = {
@@ -96,11 +98,11 @@ function getDetalle(fechaCita,asistenciaCita) {
                 detalle.forEach(function(cita){
                     var paterno = "";
                     var materno = "";
-                    if(cita.apPaterno != null){
-                        paterno = cita.apPaterno;
+                    if(cita.paterno != null){
+                        paterno = cita.paterno;
                     }
-                    if(cita.apMaterno != null){
-                        materno = cita.apMaterno;
+                    if(cita.materno != null){
+                        materno = cita.materno;
                     }
                     rows += "<tr><td>"+cita.fecha+"</td>";
                     rows += "<td>"+cita.hora_ini+"</td>";

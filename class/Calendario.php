@@ -83,10 +83,15 @@ class Calendario {
             $res['estado'] = 1;
 
             for ($i = 0; $i < count($resultado); $i ++) {
-                if ($resultado[$i]["asistencia"] == 1 || $resultado[$i]["asistencia"] == 3) {
-                    $resultado[$i]["color"] = "#42e7d5";
-                } else if($resultado[$i]["asistencia"] == 2 || $resultado[$i]["asistencia"] == 0){
+                if ($resultado[$i]["asistencia"] == 1) {
                     $resultado[$i]["color"] = "#19a4e7";
+
+                } else if($resultado[$i]["asistencia"] == 2 || $resultado[$i]["asistencia"] == 0){
+                    $resultado[$i]["color"] = "#ea62a1";
+
+                } else if($resultado[$i]["asistencia"] == 3){
+                    $resultado[$i]["color"] = "#42e7d5";
+
                 }
                 //$resultado[$i]["tipo_cita"] = $this->getCita($resultado[$i]["tipo_cita"]);
             }
@@ -102,7 +107,7 @@ class Calendario {
         $res = ['estado' => 0];
         try {
             //el reporte envia las asitencias y no asistencias por fecha
-            $operacion = "SELECT citas.fecha as fecha, citas.hora_ini as hora_ini,pacientes.nombre as nombre, pacientes.apPaterno as paterno, pacientes.apMaterno as materno,pacientes.id as idPaciente FROM citas,pacientes WHERE citas.fecha = ? AND citas.asistencia = ? AND citas.pacientes_id = pacientes.id";
+            $operacion = "SELECT citas.fecha as fecha, citas.hora_ini as hora_ini,pacientes.nombre as nombre, pacientes.apPaterno as paterno, pacientes.apMaterno as materno, pacientes.id as idPaciente FROM citas,pacientes WHERE citas.fecha = ? AND citas.asistencia = ? AND citas.pacientes_id = pacientes.id";
 
             $sentencia = $this->pdo->prepare($operacion);
             $sentencia->bindParam(1,$fecha);

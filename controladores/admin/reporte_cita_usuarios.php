@@ -15,41 +15,39 @@
                 <div class="thumbnail">
                     <div class="caption-full">
 
-                        <h2 style="display:inline; color:#337ab7;">Administrador - Reporte Citas Usuarios </h2>
-                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Revisa el número de citas citas generadas por el equipo de recepción y de CallCenter."></span>
-                            <br>
-                            <br>
-                            <br>
-                                <div class="row container-fluid">
-                                    <div class="col-md-1"></div>
-                                        <div class="panel panel-primary col-xs-11 col-md-5">
-                                          <div class="panel-heading">Usuario que generó más citas de primera vez</div>
-                                          <div class="panel-body" id="masCitasPv"></div>
-                                        </div>
+                        <h2 style="display:inline; color:#337ab7;">Administrador - Reporte de Desempeño de Citas</h2>
+                        <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Revisa el reporte de desempeño de los colaboradores con perfil de citas."></span>
+                                <div class="row container-fluid">                                
 
-                                        <div class="panel panel-primary  col-xs-11 col-md-5">
-                                          <div class="panel-heading">Usuario que generó menos citas de primera vez</div>
-                                          <div class="panel-body" id="menosCitasPv"></div>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                    <div class="row container-fluid ">
-                                        <div class="col-md-1"></div>
-                                        <div class="panel panel-primary col-xs-11 col-md-5">
-                                          <div class="panel-heading">Usuario que generó más citas en total</div>
-                                          <div class="panel-body" id="masCitasTotal"></div>
-                                        </div>
+                            <hr>
+                            <h3 align="center">Se muestra información de los últimos 30 días</h3>
 
-                                        <div class="panel panel-primary col-xs-11 col-md-5">
-                                          <div class="panel-heading">Usuario que generó menos citas en total</div>
-                                          <div class="panel-body" id="menosCitasTotal"></div>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                              
+
+                            <div class="col-md-3" align="center">
+                                <button type="button" class="btn btn-primary" onclick="reporteCitasUsuariosDia(7)">
+                                    Ver 7 días
+                                </button>
                             </div>
-                                
 
-                                <div class="input-group">
+                            <div class="col-md-3" align="center">
+                                <button type="button" class="btn btn-primary" onclick="reporteCitasUsuariosDia(15)">
+                                    Ver 15 días
+                                </button>
+                            </div>
+
+                            <div class="col-md-3" align="center">
+                                <button type="button" class="btn btn-primary" onclick="reporteCitasUsuariosDia(30)">
+                                    ver 30 días
+                                </button>
+                            </div>
+                            <div class="col-md-3" align="center">
+                                <button type="button" class="btn btn-primary" onclick="reporteCitasUsuariosDia(45)">
+                                    Ver 45 días
+                                </button>
+                            </div>
+
+                            <br><br><br>
+                            <div class="input-group">
                                 <input type="text" class="search-query form-control" placeholder="Buscar usuario..." id="searchRepUsuario" name="searchRepUsuario" autofocus/>
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" type="button" onclick="reporteCitasUsuariosBySearch()">
@@ -57,7 +55,8 @@
                                     </button>
                                 </span>
                             </div>
-                            <hr>
+
+                            <br>
                                 <div class="table-responsive">
                                   <table class="table table-bordered">
                                       <thead>
@@ -65,28 +64,16 @@
                                             Usuario
                                         </th>
                                         <th>
-                                            Número
+                                            Citas de Primera vez
                                         </th>
                                         <th>
-                                            #Primera vez
+                                            Citas de Valoración
                                         </th>
                                         <th>
-                                            #Pre operatorias
-                                        </th>
-                                        <th>
-                                            #Cirugía
-                                        </th>
-                                        <th>
-                                            #Post operatorias
-                                        </th>
-                                        <th>
-                                            #Valoración
-                                        </th>
-                                        <th>
-                                            #Revisión
+                                            Citas de Revisión
                                         </th> 
                                         <th>
-                                            #Tratamiento
+                                            Citas de Tratamiento
                                         </th>
                                       </thead>
                                     <tbody id="tblReporteCitasUsr">
