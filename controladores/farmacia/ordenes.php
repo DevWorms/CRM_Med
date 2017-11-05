@@ -48,7 +48,7 @@
                     </div>		
                 </div>
 
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
 
                             <div class="form-group row space">

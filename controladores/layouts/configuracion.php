@@ -17,7 +17,7 @@
         <div class="row">
             <?php include dirname(__FILE__) . "/../layouts/menu.php"; ?>
             <div class="col-md-9">
-                <div class="thumbnail">
+                <div class="thumbnail border_content">
                     <div class="caption-full">
                         <h2 style="display:inline; color:#337ab7;">Configuración </h2>
                         <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="right" title="Configura tu Clave y Nombre de Usuario, así como tu contraseña."></span>
