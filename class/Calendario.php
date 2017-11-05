@@ -264,6 +264,31 @@ class Calendario {
 
         return $nombre_cita;
     }
+
+    function asistenciasHoy() {
+        date_default_timezone_set('America/Mexico_City');
+        $hoy = date("Y-m-d");
+        try {
+            $query = 'SELECT DISTINCT
+                            (SELECT COUNT(tipo_cita) FROM citas WHERE tipo_cita = 1 AND fecha = :fecha) AS primera,
+                            (SELECT COUNT(tipo_cita) FROM citas WHERE tipo_cita = 5 AND fecha = :fecha) AS valora,
+                            (SELECT COUNT(tipo_cita) FROM citas WHERE tipo_cita = 6 AND fecha = :fecha) AS revisa,
+                            (SELECT COUNT(tipo_cita) FROM citas WHERE tipo_cita = 7 AND fecha = :fecha) AS trata
+                        FROM citas';
+            $stm = $this->pdo->prepare($query);
+            $stm->bindValue(":fecha", $hoy, PDO::PARAM_STR);
+            $stm->execute();
+
+            $resultado = $stm->fetchAll();
+
+            $res['total'] = $resultado;
+            $res['estado'] = 1;
+        } catch (Exception $ex) {
+            $res['mensaje'] = $ex->getMessage();
+        }
+
+        echo json_encode($res);
+    }
 }
 
 if (isset($_POST['get'])) {
@@ -283,6 +308,9 @@ if (isset($_POST['get'])) {
                 break;
             case 'reporteEventosDetalle':
                 $f->reporteEventosDetalle($_POST['fecha'],$_POST['asistencia']);
+            break;
+            case 'asistenciasHoy':
+                $f->asistenciasHoy();
             break;
             default:
                 header("Location: " . app_url() . "404");

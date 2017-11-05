@@ -1,5 +1,8 @@
 var total = 0;
 $(document).ready(function() {
+    //Total de mes
+    totales();
+
     // Listener - imprimir calendario
     $("#print").click(function() {
         printDiv();
@@ -24,6 +27,37 @@ $(document).ready(function() {
 
     loadEvents();
 });
+
+function totales(){
+    $.ajax({
+        url: APP_URL + 'class/Calendario.php',
+        type: 'POST',
+        data: {
+            get: 'asistenciasHoy'
+        },
+        dataType: "JSON",
+        beforeSend: function() {
+            $("#wait").show();
+        },
+        success: function(response) {
+            var total = response.total;
+            total.forEach(function(total) {
+                    $("#primeraTotal").append(" - <b>" + total.primera + "</b> el día de hoy");
+                    $("#valoraTotal").append(" - <b>" + total.valora + "</b> el día de hoy");
+                    $("#revisionTotal").append(" - <b>" + total.revisa + "</b> el día de hoy");
+                    $("#trataTotal").append(" - <b>" + total.trata + "</b> el día de hoy");
+            });
+        },
+        error: function(response) {
+            error(response.responseJSON.mensaje);
+
+        },
+        complete: function() {
+            $("#wait").hide();
+        }
+    });
+
+}
 
 /*
  * Carga los eventos en el calendario

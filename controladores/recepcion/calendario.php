@@ -24,22 +24,22 @@
                             <div class="col-md-6">
                                 <div>
                                     <div class="cuadradoAsitio" style="background-color: #79e2e3"></div>
-                                    <p style="margin-left: 30px;">Primera Vez</p>
+                                    <p id="primeraTotal" style="margin-left: 30px;">Primera Vez</p>
                                 </div>
                                 <div>
                                     <div class="cuadradoNoAsitio" style="background-color: #a5de9f"></div>
-                                    <p style="margin-left: 30px; margin-top: 0;">Valoración</p>
+                                    <p id="valoraTotal" style="margin-left: 30px; margin-top: 0;">Valoración</p>
                                 </div>
                                 <br>
                             </div>
                             <div class="col-md-6">
                                 <div>
                                     <div class="cuadradoAsitio" style="background-color: #c7d5ed"></div>
-                                    <p style="margin-left: 30px;">Revisión</p>
+                                    <p id="revisionTotal" style="margin-left: 30px;">Revisión</p>
                                 </div>
                                 <div>
                                     <div class="cuadradoNoAsitio" style="background-color: #87beb4"></div>
-                                    <p style="margin-left: 30px; margin-top: 0;">Tratamiento</p>
+                                    <p id="trataTotal" style="margin-left: 30px; margin-top: 0;">Tratamiento</p>
                                 </div>
                                 <br>
                             </div>
