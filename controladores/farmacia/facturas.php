@@ -14,9 +14,7 @@
             <div class="thumbnail border_content">
                 <div class="caption-full">
                     <h2 style="display:inline;" class="title_header">Farmacia - Registrar Factura </h2>
-
-                    <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right"
-                          title="Registra los productos solicitados en la orden de compra y corrobora que todos los productos hayan sido entregados"></span>
+                    <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Registra los productos solicitados en la orden de compra y corrobora que todos los productos hayan sido entregados. Al registrar la factura, los productos se agregan automáticamente al inventario"></span>
                     <hr>
 
                     <div class="form-group row">
@@ -26,14 +24,15 @@
                                     <input type="text" class="search-query form-control" id="param" name="param"
                                            placeholder="Buscar orden de compra por folio"/>
                                     <span class="input-group-btn">
-                                                <button class="btn btn-primary" type="button" id="validateOrden">
-                                                    <span class=" glyphicon glyphicon-search"></span>
-                                                </button>
-                                            </span>
+                                        <button class="btn btn-primary" type="button" id="validateOrden">
+                                            <span class=" glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <form id="nuevaFactura" name="nuevaFactura" method="POST">
                         <div id="error"></div>
                         <br>
@@ -43,71 +42,73 @@
                         <input type="hidden" value="" id="orden_pastilla" name="orden_pastilla">
                         <input type="hidden" value="" id="orden_credito" name="orden_credito">
                         <input type="hidden" id="get" name="get" value="createFactura">
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <div>
-                                            <label for="factura">Número de Factura*&nbsp;&nbsp;</label>
-                                            <input type="text" class="form-control" id="factura" name="factura"
-                                                   placeholder="Número de Factura" required>
+                                            <label for="factura">Número o Folio de Factura</label>
+                                            <input type="text" class="form-control" id="factura" name="factura" placeholder="Número de Factura" required>
                                         </div>
                                     </fieldset>
                                 </div>
 
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <label for="fecha">Fecha de Incorporación*</label>
+                                        <label for="fecha">Fecha de Factura</label>
+                                        <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Fecha en que se generó la compra."></span>
                                         <div class="input-group">
                                             <input type="text" class="search-query form-control" id="fecha" name="fecha"
                                                    placeholder="aaaa / mm / dd" required/>
                                             <span class="input-group-btn">
-                                                        <button class="btn btn-primary" type="button">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </button>
-                                                    </span>
+                                                <button class="btn btn-primary" type="button">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </button>
+                                            </span>
                                         </div>
                                     </fieldset>
                                 </div>
 
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <div align="center">
-                                            <label for="proveedor">Proveedor&nbsp;&nbsp;</label>
-                                            <input type="text" class="form-control" id="proveedor" name="proveedor"
-                                                   placeholder="Proveedor" required>
+                                        <div>
+                                            <label for="proveedor">Proveedor</label>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Nombre del proveedor que generó la factura."></span>
+                                            <br>
+                                            <input type="text" class="form-control" id="proveedor" name="proveedor" placeholder="Proveedor" required>
                                         </div>
                                     </fieldset>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
+                                <br>
+
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <br>
-                                        <label for="importe">Precio Neto*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <label for="importe">Precio Bruto</label>
+                                        <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Precio antes de IVA."></span>
                                         <input type="number" class="form-control" id="importe" name="importe"
-                                               placeholder=" $ 0 . 00 " required>
+                                               placeholder="" required>
                                     </fieldset>
                                 </div>
 
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
+                                        <label for="iva">IVA</label>
+                                        <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Monto del IVA."></span>
                                         <br>
-                                        <label for="iva">IVA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <input type="number" class="form-control" id="iva" name="iva"
-                                               placeholder="I V A" required>
+                                        <input type="number" class="form-control" id="iva" name="iva" required>
                                     </fieldset>
                                 </div>
 
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
-                                        <br>
-                                        <div align="right">
-                                            <label for="total">Total*&nbsp;&nbsp;</label>
-                                            <input type="number" class="form-control" id="total" name="total"
-                                                   placeholder="$ 0 . 00" required>
-                                        </div>
+                                            <label for="total">Total</label>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Suma del precio bruto más IVA registrado en la factura de compra."></span>
+                                            <br>
+                                            <input type="number" class="form-control" id="total" name="total"   required>
                                     </fieldset>
                                 </div>
                             </div>
@@ -115,31 +116,37 @@
 
                         <hr class="dashed">
 
-                        <div class="thumbnail">
-                            <div class="caption-full">
+
+                            <h4 align="center">Productos en la orden de compra.</h4>
+
                                 <table class="table table-bordered table-striped" id="productos">
                                     <thead>
                                     <tr>
                                         <th>Producto</th>
-                                        <th>Unidades</th>
-                                        <th>Gramaje</th>
                                         <th>Tipo</th>
                                         <th>Presentación</th>
-                                        <th>Caja</th>
-                                        <th>Fecha de caducidad</th>
-                                        <th>Lote</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio Unitario<br>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Costo de compra por unidad del producto agregado."></span>
+                                        </th>
+                                        <th>Fecha de Caducidad<br>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Fecha de caducidad del lote a ingresar."></span>
+                                        </th>
+                                        <th>Lote<br>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Número de lote del producto que gestiona mejor su trazabilidad."></span>
+                                        </th>
+                                        <th>Existencia<br>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Este será el número que se restará cada que se genere una salida de inventario"></span>
+                                        </th>
                                         <th>
-                                            Disponible
-                                            <span class=" glyphicon glyphicon-question-sign" data-toggle="tooltip"
-                                                  data-placement="right"
-                                                  title="Si el producto no se encontró disponible, marcar la casilla y añadir una observación"></span>
+                                            Disponible<br>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Si el producto no se encontró disponible, marcar la casilla y añadir una observación"></span>
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     </tbody>
                                 </table>
-                            </div>
 
                             <div class="form-group" align="center">
                                 <span class="btn btn-default" onclick="event.preventDefault(); terminar();"
@@ -150,9 +157,10 @@
                                       id="imprimir">Imprimir Informe</span>
                             </div>
 
-                        </div>
                     </form>
                 </div>
+            </div>
+
                 <div id="modals"></div>
                 <script type="text/template" id="modal_detalle">
                     <div id="Observacion-${id}" class="modal" role="dialog">
@@ -161,7 +169,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title" style="text-align:center;">${producto}</h4>
+                                    <h4 class="modal-title" style="text-align:center;">${nombre}</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="col-md-2"></div>

@@ -5,7 +5,7 @@
 
 <div class="container border_footer custom-footer">
     <div class="col-xs-offset-3 col-xs-6" align="center">
-        <p>2017</p>
+        <p>Versión 3.8.1 - <b>2017</b></p>
     </div>
 </div>
 

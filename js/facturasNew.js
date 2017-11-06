@@ -82,8 +82,6 @@ function validar() {
                 // habilita el form y carga el valor de la orden
                 $("#nuevaFactura input").prop("disabled", false);
                 $("#orden_id").val(data.orden.id);
-                $("#orden_fecha").val(data.orden.fecha_requerimiento);
-                $("#orden_credito").val(data.orden.dias_credito);
                 $("#registrar").show();
 
                 //Muestra los productosv
@@ -95,17 +93,20 @@ function validar() {
                         observacion = '<span class="glyphicon glyphicon-remove"></span>';
                     }
                     $('#productos tr:last').after('<tr>' +
-                        '<td>' + p.producto + '<input id="v_producto[]" name="v_producto[]" type="hidden" value="' + p.producto + '"></td>' +
-                        '<td>' + p.unidades + '<input id="v_unidades[]" name="v_unidades[]" type="hidden" value="' + p.unidades + '"></td>' +
-                        '<td>' + p.gramaje + '<input id="v_gramaje[]" name="v_gramaje[]" type="hidden" value="' + p.gramaje + '"></td>' +
-                        '<td>' + p.tipo + '<input id="v_tipo[]" name="v_tipo[]" type="hidden" value="' + p.tipo + '"></td>' +
-                        '<td>' + p.presentacion + '<input id="v_presentacion[]" name="v_presentacion[]" type="hidden" value="' + p.presentacion + '"></td>' +
-                        '<td>' + p.caja + '<input id="v_caja[]" name="v_caja[]" type="hidden" value="' + p.caja + '"></td>' +
-                        '<td>' + p.caducidad + '<input id="v_caducidad[]" name="v_caducidad[]" type="hidden" value="' + p.caducidad + '"></td>' +
-                        '<td>' + p.lote + '<input id="v_lote[]" name="v_lote[]" type="hidden" value="' + p.lote + '"></td>' +
+                        '<td>' + p.nombre + '<input id="v_producto[]" name="v_producto[]" type="hidden" value="' + p.nombre + '"></td>' +
+                        '<td>' + p.tipo + '<input id="v_unidades[]" name="v_unidades[]" type="hidden" value="' + p.tipo + '"></td>' +
+                        '<td>' + p.presentacion + ' con ' + p.piezas + ' pieza(s) de ' + p.cant_gramaje + p.gramaje +
+                        '<input id="v_gramaje[]" name="v_gramaje[]" type="hidden" value="' + p.presentacion + '"></td>' +
+                        '<td><input id="v_tipo[]" type="number" min="1" class="form-control" name="v_tipo[]" value="' + p.solicitud + '"></td>' +
+                        '<td><input id="v_presentacion[]" type="number" min="1" class="form-control" name="v_presentacion[]"></td>' +
+                        '<td><input id="v_caja[]" name="v_caja[]" type="text" class="search-query form-control"></td>' +
+                        '<td><input id="v_caducidad[]" type="text" min="1" class="form-control" name="v_presentacion[]"></td>' +
+                        '<td><input id="v_lote[]" type="number" min="1" class="form-control" name="v_presentacion[]"></td>' +
+
                         '<td align="center" style="color:red;cursor:pointer"><div id="addObservacion-'+p.id+'" onclick="openModal('+p.id+');">'+observacion+'</td>'+
                         '</tr>');
 
+                    console.log(p);
                     var actionsTemplate = _.template($('#modal_detalle').text());
                     $('#modals').append(actionsTemplate(p));
                 });

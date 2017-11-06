@@ -109,7 +109,7 @@
                                 <div class="col-md-4">
                                     <fieldset class="form-inline">
                                         <label for="lote">Lote</label>
-                                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Número de Lote del producto que gestiona mejor su trazabilidad."></span>
+                                        <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Número de lote del producto que gestiona mejor su trazabilidad."></span>
                                         <br>
                                         <input type="text" id="lote" name="lote" class="form-control input-width" placeholder="Lote del Producto" ng-model="lote" required>
                                     </fieldset>

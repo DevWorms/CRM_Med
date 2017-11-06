@@ -153,6 +153,7 @@
 
                             <hr class="dashed">
 
+                            <h4 align="center">Vista preliminar de la orden de compra.</h4>
                             <table class="table table-bordered table-striped" id="productos">
                                     <thead>
                                       <tr>
