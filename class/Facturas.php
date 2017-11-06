@@ -22,10 +22,11 @@ class Facturas {
     }
 
     public function createOrden($data) {
+        date_default_timezone_set('America/Mexico_City');
+
         $fecha = $data['fecha'];
-        $dias_credito = $data['credito'];
-        $caja = $data['caja'];
-        //$pastilla = $data['pastilla'];
+        $tipo = $data['tipo'];
+        $comentario = $data['comentario'];
 
         $res = [
             'estado' => 0,
@@ -33,27 +34,26 @@ class Facturas {
 
         if (count($data['v_producto']) > 0) {
             try {
-                $query = "INSERT INTO ordenes_compra (fecha_requerimiento, dias_credito, created_at) VALUES (?, ?, NOW())";
+                $query = "INSERT INTO ordenes_compra(fecha_requerimiento, comentario, created_at) VALUES (?, ?, NOW())";
                 $stm = $this->pdo->prepare($query);
 
                 $stm->bindValue(1, $fecha, PDO::PARAM_STR);
-                $stm->bindValue(2, $dias_credito, PDO::PARAM_STR);
+                $stm->bindValue(2, $comentario, PDO::PARAM_STR);
                 $stm->execute();
                 $id = $this->pdo->lastInsertId();
 
                 for ($i = 0; $i < count($data['v_producto']); $i++) {
-                    $query = "INSERT INTO orden_productos (producto, unidades, gramaje, tipo, presentacion, orden_id, caja, caducidad, lote, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
+                    $query = "INSERT INTO orden_productos(nombre, tipo, presentacion, piezas, gramaje, cant_gramaje, orden_id, solicitud, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, now())";
                     $stm = $this->pdo->prepare($query);
 
                     $stm->bindValue(1, $data['v_producto'][$i], PDO::PARAM_STR);
-                    $stm->bindValue(2, $data['v_unidades'][$i], PDO::PARAM_INT);
-                    $stm->bindValue(3, $data['v_gramaje'][$i], PDO::PARAM_STR);
-                    $stm->bindValue(4, $data['v_tipo'][$i], PDO::PARAM_STR);
-                    $stm->bindValue(5, $data['v_presentacion'][$i], PDO::PARAM_STR);
-                    $stm->bindValue(6, $id, PDO::PARAM_INT);
-                    $stm->bindValue(7, $data['v_caja'][$i], PDO::PARAM_STR);
-                    $stm->bindValue(8, $data['v_caducidad'][$i], PDO::PARAM_STR);
-                    $stm->bindValue(9, $data['v_lote'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(2, $tipo, PDO::PARAM_STR);
+                    $stm->bindValue(3, $data['v_presentacion'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(4, $data['v_piezas'][$i], PDO::PARAM_INT);
+                    $stm->bindValue(5, $data['v_gramaje'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(6, $data['v_cant_gramaje'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(7, $id, PDO::PARAM_INT);
+                    $stm->bindValue(8, $data['v_solicitud'][$i], PDO::PARAM_INT);
                     $stm->execute();
                 }
 
@@ -66,7 +66,6 @@ class Facturas {
         } else {
             $res['mensaje'] = "Ingresa al menos un producto";
         }
-
         // Devuelve json como respuesta
         echo json_encode($res);
     }

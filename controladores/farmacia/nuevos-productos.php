@@ -63,7 +63,7 @@
                                         <label for="piezas">Cantidad de Piezas</label>
                                         <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Cantidad de piezas o productos que contiene la presentación."></span>
                                         <br>
-                                        <input type="text" id="piezas" name="piezas" class="form-control input-width" placeholder="Ejemplo: 5, 10, 20, 100" ng-model="piezas" required>
+                                        <input type="number" min="1" id="piezas" name="piezas" class="form-control input-width" placeholder="Ejemplo: 5, 10, 20, 100" ng-model="piezas" required>
                                     </fieldset>
                                 </div>
 
@@ -81,7 +81,7 @@
                                         <label for="">Gramaje</label>
                                         <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Unidad de medida que tiene el producto."></span>
                                         <br>
-                                        <input type="text" class="form-control ui-autocomplete-input input-width" id="gramaje" name="gramaje" placeholder="Ejemplo: gr, ui, pz, ml" ng-model="gramaje" required/>
+                                        <input type="text" class="form-control ui-autocomplete-input input-width" id="gramaje" name="gramaje" placeholder="Ejemplo: gr, ui, ml" ng-model="gramaje" required/>
                                     </fieldset>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                         <label for="existencia">Existencia </label>
                                         <span class=" glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Este será el número que se restará cada que se genere una salida del producto."></span>
                                         <br>
-                                        <input type="text" id="existencia" name="existencia" class="form-control input-width" placeholder="Cantidad de productos a ingresar" ng-model="existencia" required>
+                                        <input type="number" min="1" id="existencia" name="existencia" class="form-control input-width" placeholder="Cantidad de productos a ingresar" ng-model="existencia" required>
                                     </fieldset> 
                                 </div>
                             </div>

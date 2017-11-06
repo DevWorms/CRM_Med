@@ -207,6 +207,7 @@ var delay = (function(){
 
 function createFacture() {
     var data = $("#create-form").serialize();
+    console.log(data);
     $.ajax({
         type: 'POST',
         url: APP_URL + 'class/Facturas.php',
@@ -233,26 +234,54 @@ function createFacture() {
     });
 }
 
+function validarProducto() {
+    if(!$("#fecha").val())
+        $.notify("Ingresa la fecha de requerimiento", "error");
+    else if(!$("#nombre").val())
+        $.notify("Ingresa el nombre del producto", "error");
+    else if(!$("#tipo").val())
+        $.notify("Ingresa el tipo de producto", "error");
+    else if(!$("#presentacion").val())
+        $.notify("Ingresa la presentación del producto", "error");
+    else if(!$("#piezas").val())
+        $.notify("Ingresa las piezas del producto", "error");
+    else if(!$("#cant_gramaje").val())
+        $.notify("Ingresa la cantidad de gramaje del producto", "error");
+    else if(!$("#gramaje").val())
+        $.notify("Ingresa el gramaje del producto", "error");
+    else if(!$("#solicitud").val())
+        $.notify("Ingresa la cantidad a solicitar", "error");
+    else
+        addProducto();
+}
+
 function addProducto() {
-    var fechaCaducidad = new Date($("#fecha2").val());
-    var hoy = new Date();
-    if(fechaCaducidad >  hoy){
+    var producto = $("#nombre").val();
+    var presentacion = $("#presentacion").val();
+    var solicitud = $("#solicitud").val();
+    var piezas = $("#piezas").val();
+    var cant_gramaje = $("#cant_gramaje").val();
+    var gramaje = $("#gramaje").val();
+
+    if(producto && solicitud){
         $('#productos tr:last').after('<tr>' +
-        '<td>' + $('#producto').val() + '<input id="v_producto[]" name="v_producto[]" type="hidden" value="' + $('#producto').val() + '"></td>' +
-        '<td>' + $('#unidades').val() + '<input id="v_unidades[]" name="v_unidades[]" type="hidden" value="' + $('#unidades').val() + '"></td>' +
-        '<td>' + $('#gramaje').val() + '<input id="v_gramaje[]" name="v_gramaje[]" type="hidden" value="' + $('#gramaje').val() + '"></td>' +
-        '<td>' + $('#tipo').val() + '<input id="v_tipo[]" name="v_tipo[]" type="hidden" value="' + $('#tipo').val() + '"></td>' +
-        '<td>' + $('#presentacion').val() + '<input id="v_presentacion[]" name="v_presentacion[]" type="hidden" value="' + $('#presentacion').val() + '"></td>' +
-        '<td>' + $('#caja').val() + '<input id="v_caja[]" name="v_caja[]" type="hidden" value="' + $('#caja').val() + '"></td>' +
-        '<td>' + $('#fecha2').val() + '<input id="v_caducidad[]" name="v_caducidad[]" type="hidden" value="' + $('#fecha2').val() + '"></td>' +
-        '<td>' + $('#lote').val() + '<input id="v_lote[]" name="v_lote[]" type="hidden" value="' + $('#lote').val() + '"></td>' +
+        '<td>' + producto + '<input id="v_producto[]" name="v_producto[]" type="hidden" value="' + producto + '"></td>' +
+        '<td>' + presentacion + ' con ' + piezas + ' pieza(s) de ' + cant_gramaje + gramaje +
+
+        '<input id="v_presentacion[]" name="v_presentacion[]" type="hidden" value="' + presentacion +'">' + 
+        '<input id="v_piezas[]" name="v_piezas[]" type="hidden" value="' + piezas +'">' + 
+        '<input id="v_gramaje[]" name="v_gramaje[]" type="hidden" value="' + gramaje +'">' +
+        '<input id="v_cant_gramaje[]" name="v_cant_gramaje[]" type="hidden" value="' + cant_gramaje +'">' +
+
+
+        '</td>' +
+        '<td>' + solicitud + '<input id="v_solicitud[]" name="v_solicitud[]" type="hidden" value="' + solicitud + '"></td>' +
         '<td><a style="color:red" href="#" onclick="event.preventDefault();removeProducto(this)"><i class="glyphicon glyphicon-remove"></i></a></td>' + 
         '</tr>');
         cleanProductoForm();
     }else{
-        $.notify("La fecha de caducidad no puede ser menor a la actual", "error");
-    }
-    
+        $.notify("Debes capturar al menos un producto y la cantidad", "error");
+    }   
 }
 
 function removeProducto(rProducto){
@@ -261,9 +290,12 @@ function removeProducto(rProducto){
 }
 
 function cleanProductoForm() {
-    $('#producto').val('');
+    $('#nombre').val('');
+    $('#solicitud').val('');
+    $('#presentacion').val('');
+    $('#piezas').val('');
+    $('#cant_gramaje').val('');
     $('#gramaje').val('');
-    $('#unidades').val('');
 }
 
 function cleanAll() {
@@ -274,12 +306,10 @@ function cleanAll() {
         table.deleteRow(i);
     }
 
-    $('#fecha').val('');
-    $('#factura').val('');
-    $('#proveedor').val('');
-    $('#importe').val('');
-    $('#iva').val('');
-    $('#total').val('');
+    $('#presentacion').val('');
+    $('#piezas').val('');
+    $('#cant_gramaje').val('');
+    $('#gramaje').val('');
 }
 
 function createPDF(id) {
@@ -354,9 +384,9 @@ function createPDF(id) {
         doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 10);
     };
 
-    var columns = ["Fecha de Requerimiento", "Días de crédito"];
+    var columns = ["Fecha de Requerimiento", "Comentario"];
     var rows = [
-        [$("#fecha").val(), $("#credito").val()]
+        [$("#fecha").val(), $("#comentario").val()]
     ];
 
     doc.autoTable(columns, rows, {addPageContent: pageContent, startY: 30, theme: 'plain'});
