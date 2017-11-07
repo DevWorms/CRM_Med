@@ -37,10 +37,6 @@
                         <div id="error"></div>
                         <br>
                         <input type="hidden" value="" id="orden_id" name="orden_id">
-                        <input type="hidden" value="" id="orden_fecha" name="orden_fecha">
-                        <input type="hidden" value="" id="orden_caja" name="orden_caja">
-                        <input type="hidden" value="" id="orden_pastilla" name="orden_pastilla">
-                        <input type="hidden" value="" id="orden_credito" name="orden_credito">
                         <input type="hidden" id="get" name="get" value="createFactura">
 
                         <div class="row">
@@ -59,7 +55,7 @@
                                         <label for="fecha">Fecha de Factura</label>
                                         <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Fecha en que se generó la compra."></span>
                                         <div class="input-group">
-                                            <input type="text" class="search-query form-control" id="fecha" name="fecha"
+                                            <input type="text" class="search-query form-control" id="fechaAbierta" name="fechaAbierta"
                                                    placeholder="aaaa / mm / dd" required/>
                                             <span class="input-group-btn">
                                                 <button class="btn btn-primary" type="button">
@@ -89,7 +85,7 @@
                                     <fieldset class="form-inline">
                                         <label for="importe">Precio Bruto</label>
                                         <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Precio antes de IVA."></span>
-                                        <input type="number" class="form-control" id="importe" name="importe"
+                                        <input type="text" class="form-control" id="importe" name="importe"
                                                placeholder="" required>
                                     </fieldset>
                                 </div>
@@ -99,7 +95,7 @@
                                         <label for="iva">IVA</label>
                                         <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Monto del IVA."></span>
                                         <br>
-                                        <input type="number" class="form-control" id="iva" name="iva" required>
+                                        <input type="text" class="form-control" id="iva" name="iva" required>
                                     </fieldset>
                                 </div>
 
@@ -108,7 +104,7 @@
                                             <label for="total">Total</label>
                                             <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Suma del precio bruto más IVA registrado en la factura de compra."></span>
                                             <br>
-                                            <input type="number" class="form-control" id="total" name="total"   required>
+                                            <input type="text" class="form-control" id="total" name="total"   required>
                                     </fieldset>
                                 </div>
                             </div>
@@ -130,17 +126,17 @@
                                             <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Costo de compra por unidad del producto agregado."></span>
                                         </th>
                                         <th>Fecha de Caducidad<br>
-                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Fecha de caducidad del lote a ingresar."></span>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Fecha de caducidad del lote a registrar. Ingresar con el formato YYYY-MM-DD incluyendo los guiones de separación y sin espacios."></span>
                                         </th>
                                         <th>Lote<br>
                                             <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Número de lote del producto que gestiona mejor su trazabilidad."></span>
                                         </th>
                                         <th>Existencia<br>
-                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Este será el número que se restará cada que se genere una salida de inventario"></span>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Este será el número que se restará cada que se genere una salida de inventario."></span>
                                         </th>
                                         <th>
                                             Disponible<br>
-                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Si el producto no se encontró disponible, marcar la casilla y añadir una observación"></span>
+                                            <span class="glyphicon glyphicon-question-sign circulo_info" data-toggle="tooltip" data-placement="right" title="Si el producto no se encontró disponible, marcar la casilla y añadir una observación."></span>
                                         </th>
                                     </tr>
                                     </thead>
@@ -149,10 +145,11 @@
                                 </table>
 
                             <div class="form-group" align="center">
+                                <span class="btn btn-primary" onclick="event.preventDefault(); validateFields();"
+                                      id="registrar">Guardar Factura</span>
                                 <span class="btn btn-default" onclick="event.preventDefault(); terminar();"
                                       id="terminar">Terminar</span>
-                                <span class="btn btn-primary" onclick="event.preventDefault(); createFactura();"
-                                      id="registrar">Guardar Factura</span>
+                                    
                                 <span class="btn btn-success" onclick="event.preventDefault(); imprimir();"
                                       id="imprimir">Imprimir Informe</span>
                             </div>

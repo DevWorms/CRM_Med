@@ -176,21 +176,13 @@ class Facturas {
         $importe = $data['importe'];
         $iva = $data['iva'];
         $total = $data['total'];
-        $fecha_expedicion = $data['fecha'];
+        $fecha_expedicion = $data['fechaAbierta'];
         $proveedor = $data['proveedor'];
         $orden_id = $data['orden_id'];
-        $dias_credito = $data['credito'];
-        $caja = $data['caja'];
-        $pastilla = $data['pastilla'];
 
         $proveedores_id = $this->selectOrCreateProveedor($proveedor);
 
         try {
-            /*
-            $query = "INSERT INTO facturas (numeroFactura, importe, iva, total, fecha_expedicion, proveedores_id, 
-                      dias_credito, caja, pastilla, fecha_captura) VALUES (:numeroFactura, :importe, :iva, :total, 
-                      :fecha_expedicion, :proveedores_id, :dias_credito, :caja, :pastilla, now());";
-            */
             $query = "INSERT INTO facturas (numeroFactura, importe, iva, total, fecha_expedicion, proveedores_id, 
                       fecha_captura, capturo_id, orden_id) VALUES (:numeroFactura, :importe, :iva, :total, :fecha_expedicion, 
                       :proveedores_id, now(), :user_id, :orden_id);";
@@ -204,15 +196,41 @@ class Facturas {
             $stm->bindValue(":proveedores_id", $proveedores_id, PDO::PARAM_INT);
             $stm->bindValue(":user_id", $_SESSION['Id'], PDO::PARAM_INT);
             $stm->bindValue(":orden_id", $orden_id, PDO::PARAM_INT);
-            //$stm->bindValue(":dias_credito", $dias_credito, PDO::PARAM_STR);
-            //$stm->bindValue(":caja", $caja, PDO::PARAM_STR);
-            //$stm->bindValue(":pastilla", $pastilla, PDO::PARAM_STR);
             $stm->execute();
 
             $id = $this->pdo->lastInsertId();
 
+
+            for ($i = 0; $i < count($data['v_producto']); $i++) {
+
+                if($data['v_val_obs'][$i] == 0){
+                    $query = "INSERT INTO productos (nombre, tipo, presentacion, precio_unitario_compra, gramaje, existencia, caducidad, lote, pzs_presentacion, cant_gramaje) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    $stm = $this->pdo->prepare($query);
+
+                    $stm->bindValue(1, $data['v_producto'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(2, $data['v_tipo'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(3, $data['v_presentacion'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(4, $data['v_precio'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(5, $data['v_gramaje'][$i], PDO::PARAM_INT);
+                    $stm->bindValue(6, $data['v_existencia'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(7, $data['v_fecha'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(8, $data['v_lote'][$i], PDO::PARAM_STR);
+                    $stm->bindValue(9, $data['v_piezas'][$i], PDO::PARAM_INT);
+                    $stm->bindValue(10, $data['v_cant_gramaje'][$i], PDO::PARAM_STR);
+                    $stm->execute();
+
+
+                    $query = "UPDATE orden_productos SET registrado = 1 WHERE orden_id = ? AND id = ?";
+                    $stm = $this->pdo->prepare($query);
+
+                    $stm->bindValue(1, $orden_id, PDO::PARAM_INT);
+                    $stm->bindValue(2, $data['v_id_prod'][$i], PDO::PARAM_INT);
+                    $stm->execute();
+                }
+            }
+
             $res['estado'] = 1;
-            $res['mensaje'] = "Factura creada correctamente";
+            $res['mensaje'] = "Productos almacenados correctamente";
             $res['factura'] = $id;
         } catch (Exception $e) {
             $res['mensaje'] = $e->getMessage();

@@ -86,25 +86,41 @@ function validar() {
 
                 //Muestra los productosv
                 var observacion = "";
+                var val_obs = 0;
                 data.productos.forEach(function (p) {
                     if( p.observacion != null && p.observacion != ""){
                         observacion = p.observacion;
+                        val_obs = 1;
                     }else{
                         observacion = '<span class="glyphicon glyphicon-remove"></span>';
                     }
-                    $('#productos tr:last').after('<tr>' +
-                        '<td>' + p.nombre + '<input id="v_producto[]" name="v_producto[]" type="hidden" value="' + p.nombre + '"></td>' +
-                        '<td>' + p.tipo + '<input id="v_unidades[]" name="v_unidades[]" type="hidden" value="' + p.tipo + '"></td>' +
-                        '<td>' + p.presentacion + ' con ' + p.piezas + ' pieza(s) de ' + p.cant_gramaje + p.gramaje +
-                        '<input id="v_gramaje[]" name="v_gramaje[]" type="hidden" value="' + p.presentacion + '"></td>' +
-                        '<td><input id="v_tipo[]" type="number" min="1" class="form-control" name="v_tipo[]" value="' + p.solicitud + '"></td>' +
-                        '<td><input id="v_presentacion[]" type="number" min="1" class="form-control" name="v_presentacion[]"></td>' +
-                        '<td><input id="v_caja[]" name="v_caja[]" type="text" class="search-query form-control"></td>' +
-                        '<td><input id="v_caducidad[]" type="text" min="1" class="form-control" name="v_presentacion[]"></td>' +
-                        '<td><input id="v_lote[]" type="number" min="1" class="form-control" name="v_presentacion[]"></td>' +
 
-                        '<td align="center" style="color:red;cursor:pointer"><div id="addObservacion-'+p.id+'" onclick="openModal('+p.id+');">'+observacion+'</td>'+
-                        '</tr>');
+                    if(p.registrado == 0) {
+
+                        $('#productos tr:last').after('<tr>' +
+                            '<td>' + p.nombre + '<input id="v_producto[]" name="v_producto[]" type="hidden" value="' + p.nombre + '"></td>' +
+                            '<td>' + p.tipo + '<input id="v_tipo[]" name="v_tipo[]" type="hidden" value="' + p.tipo + '"></td>' +
+
+                            '<td>' + p.presentacion + ' con ' + p.piezas + ' pieza(s) de ' + p.cant_gramaje + p.gramaje +
+
+                            '<input id="v_presentacion[]" name="v_presentacion[]" type="hidden" value="' + p.presentacion + '">' +
+                            '<input id="v_piezas[]" name="v_piezas[]" type="hidden" value="' + p.piezas + '">' +
+                            '<input id="v_cant_gramaje[]" name="v_cant_gramaje[]" type="hidden" value="' + p.cant_gramaje + '">' + 
+                            '<input id="v_gramaje[]" name="v_gramaje[]" type="hidden" value="' + p.gramaje + 
+                            '"></td>' +
+
+                            '<td><input id="v_solicitud[]" name="v_solicitud[] type="number" min="1" class="form-control" value="' + p.solicitud + '"></td>' +
+                            '<td><input id="v_precio[]" name="v_precio[]" type="text" class="form-control" placeholder="00.00"></td>' +
+                            '<td><input id="v_fecha[]" name="v_fecha[]" type="text" class="search-query form-control" value="2020-02-20"></td>' +
+                            '<td><input id="v_lote[]" name="v_lote[]" type="text" min="1" class="form-control"></td>' +
+                            '<td><input id="v_existencia[]" name="v_existencia[]" type="number" min="1" class="form-control" value="' + p.solicitud + '"></td>' +
+
+                            '<td align="center" style="color:red;cursor:pointer"><div id="addObservacion-'+p.id+'" onclick="openModal('+p.id+');">' + observacion +
+                            '<input id="v_val_obs[]" name="v_val_obs[]" type="hidden" class="form-control" value="' + val_obs + '">' + 
+                            '<input id="v_id_prod[]" name="v_id_prod[]" type="hidden" class="form-control" value="' + p.id + '">' + 
+                            '</td>'+
+                            '</tr>');
+                    }
 
                     console.log(p);
                     var actionsTemplate = _.template($('#modal_detalle').text());
@@ -145,12 +161,30 @@ var delay = (function(){
     };
 })();
 
+function validateFields() {
+    if(!$("#factura").val())
+        $.notify("Ingresa el folio de la factura", "error");
+    else if(!$("#fechaAbierta").val())
+        $.notify("Ingresa la fecha de la factura", "error");
+    else if(!$("#proveedor").val())
+        $.notify("Ingresa al proveedor de la factura", "error");
+    else if(!$("#importe").val())
+        $.notify("Ingresa el costo bruto de la factura", "error");
+    else if(!$("#iva").val())
+        $.notify("Ingresa el IVA de la factura", "error");
+    else if(!$("#total").val())
+        $.notify("Ingresa el total del costo de la factura", "error");
+    else
+        createFactura();
+}
+
 function createFactura() {
     $("#error").fadeIn(1000, function () {
         $("#error").html('');
     });
 
     var data = $("#nuevaFactura").serialize();
+    console.log(data);
 
     $.ajax({
         type: 'POST',
@@ -159,7 +193,7 @@ function createFactura() {
         dataType: "json",
         success: function (response) {
             if (response.estado == 1) {
-                $.notify("Factura creada exitosamente", "success");
+                $.notify("Factura almacenada exitosamente", "success");
                 $("#error").fadeIn(1000, function () {
                     $("#error").html('<div class="alert alert-success"> &nbsp; ' + response.mensaje + '</div>');
                 });
@@ -187,7 +221,7 @@ function openModal(id) {
 function limpiar() {
     $("#registrar").hide();
     $("#terminar").show();
-    $("#imprimir").show();
+    //$("#imprimir").show();
 }
 
 function terminar() {
