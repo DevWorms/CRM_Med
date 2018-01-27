@@ -260,7 +260,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <br>
-                                        <button class="btn btn-success col-md-12 btn_exito" type="button"
+                                        <button id="btn-nvopago"class="btn btn-success col-md-12 btn_exito" type="button"
                                         onclick="crearPago()">Registrar Pago</button>
                                     </div>
                                 </div>

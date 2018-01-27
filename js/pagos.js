@@ -8,8 +8,8 @@ $(document).ready(function() {
      * PAGOS VERSION 1
      *****************/
     if (!$("#user_id").val()) {
-        $("#nuevoPago input").prop("disabled", true);
-        $("#nuevoPresupuesto input").prop("disabled", true);
+        enableFormNvoPresupuesto(false);
+        enableFormNvoPago(false);
     }
 
     $("#busqueda").click(function () {
@@ -60,7 +60,7 @@ $(document).ready(function() {
     });
 
     // Agregar pago click
-    $("form#nuevoPago").submit(function() {
+    $("form#form-crearPago").submit(function() {
         if (!$("#orden_pago") || !$("#monto") || !$("#concepto") || !$("#fecha")) {
             $("#error").fadeIn(1000, function() {
                 $("#error").html('<div class="alert alert-danger"> &nbsp; Completa los campos requeridos</div>');
@@ -76,7 +76,6 @@ $(document).ready(function() {
         formData.append('get', 'addPago');
         formData.append('user_id', $("#user_id").val());
         formData.append('fecha', $("#fechaAbierta").val());
-
         $.ajax({
             type: 'POST',
             url: APP_URL + 'class/Pagos.php',
@@ -84,15 +83,10 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (data) {
                 if (data.estado == 1) {
-                    $("#error").fadeIn(1000, function () {
-                        $("#error").html('<div class="alert alert-success"> &nbsp; ' + data.mensaje + '</div>');
-                    });
-
-                    $('#nuevoPago')[0].reset();
+                    $.notify(data.mensaje, "succes");
+                    cleanFormNvoPago()
                 } else {
-                    $("#error").fadeIn(1000, function() {
-                        $("#error").html('<div class="alert alert-danger"> &nbsp; ' + data.mensaje + '</div>');
-                    });
+                    $.notify(data.mensaje, "error");
                 }
             },
             cache: false,
@@ -110,10 +104,6 @@ $(document).ready(function() {
 
     // Agregar presupuesto click
     $("form#nuevoPresupuesto").submit(function() {
-        $("#error").fadeIn(1000, function() {
-            $("#error").html("");
-        });
-
         var formData = new FormData($(this)[0]);
         formData.append('get', 'addPresupuesto');
         formData.append('user_id', $("#user_id").val());
@@ -125,16 +115,10 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (data) {
                 if (data.estado == 1) {
-                    $("#error").fadeIn(1000, function () {
-                        $("#error").html('<div class="alert alert-success"> &nbsp; ' + data.mensaje + '</div>');
-                    });
-
-                    $('#nuevoPresupuesto')[0].reset();
+                    $.notify(data.mensaje, "success");
                     loadPresupuestos($("#user_id").val());
                 } else {
-                    $("#error").fadeIn(1000, function() {
-                        $("#error").html('<div class="alert alert-danger"> &nbsp; ' + data.mensaje + '</div>');
-                    });
+                    $.notify(data.mensaje, "error");
                 }
             },
             cache: false,
@@ -271,8 +255,7 @@ function getPaciente() {
                     var paciente = response.paciente[0];
                     $("#user_id").val(paciente.id);
                     // Activa los forms
-                    $("#nuevoPago input").prop("disabled", false);
-                    $("#nuevoPresupuesto input").prop("disabled", false);
+                    enableFormNvoPresupuesto(true);
                     // Carga los presupuestos
                     loadPresupuestos(paciente.id);
                 }
@@ -422,6 +405,7 @@ function obtenerPaciente() {
                     mostrarDescripcion(contenido);
                     // Carga los presupuestos
                     obtenerPresupuesto(paciente.id);
+                    enableFormNvoPago(true);
                 }
                 else {
                     $("#error").fadeIn(1000, function () {
@@ -522,21 +506,47 @@ function crearPago(){
                 if (response.estado == "1") {
                     $.notify(response.mensaje, "success");
                     obtenerPagos();
+                    cleanFormNvoPago();
                 } else {
                     $.notify(response.mensaje, "error");
                 }
-            },
-            error: function(error) {
-                $.notify(error, "error");
-                $("#wait").hide();
-            },
-            complete: function() {
-                $("#wait").hide();
             }
         });
     }else {
         $.notify("Debes selecionar un paciente y un presupuesto","info");
     }
-    
+}
 
+function enableFormNvoPresupuesto(estado) {
+    if(estado) {
+        $("#nuevoPresupuesto input").prop("disabled", false);
+        $("#registrar").prop("disabled", false);
+    } else {
+        $("#nuevoPresupuesto input").prop("disabled", true);
+        $("#registrar").prop("disabled", true);
+    }
+}
+
+function enableFormNvoPago(estado) {
+    if(estado) {
+        $("#form-crearPago input").prop("disabled", false);
+        $("#btn-nvopago").prop("disabled", false);
+        $("#forma_pago").prop("disabled", false);
+    } else {
+        $("#form-crearPago input").prop("disabled", true);
+        $("#btn-nvopago").prop("disabled", true);
+        $("#forma_pago").prop("disabled", true);
+    }
+}
+
+function cleanFormNvoPresupuesto() {
+    $("#user_id").val("");
+    $("#nuevoPresupuesto input").val("");
+    enableFormNvoPresupuesto(false);
+}
+function cleanFormNvoPago() {
+    $("#user_id").val("");
+    $("#form-crearPago input").val("");
+    $("#paciente_Pagos").val("");
+    enableFormNvoPago(false);
 }

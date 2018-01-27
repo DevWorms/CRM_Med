@@ -440,5 +440,5 @@
         <!-- Fin Modals -->
     </div>
 </div>
-
+<script type="text/javascript" src="<?php echo app_url(); ?>js/pagos.js"></script>
 <?php include dirname(__FILE__) . '/../layouts/footer.php'; ?>

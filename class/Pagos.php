@@ -262,7 +262,10 @@ class Pagos {
 
 
         //obtenido el dato del saldo generamos el pago en la BD
-        $query = "INSERT INTO pagos (fecha,folio_anterior,monto,concepto,forma_pago,observaciones,plan_financiamiento,financiera,id_presupuesto,pacientes_id,resta,fechado) VALUES (now(),:folio_anterior,:monto,:concepto,:forma_pago,:observaciones,:plan_financiamiento,:financiera,:id_presupuesto,:pacientes_id,:resta,:fechado)";
+        $query = "INSERT INTO pagos (fecha,folio_anterior,monto,concepto,forma_pago,observaciones,
+        plan_financiamiento,financiera,id_presupuesto,pacientes_id,resta,fechado) 
+        VALUES (now(),:folio_anterior,:monto,:concepto,:forma_pago,:observaciones,
+        :plan_financiamiento,:financiera,:id_presupuesto,:pacientes_id,:resta,:fechado)";
 
         $stm = $this->pdo->prepare($query);
 
@@ -303,7 +306,7 @@ class Pagos {
 }
 
 if (isset($_POST['get'])) {
-    if (auth()) {
+    //if (auth()) {
         $get = $_POST['get'];
         $p = new Pagos();
 
@@ -329,9 +332,11 @@ if (isset($_POST['get'])) {
             default:
                 header("Location: " . app_url() . "404");
         }
+        /*
     } else {
         return json_encode(['estado' => 0, 'mensaje' => 'Error de credenciales']);
     }
 } else {
     header("Location: " . app_url() . "404");
+    */
 }
