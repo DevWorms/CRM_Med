@@ -315,15 +315,20 @@ class Pagos {
                 pg.id_pago, pg.monto, pg.concepto, pg.plan_financiamiento, pg.fecha
                 FROM pagos AS pg INNER JOIN pacientes AS pc 
                 ON pg.pacientes_id = pc.id 
-                WHERE pg.pacientes_id = :idpaciente and revisado = 0;";
+                WHERE pg.pacientes_id = :idpaciente and pg.revisado = 0;";
             $stm = $this->pdo->prepare($query);
             $stm->bindParam(":idpaciente",$id_cliente);
             if ($stm->execute()) {
                 $res['estado'] = 1;
-                $res['mensaje'] = "Pagos encontrados";
                 $res['pagos'] = $stm->fetchAll();
+                if(sizeof($res['pagos']) < 1) {      
+                    $res['estado'] = 0;
+                    $res['mensaje'] = "No se encontraron pagos";
+                } else {
+                    $res['mensaje'] = "Pagos encontrados";
+                }
             } else {
-                $res['estado'] = 1;
+                $res['estado'] = 0;
                 $res['mensaje'] = "No se encontraron pagos";
                 $res['pagos'] = $stm->fetchAll();
             }

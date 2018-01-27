@@ -562,6 +562,7 @@ function getPagosPorConfirmar() {
      */
     if ($("#paciente_id").val()) {
         var idPaciente = $("#paciente_id").val();
+        $("#por-confirmar").html('');
         $.ajax({
             type: "POST",
             url: APP_URL + 'class/Pagos.php',
