@@ -221,7 +221,7 @@ class Pagos {
         $res['pagos'] = $stm->fetchAll();
         $res['no_pagos'] = count($res['pagos']);
         $res['estado'] = 1 ;
-
+        
         return json_encode($res);
     }
 
@@ -302,11 +302,42 @@ class Pagos {
         return json_encode($res);
     }
 
+    public function getPagosPorRevisar($id_cliente) {
+        /**
+         *  SE OBTIENEN TODOS LO PAGOS DE UN CLIENTE 
+         *  QUE EL CONTADOR VA A REVISAR
+         */
+        $res = ['estado' => 0];
+        // Seleccionando datos del paciente 
+        try {
+            $query = "SELECT  pg.pacientes_id as 'id_paciente', 
+                CONCAT(pc.nombre, ' ', pc.apPaterno, ' ', pc.apMaterno) AS nombre,
+                pg.id_pago, pg.monto, pg.concepto, pg.plan_financiamiento, pg.fecha
+                FROM pagos AS pg INNER JOIN pacientes AS pc 
+                ON pg.pacientes_id = pc.id 
+                WHERE pg.pacientes_id = :idpaciente and revisado = 0;";
+            $stm = $this->pdo->prepare($query);
+            $stm->bindParam(":idpaciente",$id_cliente);
+            if ($stm->execute()) {
+                $res['estado'] = 1;
+                $res['mensaje'] = "Pagos encontrados";
+                $res['pagos'] = $stm->fetchAll();
+            } else {
+                $res['estado'] = 1;
+                $res['mensaje'] = "No se encontraron pagos";
+                $res['pagos'] = $stm->fetchAll();
+            }
+        }catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+        
+        return json_encode($res);
+    }
     
 }
 
 if (isset($_POST['get'])) {
-    //if (auth()) {
+    if (auth()) {
         $get = $_POST['get'];
         $p = new Pagos();
 
@@ -329,14 +360,15 @@ if (isset($_POST['get'])) {
             case 'crearPago':
                 echo $p->crearPago($_POST);
                 break;
+            case 'getPagosPorRevisar':
+                echo $p->getPagosPorRevisar($_POST['idpaciente']);
+                break;
             default:
                 header("Location: " . app_url() . "404");
         }
-        /*
     } else {
         return json_encode(['estado' => 0, 'mensaje' => 'Error de credenciales']);
     }
 } else {
     header("Location: " . app_url() . "404");
-    */
 }

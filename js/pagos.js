@@ -48,6 +48,7 @@ $(document).ready(function() {
         delay: 700,
         select: function( event, ui ) {
             var terms = String(this.value).split(".");
+            $("#paciente_id").val(ui.item.value.split("-")[0].trim());
             // remove the current input
             terms.pop();
             // add the selected item
@@ -230,6 +231,10 @@ $("#searchMed").on( "keydown", function( event ) {
     // generar informacion y presupuesto del paciente
     $("#btn-paciente").click(function(){
         obtenerPaciente();
+    });
+
+    $("#validateOrden").click(function () { 
+        getPagosPorConfirmar();
     });
 
 });
@@ -549,4 +554,57 @@ function cleanFormNvoPago() {
     $("#form-crearPago input").val("");
     $("#paciente_Pagos").val("");
     enableFormNvoPago(false);
+}
+
+function getPagosPorConfirmar() {
+    /**
+     *  SE OBTIENEN TODOS LOS PAGOS
+     */
+    if ($("#paciente_id").val()) {
+        var idPaciente = $("#paciente_id").val();
+        $.ajax({
+            type: "POST",
+            url: APP_URL + 'class/Pagos.php',
+            data: {
+                idpaciente: idPaciente,
+                get: "getPagosPorRevisar"
+            },
+            success: function (response) {
+               response = JSON.parse(response);
+               if (response.estado == "1") {
+                   $.notify(response.mensaje, "success");
+                   var pagos = response.pagos;
+                   var contenido = '';
+                   pagos.forEach(function (pago) { 
+                       contenido += '<div class="col-xs-10 col-xs-offset-1 caja-pago"><div class="col-xs-8">';
+                       contenido += '<div class="col-xs-6"><span class="caja-pago_label"># Recibo:</span><br>';
+                       contenido += '<span class="caja-pago_label">Nombre del Cliente:</span><br>';
+                       contenido += '<span class="caja-pago_label">Concepto:</span><br>';
+                       contenido += '<span class="caja-pago_label">Monto:</span><br>';
+                       contenido += '<span class="caja-pago_label">Financiamiento (Meses):</span></div>';
+                       contenido += '<div class="col-xs-6">';
+                       contenido += '<span>' + pago.id_pago + '</span><br>';
+                       contenido += '<span>' + pago.nombre + '</span><br>';
+                       contenido += '<span>' + pago.concepto +'</span><br>';
+                       contenido += '<span>$ ' + pago.monto + '</span><br>';
+                       contenido += '<span>' + pago.plan_financiamiento + ' MESES</span>';
+                       contenido += '</div>';
+                       contenido += '</div> <div class="col-xs-4"> <div class="row">';
+                       contenido += '<div class="col-xs-12" align="right">';
+                       contenido += '<span class="caja-pago_label">Fecha de Pago:</span><span> ' + pago.fecha + '</span></div></div>';
+                       contenido += '<div class="row" style="margin-top: 50px;"><div class="col-xs-6">';
+                       contenido += '<button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirmar">Confirmar</button>';
+                       contenido += '</div><div class="col-xs-6">';
+                       contenido += '<button class="btn btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-eliminar">Eliminar</button>';
+                       contenido += '</div></div></div></div>';
+                   });
+                   $("#por-confirmar").append(contenido);
+               } else {
+                   $.notify(response.mensaje, "error");
+               }
+            }
+        });
+    } else {
+        $.notify("Debes selecionar un paciente","info");
+    }
 }
