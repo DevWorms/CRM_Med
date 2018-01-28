@@ -302,7 +302,7 @@ class Pagos {
         return json_encode($res);
     }
 
-    public function getPagosPorRevisar($id_cliente) {
+    public function getPagosPaciente($id_cliente) {
         /**
          *  SE OBTIENEN TODOS LO PAGOS DE UN CLIENTE 
          *  QUE EL CONTADOR VA A REVISAR
@@ -312,7 +312,8 @@ class Pagos {
         try {
             $query = "SELECT  pg.pacientes_id as 'id_paciente', 
                 CONCAT(pc.nombre, ' ', pc.apPaterno, ' ', pc.apMaterno) AS nombre,
-                pg.id_pago, pg.monto, pg.concepto, pg.plan_financiamiento, pg.fecha
+                pg.id_pago, pg.monto, pg.concepto, pg.plan_financiamiento, pg.fecha,
+                pg.confirmado, pg.revisado
                 FROM pagos AS pg INNER JOIN pacientes AS pc 
                 ON pg.pacientes_id = pc.id 
                 WHERE pg.pacientes_id = :idpaciente and pg.revisado = 0;";
@@ -335,10 +336,51 @@ class Pagos {
         }catch (Exception $e) {
             $res['mensaje'] = $e->getMessage();
         }
-        
         return json_encode($res);
     }
-    
+
+    public function confirmarPago ($idpaciente, $idpago) {
+        $res = ['estado' => 0];
+        try {
+            $query = "UPDATE pagos
+            SET confirmado = 1, revisado = 1
+            WHERE pacientes_id = :idpaciente and id_pago = :idpago;";
+            $stm = $this->pdo->prepare($query);
+            $stm->bindParam(":idpaciente",$idcliente);
+            $stm->bindParam(":idpago",$idpago);
+            if ($stm->execute()) {
+                $res['estado'] = 0;
+                $res['mensaje'] = "Pago actualizado";
+            } else {
+                $res['estado'] = 0;
+                $res['mensaje'] = "El pago no se actualizo";
+            }
+        }catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+        return json_encode($res);
+    }
+    public function noConfirmarPago ($idpaciente, $idpago) {
+        $res = ['estado' => 0];
+        try {
+            $query = "UPDATE pagos
+            SET confirmado = 0, revisado = 1
+            WHERE pacientes_id = :idpaciente and id_pago = :idpago;";
+            $stm = $this->pdo->prepare($query);
+            $stm->bindParam(":idpaciente",$idcliente);
+            $stm->bindParam(":idpago",$idpago);
+            if ($stm->execute()) {
+                $res['estado'] = 0;
+                $res['mensaje'] = "Pago actualizado";
+            } else {
+                $res['estado'] = 0;
+                $res['mensaje'] = "El pago no se actualizo";
+            }
+        }catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+        return json_encode($res);
+    }
 }
 
 if (isset($_POST['get'])) {
@@ -365,8 +407,11 @@ if (isset($_POST['get'])) {
             case 'crearPago':
                 echo $p->crearPago($_POST);
                 break;
-            case 'getPagosPorRevisar':
-                echo $p->getPagosPorRevisar($_POST['idpaciente']);
+            case 'getPagosPaciente':
+                echo $p->getPagosPaciente($_POST['idpaciente']);
+                break;
+            case 'confirmarPago':
+                echo $p->confirmarPago($_POST['idpaciente'], $_POST['idpago']);
                 break;
             default:
                 header("Location: " . app_url() . "404");
