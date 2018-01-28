@@ -563,43 +563,28 @@ function getPagosPorConfirmar() {
     if ($("#paciente_id").val()) {
         var idPaciente = $("#paciente_id").val();
         $("#por-confirmar").html('');
+        $("#confirmados").html('');
+        $("#no-confirmados").html('');
         $.ajax({
             type: "POST",
             url: APP_URL + 'class/Pagos.php',
             data: {
                 idpaciente: idPaciente,
-                get: "getPagosPorRevisar"
+                get: "getPagosPaciente"
             },
             success: function (response) {
                response = JSON.parse(response);
                if (response.estado == "1") {
                    $.notify(response.mensaje, "success");
                    var pagos = response.pagos;
-                   var contenido = '';
-                   pagos.forEach(function (pago) { 
-                       contenido += '<div class="col-xs-10 col-xs-offset-1 caja-pago"><div class="col-xs-8">';
-                       contenido += '<div class="col-xs-6"><span class="caja-pago_label"># Recibo:</span><br>';
-                       contenido += '<span class="caja-pago_label">Nombre del Cliente:</span><br>';
-                       contenido += '<span class="caja-pago_label">Concepto:</span><br>';
-                       contenido += '<span class="caja-pago_label">Monto:</span><br>';
-                       contenido += '<span class="caja-pago_label">Financiamiento (Meses):</span></div>';
-                       contenido += '<div class="col-xs-6">';
-                       contenido += '<span>' + pago.id_pago + '</span><br>';
-                       contenido += '<span>' + pago.nombre + '</span><br>';
-                       contenido += '<span>' + pago.concepto +'</span><br>';
-                       contenido += '<span>$ ' + pago.monto + '</span><br>';
-                       contenido += '<span>' + pago.plan_financiamiento + ' MESES</span>';
-                       contenido += '</div>';
-                       contenido += '</div> <div class="col-xs-4"> <div class="row">';
-                       contenido += '<div class="col-xs-12" align="right">';
-                       contenido += '<span class="caja-pago_label">Fecha de Pago:</span><span> ' + pago.fecha + '</span></div></div>';
-                       contenido += '<div class="row" style="margin-top: 50px;"><div class="col-xs-6">';
-                       contenido += '<button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirmar">Confirmar</button>';
-                       contenido += '</div><div class="col-xs-6">';
-                       contenido += '<button class="btn btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-eliminar">Eliminar</button>';
-                       contenido += '</div></div></div></div>';
+                   pagos.forEach(function (pago) {  
+                       if(pago.revisado == 0) {
+                        cardpagosPorConfirmar(pago);
+                       }
+                       if (pago.revisado == 1) {
+                        cardPagosConfirmados(pago, pago.confirmado);
+                       } 
                    });
-                   $("#por-confirmar").append(contenido);
                } else {
                    $.notify(response.mensaje, "error");
                }
@@ -607,5 +592,70 @@ function getPagosPorConfirmar() {
         });
     } else {
         $.notify("Debes selecionar un paciente","info");
+    }
+}
+function cardpagosPorConfirmar(pago) {
+    var contenido = '';
+        contenido += '<div class="col-xs-10 col-xs-offset-1 caja-pago"><div class="col-xs-8">';
+        contenido += '<div class="col-xs-6"><span class="caja-pago_label"># Recibo:</span><br>';
+        contenido += '<span class="caja-pago_label">Nombre del Cliente:</span><br>';
+        contenido += '<span class="caja-pago_label">Concepto:</span><br>';
+        contenido += '<span class="caja-pago_label">Monto:</span><br>';
+        contenido += '<span class="caja-pago_label">Financiamiento (Meses):</span></div>';
+        contenido += '<div class="col-xs-6">';
+        contenido += '<span>' + pago.id_pago + '</span><br>';
+        contenido += '<span>' + pago.nombre + '</span><br>';
+        contenido += '<span>' + pago.concepto +'</span><br>';
+        contenido += '<span>$ ' + pago.monto + '</span><br>';
+        contenido += '<span>' + pago.plan_financiamiento + ' MESES</span>';
+        contenido += '</div>';
+        contenido += '</div> <div class="col-xs-4"> <div class="row">';
+        contenido += '<div class="col-xs-12" align="right">';
+        contenido += '<span class="caja-pago_label">Fecha de Pago:</span><span> ' + pago.fecha + '</span></div></div>';
+        contenido += '<div class="row" style="margin-top: 50px;"><div class="col-xs-6">';
+        contenido += '<button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirmar">Confirmar</button>';
+        contenido += '</div><div class="col-xs-6">';
+        contenido += '<button class="btn btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-eliminar">Eliminar</button>';
+        contenido += '</div></div></div></div>';
+    $("#por-confirmar").append(contenido);
+}
+
+function cardPagosConfirmados(pago, estado) {
+    var contenido = '';
+    var label = '';
+    var lbl_color = '';
+    if (estado == 1) {
+        lbl_color = "confirmado";
+        label = 'CONFIRMADO';
+        $("#confirmados").append(contenido);
+    } else {
+        lbl_color = "no-confirmado";
+        label = 'NO CONFIRMADO';
+        $("#no-confirmados").append(contenido);
+    }
+    contenido += '<div class="row"><div class="col-xs-10 col-xs-offset-1 caja-pago">';
+    contenido += '<div class="col-xs-8"><div class="col-xs-6">';
+    contenido += '<span class="caja-pago_label"># Recibo:</span><br>';
+    contenido += '<span class="caja-pago_label">Nombre del Cliente:</span><br>';
+    contenido += '<span class="caja-pago_label">Concepto:</span><br>';
+    contenido += '<span class="caja-pago_label">Monto:</span><br>';
+    contenido += '<span class="caja-pago_label">Financiamiento (Meses):</span></div>';
+    contenido += '<div class="col-xs-6">';
+    contenido += '<span>' + pago.id_pago + '</span><br>';
+    contenido += '<span>' + pago.nombre + '</span><br>';
+    contenido += '<span>' + pago.concepto +'</span><br>';
+    contenido += '<span>$ ' + pago.monto + '</span><br>';
+    contenido += '<span>' + pago.plan_financiamiento + ' MESES</span>';
+    contenido += '</div></div>';
+    contenido += '<div class="col-xs-4"><div class="row"><div class="col-xs-12" align="right">';
+    contenido += '<span class="caja-pago_label">Fecha de Pago:</span>';
+    contenido += '<span> 10-10-2017</span></div></div><div class="row" style="margin-top: 50px;">';
+    contenido += '<div class="col-xs-offset-4 col-xs-4">';
+    contenido += '<div class="status-box '+ lbl_color +'" align="center">';
+    contenido += '<span>'+ label +'</span></div></div></div></div></div></div>';
+    if (estado == 1) {
+        $("#confirmados").append(contenido);
+    } else {
+        $("#no-confirmados").append(contenido);
     }
 }
