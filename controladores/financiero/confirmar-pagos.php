@@ -33,6 +33,7 @@
                                         </button>
                                     </span>
                                     <input type="hidden" name="paciente_id" id="paciente_id">
+                                    <input type="hidden" name="pago_id" id="pago_id">                                    
                                 </div>
                             </div>
                         </div>
@@ -75,10 +76,10 @@
                         </div>
                         <div class="row confirmar-modal_botones">
                             <div class="col-xs-offset-3 col-xs-3">
-                                <button class="btn btn-sm btn-default btn-block">SI</button>
+                                <button id="confirmar-pago" class="btn btn-sm btn-default btn-block" data-dismiss="modal">SI</button>
                             </div>
                             <div class="col-xs-3">
-                                <button class="btn btn-sm btn-default btn-block">NO</button>
+                                <button class="btn btn-sm btn-default btn-block" data-dismiss="modal">NO</button>
                             </div>
                         </div>
                     </div>
@@ -97,10 +98,10 @@
                         </div>
                         <div class="row confirmar-modal_botones">
                             <div class="col-xs-offset-3 col-xs-3">
-                                <button class="btn btn-sm btn-default btn-block">SI</button>
+                                <button id="eliminar-pago" class="btn btn-sm btn-default btn-block" data-dismiss="modal">SI</button>
                             </div>
                             <div class="col-xs-3">
-                                <button class="btn btn-sm btn-default btn-block">NO</button>
+                                <button class="btn btn-sm btn-default btn-block" data-dismiss="modal">NO</button>
                             </div>
                         </div>
                     </div>

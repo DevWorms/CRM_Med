@@ -316,7 +316,7 @@ class Pagos {
                 pg.confirmado, pg.revisado
                 FROM pagos AS pg INNER JOIN pacientes AS pc 
                 ON pg.pacientes_id = pc.id 
-                WHERE pg.pacientes_id = :idpaciente and pg.revisado = 0;";
+                WHERE pg.pacientes_id = :idpaciente ;";
             $stm = $this->pdo->prepare($query);
             $stm->bindParam(":idpaciente",$id_cliente);
             if ($stm->execute()) {
@@ -342,14 +342,36 @@ class Pagos {
     public function confirmarPago ($idpaciente, $idpago) {
         $res = ['estado' => 0];
         try {
-            $query = "UPDATE pagos
+            $query = "UPDATE pagos 
             SET confirmado = 1, revisado = 1
-            WHERE pacientes_id = :idpaciente and id_pago = :idpago;";
+            WHERE pacientes_id = :idpaciente and id_pago = :idpago ;";
             $stm = $this->pdo->prepare($query);
-            $stm->bindParam(":idpaciente",$idcliente);
+            $stm->bindParam(":idpaciente",$idpaciente);
             $stm->bindParam(":idpago",$idpago);
             if ($stm->execute()) {
+                $res['estado'] = 1;
+                $res['mensaje'] = "Pago actualizado";
+            } else {
                 $res['estado'] = 0;
+                $res['mensaje'] = "El pago no se actualizo";
+            }
+        }catch (Exception $e) {
+            $res['mensaje'] = $e->getMessage();
+        }
+        return json_encode($res);
+    }
+
+    public function eliminarPago ($idpaciente, $idpago) {
+        $res = ['estado' => 0];
+        try {
+            $query = "UPDATE pagos 
+            SET confirmado = 0, revisado = 1
+            WHERE pacientes_id = :idpaciente and id_pago = :idpago ;";
+            $stm = $this->pdo->prepare($query);
+            $stm->bindParam(":idpaciente",$idpaciente);
+            $stm->bindParam(":idpago",$idpago);
+            if ($stm->execute()) {
+                $res['estado'] = 1;
                 $res['mensaje'] = "Pago actualizado";
             } else {
                 $res['estado'] = 0;
@@ -412,6 +434,9 @@ if (isset($_POST['get'])) {
                 break;
             case 'confirmarPago':
                 echo $p->confirmarPago($_POST['idpaciente'], $_POST['idpago']);
+                break;
+            case 'eliminarPago':
+                echo $p->eliminarPago($_POST['idpaciente'], $_POST['idpago']);
                 break;
             default:
                 header("Location: " . app_url() . "404");

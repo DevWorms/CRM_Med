@@ -237,6 +237,15 @@ $("#searchMed").on( "keydown", function( event ) {
         getPagosPorConfirmar();
     });
 
+    // BOTONES DE LOS MODALS
+    $("#confirmar-pago").click(function (e) { 
+        e.preventDefault();
+        confirmarPago();
+    });
+    $("#eliminar-pago").click(function (e) { 
+        e.preventDefault();
+        eliminarPago();
+    });
 });
 
 /******************
@@ -603,7 +612,7 @@ function cardpagosPorConfirmar(pago) {
         contenido += '<span class="caja-pago_label">Monto:</span><br>';
         contenido += '<span class="caja-pago_label">Financiamiento (Meses):</span></div>';
         contenido += '<div class="col-xs-6">';
-        contenido += '<span>' + pago.id_pago + '</span><br>';
+        contenido += '<span >' + pago.id_pago + '</span><br>';
         contenido += '<span>' + pago.nombre + '</span><br>';
         contenido += '<span>' + pago.concepto +'</span><br>';
         contenido += '<span>$ ' + pago.monto + '</span><br>';
@@ -613,9 +622,9 @@ function cardpagosPorConfirmar(pago) {
         contenido += '<div class="col-xs-12" align="right">';
         contenido += '<span class="caja-pago_label">Fecha de Pago:</span><span> ' + pago.fecha + '</span></div></div>';
         contenido += '<div class="row" style="margin-top: 50px;"><div class="col-xs-6">';
-        contenido += '<button class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#modal-confirmar">Confirmar</button>';
+        contenido += '<button class="btn btn-sm btn-block btn-success" data-toggle="modal" onclick="setId(' + pago.id_pago + ')"data-target="#modal-confirmar">Confirmar</button>';
         contenido += '</div><div class="col-xs-6">';
-        contenido += '<button class="btn btn-sm btn-block btn-danger" data-toggle="modal" data-target="#modal-eliminar">Eliminar</button>';
+        contenido += '<button class="btn btn-sm btn-block btn-danger" data-toggle="modal" onclick="setId(' + pago.id_pago + ')" data-target="#modal-eliminar">Eliminar</button>';
         contenido += '</div></div></div></div>';
     $("#por-confirmar").append(contenido);
 }
@@ -650,12 +659,63 @@ function cardPagosConfirmados(pago, estado) {
     contenido += '<div class="col-xs-4"><div class="row"><div class="col-xs-12" align="right">';
     contenido += '<span class="caja-pago_label">Fecha de Pago:</span>';
     contenido += '<span> 10-10-2017</span></div></div><div class="row" style="margin-top: 50px;">';
-    contenido += '<div class="col-xs-offset-4 col-xs-4">';
+    contenido += '<div class="col-xs-offset-2 col-xs-4">';
     contenido += '<div class="status-box '+ lbl_color +'" align="center">';
     contenido += '<span>'+ label +'</span></div></div></div></div></div></div>';
     if (estado == 1) {
         $("#confirmados").append(contenido);
     } else {
         $("#no-confirmados").append(contenido);
+    }
+}
+
+function setId(id) {
+    $("#pago_id").val(id);    
+}
+
+function confirmarPago() {
+    if ($("#paciente_id").val() && $("#pago_id").val()) {
+        console.log("ok");
+        $.ajax({
+            type: "POST",
+            url: APP_URL + 'class/Pagos.php',
+            data: {
+                get: "confirmarPago",
+                idpaciente: $("#paciente_id").val(),
+                idpago: $("#pago_id").val()
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+                if (response.estado == "1") {
+                    $.notify(response.mensaje, "success");
+                    getPagosPorConfirmar();
+                } else {
+                    $.notify(response.mensaje, "error");
+                }
+            }
+        });
+    }
+}
+function eliminarPago() {
+    if ($("#paciente_id").val() && $("#pago_id").val()) {
+        console.log("ok");
+        $.ajax({
+            type: "POST",
+            url: APP_URL + 'class/Pagos.php',
+            data: {
+                get: "eliminarPago",
+                idpaciente: $("#paciente_id").val(),
+                idpago: $("#pago_id").val()
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+                if (response.estado == "1") {
+                    $.notify(response.mensaje, "success");
+                    getPagosPorConfirmar();
+                } else {
+                    $.notify(response.mensaje, "error");
+                }
+            },
+        });
     }
 }
